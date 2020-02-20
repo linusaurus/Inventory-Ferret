@@ -1,0 +1,42 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
+
+namespace DataLayer.Models
+{
+    public class OrderDetailDto
+    {
+        [Key]
+        public int PurchaseOrderID { get; set; }
+        public int JobID { get; set; }
+        public string JobName { get; set; }
+        public string JobCostName { get; set; }
+        public int SupplierID { get; set; }
+        public string SupplierName { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{###.###.####}")]
+        public string SupplierPhone { get; set; }
+        public string Purchaser { get; set; }
+
+        public DateTime OrderDate { get; set; }
+
+        public DateTime ExpectedDate { get; set; }
+
+        public decimal OrderTotal { get; set; }
+        public string SupplierAddress { get; set; }
+        public string SupplierCity { get; set; }
+        public string SupplierState { get; set; }
+        public string SupplierZip { get; set; }
+        public int ShipID { get; set; }
+        public bool Taxable { get; set; }
+        public decimal ShippingCost { get; set; }
+        public decimal Tax { get; set; }
+
+        public decimal SubTotal { get; set; }
+
+        public ICollection<LineItemDto> LineItems { get; set; } = new HashSet<LineItemDto>();
+
+
+
+    }
+}

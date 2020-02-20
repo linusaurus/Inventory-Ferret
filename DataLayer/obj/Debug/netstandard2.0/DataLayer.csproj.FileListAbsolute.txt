@@ -1,0 +1,16 @@
+C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Part-Ferret\DataLayer\bin\Debug\netstandard2.0\DataLayer.deps.json
+C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Part-Ferret\DataLayer\bin\Debug\netstandard2.0\DataLayer.dll
+C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Part-Ferret\DataLayer\bin\Debug\netstandard2.0\DataLayer.pdb
+C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Part-Ferret\DataLayer\obj\Debug\netstandard2.0\DataLayer.AssemblyInfoInputs.cache
+C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Part-Ferret\DataLayer\obj\Debug\netstandard2.0\DataLayer.AssemblyInfo.cs
+C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Part-Ferret\DataLayer\obj\Debug\netstandard2.0\DataLayer.dll
+C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Part-Ferret\DataLayer\obj\Debug\netstandard2.0\DataLayer.pdb
+C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Part-Ferret\DataLayer\obj\Debug\netstandard2.0\DataLayer.csprojAssemblyReference.cache
+C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Inventory-Ferrit\DataLayer\bin\Debug\netstandard2.0\DataLayer.deps.json
+C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Inventory-Ferrit\DataLayer\bin\Debug\netstandard2.0\DataLayer.dll
+C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Inventory-Ferrit\DataLayer\bin\Debug\netstandard2.0\DataLayer.pdb
+C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Inventory-Ferrit\DataLayer\obj\Debug\netstandard2.0\DataLayer.AssemblyInfoInputs.cache
+C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Inventory-Ferrit\DataLayer\obj\Debug\netstandard2.0\DataLayer.AssemblyInfo.cs
+C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Inventory-Ferrit\DataLayer\obj\Debug\netstandard2.0\DataLayer.dll
+C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Inventory-Ferrit\DataLayer\obj\Debug\netstandard2.0\DataLayer.pdb
+C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Inventory-Ferrit\DataLayer\obj\Debug\netstandard2.0\DataLayer.csprojAssemblyReference.cache
