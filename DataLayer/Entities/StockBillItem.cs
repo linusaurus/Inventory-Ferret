@@ -5,13 +5,14 @@ namespace DataLayer.Entities
 {
     public partial class StockBillItem
     {
-        public int StockItemId { get; set; }
-        public int? StockBillD { get; set; }
-        public int? PartId { get; set; }
-        public int? LineItemSourceId { get; set; }
+        public int StockItemID { get; set; }
+        public int? ProductID { get; set; }
+        public int SubAssemblyID { get; set; }
+        public int? PartID { get; set; }
+        public int? LineItemSourceID { get; set; }
         public decimal? Qnty { get; set; }
         public string Description { get; set; }
 
-        public virtual StockBill StockBillDNavigation { get; set; }
+        public Assembly GetAssembly { get; set; }
     }
 }

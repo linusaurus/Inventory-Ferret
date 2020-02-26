@@ -25,7 +25,7 @@ namespace Weaselware.InventoryFerret
             {
                 Inventory inv = new Inventory();
 
-                inv.OrderReceiptId = receipt.OrderReceiptId;
+                inv.OrderReceiptID = receipt.OrderReceiptId;
                 inv.LineId = item.LineId;
                 if (item.PartId.HasValue) { inv.PartId = item.PartId.Value; }
                 inv.JobId = item.PurchaseOrderId.Value;

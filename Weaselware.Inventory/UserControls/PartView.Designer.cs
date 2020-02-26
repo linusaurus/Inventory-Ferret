@@ -80,20 +80,21 @@
             this.PartsDetailTabControl = new System.Windows.Forms.TabControl();
             this.tbResources = new System.Windows.Forms.TabPage();
             this.tbTransactions = new System.Windows.Forms.TabPage();
-            this.dgvTransactions = new System.Windows.Forms.DataGridView();
-            this.tbAdvanced = new System.Windows.Forms.TabPage();
-            this.rbUsed = new System.Windows.Forms.RadioButton();
-            this.rbRecieved = new System.Windows.Forms.RadioButton();
-            this.txtStockOnHand = new System.Windows.Forms.TextBox();
-            this.txtTransCalc = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
-            this.btnPullStock = new System.Windows.Forms.Button();
             this.btnSetLevel = new System.Windows.Forms.Button();
+            this.btnPullStock = new System.Windows.Forms.Button();
+            this.label12 = new System.Windows.Forms.Label();
+            this.txtTransCalc = new System.Windows.Forms.TextBox();
+            this.txtStockOnHand = new System.Windows.Forms.TextBox();
+            this.rbRecieved = new System.Windows.Forms.RadioButton();
+            this.rbUsed = new System.Windows.Forms.RadioButton();
+            this.dgvTransactions = new System.Windows.Forms.DataGridView();
             this.colStockID = new System.Windows.Forms.DataGridViewLinkColumn();
             this.DateRevd = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colLineID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colQnty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colJobName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tbAdvanced = new System.Windows.Forms.TabPage();
+            this.rbAll = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.errDescription)).BeginInit();
             this.gbCostFactors.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -533,13 +534,14 @@
             this.tbResources.Location = new System.Drawing.Point(4, 22);
             this.tbResources.Name = "tbResources";
             this.tbResources.Padding = new System.Windows.Forms.Padding(3);
-            this.tbResources.Size = new System.Drawing.Size(606, 313);
+            this.tbResources.Size = new System.Drawing.Size(606, 323);
             this.tbResources.TabIndex = 0;
             this.tbResources.Text = "Resources";
             this.tbResources.UseVisualStyleBackColor = true;
             // 
             // tbTransactions
             // 
+            this.tbTransactions.Controls.Add(this.rbAll);
             this.tbTransactions.Controls.Add(this.btnSetLevel);
             this.tbTransactions.Controls.Add(this.btnPullStock);
             this.tbTransactions.Controls.Add(this.label12);
@@ -555,6 +557,77 @@
             this.tbTransactions.TabIndex = 1;
             this.tbTransactions.Text = "Transactions";
             this.tbTransactions.UseVisualStyleBackColor = true;
+            // 
+            // btnSetLevel
+            // 
+            this.btnSetLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnSetLevel.Location = new System.Drawing.Point(115, 292);
+            this.btnSetLevel.Name = "btnSetLevel";
+            this.btnSetLevel.Size = new System.Drawing.Size(98, 28);
+            this.btnSetLevel.TabIndex = 5;
+            this.btnSetLevel.Text = "Set Level";
+            this.btnSetLevel.UseVisualStyleBackColor = true;
+            this.btnSetLevel.Click += new System.EventHandler(this.btnSetLevel_Click);
+            // 
+            // btnPullStock
+            // 
+            this.btnPullStock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnPullStock.Location = new System.Drawing.Point(5, 292);
+            this.btnPullStock.Name = "btnPullStock";
+            this.btnPullStock.Size = new System.Drawing.Size(98, 28);
+            this.btnPullStock.TabIndex = 5;
+            this.btnPullStock.Text = "Pull Stock";
+            this.btnPullStock.UseVisualStyleBackColor = true;
+            this.btnPullStock.Click += new System.EventHandler(this.btnPullStock_Click);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(409, 10);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(81, 13);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Stock On Hand";
+            // 
+            // txtTransCalc
+            // 
+            this.txtTransCalc.Location = new System.Drawing.Point(223, 5);
+            this.txtTransCalc.Name = "txtTransCalc";
+            this.txtTransCalc.Size = new System.Drawing.Size(72, 20);
+            this.txtTransCalc.TabIndex = 3;
+            // 
+            // txtStockOnHand
+            // 
+            this.txtStockOnHand.Location = new System.Drawing.Point(495, 6);
+            this.txtStockOnHand.Name = "txtStockOnHand";
+            this.txtStockOnHand.Size = new System.Drawing.Size(100, 20);
+            this.txtStockOnHand.TabIndex = 2;
+            this.txtStockOnHand.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtStockOnHand.TextChanged += new System.EventHandler(this.txtStockOnHand_TextChanged);
+            // 
+            // rbRecieved
+            // 
+            this.rbRecieved.AutoSize = true;
+            this.rbRecieved.Location = new System.Drawing.Point(10, 6);
+            this.rbRecieved.Name = "rbRecieved";
+            this.rbRecieved.Size = new System.Drawing.Size(71, 17);
+            this.rbRecieved.TabIndex = 1;
+            this.rbRecieved.TabStop = true;
+            this.rbRecieved.Text = "Received";
+            this.rbRecieved.UseVisualStyleBackColor = true;
+            this.rbRecieved.CheckedChanged += new System.EventHandler(this.rbRecieved_CheckedChanged);
+            // 
+            // rbUsed
+            // 
+            this.rbUsed.AutoSize = true;
+            this.rbUsed.Location = new System.Drawing.Point(87, 6);
+            this.rbUsed.Name = "rbUsed";
+            this.rbUsed.Size = new System.Drawing.Size(75, 17);
+            this.rbUsed.TabIndex = 1;
+            this.rbUsed.TabStop = true;
+            this.rbUsed.Text = "Consumed";
+            this.rbUsed.UseVisualStyleBackColor = true;
+            this.rbUsed.CheckedChanged += new System.EventHandler(this.rbUsed_CheckedChanged);
             // 
             // dgvTransactions
             // 
@@ -577,93 +650,6 @@
             this.dgvTransactions.Size = new System.Drawing.Size(593, 259);
             this.dgvTransactions.TabIndex = 0;
             this.dgvTransactions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransactions_CellContentClick);
-            // 
-            // tbAdvanced
-            // 
-            this.tbAdvanced.Controls.Add(this.txtBoilingPoint);
-            this.tbAdvanced.Controls.Add(this.txtVOCcontent);
-            this.tbAdvanced.Controls.Add(this.txtMixRatio);
-            this.tbAdvanced.Controls.Add(this.lblVOCLimits);
-            this.tbAdvanced.Controls.Add(this.txtVOCLimit);
-            this.tbAdvanced.Controls.Add(this.lblMixRatio);
-            this.tbAdvanced.Controls.Add(this.ckbCarbTrack);
-            this.tbAdvanced.Controls.Add(this.lblVOCcontent);
-            this.tbAdvanced.Controls.Add(this.labelBoilingPoint);
-            this.tbAdvanced.Location = new System.Drawing.Point(4, 22);
-            this.tbAdvanced.Name = "tbAdvanced";
-            this.tbAdvanced.Size = new System.Drawing.Size(855, 322);
-            this.tbAdvanced.TabIndex = 2;
-            this.tbAdvanced.Text = "Advanced";
-            this.tbAdvanced.UseVisualStyleBackColor = true;
-            // 
-            // rbUsed
-            // 
-            this.rbUsed.AutoSize = true;
-            this.rbUsed.Location = new System.Drawing.Point(87, 6);
-            this.rbUsed.Name = "rbUsed";
-            this.rbUsed.Size = new System.Drawing.Size(75, 17);
-            this.rbUsed.TabIndex = 1;
-            this.rbUsed.TabStop = true;
-            this.rbUsed.Text = "Consumed";
-            this.rbUsed.UseVisualStyleBackColor = true;
-            this.rbUsed.CheckedChanged += new System.EventHandler(this.rbUsed_CheckedChanged);
-            // 
-            // rbRecieved
-            // 
-            this.rbRecieved.AutoSize = true;
-            this.rbRecieved.Location = new System.Drawing.Point(10, 6);
-            this.rbRecieved.Name = "rbRecieved";
-            this.rbRecieved.Size = new System.Drawing.Size(71, 17);
-            this.rbRecieved.TabIndex = 1;
-            this.rbRecieved.TabStop = true;
-            this.rbRecieved.Text = "Received";
-            this.rbRecieved.UseVisualStyleBackColor = true;
-            this.rbRecieved.CheckedChanged += new System.EventHandler(this.rbRecieved_CheckedChanged);
-            // 
-            // txtStockOnHand
-            // 
-            this.txtStockOnHand.Location = new System.Drawing.Point(495, 6);
-            this.txtStockOnHand.Name = "txtStockOnHand";
-            this.txtStockOnHand.Size = new System.Drawing.Size(100, 20);
-            this.txtStockOnHand.TabIndex = 2;
-            this.txtStockOnHand.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtStockOnHand.TextChanged += new System.EventHandler(this.txtStockOnHand_TextChanged);
-            // 
-            // txtTransCalc
-            // 
-            this.txtTransCalc.Location = new System.Drawing.Point(188, 5);
-            this.txtTransCalc.Name = "txtTransCalc";
-            this.txtTransCalc.Size = new System.Drawing.Size(100, 20);
-            this.txtTransCalc.TabIndex = 3;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(409, 10);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(81, 13);
-            this.label12.TabIndex = 4;
-            this.label12.Text = "Stock On Hand";
-            // 
-            // btnPullStock
-            // 
-            this.btnPullStock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPullStock.Location = new System.Drawing.Point(5, 292);
-            this.btnPullStock.Name = "btnPullStock";
-            this.btnPullStock.Size = new System.Drawing.Size(98, 28);
-            this.btnPullStock.TabIndex = 5;
-            this.btnPullStock.Text = "Pull Stock";
-            this.btnPullStock.UseVisualStyleBackColor = true;
-            // 
-            // btnSetLevel
-            // 
-            this.btnSetLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSetLevel.Location = new System.Drawing.Point(115, 292);
-            this.btnSetLevel.Name = "btnSetLevel";
-            this.btnSetLevel.Size = new System.Drawing.Size(98, 28);
-            this.btnSetLevel.TabIndex = 5;
-            this.btnSetLevel.Text = "Set Level";
-            this.btnSetLevel.UseVisualStyleBackColor = true;
             // 
             // colStockID
             // 
@@ -717,6 +703,36 @@
             this.colJobName.Name = "colJobName";
             this.colJobName.ReadOnly = true;
             // 
+            // tbAdvanced
+            // 
+            this.tbAdvanced.Controls.Add(this.txtBoilingPoint);
+            this.tbAdvanced.Controls.Add(this.txtVOCcontent);
+            this.tbAdvanced.Controls.Add(this.txtMixRatio);
+            this.tbAdvanced.Controls.Add(this.lblVOCLimits);
+            this.tbAdvanced.Controls.Add(this.txtVOCLimit);
+            this.tbAdvanced.Controls.Add(this.lblMixRatio);
+            this.tbAdvanced.Controls.Add(this.ckbCarbTrack);
+            this.tbAdvanced.Controls.Add(this.lblVOCcontent);
+            this.tbAdvanced.Controls.Add(this.labelBoilingPoint);
+            this.tbAdvanced.Location = new System.Drawing.Point(4, 22);
+            this.tbAdvanced.Name = "tbAdvanced";
+            this.tbAdvanced.Size = new System.Drawing.Size(606, 323);
+            this.tbAdvanced.TabIndex = 2;
+            this.tbAdvanced.Text = "Advanced";
+            this.tbAdvanced.UseVisualStyleBackColor = true;
+            // 
+            // rbAll
+            // 
+            this.rbAll.AutoSize = true;
+            this.rbAll.Location = new System.Drawing.Point(174, 6);
+            this.rbAll.Name = "rbAll";
+            this.rbAll.Size = new System.Drawing.Size(36, 17);
+            this.rbAll.TabIndex = 6;
+            this.rbAll.TabStop = true;
+            this.rbAll.Text = "All";
+            this.rbAll.UseVisualStyleBackColor = true;
+            this.rbAll.CheckedChanged += new System.EventHandler(this.rbAll_CheckedChanged);
+            // 
             // PartView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -741,7 +757,7 @@
             this.MaximumSize = new System.Drawing.Size(1200, 800);
             this.MinimumSize = new System.Drawing.Size(644, 460);
             this.Name = "PartView";
-            this.Size = new System.Drawing.Size(820, 601);
+            this.Size = new System.Drawing.Size(690, 601);
             this.Load += new System.EventHandler(this.PartView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errDescription)).EndInit();
             this.gbCostFactors.ResumeLayout(false);
@@ -822,5 +838,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colLineID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQnty;
         private System.Windows.Forms.DataGridViewTextBoxColumn colJobName;
+        private System.Windows.Forms.RadioButton rbAll;
     }
 }

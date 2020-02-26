@@ -260,6 +260,12 @@
     <Compile Include="Services\Globals.cs" />
     <Compile Include="Services\LabelService.cs" />
     <Compile Include="Services\NotificationService.cs" />
+    <Compile Include="UserControls\AssemblyManagerControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AssemblyManagerControl.Designer.cs">
+      <DependentUpon>AssemblyManagerControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\PartDetailCOntrol.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -395,6 +401,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PrintJobDialog.resx">
       <DependentUpon>PrintJobDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\AssemblyManagerControl.resx">
+      <DependentUpon>AssemblyManagerControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\PartDetailCOntrol.resx">
       <DependentUpon>PartDetailCOntrol.cs</DependentUpon>

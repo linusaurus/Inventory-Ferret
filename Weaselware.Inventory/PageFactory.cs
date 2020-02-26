@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using DataLayer.Entities;
+using Weaselware.InventoryFerret.UserControls;
 
 namespace Weaselware.InventoryFerret
 {
@@ -24,7 +25,8 @@ namespace Weaselware.InventoryFerret
             StockBill,
             PartEditorPage,
             RejectPage,
-            PurchaseOrderPage
+            PurchaseOrderPage,
+            AssemblyManagerControl
 
         }
         
@@ -85,6 +87,12 @@ namespace Weaselware.InventoryFerret
                     StockBill stockBillControl = new StockBill(ctx);
                     stockBillControl.Dock = DockStyle.Fill;
                     tab.Controls.Add(stockBillControl);
+                    break;
+                case TabPageType.AssemblyManagerControl:
+                    tab.Text = "Products";
+                    AssemblyManagerControl assemblyManagerControl = new AssemblyManagerControl(ctx);
+                    assemblyManagerControl.Dock = DockStyle.Fill;
+                    tab.Controls.Add(assemblyManagerControl);
                     break;
                 case TabPageType.PartEditorPage:
                     tab.Text = "Part Editor";

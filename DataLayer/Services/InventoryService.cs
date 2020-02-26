@@ -23,7 +23,7 @@ namespace DataLayer.Services {
         public bool Exist(int stockTransActionID) {
 
             bool result = false;
-            if (context.Inventory.Any(c => c.StockTransactionId == stockTransActionID))
+            if (context.Inventory.Any(c => c.StockTransactionID == stockTransActionID))
             {result = true; }
 
             return result;
@@ -53,7 +53,7 @@ namespace DataLayer.Services {
 
             var orderNums = context.PurchaseOrder.Where(c => c.SupplierId == supplier.SupplierId).Select(c => c.OrderNum);
             var reciepts = from rct in context.OrderReciept where (orderNums.Contains(rct.OrderNum.Value)) select rct.OrderReceiptId;
-            var it = from r in context.Inventory where (reciepts.Contains(r.OrderReceiptId.Value)) select r;
+            var it = from r in context.Inventory where (reciepts.Contains(r.OrderReceiptID.Value)) select r;
             result = it.ToList();
             return result;
 
@@ -65,14 +65,14 @@ namespace DataLayer.Services {
 
             var orderNums = context.PurchaseOrder.Where(c => c.SupplierId == supplier.SupplierId).Select(c => c.OrderNum);
             var reciepts = from rct in context.OrderReciept where (orderNums.Contains(rct.OrderNum.Value)) select rct.OrderReceiptId;
-            var it = from r in context.Inventory where (reciepts.Contains(r.OrderReceiptId.Value) && r.Description.Contains(itemName)) select r;
+            var it = from r in context.Inventory where (reciepts.Contains(r.OrderReceiptID.Value) && r.Description.Contains(itemName)) select r;
             result = it.ToList();
             return result;
         }
 
         public List<Inventory> GetOrderRecieptItems(int orderRecieptID) {
 
-            return context.Inventory.Where(c => c.OrderReceiptId == orderRecieptID).ToList();
+            return context.Inventory.Where(c => c.OrderReceiptID == orderRecieptID).ToList();
         }
         /// <summary>
         /// Get Inventory Transaction for a Part
@@ -84,11 +84,11 @@ namespace DataLayer.Services {
 
             var result = context.Inventory.Include(j => j.GetJob).Where(i => i.PartId == partID).Select(p => new InventoryListDto
             {
-                StockTransactionId = p.StockTransactionId,
+                StockTransactionId = p.StockTransactionID,
                 Description = p.Description,
                 PartId = p.PartId.GetValueOrDefault(),
                 LineId = p.LineId.Value,
-                OrderReceiptId = p.OrderReceiptId.GetValueOrDefault(),
+                OrderReceiptId = p.OrderReceiptID.GetValueOrDefault(),
                 QntyRev = p.Qnty.GetValueOrDefault(),
                 TransDate = p.DateStamp.Value.ToShortDateString(),
                 JobName = p.GetJob.Jobname,
@@ -103,7 +103,7 @@ namespace DataLayer.Services {
 
 
        public void InsertOrUpdate(Inventory inventory) {
-            if (inventory.OrderReceiptId == default(int))
+            if (inventory.OrderReceiptID == default(int))
             {
                 context.Entry(inventory).State = EntityState.Added;
                 context.Inventory.Add(inventory);
@@ -152,7 +152,7 @@ namespace DataLayer.Services {
             inventory.Description = part.ItemDescription;
             inventory.PartId = partID;
             inventory.UnitOfMeasure = part.Uid;
-            inventory.EmpId = employeeId;
+            inventory.Emp_id = employeeId;
             inventory.TransActionType = 2;
             inventory.Qnty = qnty;
 
@@ -191,7 +191,7 @@ namespace DataLayer.Services {
                
                 DateStamp = DateTime.Now,
                 PartId = partBeingPulled.PartId,
-                EmpId = employeeID,
+                Emp_id = employeeID,
                 Description = partBeingPulled.ItemDescription,
                 UnitOfMeasure = partBeingPulled.Uid,
                 Qnty = qnty * -1.0m,         
@@ -229,10 +229,11 @@ namespace DataLayer.Services {
                     Inventory adjustment = new Inventory
                     {
                         PartId = partID,
-                        EmpId = employeeID,
+                        Emp_id = employeeID,
                         TransActionType = 4,
                         UnitOfMeasure = part.Uid.GetValueOrDefault(),
                         DateStamp = DateTime.Now,
+                        Description = part.ItemDescription,
                         Qnty = (currentStock * -1.0m)
 
                     };
@@ -244,10 +245,11 @@ namespace DataLayer.Services {
                     Inventory adjustment = new Inventory
                     {
                         PartId = partID,
-                        EmpId = employeeID,
-                        TransActionType = 4,
+                        Emp_id = employeeID,
+                        TransActionType = 2,
                         UnitOfMeasure = part.Uid.GetValueOrDefault(),
                         DateStamp = DateTime.Now,
+                        Description = part.ItemDescription,
                         Qnty = (targetQnty - currentStock)
 
                     };
@@ -265,7 +267,7 @@ namespace DataLayer.Services {
                 Inventory adjustment = new Inventory
                 {
                     PartId = partID,
-                    EmpId = employeeID,
+                    Emp_id = employeeID,
                     TransActionType = 4,
                     UnitOfMeasure = part.Uid.GetValueOrDefault(),
                     DateStamp = DateTime.Now,

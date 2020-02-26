@@ -204,4 +204,47 @@ namespace DataLayerTest
 
 
     }
+
+    [TestClass]
+    public class ProductionRepoTest
+    {
+        [TestMethod]
+        public void Production_Assembly_ShouldReturnAllAssemblies()
+        {
+            IProductionRepository repo = new ProductionRepository(new BadgerDataModel());
+            var result = repo.GetAssemblies();
+            //---------------------------------     
+            Assert.IsTrue(result.Count > 10);
+        }
+
+        [TestMethod]
+        public void Production_Assembly_ShouldReturnJobAssemblies()
+        {
+            IProductionRepository repo = new ProductionRepository(new BadgerDataModel());
+            var result = repo.GetJobAssemblies(1172);
+            Assert.IsTrue(result.Count == 69);
+        }
+
+        [TestMethod]
+        public void Production_SubAssembly_ShouldReturnSubAssembly()
+        {
+            IProductionRepository repo = new ProductionRepository(new BadgerDataModel());
+            var result = repo.GetSubAssemblies(20);
+            Assert.IsTrue(result.Count == 2);
+        }
+
+    }
+    [TestClass]
+    public class StockBillItemsTest
+    {
+        [TestMethod]
+        public void StockBillItems_StockItem_ShouldReturnAssemblyStock()
+        {
+            IProductionRepository repo = new ProductionRepository(new BadgerDataModel());
+            var result = repo.GetStockBillItems(64);
+            Assert.IsTrue(result.Count == 1);
+        }
+
+    }
+
 }

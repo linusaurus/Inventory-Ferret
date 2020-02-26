@@ -28,7 +28,9 @@ bld/
 [Ll]og/
 
 # Visual Studio 2015/2017 cache/options directory
+
 .vs/
+
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
 
@@ -107,6 +109,7 @@ ipch/
 *.vsp
 *.vspx
 *.sap
+db.lock
 
 # Visual Studio Trace Files
 *.e2e
@@ -174,6 +177,8 @@ publish/
 # but database connection strings (with potential passwords) will be unencrypted
 *.pubxml
 *.publishproj
+
+.vs/
 
 # Microsoft Azure Web App publish settings. Comment the next line if you want to
 # checkin your Azure Web App publish settings, but sensitive information contained
@@ -249,6 +254,7 @@ ServiceFabricBackup/
 *.mdf
 *.ldf
 *.ndf
+*.lock
 
 # Business Intelligence projects
 *.rdl.data

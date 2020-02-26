@@ -5,6 +5,8 @@ namespace DataLayer.Entities
 {
     public partial class Assembly
     {
+        public int ProductId { get; set; }
+        public int JobID { get; set; }
         public int AssemblyId { get; set; }
         public string AssemblyName { get; set; }
         public string ArchRef { get; set; }
@@ -19,10 +21,10 @@ namespace DataLayer.Entities
         public decimal? Weight { get; set; }
         public decimal? Area { get; set; }
         public decimal? CalculatedCost { get; set; }
-        public decimal? LaborHours { get; set; }
-        public string ProductionId { get; set; }
+        public decimal? LaborHours { get; set; }   
         public bool? IsContracted { get; set; }
 
-        public virtual ProductionGroup ProductionGroup { get; set; }
+        public ICollection<SubAssembly> SubAssembly { get; set; }
+        public ICollection<StockBillItem> StockBillItems { get; set; }
     }
 }

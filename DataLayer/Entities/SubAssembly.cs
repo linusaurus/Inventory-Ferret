@@ -5,9 +5,8 @@ namespace DataLayer.Entities
 {
     public partial class SubAssembly
     {
-        public int SubAssemblyId { get; set; }
+        public int SubAssemblyID { get; set; }
         public string SubAssemblyName { get; set; }
-        public int? AssemblyId { get; set; }
         public decimal? Width { get; set; }
         public decimal? Height { get; set; }
         public decimal? Depth { get; set; }
@@ -20,7 +19,10 @@ namespace DataLayer.Entities
         public string UnitType { get; set; }
         public int? GlassId { get; set; }
         public string FrameSashType { get; set; }
-        public int? CpdId { get; set; }
+        public int? CPD_ID { get; set; }
         public string SystemName { get; set; }
+
+        public int AssemblyId { get; set; }
+        public Assembly GetAssembly { get; set; }
     }
 }

@@ -82,7 +82,7 @@ namespace Weaselware.InventoryFerret
         /// </summary>
         /// <param name="reciept"></param>
         private void BindOrderReceiptItems(OrderReciept reciept) {
-            inventoryItems = (from c in _context.Inventory where c.OrderReceiptId == reciept.OrderReceiptId select c).ToList();
+            inventoryItems = (from c in _context.Inventory where c.OrderReceiptID == reciept.OrderReceiptId select c).ToList();
             Employee employee = (from c in _context.Employee where c.EmployeeId == reciept.EmployeeId select c).FirstOrDefault();
             this.txtOrderReceiptID.Text = reciept.OrderReceiptId.ToString();
             this.txtOrderNo.Text = reciept.OrderNum.ToString();

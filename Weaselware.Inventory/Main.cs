@@ -111,7 +111,7 @@ namespace Weaselware.InventoryFerret {
             }
             if (keyData == (Keys.F8))
             {
-                this.tsbPullStockOrder.PerformClick();
+                this.tsbJobItems.PerformClick();
             }
             if (keyData == (Keys.Escape))
             {              
@@ -157,6 +157,13 @@ namespace Weaselware.InventoryFerret {
             TabPage suppliersTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.SupplierOrdersPage);
             MainTabControl.TabPages.Add(suppliersTab);
             MainTabControl.SelectedTab = suppliersTab;
+        }
+
+        private void tsbJobItems_OnClick(object sender, EventArgs e)
+        {
+            TabPage AssembliesTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.AssemblyManagerControl);
+            MainTabControl.TabPages.Add(AssembliesTab);
+            MainTabControl.SelectedTab = AssembliesTab;
         }
     }
 }

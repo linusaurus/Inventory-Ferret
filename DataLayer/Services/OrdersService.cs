@@ -17,10 +17,12 @@ namespace DataLayer.Services {
     public class OrdersService : IDisposable, IOrdersService {
 
         private readonly BadgerDataModel context;
+        IPartsService _partService;
 
         public OrdersService(BadgerDataModel Context) {
             
             context = Context;
+            _partService = new PartsService(context);
         }
 
         public OrderDetailDto GetOrderDTO(int orderID)
@@ -164,7 +166,7 @@ namespace DataLayer.Services {
             OrderReciept oreciept = new OrderReciept();
             oreciept.OrderNum = order.OrderNum;
             oreciept.EmployeeId = employeeID;
-            oreciept.ReceiptDate = DateTime.Today;
+            oreciept.ReceiptDate = DateTime.Now;
             context.OrderReciept.Add(oreciept);
             context.SaveChanges();
             List<ClaimItem> claimItems = new List<ClaimItem>();
@@ -173,13 +175,13 @@ namespace DataLayer.Services {
             {
 
                 Inventory inv = new Inventory();
-                inv.DateStamp = DateTime.Today;
+                inv.DateStamp = DateTime.Now;
                 inv.Description = item.Description.ToString().TrimEnd();
                 inv.JobId = order.JobId;
                 inv.LineId = item.LineId;
                 inv.Location = string.Empty;
                 inv.Note = item.Note;
-                inv.OrderReceiptId = oreciept.OrderReceiptId;
+                inv.OrderReceiptID = oreciept.OrderReceiptId;
                 inv.UnitOfMeasure = item.Uom ?? -1;
                 inv.Qnty = item.Qnty ?? 0;      
                 item.Recieved = true;

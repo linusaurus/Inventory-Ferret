@@ -75,13 +75,24 @@ namespace Weaselware.InventoryFerret
             bsDocuments.DataSource = _documents;
             this.dataGridView1.DataSource = bsDocuments;
 
-            transactionsView = DataBuilders.BuildDataTable( inventoryService.GetInventoryByPartID(_part.PartId)).DefaultView;
-            bsTransactions.DataSource = transactionsView;
+            LoadTransaction();
+            //transactionsView = DataBuilders.BuildDataTable( inventoryService.GetInventoryByPartID(_part.PartId)).DefaultView;
+            //bsTransactions.DataSource = transactionsView;
             
+            //this.dgvTransactions.DataSource = bsTransactions;
+            //var sum = transactionsView.Table.AsEnumerable().Sum(x => x.Field<decimal>(5));
+            //this.txtStockOnHand.Text = sum.ToString();
+            this.rbRecieved.Checked = true;
+        }
+
+        private void LoadTransaction()
+        {
+            transactionsView = DataBuilders.BuildDataTable(inventoryService.GetInventoryByPartID(_part.PartId)).DefaultView;
+            bsTransactions.DataSource = transactionsView;
+
             this.dgvTransactions.DataSource = bsTransactions;
             var sum = transactionsView.Table.AsEnumerable().Sum(x => x.Field<decimal>(5));
             this.txtStockOnHand.Text = sum.ToString();
-            this.rbRecieved.Checked = true;
         }
 
         private void BsPart_CurrentItemChanged(object sender, EventArgs e)
@@ -323,9 +334,9 @@ namespace Weaselware.InventoryFerret
             RadioButton rb = (RadioButton)sender;
             if (rb.Checked | rb.Name=="rbReceived")
             {
-                bsTransactions.Filter ="TransactionType = '1'";
+                bsTransactions.Filter = "TransactionType = '1' OR TransactionType = '4'";
                 DataView view = ((DataView)bsTransactions.DataSource);
-                txtTransCalc.Text = view.Table.DefaultView.Table.Compute("SUM(QntyRev)", "TransactionType = '1' ").ToString();
+                txtTransCalc.Text = view.Table.DefaultView.Table.Compute("SUM(QntyRev)", "TransactionType = '1' OR TransactionType = '4'").ToString();
             }
 
            
@@ -336,18 +347,61 @@ namespace Weaselware.InventoryFerret
             RadioButton rb = (RadioButton)sender;
             if (rb.Checked | rb.Name == "rbUsed")
             {
-                bsTransactions.Filter = "TransactionType = '4' ";
+                bsTransactions.Filter = "TransactionType = '4' OR TransactionType = '3' ";
                 DataView view  = ((DataView)bsTransactions.DataSource);
-                txtTransCalc.Text = view.Table.DefaultView.Table.Compute("SUM(QntyRev)", "TransactionType = '4' ").ToString();
+                txtTransCalc.Text = view.Table.DefaultView.Table.Compute("SUM(QntyRev)", "TransactionType = '4' OR TransactionType = '3'").ToString();
                
                 
             }
 
         }
 
+        private void rbAll_CheckedChanged(object sender, EventArgs e)
+        {
+            RadioButton rb = (RadioButton)sender;
+            if (rb.Checked | rb.Name == "rbAll")
+            {
+                bsTransactions.Filter = "TransactionType = '4' OR TransactionType = '3' OR TransactionType = '1' OR TransactionType = '2'";
+                DataView view = ((DataView)bsTransactions.DataSource);
+                txtTransCalc.Text = view.Table.DefaultView.Table
+                    .Compute("SUM(QntyRev)", "TransactionType = '4' OR TransactionType = '3' OR TransactionType = '1' OR TransactionType = '2'").ToString();
+
+            }
+        }
+
         private void txtStockOnHand_TextChanged(object sender, EventArgs e)
         {
 
         }
+
+        /// <summary>
+        /// Stock Actions
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
+        #region Stock Actions
+
+        private void btnPullStock_Click(object sender, EventArgs e)
+        {
+            if (_part != null)
+            {
+                inventoryService.PullStock(_part.PartId, 1.2m, Globals.CurrentLoggedUserID);
+                LoadTransaction();
+            }
+        }
+
+        private void btnSetLevel_Click(object sender, EventArgs e)
+        {
+            if (_part != null)
+            {
+                inventoryService.SetStock(_part.PartId, 20.0m, Globals.CurrentLoggedUserID);
+                LoadTransaction();
+            }
+        }
+
+        #endregion
+
+       
     }
 }

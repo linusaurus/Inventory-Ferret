@@ -35,7 +35,7 @@
             this.tsbReceiveOrder = new System.Windows.Forms.ToolStripButton();
             this.tsPartEditor = new System.Windows.Forms.ToolStripButton();
             this.tsScanBarCode = new System.Windows.Forms.ToolStripLabel();
-            this.tsbPullStockOrder = new System.Windows.Forms.ToolStripButton();
+            this.tsbJobItems = new System.Windows.Forms.ToolStripButton();
             this.tsbJobOrders = new System.Windows.Forms.ToolStripButton();
             this.tsSettingsButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -54,8 +54,8 @@
             this.tsbFindOrder,
             this.tsbReceiveOrder,
             this.tsPartEditor,
+            this.tsbJobItems,
             this.tsScanBarCode,
-            this.tsbPullStockOrder,
             this.tsbJobOrders,
             this.tsSettingsButton});
             this.mainToolStrip.Location = new System.Drawing.Point(0, 0);
@@ -121,16 +121,16 @@
             this.tsScanBarCode.ToolTipText = "Lookup Stock Tag";
             this.tsScanBarCode.Click += new System.EventHandler(this.tsScanBarCode_Click);
             // 
-            // tsbPullStockOrder
+            // tsbJobItems
             // 
-            this.tsbPullStockOrder.Image = global::Weaselware.InventoryFerret.Properties.Resources.product_in_progress;
-            this.tsbPullStockOrder.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbPullStockOrder.Name = "tsbPullStockOrder";
-            this.tsbPullStockOrder.Size = new System.Drawing.Size(61, 52);
-            this.tsbPullStockOrder.Text = "Job Items";
-            this.tsbPullStockOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsbPullStockOrder.ToolTipText = "Pull Stock";
-            this.tsbPullStockOrder.Click += new System.EventHandler(this.tsbPullStockOrder_Click);
+            this.tsbJobItems.Image = global::Weaselware.InventoryFerret.Properties.Resources.product_in_progress;
+            this.tsbJobItems.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbJobItems.Name = "tsbJobItems";
+            this.tsbJobItems.Size = new System.Drawing.Size(61, 52);
+            this.tsbJobItems.Text = "Job Items";
+            this.tsbJobItems.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbJobItems.ToolTipText = "Pull Stock";
+            this.tsbJobItems.Click += new System.EventHandler(this.tsbJobItems_OnClick);
             // 
             // tsbJobOrders
             // 
@@ -211,7 +211,7 @@
         public System.Windows.Forms.TabControl MainTabControl;
         private System.Windows.Forms.ToolStripButton tsSettingsButton;
         private System.Windows.Forms.ToolStripLabel tsScanBarCode;
-        private System.Windows.Forms.ToolStripButton tsbPullStockOrder;
+        private System.Windows.Forms.ToolStripButton tsbJobItems;
         private System.Windows.Forms.ToolStripButton tsPartEditor;
         private System.Windows.Forms.ToolStripButton tsOrderButton;
         private System.Windows.Forms.ToolStripButton tsbReceiveOrder;

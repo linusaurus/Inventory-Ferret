@@ -83,10 +83,10 @@ namespace Weaselware.InventoryFerret
             employeeService = new EmployeeService(_context);
 
             po = orderService.GetOrderByID(recieptService.GetOrderReciept
-                                                (inventory.OrderReceiptId.Value).OrderNum.Value);
+                                                (inventory.OrderReceiptID.Value).OrderNum.Value);
             job = jobService.Find(inventory.JobId.Value);
 
-            receipt = recieptService.GetOrderReciept(inventory.OrderReceiptId.Value);
+            receipt = recieptService.GetOrderReciept(inventory.OrderReceiptID.Value);
             emp = employeeService.Find(receipt.EmployeeId.Value);
 
             orderNum = po.OrderNum.ToString();

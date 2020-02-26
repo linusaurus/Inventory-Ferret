@@ -25,8 +25,7 @@ namespace DataLayer.Entities
         public virtual DbSet<Claim> Claim { get; set; }
         public virtual DbSet<ClaimDocument> ClaimDocument { get; set; }
         public virtual DbSet<ClaimItem> ClaimItem { get; set; }
-        //public virtual DbSet<CostHistory> CostHistory { get; set; }
-        //public virtual DbSet<DeadParts> DeadParts { get; set; }
+
         public virtual DbSet<Document> Document { get; set; }
         public virtual DbSet<DocumentParts> DocumentParts { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
@@ -49,7 +48,7 @@ namespace DataLayer.Entities
        
   
        
-        public virtual DbSet<ProductionGroup> ProductionGroup { get; set; }
+       
         public virtual DbSet<PurchaseLineItem> PurchaseLineItem { get; set; }
         public virtual DbSet<PurchaseOrder> PurchaseOrder { get; set; }
         public virtual DbSet<Purchasers> Purchasers { get; set; }
@@ -73,7 +72,7 @@ namespace DataLayer.Entities
             if (!optionsBuilder.IsConfigured)
             {
 
-                optionsBuilder.UseSqlServer("Server=192.168.10.3;database=Badger;uid=sa;pwd=Kx09a32x;");
+                optionsBuilder.UseSqlServer("Server=192.168.10.34;database=Badger;uid=sa;pwd=Kx09a32x;");
             }
         }
 
@@ -90,102 +89,25 @@ namespace DataLayer.Entities
             modelBuilder.ApplyConfiguration(new ClaimItemConfig());
             modelBuilder.ApplyConfiguration(new DocumentPartConfig());
             modelBuilder.ApplyConfiguration(new PartConfig());
-      
-
-            modelBuilder.Entity<Document>(entity =>
-            {
-                entity.HasKey(e => e.DocId)
-                    .HasName("PK_DocumentDescriptor");
-
-                entity.Property(e => e.DocId).HasColumnName("DocID");
-
-                entity.Property(e => e.Creator)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DateCreated).HasColumnType("datetime");
-
-                entity.Property(e => e.DateModified).HasColumnType("datetime");
-
-                entity.Property(e => e.Description)
-                    .HasMaxLength(75)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DocumentPath)
-                    .HasMaxLength(75)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.DocumentView)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Modifier)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.PartId).HasColumnName("PartID");
-            });
-
-            modelBuilder.Entity<DocumentParts>(entity =>
-            {
-                entity.HasKey(e => new { e.PartId, e.DocId });
-
-                entity.Property(e => e.PartId).HasColumnName("PartID");
-
-                entity.Property(e => e.DocId).HasColumnName("DocID");
-
-                entity.HasOne(d => d.Doc)
-                    .WithMany(p => p.DocumentParts)
-                    .HasForeignKey(d => d.DocId)
-                    .HasConstraintName("FK_DocumentParts_Document1");
-
-                entity.HasOne(d => d.Part)
-                    .WithMany(p => p.DocumentParts)
-                    .HasForeignKey(d => d.PartId)
-                    .HasConstraintName("FK_DocumentParts_Part");
-            });
+            modelBuilder.ApplyConfiguration(new AssemblyConfig());
+            modelBuilder.ApplyConfiguration(new SubAssemblyConfig());
+            modelBuilder.ApplyConfiguration(new DocumentConfig());
+            modelBuilder.ApplyConfiguration(new StockBillItemConfig());
+            modelBuilder.ApplyConfiguration(new InventoryConfig());
+         
 
             modelBuilder.Entity<Employee>(entity =>
             {
                 entity.Property(e => e.EmployeeId).HasColumnName("employeeID");
 
-                entity.Property(e => e.EmployeeEmail)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Firstname)
-                    .HasColumnName("firstname")
-                    .HasMaxLength(50)
-                    .HasDefaultValueSql("('')");
-
-                entity.Property(e => e.Lastname)
-                    .HasColumnName("lastname")
-                    .HasMaxLength(50)
-                    .HasDefaultValueSql("('')");
-
-                entity.Property(e => e.Login)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Middlename)
-                    .HasColumnName("middlename")
-                    .HasMaxLength(50)
-                    .HasDefaultValueSql("('')");
-
-                entity.Property(e => e.Password)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Show).HasDefaultValueSql("((1))");
+                
             });
 
             modelBuilder.Entity<Finish>(entity =>
             {
                 entity.Property(e => e.FinishId).HasColumnName("FinishID");
 
-                entity.Property(e => e.FinishName)
-                    .HasMaxLength(70)
-                    .HasDefaultValueSql("(' ')");
+               
             });
 
            
@@ -196,103 +118,10 @@ namespace DataLayer.Entities
 
                 entity.ToTable("import");
 
-                entity.Property(e => e.CondensationResistance).HasColumnName("Condensation Resistance");
-
-                entity.Property(e => e.Cpd)
-                    .HasColumnName("CPD")
-                    .HasMaxLength(19)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.FrameSashType)
-                    .HasColumnName("Frame Sash Type")
-                    .HasMaxLength(120)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GapFill)
-                    .HasColumnName("Gap Fill")
-                    .HasMaxLength(120)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GapWidths).HasColumnName("Gap Widths");
-
-                entity.Property(e => e.GlazingLayers).HasColumnName("Glazing Layers");
-
-                entity.Property(e => e.Grid)
-                    .HasMaxLength(1)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.GroupId).HasColumnName("Group ID");
-
-                entity.Property(e => e.LowE)
-                    .HasColumnName("Low-E")
-                    .HasMaxLength(12)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.ManufacturerProductCode)
-                    .HasColumnName("Manufacturer Product Code")
-                    .HasMaxLength(255)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Shgc).HasColumnName("SHGC");
-
-                entity.Property(e => e.Spacer)
-                    .HasMaxLength(4)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Tint)
-                    .HasMaxLength(2)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.UFactor).HasColumnName("U-factor");
-
-                entity.Property(e => e.Vt).HasColumnName("VT");
+               
             });
 
-            modelBuilder.Entity<Inventory>(entity =>
-            {
-                entity.HasKey(e => e.StockTransactionId)
-                    .HasName("PK_InventoryItems");
-
-                entity.Property(e => e.StockTransactionId).HasColumnName("StockTransactionID");
-
-                entity.Property(e => e.ArticleId).HasColumnName("ArticleID");
-
-                entity.Property(e => e.DateStamp)
-                    .HasColumnType("date")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.Description).HasMaxLength(512);
-
-                entity.Property(e => e.EmpId).HasColumnName("Emp_id");
-
-                entity.Property(e => e.JobId).HasColumnName("JobID");
-
-                entity.Property(e => e.LineId).HasColumnName("LineID");
-
-                entity.Property(e => e.Location).HasMaxLength(120);
-
-                entity.Property(e => e.Note).HasMaxLength(240);
-
-                entity.Property(e => e.OrderReceiptId).HasColumnName("OrderReceiptID");
-
-                entity.Property(e => e.PartId).HasColumnName("PartID");
-
-                entity.Property(e => e.Qnty)
-                    .HasColumnType("decimal(18, 2)")
-                    .HasDefaultValueSql("((0.0))");
-
-                entity.Property(e => e.StockBillId).HasColumnName("StockBillID");
-
-                entity.HasOne(d => d.OrderReceipt)
-                    .WithMany(p => p.Inventory)
-                    .HasForeignKey(d => d.OrderReceiptId)
-                    .HasConstraintName("FK_Inventory_OrderReciept");
-
-                entity.HasOne(d => d.StockBill)
-                    .WithMany(p => p.Inventory)
-                    .HasForeignKey(d => d.StockBillId)
-                    .HasConstraintName("FK_Inventory_StockBill");
-            });
+          
 
             modelBuilder.Entity<InventoryView>(entity =>
             {
@@ -361,19 +190,7 @@ namespace DataLayer.Entities
                     .HasColumnName("ManuCategoryID")
                     .HasDefaultValueSql("((0))");
 
-                entity.Property(e => e.Manufacturer)
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Phone)
-                    .HasMaxLength(16)
-                    .IsFixedLength()
-                    .HasDefaultValueSql("(' ')");
-
-                entity.Property(e => e.WebAddress)
-                    .HasMaxLength(120)
-                    .IsFixedLength()
-                    .HasDefaultValueSql("(' ')");
+              
             });
 
             modelBuilder.Entity<Nfrc>(entity =>
@@ -474,10 +291,7 @@ namespace DataLayer.Entities
                     .HasColumnName("OrderStatusID")
                     .ValueGeneratedNever();
 
-                entity.Property(e => e.OrderStatus1)
-                    .HasColumnName("OrderStatus")
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
+              
             });
 
  
@@ -796,80 +610,10 @@ namespace DataLayer.Entities
 
             modelBuilder.Entity<StockBill>(entity =>
             {
-                entity.Property(e => e.StockBillId).HasColumnName("StockBillID");
-
-                entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
-
-                entity.Property(e => e.ItemTotal).HasColumnType("money");
-
-                entity.Property(e => e.JobId).HasColumnName("JobID");
-
-                entity.Property(e => e.StockBillDate).HasColumnType("date");
-
-                entity.Property(e => e.Submitted).HasDefaultValueSql("((0))");
+                entity.HasKey(e => e.EmployeeId);
             });
 
-            modelBuilder.Entity<StockBillItem>(entity =>
-            {
-                entity.HasKey(e => e.StockItemId)
-                    .HasName("PK_BomItems");
-
-                entity.Property(e => e.StockItemId).HasColumnName("StockItemID");
-
-                entity.Property(e => e.Description).HasMaxLength(240);
-
-                entity.Property(e => e.LineItemSourceId).HasColumnName("LineItemSourceID");
-
-                entity.Property(e => e.PartId).HasColumnName("PartID");
-
-                entity.Property(e => e.Qnty).HasColumnType("decimal(18, 2)");
-
-                entity.HasOne(d => d.StockBillDNavigation)
-                    .WithMany(p => p.StockBillItem)
-                    .HasForeignKey(d => d.StockBillD)
-                    .HasConstraintName("FK_BomItems_BOM");
-            });
-
-            modelBuilder.Entity<SubAssembly>(entity =>
-            {
-                entity.HasNoKey();
-
-                entity.Property(e => e.Area).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.AssemblyId).HasColumnName("AssemblyID");
-
-                entity.Property(e => e.CompositeCost).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.CpdId).HasColumnName("CPD_ID");
-
-                entity.Property(e => e.Depth).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.FrameSashType).HasMaxLength(70);
-
-                entity.Property(e => e.GlassId).HasColumnName("GlassID");
-
-                entity.Property(e => e.Height).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.LaborHr).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.MakeFile).HasMaxLength(120);
-
-                entity.Property(e => e.Perimeter).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.SubAssemblyId)
-                    .HasColumnName("SubAssemblyID")
-                    .ValueGeneratedOnAdd();
-
-                entity.Property(e => e.SubAssemblyName).HasMaxLength(100);
-
-                entity.Property(e => e.SystemName).HasMaxLength(120);
-
-                entity.Property(e => e.UnitType).HasMaxLength(50);
-
-                entity.Property(e => e.Weight).HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.Width).HasColumnType("decimal(18, 4)");
-            });
+         
 
             modelBuilder.Entity<Supplier>(entity =>
             {
@@ -1012,15 +756,7 @@ namespace DataLayer.Entities
             {
                 entity.HasNoKey();
 
-                entity.Property(e => e.Availabilty).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.CostRate).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.WorkCenterId).HasColumnName("WorkCenterID");
-
-                entity.Property(e => e.WorkCenterName)
-                    .HasMaxLength(75)
-                    .IsUnicode(false);
+               
             });
 
             modelBuilder.Entity<WorkOrder>(entity =>

@@ -28,6 +28,22 @@ namespace DataLayer.Services {
             return result;
         }
 
+        public OrderReciept Create(int employeeID, int purchaseOrderID = 0)
+        {
+            
+            var result = new OrderReciept
+            {
+                ReceiptDate = DateTime.Now,
+                EmployeeId = employeeID,
+                OrderNum = purchaseOrderID,
+            };
+
+            context.OrderReciept.Add(result);
+            context.SaveChanges();
+            return result;
+
+        }
+
         public OrderReciept GetReceivedOrderReceipt(int purchaseOrderID) {
 
             return context.OrderReciept.Where(c => c.OrderNum == purchaseOrderID).FirstOrDefault();

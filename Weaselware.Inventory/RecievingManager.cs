@@ -31,7 +31,7 @@ namespace Weaselware.InventoryFerret {
 
 
                     Inventory inv = new Inventory();
-                    inv.OrderReceiptId = receipt.OrderReceiptId;
+                    inv.OrderReceiptID = receipt.OrderReceiptId;
                     inv.LineId = i.LineId;
                     inv.JobId = i.JobId;
                     if (i.Description != null) inv.Description = i.Description;
