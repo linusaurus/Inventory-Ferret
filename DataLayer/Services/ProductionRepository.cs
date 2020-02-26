@@ -1,4 +1,11 @@
-﻿using System;
+﻿/*------------------------------------------
+ * Production Repository
+ * r.young
+ * 2-26-20120
+ * Inventory-Ferret
+ * --------------------------------------
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
