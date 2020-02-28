@@ -10,6 +10,7 @@ namespace DataLayer.Interfaces
         void Dispose();
         bool Exist(int orderID);
         List<PurchaseOrder> GetAllOrders();
+        List<UnitOfMeasure> GetUnits();
         List<SupplierOrderDTO> GetSupplierOrdersDTO(int SupplierID);
         List<PurchaseOrder> GetJobOrders(int jobID);
         PurchaseOrder GetOrderByID(int orderNum);

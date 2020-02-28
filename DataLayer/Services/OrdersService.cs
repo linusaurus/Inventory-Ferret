@@ -182,24 +182,30 @@ namespace DataLayer.Services {
                 inv.Location = string.Empty;
                 inv.Note = item.Note;
                 inv.OrderReceiptID = oreciept.OrderReceiptId;
-                inv.UnitOfMeasure = item.Uom ?? -1;
+                inv.UnitOfMeasure = item.Uom ?? 1;
                 inv.Qnty = item.Qnty ?? 0;      
                 item.Recieved = true;
                 item.OrderReceiptId = oreciept.OrderReceiptId;
-                inv.PartId = item.PartId ?? null;         
-                context.Entry(inv).State = EntityState.Added;
-                context.Inventory.Add(inv);
-                context.Entry(item).State = EntityState.Modified;
-                if(item.Rejected == true)
+                inv.PartId = item.PartId ?? null;
+                if (!(item.Description.Length == 0) && !(item.Qnty == default(decimal)) )
                 {
-                    var c = new ClaimItem {
-                        LineId = item.LineId,
-                        Description = item.Description,
-                        Bcode = item.Bcode,
-                        PartId = item.PartId
-                    };
-                    claimItems.Add(c);
+                    context.Entry(inv).State = EntityState.Added;
+                    context.Inventory.Add(inv);
+                    context.Entry(item).State = EntityState.Modified;
+                    if (item.Rejected == true)
+                    {
+                        var c = new ClaimItem
+                        {
+                            LineId = item.LineId,
+                            Description = item.Description,
+                            Bcode = item.Bcode,
+                            PartId = item.PartId
+                        };
+                        claimItems.Add(c);
+                    }
+
                 }
+               
                
             }
             order.Recieved = true;
@@ -227,6 +233,7 @@ namespace DataLayer.Services {
                 throw;
             }
             return oreciept;
+        
         }
 
         public void Save() {
@@ -289,6 +296,11 @@ namespace DataLayer.Services {
                 .ToList();
 
             return result;
+        }
+
+        public List<UnitOfMeasure> GetUnits()
+        {
+          return context.UnitOfMeasure.AsNoTracking().ToList() ;
         }
     }
 }

@@ -125,8 +125,7 @@ namespace Weaselware.InventoryFerret
                        lbService.PrintLabel(lb,copies);
                        
                     }
-                    
-                   
+    
                 }
             }
            

@@ -24,6 +24,12 @@ namespace Weaselware.InventoryFerret.Wrapper
             set { SetValue(value); }
         }
 
+        public int Uom
+        {
+            get { return GetValue<int>(); }
+            set { SetValue(value); }
+        }
+
         public decimal? UnitCost
         {
             get { return GetValue<decimal>(); }

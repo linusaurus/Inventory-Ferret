@@ -15,6 +15,7 @@ namespace DataLayer.Entities
         public int? ArticleID { get; set; }
         public DateTime? DateStamp { get; set; }
         public decimal? Qnty { get; set; }
+        public decimal? QntyRecvd { get; set; }
         public string Note { get; set; }
         public string Description { get; set; }
         public int? UnitOfMeasure { get; set; }

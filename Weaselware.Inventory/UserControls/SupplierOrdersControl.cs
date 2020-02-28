@@ -18,6 +18,8 @@ namespace Weaselware.InventoryFerret {
         BadgerDataModel _context;
         private Supplier selectedSupplier;
         private PurchaseOrder selectedOrder;
+        private PurchaseLineItem _selectedLineItem;
+
         private List<PurchaseOrder> supplierOrders;
         private List<Supplier> suppliers;
         SuppliersService supService;
@@ -108,6 +110,11 @@ namespace Weaselware.InventoryFerret {
 
         }
 
+        private void BuildLineItemDataGridColumns()
+        {
+           //DataGridViewTextBoxColumn 
+        }
+
         private void dgOrderItems_SelectionChanged(object sender, EventArgs e) {
             DataGridView dg = (DataGridView)sender;
             if (dgOrderItems.DataSource != null)
@@ -127,6 +134,7 @@ namespace Weaselware.InventoryFerret {
                         txtPurchaser.Text = lineItem.PurchaseOrder.Employee.Firstname + " " +
                             lineItem.PurchaseOrder.Employee.Lastname;
                         txtOrderDate.Text = lineItem.PurchaseOrder.OrderDate.Value.ToShortDateString();
+                        _selectedLineItem = lineItem;
                     }
                 }
 
@@ -176,11 +184,15 @@ namespace Weaselware.InventoryFerret {
 
 
         }
-
+        /// <summary>
+        /// This Recieves an order and needs serious refactoring
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnRecieveOrderItems_Click(object sender, EventArgs e) {
 
             OrderReciept receipt = null;
-
+            // if the selected order is valid then process the order
             if (selectedOrder != null)
             { receipt = ordersService.RecievedOrder(selectedOrder, Globals.CurrentLoggedUserID); }
 
@@ -200,6 +212,16 @@ namespace Weaselware.InventoryFerret {
              ////   new Thread(() => NotificationService.SendNotificaion(notifyTO, selectedOrder)).Start();
             }
 
+        }
+
+        private void addcombo()
+        {
+            //DataGridViewComboBoxColumn cboUnits = new DataGridViewComboBoxColumn();
+            //cboUnits.DisplayMember = "UOM";
+            //cboUnits.ValueMember = "UID";
+            //cboUnits.SelectedItem = _part.Uid;
+            //cboUnits.DataSource = partsService.Units();
+            //this.dgOrderItems.Columns.Add(cboUnits);
         }
 
         private void btnPrintSelectedItemsLabels_Click(object sender, EventArgs e)

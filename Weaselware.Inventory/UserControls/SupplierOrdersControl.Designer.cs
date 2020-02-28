@@ -35,6 +35,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SupplierOrdersControl));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lvSuppliersOrders = new System.Windows.Forms.ListView();
             this.OrderID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Date = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -63,9 +64,10 @@
             this.LineID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PartID = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Reject = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.col = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Qnty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Extended = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Reject = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderItems)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownCopies)).BeginInit();
@@ -89,7 +91,7 @@
             this.lvSuppliersOrders.MultiSelect = false;
             this.lvSuppliersOrders.Name = "lvSuppliersOrders";
             this.lvSuppliersOrders.ShowGroups = false;
-            this.lvSuppliersOrders.Size = new System.Drawing.Size(210, 332);
+            this.lvSuppliersOrders.Size = new System.Drawing.Size(210, 263);
             this.lvSuppliersOrders.TabIndex = 6;
             this.lvSuppliersOrders.UseCompatibleStateImageBehavior = false;
             this.lvSuppliersOrders.View = System.Windows.Forms.View.Details;
@@ -141,14 +143,15 @@
             this.LineID,
             this.PartID,
             this.Description,
-            this.Reject,
+            this.col,
             this.Qnty,
-            this.Extended});
+            this.Extended,
+            this.Reject});
             this.dgOrderItems.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgOrderItems.Location = new System.Drawing.Point(234, 52);
             this.dgOrderItems.Name = "dgOrderItems";
             this.dgOrderItems.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgOrderItems.Size = new System.Drawing.Size(831, 202);
+            this.dgOrderItems.Size = new System.Drawing.Size(831, 133);
             this.dgOrderItems.TabIndex = 7;
             this.dgOrderItems.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgOrderItems_CellClick);
             this.dgOrderItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgOrderItems_CellContentClick);
@@ -169,7 +172,7 @@
             // 
             this.txtItemNotes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtItemNotes.Location = new System.Drawing.Point(572, 314);
+            this.txtItemNotes.Location = new System.Drawing.Point(572, 245);
             this.txtItemNotes.Multiline = true;
             this.txtItemNotes.Name = "txtItemNotes";
             this.txtItemNotes.Size = new System.Drawing.Size(488, 67);
@@ -188,7 +191,7 @@
             // txtJobName
             // 
             this.txtJobName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtJobName.Location = new System.Drawing.Point(297, 315);
+            this.txtJobName.Location = new System.Drawing.Point(297, 246);
             this.txtJobName.Name = "txtJobName";
             this.txtJobName.Size = new System.Drawing.Size(269, 20);
             this.txtJobName.TabIndex = 11;
@@ -197,7 +200,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(238, 317);
+            this.label1.Location = new System.Drawing.Point(238, 248);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
             this.label1.TabIndex = 12;
@@ -206,7 +209,7 @@
             // txtPurchaser
             // 
             this.txtPurchaser.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtPurchaser.Location = new System.Drawing.Point(297, 339);
+            this.txtPurchaser.Location = new System.Drawing.Point(297, 270);
             this.txtPurchaser.Margin = new System.Windows.Forms.Padding(1);
             this.txtPurchaser.Name = "txtPurchaser";
             this.txtPurchaser.Size = new System.Drawing.Size(137, 20);
@@ -216,7 +219,7 @@
             // 
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(238, 343);
+            this.label2.Location = new System.Drawing.Point(238, 274);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(55, 13);
             this.label2.TabIndex = 12;
@@ -225,7 +228,7 @@
             // txtOrderDate
             // 
             this.txtOrderDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtOrderDate.Location = new System.Drawing.Point(476, 339);
+            this.txtOrderDate.Location = new System.Drawing.Point(476, 270);
             this.txtOrderDate.Margin = new System.Windows.Forms.Padding(1);
             this.txtOrderDate.Name = "txtOrderDate";
             this.txtOrderDate.Size = new System.Drawing.Size(90, 20);
@@ -235,7 +238,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(440, 344);
+            this.label3.Location = new System.Drawing.Point(440, 275);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(30, 13);
             this.label3.TabIndex = 12;
@@ -264,7 +267,7 @@
             // btnPrintSelectedItemsLabels
             // 
             this.btnPrintSelectedItemsLabels.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPrintSelectedItemsLabels.Location = new System.Drawing.Point(234, 260);
+            this.btnPrintSelectedItemsLabels.Location = new System.Drawing.Point(234, 191);
             this.btnPrintSelectedItemsLabels.Name = "btnPrintSelectedItemsLabels";
             this.btnPrintSelectedItemsLabels.Size = new System.Drawing.Size(185, 23);
             this.btnPrintSelectedItemsLabels.TabIndex = 16;
@@ -288,7 +291,7 @@
             // numericUpDownCopies
             // 
             this.numericUpDownCopies.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.numericUpDownCopies.Location = new System.Drawing.Point(477, 263);
+            this.numericUpDownCopies.Location = new System.Drawing.Point(477, 194);
             this.numericUpDownCopies.Name = "numericUpDownCopies";
             this.numericUpDownCopies.Size = new System.Drawing.Size(41, 20);
             this.numericUpDownCopies.TabIndex = 19;
@@ -303,7 +306,7 @@
             // 
             this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(432, 265);
+            this.label5.Location = new System.Drawing.Point(432, 196);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(39, 13);
             this.label5.TabIndex = 20;
@@ -348,19 +351,21 @@
             this.Description.HeaderText = "Description";
             this.Description.Name = "Description";
             // 
-            // Reject
+            // col
             // 
-            this.Reject.DataPropertyName = "Rejected";
-            this.Reject.HeaderText = "Reject";
-            this.Reject.Name = "Reject";
-            this.Reject.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Reject.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Reject.Width = 60;
+            this.col.DataPropertyName = "Uom";
+            this.col.HeaderText = "Unit";
+            this.col.Name = "col";
+            this.col.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.col.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.col.Width = 45;
             // 
             // Qnty
             // 
             this.Qnty.DataPropertyName = "Qnty";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "N2";
+            dataGridViewCellStyle2.NullValue = null;
             this.Qnty.DefaultCellStyle = dataGridViewCellStyle2;
             this.Qnty.HeaderText = "Qnty";
             this.Qnty.Name = "Qnty";
@@ -369,9 +374,22 @@
             // Extended
             // 
             this.Extended.DataPropertyName = "Extended";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.Extended.DefaultCellStyle = dataGridViewCellStyle3;
             this.Extended.HeaderText = "Extended";
             this.Extended.Name = "Extended";
             this.Extended.Width = 70;
+            // 
+            // Reject
+            // 
+            this.Reject.DataPropertyName = "Rejected";
+            this.Reject.HeaderText = "Reject";
+            this.Reject.Name = "Reject";
+            this.Reject.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Reject.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Reject.Width = 60;
             // 
             // SupplierOrdersControl
             // 
@@ -398,7 +416,7 @@
             this.Controls.Add(this.lbSuppliers);
             this.Name = "SupplierOrdersControl";
             this.Padding = new System.Windows.Forms.Padding(6);
-            this.Size = new System.Drawing.Size(1074, 570);
+            this.Size = new System.Drawing.Size(1074, 501);
             this.Load += new System.EventHandler(this.SupplierOrdersControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderItems)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
@@ -438,8 +456,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LineID;
         private System.Windows.Forms.DataGridViewLinkColumn PartID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Reject;
+        private System.Windows.Forms.DataGridViewComboBoxColumn col;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qnty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Extended;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Reject;
     }
 }

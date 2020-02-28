@@ -48,7 +48,7 @@
             this.LineID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.QntyColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitsRecieved = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQntyRecieved = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LB_Qnty_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.LocationColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -181,7 +181,7 @@
             this.LineID,
             this.PartID,
             this.QntyColumn,
-            this.UnitsRecieved,
+            this.colQntyRecieved,
             this.Description,
             this.LB_Qnty_col,
             this.LocationColumn});
@@ -228,12 +228,12 @@
             this.QntyColumn.Name = "QntyColumn";
             this.QntyColumn.Width = 60;
             // 
-            // UnitsRecieved
+            // colQntyRecieved
             // 
-            this.UnitsRecieved.DataPropertyName = "UoP";
-            this.UnitsRecieved.HeaderText = "Units Recieved";
-            this.UnitsRecieved.Name = "UnitsRecieved";
-            this.UnitsRecieved.Width = 120;
+            this.colQntyRecieved.DataPropertyName = "QntyRecvd";
+            this.colQntyRecieved.HeaderText = "Recvd";
+            this.colQntyRecieved.Name = "colQntyRecieved";
+            this.colQntyRecieved.Width = 75;
             // 
             // Description
             // 
@@ -309,7 +309,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LineID;
         private System.Windows.Forms.DataGridViewTextBoxColumn PartID;
         private System.Windows.Forms.DataGridViewTextBoxColumn QntyColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UnitsRecieved;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQntyRecieved;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn LB_Qnty_col;
         private System.Windows.Forms.DataGridViewTextBoxColumn LocationColumn;

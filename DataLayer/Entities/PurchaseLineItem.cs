@@ -16,6 +16,7 @@ namespace DataLayer.Entities
         public decimal? Extended { get; set; }
         public bool? Recieved { get; set; }
         public int? OrderReceiptId { get; set; }
+        //TODO Normalize all the Unit of Measure names
         public int? Uom { get; set; }
         public string UoP { get; set; }
         public int? ArticleId { get; set; }

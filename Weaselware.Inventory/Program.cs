@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataLayer.Entities;
 using System.Windows.Forms;
-
+using AutoMapper;
 
 namespace Weaselware.InventoryFerret
 {
@@ -30,9 +30,12 @@ namespace Weaselware.InventoryFerret
             // Standard App Startup
             //---------------------------------------------------------------------------------
             Main mainForm = new Main();
+            Bootstrap.bootstrap();
             mainForm.LoggedOnUserID = 8;
             Globals.CurrentLoggedUserID = 8;
-            Application.Run(mainForm);
+            Application.Run(new DataForm());
+           
+            //Application.Run(mainForm);
             //--------------------------------------------------------------------------------
 
             //LoginForm loginForm = new LoginForm();
@@ -43,6 +46,8 @@ namespace Weaselware.InventoryFerret
             //    Globals.CurrentLoggedUserID = loginForm.EmployeeID;
             //    Application.Run(mainForm);
             //}
+
+           
         }
 
         private static void CurrentDomainOnUnhadledException(object sender, UnhandledExceptionEventArgs e) {
