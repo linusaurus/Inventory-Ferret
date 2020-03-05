@@ -16,6 +16,7 @@ using AutoMapper;
 using Weaselware.InventoryFerret.Profiles;
 
 
+
 namespace Weaselware.InventoryFerret
 {
     public partial class DataForm : Form
@@ -57,14 +58,114 @@ namespace Weaselware.InventoryFerret
             view.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
             InitializeGrid();
             view.CellEndEdit += View_CellEndEdit;
+            view.DataError += View_DataError;
+            view.CellValidating += View_CellValidating;
+            view.CellValueChanged += View_CellValueChanged;
+            view.EditingControlShowing += View_EditingControlShowing;
+            
 
         }
 
-        private void View_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        private void View_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (view.CurrentCell.ColumnIndex == 1)
+            {
+                TextBox tb = (TextBox)e.Control;
+                tb.TextChanged += new EventHandler(tb_TextChanged);
+            }
+        }
+
+        private void tb_TextChanged(object sender, EventArgs e)
+        {
+               TextBox tb = (TextBox) sender;
+                string str = tb.Text;
+                //string str = view.CurrentRow.Cells[1].FormattedValue.ToString();
+                //if (str != "")
+                //{
+                //    listBox1.DisplayMember = "ItemDescription";
+                //    this.listBox1.DataSource = _partService.SearchParts(str, SearchOptions.Contains);
+                //}
+            
+        }
+
+        private void View_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
             TotalOrder();
         }
 
+        private void View_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            view.Rows[e.RowIndex].ErrorText = "";
+            decimal costValue;
+            decimal qntyValue;
+            // Don't try to validate the 'new row' until finished 
+            // editing since there
+            // is not any point in validating its initial value.
+
+            //if (e.ColumnIndex == 1)
+            //{
+
+            //    if (view.Rows[e.RowIndex].IsNewRow) { return; }
+            //    if (String.IsNullOrEmpty(e.FormattedValue.ToString()) || e.FormattedValue.ToString().Length < 10)
+            //    {
+            //        e.Cancel = true; //declare to stay in this cell - not to loose the focus!
+            //        view.Rows[e.RowIndex].ErrorText = "you must provide a description more than 10 characters"; //error massage
+            //    }
+
+          
+            //}
+
+            if (e.ColumnIndex == 3)
+            { 
+            
+                if (view.Rows[e.RowIndex].IsNewRow) { return; }
+                if (!decimal.TryParse(e.FormattedValue.ToString(), System.Globalization.NumberStyles.Currency, null,
+                    out costValue) || costValue < 0) //checking if value is type of doubl or is not lower then zero (last is not needed, if you have negative numbers)
+                {
+                    e.Cancel = true; //declare to stay in this cell - not to loose the focus!
+                    view.Rows[e.RowIndex].ErrorText = "the value must be a non-negative decimal"; //error massage
+                }
+            }
+            if (e.ColumnIndex == 4)
+            {
+
+                if (view.Rows[e.RowIndex].IsNewRow) { return; }
+                if (!decimal.TryParse(e.FormattedValue.ToString(), System.Globalization.NumberStyles.Currency, null,
+                    out qntyValue) || qntyValue <= 0) //checking if value is type of doubl or is not lower then zero (last is not needed, if you have negative numbers)
+                {
+                    e.Cancel = true; //declare to stay in this cell - not to loose the focus!
+                    view.Rows[e.RowIndex].ErrorText = "the quantity must be a non-negative decimal"; //error massage
+                }
+            }
+        }
+
+        private void View_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            // Clear the row error in case the user presses ESC.   
+            view.Rows[e.RowIndex].ErrorText = String.Empty;
+            TotalOrder();
+        }
+
+
+        private void View_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            if(e.ColumnIndex==3)
+            {
+                e.ThrowException = false;
+
+                // Display an error message.
+                string txt = "Error with " +
+                    view.Columns[e.ColumnIndex].HeaderText +
+                    "\n\n" + e.Exception.Message;
+                MessageBox.Show(txt, "Cost must be empty or null",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                  
+                e.Cancel = false;
+
+            }
+        }
+
+        
      
 
         private void TotalOrder()
@@ -75,7 +176,12 @@ namespace Weaselware.InventoryFerret
 
                 foreach (var item in bsLineItems)
                 {
-                    result +=((PurchaseLineItemWrapper)item).Extended; 
+                    var l = (PurchaseLineItemWrapper)item;
+                    if (l.UnitCost != null)
+                    {
+                        result += ((PurchaseLineItemWrapper)item).Extended;
+                    }
+                    
                    
                         
                     
@@ -93,7 +199,7 @@ namespace Weaselware.InventoryFerret
             // Currency Decimal Style
             DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
             dstyleCurrency.Format = "C";
-            dstyleCurrency.NullValue = "0.00";
+            dstyleCurrency.NullValue = "";
             dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
             // Currency Decimal Style
             DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
@@ -120,6 +226,7 @@ namespace Weaselware.InventoryFerret
             colDescription.DataPropertyName = "Description";
             colDescription.Width = 450;
             colDescription.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+           
 
             // Unit of Measure --
             DataGridViewComboBoxColumn colUnit = new DataGridViewComboBoxColumn();
@@ -170,6 +277,13 @@ namespace Weaselware.InventoryFerret
         private void btnSave_Click(object sender, EventArgs e)
         {
             ctx.SaveChanges();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            listBox1.DisplayMember = "ItemDescription";
+            this.listBox1.DataSource = _partService.SearchParts(tb.Text, SearchOptions.Contains);
         }
     }
 }

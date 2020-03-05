@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Neodynamic.SDK.Printing;
 using Neodynamic.SDK;
-using Neodynamic.Windows;
+//using Neodynamic.Windows;
 using ThermalLabelSdkSamplesCS;
 
 namespace Weaselware.InventoryFerret {
