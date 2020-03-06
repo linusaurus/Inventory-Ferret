@@ -33,8 +33,10 @@ namespace Weaselware.InventoryFerret
             Bootstrap.bootstrap();
             mainForm.LoggedOnUserID = 8;
             Globals.CurrentLoggedUserID = 8;
-            Application.Run(new DataForm());
-           
+            //Application.Run(new DataForm());
+
+            Application.Run(mainForm);
+
             //Application.Run(mainForm);
             //--------------------------------------------------------------------------------
 
@@ -47,7 +49,7 @@ namespace Weaselware.InventoryFerret
             //    Application.Run(mainForm);
             //}
 
-           
+
         }
 
         private static void CurrentDomainOnUnhadledException(object sender, UnhandledExceptionEventArgs e) {

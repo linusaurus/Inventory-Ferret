@@ -292,6 +292,12 @@
     <Compile Include="Helper\DataHelpers.cs" />
     <Compile Include="InventoryLookupItem.cs" />
     <Compile Include="Mediator.cs" />
+    <Compile Include="NewOrderDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewOrderDialog.Designer.cs">
+      <DependentUpon>NewOrderDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="NewOrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -448,6 +454,9 @@
     <Compile Include="Wrappers\NotifyDataErrorInfoBase.cs" />
     <EmbeddedResource Include="DataForm.resx">
       <DependentUpon>DataForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewOrderDialog.resx">
+      <DependentUpon>NewOrderDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NewOrderForm.resx">
       <DependentUpon>NewOrderForm.cs</DependentUpon>
@@ -639,22 +648,22 @@
   <ItemGroup>
     <PublishFile Include="Interop.CoreScanner">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="pika_Kdk_icon.ico">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

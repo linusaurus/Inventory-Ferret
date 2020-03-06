@@ -136,8 +136,7 @@ namespace Weaselware.InventoryFerret {
         /// <param name="e"></param>
         private void tsOrderButton_Click(object sender, EventArgs e)
         {
-          //  TestForm orderFrm = new TestForm(_context);
-          //  orderFrm.Show();
+          // Show a dialog and get Job and Supplier numbers
 
         }
 
@@ -147,10 +146,7 @@ namespace Weaselware.InventoryFerret {
             ToolStripButton tsb = (ToolStripButton)ts.GetItemAt(395, 792);
         }
 
-        private void mainToolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-
-        }
+       
 
         private void tsbReceiveOrder_Click(object sender, EventArgs e)
         {
