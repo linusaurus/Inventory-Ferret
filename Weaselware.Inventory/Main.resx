@@ -124,26 +124,26 @@
   <data name="tsbFindOrder.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARgSURBVGhD7ZjbThNRFIZ5BB/BR/ARvCUEeAUuvDRqYjSK
-        p8Z4iERTbTVqxKBoaoKHitQDio5FEQnFqbR0LC32EfoI2/1P9zR71l4DQ2dae8FK/jQkw8z371lrrzV7
-        YC/2og/itmUfSFv2Qei5XTs4V2opazf2qUv6K5KWvS+Vt8fSX9ey6bwtdL2wN0WuvNWWNNKQv8lcuXFA
-        /fv/C4BLyEQ6v9Kk4J6oASILb0bdrrfhpkh+tcFB69rBgKdkT9NLgslV54EnvxdFdrUk5u2yq6VKVaz8
-        qbmyKnUO3tXs77rdk7SSeT7FgQN6dcMRf+vVbVWTKlRrYn6DM+I0u2pCghorjxUPA04FIz/kW+FMdCWd
-        Wjnvh59ZWRfVzT8sYFj93twU7823YanHxhOt3cZfsIDngDpRpWYW+lypfkw9PnpIYF/qIG2CVr6wXBDP
-        p3Pi9tUnPj1MzYj5N19E1anw/yfrwm8iplRqrb5/n+dyHmAcONX96xmxnP9p/D9Ed6m50lZCYXQebofV
-        4LHb0AcDfvruSxY4SIsLS+Z9SCqhayuMzoOOB9zqh1l5TsWCbdzL7BURt1UdHrlPH4ic5+BuJB6Iy+Np
-        V1fP3BGpy4+Na55Nzhr3+0VqIVIauVOlZoBLH271AX3y8EWfxo9eETcvTRnX0rdA0yhX2soqnN0H3fsx
-        GugPgygQVp7Cezp/fMK4HjsTvafPQJSe0IkBbvV10et7amBxfcN4GAXSDZw/cU1cPH2jfwyEeQMoWA92
-        +sGMuHLuVvvvU0cuGdf/dwPosDoQdhsULMDfzS74DMCcfi3E9YPYDKgvrraBzE9z/sEKUijsNq+evW0b
-        wMpz8OjKdLQoy+GOGEgqnM6CDnF0BgIAQHSwzOQbsfSl4OrRneAOzaWPOWLXxxRKZ5H6+iupG/hcNAsZ
-        s40HdXciIxY/rexoAKMHvQ9ER+vIAx1tZkGTKHIZYK8zH9vwQQYAz02lxkQapYnpcSu/ZukmcmtmR4bQ
-        VVd/2IEGkGpc2kDowHT1YzuxoLsRtFzm53qoWnHEujQJWR++udB4Q9yqQ/i8XDA/+DvffbigtXDvW1EU
-        nd1/C3P67lB4p/neaexXj44nWqdvBVs3AXFFHVZIG2blRepdXpx9mo22+3DRKmjzFA79YaO6u497nBMx
-        H/NiarEgzj197erQ+IXemfCMYF4KMoMmhX2eA6fwY0ePi9HRUTEyMhKtkXGBdKI7U5DCHS06TaQNhfc0
-        PDxsyd8unBXl7WPbHexCIQxYKFjkPAfvaWhoqCF/4z+1U/NSIuigN9CAbFJ0n0fOU3Bdg4ODTfkbf114
-        obp2AgcBSDHoxVrVksCekphtthsPkPMUnKordRFnqJxn4T11rS7iCICpnGfhPXWtLuIIgKmcZ+E9db0u
-        ogTAdNggKRPxjh5xRZiiVop+jtqtCFPUUv1rQMKFKer+NYCQgDsVdX/WgB4ScizARH/uQlxI2P1SCU39
-        v/LhY2DgH6bOhb5lZxn9AAAAAElFTkSuQmCC
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARhSURBVGhD7ZjbThNRFIZ5BB/BR/ARvCQhwCtw4aVRE6NR
+        PDXGQzSaaqtRIwZFUxM8FKQeUHQsikAoTqWlY2mxj9BH2O5/uqfZs/YaGDrT2gtX8qchGWa+f89ae63Z
+        A//jf/RB3LHsA2nLPgi9sGsH50otZe3GPnVJf0XSsvel8vZY+ut6Np23ha6X9pbIlbfbkkYa8jeZKzcO
+        qH//dwFwCZlI51eaFNwTNUBk4c2o2/U23BTJrzU4aF27GPCU7Gl6STC56jzwxPeiyK6VxLxddrVUqYrV
+        3zVXVqXOwbua/VW3e5JWMs8nOXBAr2064k+9uqNqUoVqTcxvckacZldNSFBj5bHiYcCpYOSHfCucia6k
+        Uyvn/fDTqxuiuvWbBQyrX1tb4r35Niz12Hiitdv4CxbwHFAnqtTMQp8r1Y+px0cPCexLHaRN0MoXlgvi
+        xVRO3Ln61KdHqWkx/+aLqDoV/v9kXfhNxJRKrdX37/NczgOMA6d6cCMjlvMrxv9DdJeaK20nFEbn4XZY
+        DR67DX0w4KfuvWKBg7S4sGTeh6QSurbC6DzoeMCtfpiV51Qs2Ma9zF4RcVvV4ZH79IHIeQ7uZuKhuDye
+        dnX1zF2RuvzEuOb5xKxxv5+kFiKlkTtVaga49OFWH9AnD1/0afzoFXHr0qRxLX0LNI1ype2swtl70L0f
+        o4H+MIgCYeUpvKfzx68b12Nnovf0GYjSEzoxwK2+Lnp9Tw0sbmwaD6NAuoHzJ66Ji6dv9o+BMG8ABevB
+        Tj2cFlfO3W7/ferIJeP6f24AHVYHwm6DggX4u9kFnwGY06+FuH4QmwH1xdU2kFkx5x+sIIXCbvP6+du2
+        Aaw8B4+uTEeLshzuiIGkwuks6BBHZyAAAEQHy0y8EUtfCq4e3w3u0Fz6mCN2fUyhdBaprz+TuoHPRbOQ
+        Mdt4UPeuZ8Tip9VdDWD0oPeB6GgdeaCjzSxoEkUuA2wm87ENH2QA8NxUakykUZqYHrfz65ZuIrdudmQI
+        XXXthx1oAKnGpQ2EDkxXP7YTC7obQctlfq6HqhVHbEiTkPXhmwuNN8StOoTPywXzg7/z3YcLWgv3vxVF
+        0dn7tzCn7w6Fd5rvncZ+9eh4onX6VrB1ExBX1GGFtGFWXqTe5cXZZ9louw8XrYI2T+HQHzare/u4xzkR
+        8zEvJhcL4tyzGVeHxi/0zoRnBPNSkBk0KezzHDiFHzt6XIyOjoqRkZFojYwLpBPdmYIU7mjRaSJtKLyn
+        4eFhS/524awobx/b6WAXCmHAQsEi5zl4T0NDQw35G/+pnZqXEkEHvYEGZJOi+zxynoLrGhwcbMrf+OvC
+        C9W1EzgIQIpBL9erlgT2lMRss9N4gJyn4FRdqYs4Q+U8C++pa3URRwBM5TwL76lrdRFHAEzlPAvvqet1
+        ESUApsMGSZmId/SIK8IUtVL0c9RuRZiilupfAxIuTFH3rwGEBNytqPuzBvSQkGMBJvpzF+JCwu6XSmjq
+        /5UPHwMDfwHsv4WnbQHkxQAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="tsbJobOrders.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -162,6 +162,33 @@
   </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>145, 17</value>
+  </metadata>
+  <metadata name="sqlSelectCommand1.DesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="sqlSelectCommand1.CommandDesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="sqlInsertCommand1.DesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="sqlInsertCommand1.CommandDesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="sqlUpdateCommand1.DesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="sqlUpdateCommand1.CommandDesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="sqlDeleteCommand1.DesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="sqlDeleteCommand1.CommandDesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="sqlDataAdapter1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>261, 17</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>165</value>

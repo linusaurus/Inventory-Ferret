@@ -148,7 +148,9 @@ namespace DataLayer.Services {
             po.SubTotal = 0.00m;
             po.Recieved = false;
             po.Tax = 0.00m;
-
+            po.OrderFormat = "Standard";
+            po.AddedBy = context.Employee.Find(employee).Firstname + " " + context.Employee.Find(employee).Lastname;
+            po.OrderState = 1;
             return po;
         }
 
@@ -301,6 +303,17 @@ namespace DataLayer.Services {
         public List<UnitOfMeasure> GetUnits()
         {
           return context.UnitOfMeasure.AsNoTracking().ToList() ;
+        }
+        /// <summary>
+        /// TODO this need to be much more expanded and use a composite Order DTO
+        /// </summary>
+        /// <param name="order"></param>
+        /// <returns></returns>
+        public PurchaseOrder Add(PurchaseOrder order)
+        {
+            context.PurchaseOrder.Add(order);
+            context.SaveChanges();
+            return order;
         }
     }
 }

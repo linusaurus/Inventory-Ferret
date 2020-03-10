@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows.Forms;
 using Microsoft.EntityFrameworkCore;
 using DataLayer.Entities;
+using DataLayer.Models;
+using DataLayer.Services;
 
 
 
@@ -13,7 +15,7 @@ namespace Weaselware.InventoryFerret {
 
         BadgerDataModel _context;
         int _loggedOnUserID;
-        
+        OrdersService _ordersService;
 
         public int LoggedOnUserID
         {
@@ -25,7 +27,7 @@ namespace Weaselware.InventoryFerret {
         {
             InitializeComponent();
             _context = new BadgerDataModel();
-
+            _ordersService = new OrdersService(_context);
         }
 
         public TabControl GetTabControl()
@@ -42,10 +44,7 @@ namespace Weaselware.InventoryFerret {
                 var emp = _context.Employee.Where(p => p.EmployeeId == LoggedOnUserID).FirstOrDefault();
                 this.toolStripStatusLabel1.Text = "User= " + emp.Firstname + " " + emp.Lastname;
 
-           // Purchase Order Page
-             MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage));
            // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context,PageFactory.TabPageType.SupplierOrdersPage));
-
            // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.JobOrdersPage));
            // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.ItemSearchPage));
            // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.RecieptManagerPage));
@@ -136,7 +135,24 @@ namespace Weaselware.InventoryFerret {
         /// <param name="e"></param>
         private void tsOrderButton_Click(object sender, EventArgs e)
         {
-          // Show a dialog and get Job and Supplier numbers
+            //var jobID = 0 ;
+            //var supplierID = 0;
+
+            //NewOrderDialog diag = new NewOrderDialog(_context);
+            //if (diag.ShowDialog() == DialogResult.OK)
+            //{
+            //    jobID = diag.JobNumber;
+            //    supplierID = diag.SupplierID;
+            //}
+
+            //var order = _ordersService.NewDefault(LoggedOnUserID,supplierID,jobID);
+            // _ordersService.Add(order);
+            // Test open existing order
+
+            var order = _ordersService.GetOrderByID(5000);
+ 
+            // Purchase Order Page
+            MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage,order));
 
         }
 

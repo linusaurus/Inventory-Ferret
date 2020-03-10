@@ -193,6 +193,18 @@
     <Reference Include="Microsoft.IdentityModel.Tokens, Version=5.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.IdentityModel.Tokens.5.5.0\lib\net461\Microsoft.IdentityModel.Tokens.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1400.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1400.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1400.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="Neodynamic.SDK.ThermalLabel, Version=5.0.3500.0, Culture=neutral, PublicKeyToken=0630b9b3415848af, processorArchitecture=MSIL">
       <HintPath>..\packages\Neodynamic.SDK.ThermalLabel.5.0.3500.16\lib\Neodynamic.SDK.ThermalLabel.dll</HintPath>
     </Reference>
@@ -318,6 +330,7 @@
       <DependentUpon>PartForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Profiles\OrdersProfile.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <Compile Include="StartUp\Bootstrap.cs" />
     <Compile Include="Services\Globals.cs" />
     <Compile Include="Services\LabelService.cs" />
@@ -467,6 +480,7 @@
     <EmbeddedResource Include="PartForm.resx">
       <DependentUpon>PartForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="POReport.rdlc" />
     <EmbeddedResource Include="PrintJobDialog.resx">
       <DependentUpon>PrintJobDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -540,6 +554,7 @@
     <None Include="Inventory-Ferrit-key.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\DataSources\BadgerData.Part.datasource" />
+    <None Include="Properties\DataSources\DataLayer.Entities.PurchaseOrder.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -623,6 +638,19 @@
     <None Include="Resources\Multimedia-_Artboard-80.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\printer.png" />
     <None Include="Resources\product_in_progress.png" />
     <None Include="Resources\barcode.png" />
@@ -648,22 +676,22 @@
   <ItemGroup>
     <PublishFile Include="Interop.CoreScanner">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="pika_Kdk_icon.ico">
       <Visible>False</Visible>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

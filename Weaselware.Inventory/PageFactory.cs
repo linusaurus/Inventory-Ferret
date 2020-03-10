@@ -30,7 +30,7 @@ namespace Weaselware.InventoryFerret
 
         }
         
-        public static TabPage GetNewTabPage(BadgerDataModel ctx,TabPageType pageType)
+        public static TabPage GetNewTabPage(BadgerDataModel ctx,TabPageType pageType,object model = null)
         {
             TabPage tab = new TabPage();
 
@@ -110,9 +110,10 @@ namespace Weaselware.InventoryFerret
                     break;
                 case TabPageType.PurchaseOrderPage:
                     {
-                     tab.Text = "Purchase Order";
-                     PurchaseOrderControl ctr = new PurchaseOrderControl(ctx);
-                     ctr.Dock = DockStyle.Fill;
+                    var order = (PurchaseOrder)model;
+                    tab.Text = $"Purchase Order :{order.OrderNum.ToString()}";
+                    PurchaseOrderControl ctr = new PurchaseOrderControl(ctx,model as PurchaseOrder);
+                    ctr.Dock = DockStyle.Fill;
                     tab.Controls.Add(ctr);
                     }
                     break;

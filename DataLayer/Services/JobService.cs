@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using DataLayer.Interfaces;
 using DataLayer.Entities;
+using DataLayer.Models;
 
 namespace DataLayer.Services {
 
@@ -59,6 +60,21 @@ namespace DataLayer.Services {
         public Job Find(int jobNumber) {
 
             return context.Job.Where(c => c.JobId == jobNumber).FirstOrDefault();
+        }
+
+        public List<JobListDto> All()
+        {
+            var jobs = context.Job.AsNoTracking()
+                                   .Where(d => d.Retired == false)
+                                   .Select(j => new JobListDto()
+                                   {
+                                       JobID = j.JobId,
+                                       JobName = j.Jobname
+                                   });
+
+
+            return jobs.ToList();
+
         }
     }
 }

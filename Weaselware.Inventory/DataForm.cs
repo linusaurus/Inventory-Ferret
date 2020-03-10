@@ -414,7 +414,7 @@ namespace Weaselware.InventoryFerret
 
                 }
 
-            };
+            }
         }
     }
 }

@@ -34,13 +34,18 @@
             this.tsbFindOrder = new System.Windows.Forms.ToolStripButton();
             this.tsbReceiveOrder = new System.Windows.Forms.ToolStripButton();
             this.tsPartEditor = new System.Windows.Forms.ToolStripButton();
-            this.tsScanBarCode = new System.Windows.Forms.ToolStripLabel();
             this.tsbJobItems = new System.Windows.Forms.ToolStripButton();
+            this.tsScanBarCode = new System.Windows.Forms.ToolStripLabel();
             this.tsbJobOrders = new System.Windows.Forms.ToolStripButton();
             this.tsSettingsButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainTabControl = new System.Windows.Forms.TabControl();
+            this.sqlSelectCommand1 = new System.Data.SqlClient.SqlCommand();
+            this.sqlInsertCommand1 = new System.Data.SqlClient.SqlCommand();
+            this.sqlUpdateCommand1 = new System.Data.SqlClient.SqlCommand();
+            this.sqlDeleteCommand1 = new System.Data.SqlClient.SqlCommand();
+            this.sqlDataAdapter1 = new System.Data.SqlClient.SqlDataAdapter();
             this.mainToolStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -63,7 +68,6 @@
             this.mainToolStrip.Size = new System.Drawing.Size(1052, 55);
             this.mainToolStrip.TabIndex = 0;
             this.mainToolStrip.Text = "mainToolStrip";
-            this.mainToolStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mainToolStrip_ItemClicked);
             // 
             // tsOrderButton
             // 
@@ -109,6 +113,17 @@
             this.tsPartEditor.ToolTipText = "Parts Manager";
             this.tsPartEditor.Click += new System.EventHandler(this.tsPartEditor_Click);
             // 
+            // tsbJobItems
+            // 
+            this.tsbJobItems.Image = global::Weaselware.InventoryFerret.Properties.Resources.product_in_progress;
+            this.tsbJobItems.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbJobItems.Name = "tsbJobItems";
+            this.tsbJobItems.Size = new System.Drawing.Size(61, 52);
+            this.tsbJobItems.Text = "Job Items";
+            this.tsbJobItems.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbJobItems.ToolTipText = "Pull Stock";
+            this.tsbJobItems.Click += new System.EventHandler(this.tsbJobItems_OnClick);
+            // 
             // tsScanBarCode
             // 
             this.tsScanBarCode.Image = global::Weaselware.InventoryFerret.Properties.Resources.barcode;
@@ -120,17 +135,6 @@
             this.tsScanBarCode.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsScanBarCode.ToolTipText = "Lookup Stock Tag";
             this.tsScanBarCode.Click += new System.EventHandler(this.tsScanBarCode_Click);
-            // 
-            // tsbJobItems
-            // 
-            this.tsbJobItems.Image = global::Weaselware.InventoryFerret.Properties.Resources.product_in_progress;
-            this.tsbJobItems.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbJobItems.Name = "tsbJobItems";
-            this.tsbJobItems.Size = new System.Drawing.Size(61, 52);
-            this.tsbJobItems.Text = "Job Items";
-            this.tsbJobItems.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsbJobItems.ToolTipText = "Pull Stock";
-            this.tsbJobItems.Click += new System.EventHandler(this.tsbJobItems_OnClick);
             // 
             // tsbJobOrders
             // 
@@ -180,6 +184,13 @@
             this.MainTabControl.TabIndex = 2;
             this.MainTabControl.SelectedIndexChanged += new System.EventHandler(this.MaintabControl_SelectedIndexChanged);
             // 
+            // sqlDataAdapter1
+            // 
+            this.sqlDataAdapter1.DeleteCommand = this.sqlDeleteCommand1;
+            this.sqlDataAdapter1.InsertCommand = this.sqlInsertCommand1;
+            this.sqlDataAdapter1.SelectCommand = this.sqlSelectCommand1;
+            this.sqlDataAdapter1.UpdateCommand = this.sqlUpdateCommand1;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -217,5 +228,10 @@
         private System.Windows.Forms.ToolStripButton tsbReceiveOrder;
         private System.Windows.Forms.ToolStripButton tsbJobOrders;
         private System.Windows.Forms.ToolStripButton tsbFindOrder;
+        private System.Data.SqlClient.SqlCommand sqlSelectCommand1;
+        private System.Data.SqlClient.SqlCommand sqlInsertCommand1;
+        private System.Data.SqlClient.SqlCommand sqlUpdateCommand1;
+        private System.Data.SqlClient.SqlCommand sqlDeleteCommand1;
+        private System.Data.SqlClient.SqlDataAdapter sqlDataAdapter1;
     }
 }
