@@ -80,6 +80,7 @@
             this.PartsDetailTabControl = new System.Windows.Forms.TabControl();
             this.tbResources = new System.Windows.Forms.TabPage();
             this.tbTransactions = new System.Windows.Forms.TabPage();
+            this.rbAll = new System.Windows.Forms.RadioButton();
             this.btnSetLevel = new System.Windows.Forms.Button();
             this.btnPullStock = new System.Windows.Forms.Button();
             this.label12 = new System.Windows.Forms.Label();
@@ -94,7 +95,7 @@
             this.colQnty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colJobName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbAdvanced = new System.Windows.Forms.TabPage();
-            this.rbAll = new System.Windows.Forms.RadioButton();
+            this.CloseBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.errDescription)).BeginInit();
             this.gbCostFactors.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -103,12 +104,13 @@
             this.tbTransactions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactions)).BeginInit();
             this.tbAdvanced.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CloseBox)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSave.Location = new System.Drawing.Point(529, 563);
+            this.btnSave.Location = new System.Drawing.Point(860, 563);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(91, 24);
             this.btnSave.TabIndex = 9;
@@ -119,7 +121,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.Location = new System.Drawing.Point(431, 563);
+            this.btnCancel.Location = new System.Drawing.Point(758, 563);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(86, 24);
             this.btnCancel.TabIndex = 8;
@@ -358,9 +360,9 @@
             this.DesriptionColumn,
             this.DocPathColumn,
             this.DocView});
-            this.dataGridView1.Location = new System.Drawing.Point(9, 35);
+            this.dataGridView1.Location = new System.Drawing.Point(9, 48);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(591, 265);
+            this.dataGridView1.Size = new System.Drawing.Size(654, 282);
             this.dataGridView1.TabIndex = 13;
             // 
             // DocIDColumn
@@ -392,7 +394,7 @@
             // 
             // btnAddResource
             // 
-            this.btnAddResource.Location = new System.Drawing.Point(10, 6);
+            this.btnAddResource.Location = new System.Drawing.Point(10, 19);
             this.btnAddResource.Name = "btnAddResource";
             this.btnAddResource.Size = new System.Drawing.Size(89, 23);
             this.btnAddResource.TabIndex = 14;
@@ -524,7 +526,7 @@
             this.PartsDetailTabControl.Location = new System.Drawing.Point(17, 208);
             this.PartsDetailTabControl.Name = "PartsDetailTabControl";
             this.PartsDetailTabControl.SelectedIndex = 0;
-            this.PartsDetailTabControl.Size = new System.Drawing.Size(614, 349);
+            this.PartsDetailTabControl.Size = new System.Drawing.Size(677, 379);
             this.PartsDetailTabControl.TabIndex = 20;
             // 
             // tbResources
@@ -534,7 +536,7 @@
             this.tbResources.Location = new System.Drawing.Point(4, 22);
             this.tbResources.Name = "tbResources";
             this.tbResources.Padding = new System.Windows.Forms.Padding(3);
-            this.tbResources.Size = new System.Drawing.Size(606, 323);
+            this.tbResources.Size = new System.Drawing.Size(669, 353);
             this.tbResources.TabIndex = 0;
             this.tbResources.Text = "Resources";
             this.tbResources.UseVisualStyleBackColor = true;
@@ -557,6 +559,18 @@
             this.tbTransactions.TabIndex = 1;
             this.tbTransactions.Text = "Transactions";
             this.tbTransactions.UseVisualStyleBackColor = true;
+            // 
+            // rbAll
+            // 
+            this.rbAll.AutoSize = true;
+            this.rbAll.Location = new System.Drawing.Point(174, 6);
+            this.rbAll.Name = "rbAll";
+            this.rbAll.Size = new System.Drawing.Size(36, 17);
+            this.rbAll.TabIndex = 6;
+            this.rbAll.TabStop = true;
+            this.rbAll.Text = "All";
+            this.rbAll.UseVisualStyleBackColor = true;
+            this.rbAll.CheckedChanged += new System.EventHandler(this.rbAll_CheckedChanged);
             // 
             // btnSetLevel
             // 
@@ -721,22 +735,23 @@
             this.tbAdvanced.Text = "Advanced";
             this.tbAdvanced.UseVisualStyleBackColor = true;
             // 
-            // rbAll
+            // CloseBox
             // 
-            this.rbAll.AutoSize = true;
-            this.rbAll.Location = new System.Drawing.Point(174, 6);
-            this.rbAll.Name = "rbAll";
-            this.rbAll.Size = new System.Drawing.Size(36, 17);
-            this.rbAll.TabIndex = 6;
-            this.rbAll.TabStop = true;
-            this.rbAll.Text = "All";
-            this.rbAll.UseVisualStyleBackColor = true;
-            this.rbAll.CheckedChanged += new System.EventHandler(this.rbAll_CheckedChanged);
+            this.CloseBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CloseBox.Image = global::Weaselware.InventoryFerret.Properties.Resources.close_window;
+            this.CloseBox.Location = new System.Drawing.Point(947, 13);
+            this.CloseBox.Name = "CloseBox";
+            this.CloseBox.Size = new System.Drawing.Size(24, 24);
+            this.CloseBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.CloseBox.TabIndex = 21;
+            this.CloseBox.TabStop = false;
+            this.CloseBox.Click += new System.EventHandler(this.CloseBox_Click);
             // 
             // PartView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.CloseBox);
             this.Controls.Add(this.PartsDetailTabControl);
             this.Controls.Add(this.txtPartName);
             this.Controls.Add(this.btnScanSKU);
@@ -757,7 +772,7 @@
             this.MaximumSize = new System.Drawing.Size(1200, 800);
             this.MinimumSize = new System.Drawing.Size(644, 460);
             this.Name = "PartView";
-            this.Size = new System.Drawing.Size(690, 601);
+            this.Size = new System.Drawing.Size(987, 601);
             this.Load += new System.EventHandler(this.PartView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errDescription)).EndInit();
             this.gbCostFactors.ResumeLayout(false);
@@ -770,6 +785,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvTransactions)).EndInit();
             this.tbAdvanced.ResumeLayout(false);
             this.tbAdvanced.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.CloseBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -839,5 +855,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colQnty;
         private System.Windows.Forms.DataGridViewTextBoxColumn colJobName;
         private System.Windows.Forms.RadioButton rbAll;
+        private System.Windows.Forms.PictureBox CloseBox;
     }
 }

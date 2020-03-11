@@ -24,7 +24,7 @@ namespace Weaselware.InventoryFerret
             JobOrdersPage,
             StockBill,
             PartEditorPage,
-            RejectPage,
+            PartDetailEdit,
             PurchaseOrderPage,
             AssemblyManagerControl
 
@@ -100,12 +100,17 @@ namespace Weaselware.InventoryFerret
                     partEditorControl.Dock = DockStyle.Fill;
                     tab.Controls.Add(partEditorControl);
                     break;
-                case TabPageType.RejectPage:
+                case TabPageType.PartDetailEdit:
                     {
-                     tab.Text = "Reject Orders";
-                    ClaimDetailControl ctr = new ClaimDetailControl(ctx);
-                    ctr.Dock = DockStyle.Fill;
-                    tab.Controls.Add(ctr);
+                        if (model is Part)
+                        {
+                            Part p = model as Part;
+                            tab.Text = $"Part Edit : {p.PartId.ToString()}";
+                            PartView ctr = new PartView(p,ctx);
+                            ctr.Dock = DockStyle.Fill;
+                            tab.Controls.Add(ctr);
+                        }
+             
                     }
                     break;
                 case TabPageType.PurchaseOrderPage:

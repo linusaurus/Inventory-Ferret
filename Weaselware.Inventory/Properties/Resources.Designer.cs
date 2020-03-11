@@ -273,6 +273,36 @@ namespace Weaselware.InventoryFerret.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap outline_delete_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_delete_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap outline_launch_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_launch_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap outline_link_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_link_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap print {
             get {
                 object obj = ResourceManager.GetObject("print", resourceCulture);
@@ -326,6 +356,46 @@ namespace Weaselware.InventoryFerret.Properties {
         internal static System.Drawing.Bitmap RecivedUnit {
             get {
                 object obj = ResourceManager.GetObject("RecivedUnit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap round_add_circle_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("round_add_circle_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap round_add_circle_black_24dp1 {
+            get {
+                object obj = ResourceManager.GetObject("round_add_circle_black_24dp1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap round_add_circle_outline_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("round_add_circle_outline_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap round_remove_circle_outline_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("round_remove_circle_outline_black_24dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

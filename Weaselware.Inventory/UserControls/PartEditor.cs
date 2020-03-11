@@ -22,12 +22,17 @@ namespace Weaselware.InventoryFerret
         IPartsService partsService;
         LabelService labelService;
         BindingSource bsPartsListSource = new BindingSource();
+
+        private List<Document> _documents;
+        BindingSource bsDocuments = new BindingSource();
+
         SearchOptions searchOption;
         string searchTerm;
         private Part selectedPart;
         BarCodeReader reader = new BarCodeReader();
         string foundBarCode;
         ScanType _scanType;
+        FormCollection fc = Application.OpenForms;
 
         enum ScanType
         {
@@ -42,6 +47,7 @@ namespace Weaselware.InventoryFerret
             _context = ctx;
             partsService = new PartsService(_context);
             labelService = new LabelService();
+            dgResources.AutoGenerateColumns = false;
 
         }
 
@@ -60,7 +66,7 @@ namespace Weaselware.InventoryFerret
         private void txtPartSearch_TextChanged(object sender, EventArgs e)
         {
             TextBox tb = (TextBox)sender;
-            searchTerm = tb.Text;
+            searchTerm = tb.Text; 
             if (tb.Text.Length > 0)
             {
                 dgPartsList.DataSource = partsService.SearchParts(searchTerm, searchOption);
@@ -92,11 +98,7 @@ namespace Weaselware.InventoryFerret
                     PartForm partForm = new PartForm();
                     if (selectedPart != null)
                     {
-                        PartView partView = new PartView(selectedPart, _context);
-
-                        partForm.Controls.Add(partView);
-                        partView.Dock = DockStyle.Fill;
-                        partForm.Show();
+                        OpenPartDetails(selectedPart.PartId, _context);
                     }
 
 
@@ -124,6 +126,8 @@ namespace Weaselware.InventoryFerret
                 if (dgPartsList.SelectedRows.Count > 0)
                 {
                     selectedPart = (Part)dv.CurrentRow.DataBoundItem;
+                    _documents = _context.Document.Where(r => r.PartId == selectedPart.PartId).ToList();
+                    dgResources.DataSource = _documents;
                 }
             }
         }
@@ -141,11 +145,8 @@ namespace Weaselware.InventoryFerret
                     PartForm partForm = new PartForm();
                     if (selectedPart != null)
                     {
-                        PartView partView = new PartView(selectedPart, _context);
-                        partView.HostForm = partForm;
-                        partForm.Controls.Add(partView);
-                        partView.Dock = DockStyle.Fill;
-                        partForm.Show();
+                        OpenPartDetails(selectedPart.PartId, _context);
+
                     }
 
                 }
@@ -186,8 +187,7 @@ namespace Weaselware.InventoryFerret
                     var _part = partsService.Find(selectedPart.PartId);
                     if (_part.Sku == foundBarCode)
                     {
-                        MessageBox.Show("Success Associating SKU to Part");
-                       
+                        MessageBox.Show("Success Associating SKU to Part");                     
                         Invoke(new MethodInvoker(() => { this.txtPartSearch.Text = " "; }));
                     }
                     return;
@@ -207,39 +207,35 @@ namespace Weaselware.InventoryFerret
 
             }
 
-
+        // This needs to open Part Editor in a New Tab
         public void OpenPartDetailForm(int partID, BadgerDataModel ctx)
+        { OpenPartDetails(partID, ctx);}
+           
+
+        private void OpenPartDetails(int partID, BadgerDataModel ctx)
         {
             Part partlookup = partsService.Find(partID);
-            if (!String.IsNullOrEmpty(partlookup.Sku))
+            if (partlookup != null)
             {
                 PartForm partForm = new PartForm();
                 if (partlookup != null)
                 {
-                    PartView partView = new PartView(partlookup, ctx);
-                    partView.HostForm = partForm;
-                    partForm.Controls.Add(partView);
-                    partView.Dock = DockStyle.Fill;
-                    partForm.Show();
 
-                    
+                    var main = fc["Main"] as Main;
+                    var tabs = main.Controls["MainTabControl"] as TabControl;
+                    TabPage newPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PartDetailEdit, partlookup);
+                    tabs.TabPages.Add(newPage);
+                    tabs.SelectTab(newPage);
+               
                 }
             }
         }
 
 
-        private void splitContainer2_Panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
         private void btnFindBySKU_Click(object sender, EventArgs e)
         {
-
             _scanType = ScanType.find; 
-            reader.OpenScanner();
-
-           
+            reader.OpenScanner();          
         }
         // Print a Barcoded Label for the part
         private void button1_Click(object sender, EventArgs e)
@@ -252,6 +248,15 @@ namespace Weaselware.InventoryFerret
                 lbService.PrintLabel(partLabel, 1);
             }
 
+        }
+
+        private void btnOpenPart_Click(object sender, EventArgs e)
+        {
+            int partNumber;
+            if (int.TryParse(this.txtPartNumber.Text, out partNumber))
+            {
+                OpenPartDetails(partNumber, _context);
+            }          
         }
     }
     

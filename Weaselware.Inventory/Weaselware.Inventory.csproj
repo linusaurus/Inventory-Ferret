@@ -118,9 +118,6 @@
     <Reference Include="ComponentFactory.Krypton.Workspace">
       <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\Krypton-master\build\bin\Debug\ComponentFactory.Krypton.Workspace.dll</HintPath>
     </Reference>
-    <Reference Include="HarfBuzzSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
-      <HintPath>..\packages\HarfBuzzSharp.1.4.6\lib\net45\HarfBuzzSharp.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -322,7 +319,6 @@
     <Compile Include="NewResourceForm.Designer.cs">
       <DependentUpon>NewResourceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ObservableListSource.cs" />
     <Compile Include="PartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -638,6 +634,13 @@
     <None Include="Resources\Multimedia-_Artboard-80.png" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\round_add_circle_black_24dp.png" />
+    <None Include="Resources\round_add_circle_black_24dp1.png" />
+    <None Include="Resources\round_add_circle_outline_black_24dp.png" />
+    <None Include="Resources\round_remove_circle_outline_black_24dp.png" />
+    <None Include="Resources\outline_link_black_24dp.png" />
+    <None Include="Resources\outline_delete_black_24dp.png" />
+    <None Include="Resources\outline_launch_black_24dp.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

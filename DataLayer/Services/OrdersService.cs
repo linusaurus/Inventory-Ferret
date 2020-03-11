@@ -284,19 +284,18 @@ namespace DataLayer.Services {
             
             string sql = @"select Description,PartID,LineID,Qnty,UnitCost,PurchaseOrderID FROM PurchaseLineItem " +
                           " WHERE OrderReceiptID IN(SELECT OrderReceiptID FROM OrderReciept WHERE OrderNum IN " +
-                          "(SELECT OrderNum FROM PurchaseOrder WHERE SupplierID = 2244))"; 
-                        
+                          "(SELECT OrderNum FROM PurchaseOrder WHERE SupplierID = {0}))";
+
             ///TODO pass a parameter to the sql
-            var  result = context.PurchaseLineItem.FromSqlRaw(sql).Select( d => new SupplierLineItemDto 
+            var result = context.PurchaseLineItem.FromSqlRaw(sql, id).Select(d => new SupplierLineItemDto
             {
                 Description = d.Description,
-                LineID =  d.LineId,
-                PartID =  d.PartId.GetValueOrDefault(),
-                UnitCost =d.UnitCost.GetValueOrDefault(),
+                LineID = d.LineId,
+                PartID = d.PartId.GetValueOrDefault(),
+                UnitCost = d.UnitCost.GetValueOrDefault(),
                 OrderNum = d.PurchaseOrderId.GetValueOrDefault()
             })
                 .ToList();
-
             return result;
         }
 

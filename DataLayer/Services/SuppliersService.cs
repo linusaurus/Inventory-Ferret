@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using Microsoft.EntityFrameworkCore;
-using System.Threading.Tasks;
 using DataLayer.Interfaces;
 using DataLayer.Entities;
 
-namespace DataLayer.Services {
+namespace DataLayer.Services
+{
 
     public class SuppliersService : ISuppliersService {
 

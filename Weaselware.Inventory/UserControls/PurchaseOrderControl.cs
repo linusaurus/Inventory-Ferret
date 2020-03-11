@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using Weaselware.InventoryFerret.Wrapper;
 using AutoMapper;
+using DataLayer.Models;
+using System.Linq;
 
 namespace Weaselware.InventoryFerret
 {
@@ -29,15 +31,16 @@ namespace Weaselware.InventoryFerret
         PurchaseLineItem _selectedPurchaseLineItem = null;
         
         private List<PurchaseLineItemWrapper> lineItems = new List<PurchaseLineItemWrapper>();
+        private IEnumerable<SupplierLineItemDto> supplierLineItems;
        
         bool _isDirty = false;
 
 
         // Repos
         SuppliersService _suppliersService;
-        IOrdersService orderService;
-        IPartsService partsService;
-        IJobsService jobsService;
+        //IOrdersService orderService;
+        //IPartsService partsService;
+        //IJobsService jobsService;
         //InventoryService inventoryService;
 
 
@@ -48,10 +51,10 @@ namespace Weaselware.InventoryFerret
             _po = purchaseOrder;
           
             // Init the repos old school
-            _suppliersService = new SuppliersService(_ctx);
-            orderService = new OrdersService(_ctx);
-            partsService = new PartsService(_ctx);
-            jobsService = new JobsService(_ctx);
+            //_suppliersService = new SuppliersService(_ctx);
+            //_orderService = new OrdersService(_ctx);
+            //_partsService = new PartsService(_ctx);
+            //_jobsService = new JobsService(_ctx);
 
         }
 
@@ -59,15 +62,20 @@ namespace Weaselware.InventoryFerret
         {
             InitializeComponent();
             _po = purchaseOrder;
-            _supplier = _suppliersService.Find(_po.SupplierId.Value);
+            
             _ctx = new BadgerDataModel();
             _selectedMeasure = new UnitOfMeasure { Uid = 1, Uom = "Each" };
             _suppliersService = new SuppliersService(_ctx);
             _partService = new PartsService(_ctx);
             _ordersService = new OrdersService(_ctx);
             bsLineItems = new BindingSource();
+
+            _supplier = _suppliersService.Find(_po.SupplierId.Value);
+
+            dgSupplierParts.AutoGenerateColumns = false;
+            supplierLineItems = _ordersService.GetSupplierLineItems(_supplier.SupplierId);
             
-            //dgSupplierParts.DataSource = orderService.GetSupplierLineItems(1404);
+            dgSupplierParts.DataSource = _ordersService.GetSupplierLineItems(_supplier.SupplierId);
         }
 
         private void BsLineItems_CurrentItemChanged(object sender, EventArgs e)
@@ -417,21 +425,7 @@ namespace Weaselware.InventoryFerret
             this.lbPartsResults.DataSource = parts;
 
         }
-        /// <summary>
-        /// Jobs Search
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tbJobSearch_TextChanged(object sender, EventArgs e)
-        {
-            TextBox tb = (TextBox)sender;
-            string search = tb.Text;
-            jobsService = new JobsService(_ctx);
-            var jobs = jobsService.GetJobs(search);
-           // this.lbJobSearchList.DisplayMember = "JobName";
-           // this.lbJobSearchList.DataSource = jobs;
-
-        }
+  
 
         #region Search engines
 
@@ -439,9 +433,10 @@ namespace Weaselware.InventoryFerret
         {
             TextBox tb = (TextBox)sender;
             string search = tb.Text;
-            var suppliers = suppliersService.Find(search);
-           // this.lbSuppliersList.DisplayMember = "SupplierName";
-           // this.lbSuppliersList.DataSource = suppliers;
+            //dgSupplierParts.DataSource.
+            var suppliers = _ordersService.GetSupplierLineItems(_supplier.SupplierId).Where(r => r.Description.Contains(search));
+            dgSupplierParts.DataSource = null;
+            dgSupplierParts.DataSource = suppliers;
         }
 
 

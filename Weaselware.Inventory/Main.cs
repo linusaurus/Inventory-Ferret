@@ -17,6 +17,8 @@ namespace Weaselware.InventoryFerret {
         int _loggedOnUserID;
         OrdersService _ordersService;
 
+        public TabControl MainTabs {get;set;}
+
         public int LoggedOnUserID
         {
             get { return _loggedOnUserID; }
@@ -28,9 +30,10 @@ namespace Weaselware.InventoryFerret {
             InitializeComponent();
             _context = new BadgerDataModel();
             _ordersService = new OrdersService(_context);
+            MainTabs = MainTabControl;
         }
 
-        public TabControl GetTabControl()
+        public  TabControl GetTabControl()
         {
             return this.MainTabControl;
         }
@@ -85,12 +88,7 @@ namespace Weaselware.InventoryFerret {
             MainTabControl.SelectedTab = partEditorPage;
         }
 
-        private void tsbReject_Click(object sender, EventArgs e)
-        {
-            TabPage claimRejectPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.RejectPage);
-            MainTabControl.TabPages.Add(claimRejectPage);
-            MainTabControl.SelectedTab = claimRejectPage;
-        }
+       
 
         #endregion
 

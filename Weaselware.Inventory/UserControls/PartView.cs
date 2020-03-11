@@ -95,6 +95,8 @@ namespace Weaselware.InventoryFerret
             this.txtStockOnHand.Text = sum.ToString();
         }
 
+       
+
         private void BsPart_CurrentItemChanged(object sender, EventArgs e)
         {
             btnSave.Enabled = true;
@@ -179,7 +181,12 @@ namespace Weaselware.InventoryFerret
             _part.ModifiedDate = DateTime.Today;
             //-------------------------------------
             _context.SaveChanges();
-            { ((Form)this.TopLevelControl).Close(); }
+
+            TabPage tabpage = (TabPage)this.Parent;
+            TabControl tabControl = (TabControl)tabpage.Parent;
+            tabControl.TabPages.Remove(tabpage);
+
+           // { ((Form)this.TopLevelControl).Close(); } --
         }
 
         // Validation -------##
