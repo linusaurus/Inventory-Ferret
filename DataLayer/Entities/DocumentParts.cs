@@ -9,7 +9,7 @@ namespace DataLayer.Entities
 {
     public partial class DocumentParts
     {
-        public int PartId { get; set; }
+        public int PartID { get; set; }
         public int DocId { get; set; }
 
         public  Document Doc { get; set; }

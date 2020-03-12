@@ -5,8 +5,8 @@ namespace DataLayer.Entities
 {
     public partial class UnitOfPurchase
     {
-        public int UoPid { get; set; }
-        public int PartId { get; set; }
+        public int UoPID { get; set; }
+        public int PartID { get; set; }
         public int? Uid { get; set; }
         public string Uopname { get; set; }
         public decimal? UopcostUnit { get; set; }

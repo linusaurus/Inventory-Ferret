@@ -29,11 +29,11 @@ namespace DataLayer.Services {
             return result;
         }
 
-        public Inventory FindByLineItem(int lineID) {
+        public Inventory FindByLineItem(int LineID) {
 
             try
             {
-                return context.Inventory.Where(c => c.LineId == lineID).FirstOrDefault();
+                return context.Inventory.Where(c => c.LineID == LineID).FirstOrDefault();
             }
             catch (Exception)
             {
@@ -77,17 +77,17 @@ namespace DataLayer.Services {
         /// <summary>
         /// Get Inventory Transaction for a Part
         /// </summary>
-        /// <param name="partID"></param>
+        /// <param name="PartID"></param>
         /// <returns></returns>
-       public List<InventoryListDto> GetInventoryByPartID(int partID) {
+       public List<InventoryListDto> GetInventoryByPartID(int PartID) {
 
 
-            var result = context.Inventory.Include(j => j.GetJob).Where(i => i.PartId == partID).Select(p => new InventoryListDto
+            var result = context.Inventory.Include(j => j.GetJob).Where(i => i.PartID == PartID).Select(p => new InventoryListDto
             {
                 StockTransactionId = p.StockTransactionID,
                 Description = p.Description,
-                PartId = p.PartId.GetValueOrDefault(),
-                LineId = p.LineId.Value,
+                PartID = p.PartID.GetValueOrDefault(),
+                LineID = p.LineID.Value,
                 OrderReceiptId = p.OrderReceiptID.GetValueOrDefault(),
                 QntyRev = p.Qnty.GetValueOrDefault(),
                 TransDate = p.DateStamp.Value.ToShortDateString(),
@@ -138,20 +138,20 @@ namespace DataLayer.Services {
         /// <summary>
         /// Push Stock-Increase stocklevel of part amount specified
         /// </summary>
-        /// <param name="partID"></param>
+        /// <param name="PartID"></param>
         /// <param name="qnty"></param>
         /// <param name="jobID"></param>
-        public void PushStock(int partID, decimal qnty, int employeeId)
+        public void PushStock(int PartID, decimal qnty, int employeeId)
         {
             // Retrieve the original Part
-            var part = context.Part.Find( partID);
+            var part = context.Part.Find( PartID);
             //Create new Inventory Transaction
 
             Inventory inventory = new Inventory();
             inventory.DateStamp = DateTime.Now;
             inventory.Description = part.ItemDescription;
-            inventory.PartId = partID;
-            inventory.UnitOfMeasure = part.Uid;
+            inventory.PartID = PartID;
+            inventory.UnitOfMeasure = part.UID;
             inventory.Emp_id = employeeId;
             inventory.TransActionType = 2;
             inventory.Qnty = qnty;
@@ -172,28 +172,28 @@ namespace DataLayer.Services {
         public decimal StockLevel(int partNum)
         {
            decimal stockLevel = 0.0m;
-           stockLevel = context.Inventory.Where(p => p.PartId == partNum).Sum(c => c.Qnty).GetValueOrDefault();
+           stockLevel = context.Inventory.Where(p => p.PartID == partNum).Sum(c => c.Qnty).GetValueOrDefault();
            return stockLevel;
         }
         /// <summary>
         /// Pull Stock
         /// </summary>
-        /// <param name="partID"></param>
+        /// <param name="PartID"></param>
         /// <param name="qnty"></param>
         /// <param name="jobID"></param>
-        public void PullStock(int partID, decimal qnty,int employeeID, int jobID = 106)
+        public void PullStock(int PartID, decimal qnty,int employeeID, int jobID = 106)
         {
             // Pull the part being pulled
-            var partBeingPulled = context.Part.Find(partID);
+            var partBeingPulled = context.Part.Find(PartID);
 
             Inventory pullPartTrans = new Inventory
             {
                
                 DateStamp = DateTime.Now,
-                PartId = partBeingPulled.PartId,
+                PartID = partBeingPulled.PartID,
                 Emp_id = employeeID,
                 Description = partBeingPulled.ItemDescription,
-                UnitOfMeasure = partBeingPulled.Uid,
+                UnitOfMeasure = partBeingPulled.UID,
                 Qnty = qnty * -1.0m,         
                 TransActionType = 3
 
@@ -206,32 +206,32 @@ namespace DataLayer.Services {
         /// <summary>
         /// Adjust the current stock level to a value
         /// </summary>
-        /// <param name="partID"></param>
+        /// <param name="PartID"></param>
         /// <param name="targetQnty"></param>
         /// <param name="employeeID"></param>
-        public void SetStock(int partID, decimal targetQnty, int employeeID)
+        public void SetStock(int PartID, decimal targetQnty, int employeeID)
         {
 
             decimal currentStock = 0.0m;
-            Part part = context.Part.Find(partID);
+            Part part = context.Part.Find(PartID);
             if (targetQnty < Decimal.Zero)
             {
                 return;
             }
             // Test for any stocktransactions for the part
-            if (context.Inventory.Any(p => p.PartId == partID))
+            if (context.Inventory.Any(p => p.PartID == PartID))
             {
-                currentStock = context.Inventory.Where(p => p.PartId == partID).Sum(q => q.Qnty.Value);
+                currentStock = context.Inventory.Where(p => p.PartID == PartID).Sum(q => q.Qnty.Value);
 
                 // if there more in stock than the target
                 if (currentStock > targetQnty)
                 {
                     Inventory adjustment = new Inventory
                     {
-                        PartId = partID,
+                        PartID = PartID,
                         Emp_id = employeeID,
                         TransActionType = 4,
-                        UnitOfMeasure = part.Uid.GetValueOrDefault(),
+                        UnitOfMeasure = part.UID.GetValueOrDefault(),
                         DateStamp = DateTime.Now,
                         Description = part.ItemDescription,
                         Qnty = (currentStock * -1.0m)
@@ -244,10 +244,10 @@ namespace DataLayer.Services {
                 {
                     Inventory adjustment = new Inventory
                     {
-                        PartId = partID,
+                        PartID = PartID,
                         Emp_id = employeeID,
                         TransActionType = 2,
-                        UnitOfMeasure = part.Uid.GetValueOrDefault(),
+                        UnitOfMeasure = part.UID.GetValueOrDefault(),
                         DateStamp = DateTime.Now,
                         Description = part.ItemDescription,
                         Qnty = (targetQnty - currentStock)
@@ -266,10 +266,10 @@ namespace DataLayer.Services {
             {
                 Inventory adjustment = new Inventory
                 {
-                    PartId = partID,
+                    PartID = PartID,
                     Emp_id = employeeID,
                     TransActionType = 4,
-                    UnitOfMeasure = part.Uid.GetValueOrDefault(),
+                    UnitOfMeasure = part.UID.GetValueOrDefault(),
                     DateStamp = DateTime.Now,
                     Qnty = (targetQnty)
 

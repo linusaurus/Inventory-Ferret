@@ -12,7 +12,7 @@ namespace DataLayer.Entities.Configuration
     {
         public void Configure(EntityTypeBuilder<DocumentParts> entity)
         {
-            entity.HasKey(e =>new { e.DocId, e.PartId});
+            entity.HasKey(e =>new { e.DocId, e.PartID});
 
             entity.HasOne(pt => pt.Doc)
                 .WithMany(p => p.DocumentParts)
@@ -20,7 +20,7 @@ namespace DataLayer.Entities.Configuration
 
             entity.HasOne(pt => pt.Part)
                 .WithMany(t => t.DocumentParts)
-                .HasForeignKey(pt => pt.PartId);
+                .HasForeignKey(pt => pt.PartID);
 
 
         }

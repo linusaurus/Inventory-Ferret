@@ -94,6 +94,9 @@ namespace DataLayer.Entities
             modelBuilder.ApplyConfiguration(new DocumentConfig());
             modelBuilder.ApplyConfiguration(new StockBillItemConfig());
             modelBuilder.ApplyConfiguration(new InventoryConfig());
+            modelBuilder.ApplyConfiguration(new UnitOfMeasureConfig());
+            modelBuilder.ApplyConfiguration(new UnitOfPurchaseConfig());
+            modelBuilder.ApplyConfiguration(new PurchaseOrderConfig());
          
 
             modelBuilder.Entity<Employee>(entity =>
@@ -131,7 +134,7 @@ namespace DataLayer.Entities
 
                 entity.Property(e => e.Description).HasMaxLength(512);
 
-                entity.Property(e => e.PartId).HasColumnName("PartID");
+                entity.Property(e => e.PartID).HasColumnName("PartID");
 
                 entity.Property(e => e.StockLevel)
                     .HasColumnName("Stock Level")
@@ -363,9 +366,9 @@ namespace DataLayer.Entities
 
             modelBuilder.Entity<PurchaseLineItem>(entity =>
             {
-                entity.HasKey(e => e.LineId);
+                entity.HasKey(e => e.LineID);
 
-                entity.Property(e => e.LineId).HasColumnName("LineID");
+                entity.Property(e => e.LineID).HasColumnName("LineID");
 
                 entity.Property(e => e.AmountReceived)
                     .HasColumnType("decimal(18, 4)")
@@ -398,7 +401,7 @@ namespace DataLayer.Entities
 
                 entity.Property(e => e.OrderReceiptId).HasColumnName("OrderReceiptID");
 
-                entity.Property(e => e.PartId).HasColumnName("PartID");
+                entity.Property(e => e.PartID).HasColumnName("PartID");
 
                 entity.Property(e => e.PurchaseOrderId).HasColumnName("PurchaseOrderID");
 
@@ -445,95 +448,7 @@ namespace DataLayer.Entities
                     .HasConstraintName("FK_PurchaseLineItem_PurchaseOrder");
             });
 
-            modelBuilder.Entity<PurchaseOrder>(entity =>
-            {
-                entity.HasKey(e => e.OrderNum)
-                    .HasName("PK_Order");
 
-                entity.Property(e => e.AddedBy)
-                    .HasMaxLength(60)
-                    .IsFixedLength();
-
-                entity.Property(e => e.DateAdded).HasColumnType("date");
-
-                entity.Property(e => e.EmployeeId).HasColumnName("EmployeeID");
-
-                entity.Property(e => e.ExpectedDate)
-                    .HasColumnName("Expected_Date")
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.IsBackOrder).HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.JobId).HasColumnName("Job_id");
-
-                entity.Property(e => e.Memo)
-                    .HasMaxLength(350)
-                    .IsUnicode(false)
-                    .HasDefaultValueSql("(' ')");
-
-                entity.Property(e => e.ModifiedBy)
-                    .HasMaxLength(60)
-                    .IsFixedLength();
-
-                entity.Property(e => e.ModifiedDate).HasColumnType("date");
-
-                entity.Property(e => e.OrderDate)
-                    .HasColumnType("datetime")
-                    .HasDefaultValueSql("(getdate())");
-
-                entity.Property(e => e.OrderFormat).HasMaxLength(50);
-
-                entity.Property(e => e.OrderState).HasDefaultValueSql("((1))");
-
-                entity.Property(e => e.OrderTotal)
-                    .HasColumnType("money")
-                    .HasDefaultValueSql("((0.0))");
-
-                entity.Property(e => e.Recieved).HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.RecievedDate).HasColumnType("datetime");
-
-                entity.Property(e => e.SalesRep)
-                    .HasMaxLength(50)
-                    .IsUnicode(false)
-                    .HasDefaultValueSql("(' ')");
-
-                entity.Property(e => e.ShipId)
-                    .HasColumnName("ShipID")
-                    .HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.ShippingCost)
-                    .HasColumnType("money")
-                    .HasDefaultValueSql("((0.0))");
-
-                entity.Property(e => e.SubTotal)
-                    .HasColumnType("money")
-                    .HasDefaultValueSql("((0.0))");
-
-                entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
-
-                entity.Property(e => e.SuppressTax).HasDefaultValueSql("((0))");
-
-                entity.Property(e => e.Tax)
-                    .HasColumnType("money")
-                    .HasDefaultValueSql("((0.0))");
-
-                entity.HasOne(d => d.Employee)
-                    .WithMany(p => p.PurchaseOrder)
-                    .HasForeignKey(d => d.EmployeeId)
-                    .HasConstraintName("FK_PurchaseOrder_Employee");
-
-                entity.HasOne(d => d.Job)
-                    .WithMany(p => p.PurchaseOrder)
-                    .HasForeignKey(d => d.JobId)
-                    .HasConstraintName("FK_PurchaseOrder_Job");
-
-                entity.HasOne(d => d.Supplier)
-                    .WithMany(p => p.PurchaseOrder)
-                    .HasForeignKey(d => d.SupplierId)
-                    .HasConstraintName("FK_PurchaseOrder_Supplier");
-            });
 
             modelBuilder.Entity<Purchasers>(entity =>
             {
@@ -584,7 +499,7 @@ namespace DataLayer.Entities
 
                 entity.Property(e => e.MixRatio).HasColumnType("decimal(18, 2)");
 
-                entity.Property(e => e.PartId).HasColumnName("PartID");
+                entity.Property(e => e.PartID).HasColumnName("PartID");
 
                 entity.Property(e => e.SdapcdId).HasColumnName("SDAPCD_id");
 
@@ -711,46 +626,9 @@ namespace DataLayer.Entities
                 entity.Property(e => e.TransactionTypeName).HasMaxLength(35);
             });
 
-            modelBuilder.Entity<UnitOfMeasure>(entity =>
-            {
-                entity.HasKey(e => e.Uid);
+           
 
-                entity.Property(e => e.Uid).HasColumnName("UID");
-
-                entity.Property(e => e.Uom)
-                    .HasColumnName("UOM")
-                    .HasMaxLength(12)
-                    .IsUnicode(false);
-            });
-
-            modelBuilder.Entity<UnitOfPurchase>(entity =>
-            {
-                entity.HasKey(e => e.UoPid);
-
-                entity.Property(e => e.UoPid).HasColumnName("UoPID");
-
-                entity.Property(e => e.PartId).HasColumnName("PartID");
-
-                entity.Property(e => e.Uid).HasColumnName("UID");
-
-                entity.Property(e => e.UopcostUnit)
-                    .HasColumnName("UOPCostUnit")
-                    .HasColumnType("decimal(18, 4)");
-
-                entity.Property(e => e.Uopname)
-                    .HasColumnName("UOPName")
-                    .HasMaxLength(50);
-
-                entity.Property(e => e.Uopratio)
-                    .HasColumnName("UOPRatio")
-                    .HasColumnType("decimal(18, 4)");
-
-                entity.HasOne(d => d.Part)
-                    .WithMany(p => p.UnitOfPurchase)
-                    .HasForeignKey(d => d.PartId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_UnitOfPurchase_Part");
-            });
+          
 
             modelBuilder.Entity<WorkCenter>(entity =>
             {

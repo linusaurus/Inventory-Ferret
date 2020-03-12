@@ -32,7 +32,7 @@ namespace DataLayer.Services
         {
             bool result = false;
             if (part == null){ return false; }
-            var originalPart = _context.Part.Find(part.PartId);
+            var originalPart = _context.Part.Find(part.PartID);
             originalPart.Sku = sku;
             try
             {
@@ -62,7 +62,7 @@ namespace DataLayer.Services
         public bool Exist(int PartID)
         {
             bool result = false;
-            if (_context.Part.Any(c => c.PartId == PartID))
+            if (_context.Part.Any(c => c.PartID == PartID))
             {
                 result = true;
             }
@@ -94,7 +94,7 @@ namespace DataLayer.Services
             {
                 return null;
             }
-            return _context.Part.Include(g=> g.DocumentParts).Where(p => p.PartId == PartID).FirstOrDefault();
+            return _context.Part.Include(g=> g.DocumentParts).Where(p => p.PartID == PartID).FirstOrDefault();
         }
 
         public Part FindBySKU(string sku)
@@ -145,7 +145,7 @@ namespace DataLayer.Services
             result.Cost= 0.0m;
             result.Uop = "Ea";
             result.UnitToPurchaseFactor = 0.0m;
-            result.Uid = 1;
+            result.UID = 1;
             result.ManuId = 1;
             result.Uopcost = 0.0m;
             result.Sku = string.Empty;
@@ -176,7 +176,7 @@ namespace DataLayer.Services
 
         public void DeleteResource(Document document, Part part)
         {          
-            _context.DocumentParts.Remove(new DocumentParts { DocId = document.DocId, PartId = part.PartId });
+            _context.DocumentParts.Remove(new DocumentParts { DocId = document.DocId, PartID = part.PartID });
            
             _context.Document.Remove(document);
             _context.SaveChanges();
@@ -189,13 +189,13 @@ namespace DataLayer.Services
                 _context.Document.Add(document);
                 _context.SaveChanges();
             }
-            part.DocumentParts.Add(new DocumentParts { PartId = part.PartId, DocId = document.DocId });
+            part.DocumentParts.Add(new DocumentParts { PartID = part.PartID, DocId = document.DocId });
             _context.SaveChanges();
         }
 
         public Part Add(Part part)
         {
-            if (part.PartId != 0)
+            if (part.PartID != 0)
             {
                 _context.Part.Add(part);
                 _context.SaveChanges();

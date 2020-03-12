@@ -88,8 +88,8 @@ namespace DataLayer.Services
                     ClaimItem cItem = new ClaimItem();
                     cItem.ClaimId = claimID;
                         
-                    cItem.LineId = l.LineId;
-                    cItem.PartId = l.PartId;
+                    cItem.LineID = l.LineID;
+                    cItem.PartID = l.PartID;
                     cItem.Bcode = l.Bcode;
                     cItem.Description = l.Description;
                     cItem.TransActionType = 1;

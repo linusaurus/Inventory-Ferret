@@ -59,11 +59,11 @@ namespace DataLayer.Services {
             var _lineItems = context.PurchaseLineItem.Where(f => f.PurchaseOrderId == orderID).Select(d => new LineItemDto
             {
                 Description = d.Description,
-                LineID = d.LineId,
+                LineID = d.LineID,
                 Quantity = d.Qnty.Value,
                 Price = d.UnitCost.Value,
                 Extended = d.Extended.Value,
-                PartID = d.PartId,
+                PartID = d.PartID,
                 PurchaseOrderID = d.PurchaseOrderId.Value,
             });
             return _lineItems.ToList();
@@ -180,7 +180,7 @@ namespace DataLayer.Services {
                 inv.DateStamp = DateTime.Now;
                 inv.Description = item.Description.ToString().TrimEnd();
                 inv.JobId = order.JobId;
-                inv.LineId = item.LineId;
+                inv.LineID = item.LineID;
                 inv.Location = string.Empty;
                 inv.Note = item.Note;
                 inv.OrderReceiptID = oreciept.OrderReceiptId;
@@ -188,7 +188,7 @@ namespace DataLayer.Services {
                 inv.Qnty = item.Qnty ?? 0;      
                 item.Recieved = true;
                 item.OrderReceiptId = oreciept.OrderReceiptId;
-                inv.PartId = item.PartId ?? null;
+                inv.PartID = item.PartID ?? null;
                 if (!(item.Description.Length == 0) && !(item.Qnty == default(decimal)) )
                 {
                     context.Entry(inv).State = EntityState.Added;
@@ -198,10 +198,10 @@ namespace DataLayer.Services {
                     {
                         var c = new ClaimItem
                         {
-                            LineId = item.LineId,
+                            LineID = item.LineID,
                             Description = item.Description,
                             Bcode = item.Bcode,
-                            PartId = item.PartId
+                            PartID = item.PartID
                         };
                         claimItems.Add(c);
                     }
@@ -290,8 +290,8 @@ namespace DataLayer.Services {
             var result = context.PurchaseLineItem.FromSqlRaw(sql, id).Select(d => new SupplierLineItemDto
             {
                 Description = d.Description,
-                LineID = d.LineId,
-                PartID = d.PartId.GetValueOrDefault(),
+                LineID = d.LineID,
+                PartID = d.PartID.GetValueOrDefault(),
                 UnitCost = d.UnitCost.GetValueOrDefault(),
                 OrderNum = d.PurchaseOrderId.GetValueOrDefault()
             })

@@ -289,7 +289,7 @@ namespace Weaselware.InventoryFerret {
                     {
                       
                        Inventory inv = (Inventory)bsRecieptItemBindingSource[row.Index];
-                       ThermalLabel lb = labelService.GenerateInventoryLabel(inv.LineId.ToString(),
+                       ThermalLabel lb = labelService.GenerateInventoryLabel(inv.LineID.ToString(),
                                                    jobName,
                         DateTime.Today.ToShortDateString());
                        labelService.PrintLabel(lb,qnty);
@@ -360,7 +360,7 @@ namespace Weaselware.InventoryFerret {
                             part.DateAdded = DateTime.Today;
                             IEmployeeService emps = new EmployeeService(context);
                             part.AddedBy = emps.Find(Globals.CurrentLoggedUserID).Firstname.ToString();
-                            part.Uid = selectedInventory.UnitOfMeasure;
+                            part.UID = selectedInventory.UnitOfMeasure;
                             context.Part.Add(part);
 
 

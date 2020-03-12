@@ -10,7 +10,7 @@ namespace Weaselware.InventoryFerret.Wrapper
         {
         }
 
-        public int LineId { get { return Model.LineId; } }
+        public int LineID { get { return Model.LineID; } }
 
         public string Description
         {
@@ -18,7 +18,7 @@ namespace Weaselware.InventoryFerret.Wrapper
             set { SetValue(value); }
         }
 
-        public int PartId
+        public int PartID
         {
             get { return GetValue<int>(); }
             set { SetValue(value); }

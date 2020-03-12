@@ -64,7 +64,7 @@ namespace Weaselware.InventoryFerret
             _po = purchaseOrder;
             
             _ctx = new BadgerDataModel();
-            _selectedMeasure = new UnitOfMeasure { Uid = 1, Uom = "Each" };
+            _selectedMeasure = new UnitOfMeasure { UID = 1, Uom = "Each" };
             _suppliersService = new SuppliersService(_ctx);
             _partService = new PartsService(_ctx);
             _ordersService = new OrdersService(_ctx);
@@ -135,9 +135,9 @@ namespace Weaselware.InventoryFerret
                 var newLine = new PurchaseLineItem
                 {
                     Description = part.ItemDescription,
-                    PartId = part.PartId,
+                    PartID = part.PartID,
                     UnitCost = part.Cost,
-                    Uom = part.Uid,
+                    Uom = part.UID,
                     Qnty = 1.0m,
                     Extended = 0.0m,
                     AmountReceived = 0.0m,
@@ -157,7 +157,7 @@ namespace Weaselware.InventoryFerret
         {
             if (_selectedPurchaseLineItem != null)
             {
-                if (_selectedPurchaseLineItem.LineId != default(int))
+                if (_selectedPurchaseLineItem.LineID != default(int))
                 {
                     _ctx.PurchaseLineItem.Remove(_selectedPurchaseLineItem);
 
@@ -210,13 +210,13 @@ namespace Weaselware.InventoryFerret
             // ID Column --
             DataGridViewTextBoxColumn colID = new DataGridViewTextBoxColumn();
             colID.HeaderText = "LineID";
-            colID.DataPropertyName = "LineId";
+            colID.DataPropertyName = "LineID";
             colID.Width = 75;
 
             // PartID Column --
             DataGridViewLinkColumn colPartID = new DataGridViewLinkColumn();
             colPartID.HeaderText = "PartID";
-            colPartID.DataPropertyName = "PartId";
+            colPartID.DataPropertyName = "PartID";
             colPartID.Width = 50;
 
             // Description Column --
@@ -460,8 +460,8 @@ namespace Weaselware.InventoryFerret
             {
                 PurchaseLineItem newItem = new PurchaseLineItem
                 {
-                    LineId = 1102,
-                    PartId = _selectedPart.PartId,
+                    LineID = 1102,
+                    PartID = _selectedPart.PartID,
                     Qnty = 0.0m,
                     UnitCost = _selectedPart.Cost.GetValueOrDefault(),
                     Extended = decimal.Zero,
@@ -478,9 +478,9 @@ namespace Weaselware.InventoryFerret
         {
             PurchaseLineItem newItem = new PurchaseLineItem
             {
-                LineId = 1102,
+                LineID = 1102,
                 Qnty = 0.0m,
-                PartId = 0,
+                PartID = 0,
                 UnitCost = 0.0m,
                 Extended = decimal.Zero,
                 Description = String.Empty

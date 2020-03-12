@@ -58,7 +58,7 @@ namespace Weaselware.InventoryFerret
             //    writer.Write(writer.);
             //    writer.WriteBeginTag("td");
             //    writer.Write(HtmlTextWriter.TagRightChar);
-            //    writer.Write(item.LineId.ToString().PadRight(5) + "--> ");
+            //    writer.Write(item.LineID.ToString().PadRight(5) + "--> ");
             //    writer.WriteEndTag("td");
 
             //    writer.WriteBeginTag("td");

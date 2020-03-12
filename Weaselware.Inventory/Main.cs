@@ -15,7 +15,7 @@ namespace Weaselware.InventoryFerret {
 
         BadgerDataModel _context;
         int _loggedOnUserID;
-        OrdersService _ordersService;
+        readonly OrdersService _ordersService;
 
         public TabControl MainTabs {get;set;}
 

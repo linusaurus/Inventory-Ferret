@@ -7,8 +7,8 @@ namespace DataLayer.Entities
     {
         public int StockTransactionID { get; set; }
         public int? OrderReceiptID { get; set; }
-        public int? LineId { get; set; }
-        public int? PartId { get; set; }
+        public int? LineID { get; set; }
+        public int? PartID { get; set; }
         public int? StockBillID { get; set; }
         public int? JobId { get; set; }
         public string Location { get; set; }

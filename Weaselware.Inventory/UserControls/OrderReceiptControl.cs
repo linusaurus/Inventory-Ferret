@@ -119,7 +119,7 @@ namespace Weaselware.InventoryFerret
                     {
                        int copies = Convert.ToInt16(row.Cells["LB_Qnty_col"].FormattedValue);
                        Inventory inv = (Inventory)bsOrderReceiptItems[row.Index];
-                       ThermalLabel lb = lbService.GenerateInventoryLabel(inv.LineId.ToString(),
+                       ThermalLabel lb = lbService.GenerateInventoryLabel(inv.LineID.ToString(),
                                                    jobName,
                                                     DateTime.Today.ToShortDateString());
                        lbService.PrintLabel(lb,copies);

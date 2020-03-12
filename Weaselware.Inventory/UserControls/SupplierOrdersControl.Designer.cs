@@ -64,7 +64,7 @@
             this.LineID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PartID = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.col = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colUnit = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.Qnty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Extended = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Reject = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -143,7 +143,7 @@
             this.LineID,
             this.PartID,
             this.Description,
-            this.col,
+            this.colUnit,
             this.Qnty,
             this.Extended,
             this.Reject});
@@ -351,14 +351,14 @@
             this.Description.HeaderText = "Description";
             this.Description.Name = "Description";
             // 
-            // col
+            // colUnit
             // 
-            this.col.DataPropertyName = "Uom";
-            this.col.HeaderText = "Unit";
-            this.col.Name = "col";
-            this.col.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.col.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.col.Width = 45;
+            this.colUnit.DataPropertyName = "Uom";
+            this.colUnit.HeaderText = "Unit";
+            this.colUnit.Name = "colUnit";
+            this.colUnit.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colUnit.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colUnit.Width = 45;
             // 
             // Qnty
             // 
@@ -456,7 +456,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn LineID;
         private System.Windows.Forms.DataGridViewLinkColumn PartID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
-        private System.Windows.Forms.DataGridViewComboBoxColumn col;
+        private System.Windows.Forms.DataGridViewComboBoxColumn colUnit;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qnty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Extended;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Reject;

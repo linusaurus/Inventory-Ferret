@@ -18,7 +18,7 @@ namespace Weaselware.InventoryFerret {
             ThermalLabel.LicenseKey = "MC4J7E7UM8BDLXA72PEWSJ84NR5FXRVBKPANLSYTCCGKKNMW9N6A";
         }
 
-        public ThermalLabel GenerateInventoryDetailLabel(string lineid, string jobname, string orderNumber,string receiver, string revDate)
+        public ThermalLabel GenerateInventoryDetailLabel(string LineID, string jobname, string orderNumber,string receiver, string revDate)
         {
             //Define a ThermalLabel object and set unit to inch and label size
             ThermalLabel tLabel = new ThermalLabel(UnitType.Inch, 2, 1);
@@ -51,7 +51,7 @@ namespace Weaselware.InventoryFerret {
             txt4Item.TextAlignment = TextAlignment.Left;
 
             //Define a BarcodeItem object
-            BarcodeItem bcItem = new BarcodeItem(0.1, 0.53, 1.75, 0.45, BarcodeSymbology.Code39, lineid);
+            BarcodeItem bcItem = new BarcodeItem(0.1, 0.53, 1.75, 0.45, BarcodeSymbology.Code39, LineID);
             bcItem.AddChecksum = false;
             bcItem.Font.Name = Neodynamic.SDK.Printing.Font.NativePrinterFontS;
             bcItem.Font.Unit = FontUnit.Point;
@@ -74,7 +74,7 @@ namespace Weaselware.InventoryFerret {
             return tLabel;
         }
 
-        public ThermalLabel GenerateInventoryLabel(string lineid, string jobname, string revDate) {
+        public ThermalLabel GenerateInventoryLabel(string LineID, string jobname, string revDate) {
             //Define a ThermalLabel object and set unit to inch and label size
             ThermalLabel tLabel = new ThermalLabel(UnitType.Inch, 2, 1);
             tLabel.GapLength = 0.2;
@@ -93,7 +93,7 @@ namespace Weaselware.InventoryFerret {
             txt2Item.TextAlignment = TextAlignment.Left;
 
             //Define a BarcodeItem object
-            BarcodeItem bcItem = new BarcodeItem(0.1, 0.45, 1.75, 0.375, BarcodeSymbology.Code39, lineid);
+            BarcodeItem bcItem = new BarcodeItem(0.1, 0.45, 1.75, 0.375, BarcodeSymbology.Code39, LineID);
             bcItem.AddChecksum = false;
             bcItem.Font.Name = Neodynamic.SDK.Printing.Font.NativePrinterFontB;
             bcItem.Font.Unit = FontUnit.Point;
@@ -115,7 +115,7 @@ namespace Weaselware.InventoryFerret {
             return tLabel;
         }
 
-        public ThermalLabel GeneratePartLabel(string partid, string partDescription)
+        public ThermalLabel GeneratePartLabel(string PartID, string partDescription)
         {
             //Define a ThermalLabel object and set unit to inch and label size
             ThermalLabel tLabel = new ThermalLabel(UnitType.Inch, 2, 1);
@@ -123,7 +123,7 @@ namespace Weaselware.InventoryFerret {
             tLabel.GapLength = 0.2;
 
             //Define a TextItem object
-            TextItem txtItem = new TextItem(0.1, 0.25, 1.75, 0.25, "PN | " + partid);
+            TextItem txtItem = new TextItem(0.1, 0.25, 1.75, 0.25, "PN | " + PartID);
             txtItem.Font.Name = Neodynamic.SDK.Printing.Font.NativePrinterFontB;
             //txtItem.RotationAngle = 90;
             txtItem.Font.Unit = FontUnit.Point;
@@ -152,7 +152,7 @@ namespace Weaselware.InventoryFerret {
 
             //Define a BarcodeItem object
 
-            BarcodeItem bcItem = new BarcodeItem(0.5, 0.4, 1.0, 0.5, BarcodeSymbology.Code39, partid);
+            BarcodeItem bcItem = new BarcodeItem(0.5, 0.4, 1.0, 0.5, BarcodeSymbology.Code39, PartID);
             bcItem.AddChecksum = false;
             bcItem.Font.Name = Neodynamic.SDK.Printing.Font.NativePrinterFontS;
             

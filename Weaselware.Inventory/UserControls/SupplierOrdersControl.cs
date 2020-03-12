@@ -32,20 +32,23 @@ namespace Weaselware.InventoryFerret {
 
         public SupplierOrdersControl() {
             InitializeComponent();
+            // Build the Grid Manually
             this.dgOrderItems.AutoGenerateColumns = false;
-
         }
-
-        public SupplierOrdersControl(BadgerDataModel ctx) {
+        // Ctor ----------------------------
+        public SupplierOrdersControl(BadgerDataModel ctx)
+        {
             InitializeComponent();
             this.dgOrderItems.AutoGenerateColumns = false;
             _context = ctx;
             supService = new SuppliersService(ctx);
             labelService = new LabelService();
             jobService = new JobsService(ctx);
-            txtSearchSuppliers.TextChanged += (txtJobSearch_TextChanged);
-            this.lbSuppliers.SelectedIndexChanged += lbSuppliers_SelectedIndexChanged;
+            // Wireup the events --------------------------------------------------------------
+            txtSearchSuppliers.TextChanged += (txtJobSearch_TextChanged);                     
+            this.lbSuppliers.SelectedIndexChanged += lbSuppliers_SelectedIndexChanged;         
             lvSuppliersOrders.SelectedIndexChanged += lvSuppliersOrders_SelectedIndexChanged;
+            //---------------------------------------------------------------------------------
             ordersService = new OrdersService(ctx);
             lineItemService = new LineItemsService(ctx);
             txtSearchSuppliers.Text =
@@ -214,12 +217,12 @@ namespace Weaselware.InventoryFerret {
 
         }
 
-        private void addcombo()
+        private void Addcombo()
         {
             //DataGridViewComboBoxColumn cboUnits = new DataGridViewComboBoxColumn();
             //cboUnits.DisplayMember = "UOM";
             //cboUnits.ValueMember = "UID";
-            //cboUnits.SelectedItem = _part.Uid;
+            //cboUnits.SelectedItem = _part.UID;
             //cboUnits.DataSource = partsService.Units();
             //this.dgOrderItems.Columns.Add(cboUnits);
         }
@@ -244,7 +247,7 @@ namespace Weaselware.InventoryFerret {
                         string orderNum = lineItem.PurchaseOrderId?.ToString() ?? "---NA---";
                         string receiver = lineItem.PurchaseOrder.Employee?.Lastname ?? "---NA---";
                         
-                       ThermalLabel label = labelService.GenerateInventoryDetailLabel(lineItem.LineId.ToString(), JobName, orderNum, receiver, revdate);
+                       ThermalLabel label = labelService.GenerateInventoryDetailLabel(lineItem.LineID.ToString(), JobName, orderNum, receiver, revdate);
                        labelService.PrintLabel(label,int.Parse(this.numericUpDownCopies.Value.ToString()));
                     }
                 }
@@ -275,12 +278,12 @@ namespace Weaselware.InventoryFerret {
 
                     if (e.ColumnIndex == 1)
                     {
-                        if(lineItem.PartId > 0)
+                        if(lineItem.PartID > 0)
                         {
                             PartForm partForm = new PartForm();
                             if (lineItem != null)
                             {
-                                var part = partsService.Find(lineItem.PartId.Value);
+                                var part = partsService.Find(lineItem.PartID.Value);
                                 PartView partView = new PartView(part, _context);
 
                                 partForm.Controls.Add(partView);

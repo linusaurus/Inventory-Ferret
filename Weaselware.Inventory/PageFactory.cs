@@ -105,7 +105,7 @@ namespace Weaselware.InventoryFerret
                         if (model is Part)
                         {
                             Part p = model as Part;
-                            tab.Text = $"Part Edit : {p.PartId.ToString()}";
+                            tab.Text = $"Part Edit : {p.PartID.ToString()}";
                             PartView ctr = new PartView(p,ctx);
                             ctr.Dock = DockStyle.Fill;
                             tab.Controls.Add(ctr);

@@ -9,7 +9,7 @@ namespace DataLayer.Entities
         public string Description { get; set; }
         public string DocumentPath { get; set; }
         public string DocumentView { get; set; }
-        public int? PartId { get; set; }
+        public int? PartID { get; set; }
         public DateTime? DateCreated { get; set; }
         public string Creator { get; set; }
         public string Modifier { get; set; }

@@ -30,9 +30,9 @@ namespace DataLayer.Entities.Configuration
                 .HasMaxLength(512)
                 .IsUnicode(false);
 
-            entity.Property(e => e.LineId).HasColumnName("LineID");
+            entity.Property(e => e.LineID).HasColumnName("LineID");
 
-            entity.Property(e => e.PartId).HasColumnName("partID");
+            entity.Property(e => e.PartID).HasColumnName("PartID");
 
             entity.Property(e => e.ProductId).HasColumnName("ProductID");
         }

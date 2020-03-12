@@ -19,14 +19,14 @@ namespace DataLayer.Services {
             context = Context;
         }
 
-        public PurchaseLineItem Find(int lineID)
+        public PurchaseLineItem Find(int LineID)
         {
-            if (String.IsNullOrEmpty(lineID.ToString()))
+            if (String.IsNullOrEmpty(LineID.ToString()))
             {
                 return null;
             }
 
-            return context.PurchaseLineItem.Find(lineID);
+            return context.PurchaseLineItem.Find(LineID);
            
 
             ;
@@ -35,7 +35,7 @@ namespace DataLayer.Services {
 
         public List<PurchaseLineItem> GetAll() {
 
-            return context.PurchaseLineItem.OrderByDescending(c => c.LineId).ToList();
+            return context.PurchaseLineItem.OrderByDescending(c => c.LineID).ToList();
         }
 
         public List<PurchaseLineItem> GetJobItems(int JobID, string search) {

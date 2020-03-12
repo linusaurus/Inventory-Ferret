@@ -25,6 +25,18 @@ namespace Weaselware.InventoryFerret
 
         #region Order Changed
 
+        public event EventHandler<Part> PartOpenForEdit;
+
+        public void OnPartOpened(object sender, Part part)
+        {
+
+            var OrderChangedDelegate = PartOpenForEdit as EventHandler<Part>;
+            if (OrderChangedDelegate != null)
+            {
+                OrderChangedDelegate(this, part);
+            }
+        }
+
         public event EventHandler<OrderChangedArgs> OrderChanged;
 
         public void OnOrderChanged(object sender, PurchaseOrder order)

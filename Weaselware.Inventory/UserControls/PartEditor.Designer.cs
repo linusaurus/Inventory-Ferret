@@ -41,9 +41,6 @@
             this.gbSearchOptions = new System.Windows.Forms.GroupBox();
             this.rbContains = new System.Windows.Forms.RadioButton();
             this.rbStartsWith = new System.Windows.Forms.RadioButton();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnUnLink = new System.Windows.Forms.Button();
-            this.btnOpenResource = new System.Windows.Forms.Button();
             this.btnAddResource = new System.Windows.Forms.Button();
             this.dgResources = new System.Windows.Forms.DataGridView();
             this.colDocID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -93,9 +90,6 @@
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.btnDelete);
-            this.splitContainer1.Panel2.Controls.Add(this.btnUnLink);
-            this.splitContainer1.Panel2.Controls.Add(this.btnOpenResource);
             this.splitContainer1.Panel2.Controls.Add(this.btnAddResource);
             this.splitContainer1.Panel2.Controls.Add(this.dgResources);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
@@ -219,56 +213,19 @@
             this.rbStartsWith.Text = "Starts With";
             this.rbStartsWith.UseVisualStyleBackColor = true;
             // 
-            // btnDelete
-            // 
-            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnDelete.BackColor = System.Drawing.Color.Transparent;
-            this.btnDelete.FlatAppearance.BorderSize = 0;
-            this.btnDelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDelete.Image = global::Weaselware.InventoryFerret.Properties.Resources.outline_delete_black_24dp;
-            this.btnDelete.Location = new System.Drawing.Point(141, 556);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(48, 48);
-            this.btnDelete.TabIndex = 15;
-            this.btnDelete.UseVisualStyleBackColor = false;
-            // 
-            // btnUnLink
-            // 
-            this.btnUnLink.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnUnLink.BackColor = System.Drawing.Color.Transparent;
-            this.btnUnLink.FlatAppearance.BorderSize = 0;
-            this.btnUnLink.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnUnLink.Image = global::Weaselware.InventoryFerret.Properties.Resources.outline_link_black_24dp;
-            this.btnUnLink.Location = new System.Drawing.Point(87, 556);
-            this.btnUnLink.Name = "btnUnLink";
-            this.btnUnLink.Size = new System.Drawing.Size(48, 48);
-            this.btnUnLink.TabIndex = 15;
-            this.btnUnLink.UseVisualStyleBackColor = false;
-            // 
-            // btnOpenResource
-            // 
-            this.btnOpenResource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnOpenResource.BackColor = System.Drawing.Color.Transparent;
-            this.btnOpenResource.FlatAppearance.BorderSize = 0;
-            this.btnOpenResource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnOpenResource.Image = global::Weaselware.InventoryFerret.Properties.Resources.outline_launch_black_24dp;
-            this.btnOpenResource.Location = new System.Drawing.Point(141, 499);
-            this.btnOpenResource.Name = "btnOpenResource";
-            this.btnOpenResource.Size = new System.Drawing.Size(48, 48);
-            this.btnOpenResource.TabIndex = 15;
-            this.btnOpenResource.UseVisualStyleBackColor = false;
-            // 
             // btnAddResource
             // 
             this.btnAddResource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddResource.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddResource.BackColor = System.Drawing.SystemColors.Control;
             this.btnAddResource.FlatAppearance.BorderSize = 0;
-            this.btnAddResource.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddResource.Image = global::Weaselware.InventoryFerret.Properties.Resources.round_add_circle_outline_black_24dp;
-            this.btnAddResource.Location = new System.Drawing.Point(87, 499);
+            this.btnAddResource.Image = global::Weaselware.InventoryFerret.Properties.Resources.round_add_circle_black_24dp1;
+            this.btnAddResource.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddResource.Location = new System.Drawing.Point(66, 499);
             this.btnAddResource.Name = "btnAddResource";
-            this.btnAddResource.Size = new System.Drawing.Size(48, 48);
+            this.btnAddResource.Size = new System.Drawing.Size(116, 30);
             this.btnAddResource.TabIndex = 15;
+            this.btnAddResource.Text = "Add Resource";
+            this.btnAddResource.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddResource.UseVisualStyleBackColor = false;
             // 
             // dgResources
@@ -284,7 +241,7 @@
             this.colModDate});
             this.dgResources.Location = new System.Drawing.Point(209, 499);
             this.dgResources.Name = "dgResources";
-            this.dgResources.Size = new System.Drawing.Size(631, 144);
+            this.dgResources.Size = new System.Drawing.Size(629, 144);
             this.dgResources.TabIndex = 14;
             // 
             // colDocID
@@ -324,7 +281,7 @@
             // 
             this.CloseBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CloseBox.Image = global::Weaselware.InventoryFerret.Properties.Resources.close_window;
-            this.CloseBox.Location = new System.Drawing.Point(816, 14);
+            this.CloseBox.Location = new System.Drawing.Point(814, 14);
             this.CloseBox.Name = "CloseBox";
             this.CloseBox.Size = new System.Drawing.Size(24, 24);
             this.CloseBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -345,7 +302,7 @@
             this.dgPartsList.Location = new System.Drawing.Point(16, 47);
             this.dgPartsList.Name = "dgPartsList";
             this.dgPartsList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPartsList.Size = new System.Drawing.Size(824, 437);
+            this.dgPartsList.Size = new System.Drawing.Size(822, 437);
             this.dgPartsList.TabIndex = 0;
             this.dgPartsList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgPartsList_CellDoubleClick);
             this.dgPartsList.SelectionChanged += new System.EventHandler(this.dgPartsList_SelectionChanged);
@@ -427,9 +384,6 @@
         private System.Windows.Forms.DataGridView dgResources;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAddResource;
-        private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Button btnUnLink;
-        private System.Windows.Forms.Button btnOpenResource;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDocID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCreator;

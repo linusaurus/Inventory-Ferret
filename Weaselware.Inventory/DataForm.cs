@@ -37,7 +37,7 @@ namespace Weaselware.InventoryFerret
         {
             InitializeComponent();
             ctx = new BadgerDataModel();
-            _selectedMeasure = new UnitOfMeasure { Uid = 1, Uom = "Each" };
+            _selectedMeasure = new UnitOfMeasure { UID = 1, Uom = "Each" };
             _partService = new PartsService(ctx);
             _ordersService = new OrdersService(ctx);
             bsLineItems = new BindingSource();
@@ -232,13 +232,13 @@ namespace Weaselware.InventoryFerret
             // ID Column --
             DataGridViewTextBoxColumn colID = new DataGridViewTextBoxColumn();
             colID.HeaderText = "LineID";
-            colID.DataPropertyName = "LineId";
+            colID.DataPropertyName = "LineID";
             colID.Width = 75;
 
             // PartID Column --
             DataGridViewLinkColumn colPartID = new DataGridViewLinkColumn();
             colPartID.HeaderText = "PartID";
-            colPartID.DataPropertyName = "PartId";
+            colPartID.DataPropertyName = "PartID";
             colPartID.Width = 50;
 
             // Description Column --
@@ -367,9 +367,9 @@ namespace Weaselware.InventoryFerret
                 var newLine = new PurchaseLineItem
                 {
                     Description = part.ItemDescription,
-                    PartId = part.PartId,
+                    PartID = part.PartID,
                     UnitCost = part.Cost,
-                    Uom = part.Uid,
+                    Uom = part.UID,
                     Qnty = 1.0m,
                     Extended = 0.0m,
                     AmountReceived = 0.0m,
@@ -389,7 +389,7 @@ namespace Weaselware.InventoryFerret
         {
             if (_selectedPurchaseLineItem != null)
             {             
-                if (_selectedPurchaseLineItem.LineId != default(int))
+                if (_selectedPurchaseLineItem.LineID != default(int))
                 {
                     ctx.PurchaseLineItem.Remove(_selectedPurchaseLineItem);
                        

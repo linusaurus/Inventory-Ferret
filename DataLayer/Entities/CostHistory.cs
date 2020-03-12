@@ -7,7 +7,7 @@ namespace DataLayer.Entities
     {
         public int CostChangeId { get; set; }
         public string User { get; set; }
-        public int? PartId { get; set; }
+        public int? PartID { get; set; }
         public decimal? UpdatedUnitCost { get; set; }
         public decimal? UpdatedUoPcost { get; set; }
         public string UoP { get; set; }

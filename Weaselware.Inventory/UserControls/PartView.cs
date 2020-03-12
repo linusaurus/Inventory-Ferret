@@ -40,9 +40,9 @@ namespace Weaselware.InventoryFerret
             partsService = new PartsService(_context);
             this.dataGridView1.AutoGenerateColumns = false;
             this.dgvTransactions.AutoGenerateColumns = false;
-            if (part.PartId > 0)
+            if (part.PartID > 0)
             {
-              _part = partsService.Find(part.PartId);                             
+              _part = partsService.Find(part.PartID);                             
             }
             else
             {
@@ -55,7 +55,7 @@ namespace Weaselware.InventoryFerret
 
             cboUnits.DisplayMember = "UOM";
             cboUnits.ValueMember = "UID";
-            cboUnits.SelectedItem = _part.Uid;
+            cboUnits.SelectedItem = _part.UID;
             cboUnits.DataSource = partsService.Units();
 
             cboManus.DisplayMember = "Manufacturer";
@@ -70,13 +70,13 @@ namespace Weaselware.InventoryFerret
             bsPart.CurrentItemChanged += BsPart_CurrentItemChanged;
             this.btnSave.Enabled = false;
             this.txtSupplierDesc.Enabled = false;
-            _documents = _context.Document.Where(r => r.PartId == _part.PartId).ToList();
+            _documents = _context.Document.Where(r => r.PartID == _part.PartID).ToList();
            // _documents = _part.Document.ToList();
             bsDocuments.DataSource = _documents;
             this.dataGridView1.DataSource = bsDocuments;
 
             LoadTransaction();
-            //transactionsView = DataBuilders.BuildDataTable( inventoryService.GetInventoryByPartID(_part.PartId)).DefaultView;
+            //transactionsView = DataBuilders.BuildDataTable( inventoryService.GetInventoryByPartID(_part.PartID)).DefaultView;
             //bsTransactions.DataSource = transactionsView;
             
             //this.dgvTransactions.DataSource = bsTransactions;
@@ -87,7 +87,7 @@ namespace Weaselware.InventoryFerret
 
         private void LoadTransaction()
         {
-            transactionsView = DataBuilders.BuildDataTable(inventoryService.GetInventoryByPartID(_part.PartId)).DefaultView;
+            transactionsView = DataBuilders.BuildDataTable(inventoryService.GetInventoryByPartID(_part.PartID)).DefaultView;
             bsTransactions.DataSource = transactionsView;
 
             this.dgvTransactions.DataSource = bsTransactions;
@@ -108,8 +108,8 @@ namespace Weaselware.InventoryFerret
 
         void BindPart(BindingSource bs)
         {
-            if (_part.PartId != 0)
-            {((Form)this.TopLevelControl).Text = "Part Edit : " + _part.PartId.ToString();}
+            if (_part.PartID != 0)
+            {((Form)this.TopLevelControl).Text = "Part Edit : " + _part.PartID.ToString();}
             else
             {((Form)this.TopLevelControl).Text = "Part Edit : New"; }
                             
@@ -393,7 +393,7 @@ namespace Weaselware.InventoryFerret
         {
             if (_part != null)
             {
-                inventoryService.PullStock(_part.PartId, 1.2m, Globals.CurrentLoggedUserID);
+                inventoryService.PullStock(_part.PartID, 1.2m, Globals.CurrentLoggedUserID);
                 LoadTransaction();
             }
         }
@@ -402,7 +402,7 @@ namespace Weaselware.InventoryFerret
         {
             if (_part != null)
             {
-                inventoryService.SetStock(_part.PartId, 20.0m, Globals.CurrentLoggedUserID);
+                inventoryService.SetStock(_part.PartID, 20.0m, Globals.CurrentLoggedUserID);
                 LoadTransaction();
             }
         }

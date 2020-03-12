@@ -23,7 +23,7 @@ namespace Weaselware.InventoryFerret
         {
             InitializeComponent();
             _part = part;
-            this.Text = $"Part : {_part.PartId.ToString()}";
+            this.Text = $"Part : {_part.PartID.ToString()}";
             openFileDialog = new OpenFileDialog();
         }
 

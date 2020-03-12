@@ -23,7 +23,7 @@ namespace Weaselware.InventoryFerret
         LabelService labelService;
         BindingSource bsPartsListSource = new BindingSource();
 
-        private List<Document> _documents;
+        private List<Document> _documents = new List<Document>();
         BindingSource bsDocuments = new BindingSource();
 
         SearchOptions searchOption;
@@ -98,7 +98,7 @@ namespace Weaselware.InventoryFerret
                     PartForm partForm = new PartForm();
                     if (selectedPart != null)
                     {
-                        OpenPartDetails(selectedPart.PartId, _context);
+                        OpenPartDetails(selectedPart.PartID, _context);
                     }
 
 
@@ -126,7 +126,7 @@ namespace Weaselware.InventoryFerret
                 if (dgPartsList.SelectedRows.Count > 0)
                 {
                     selectedPart = (Part)dv.CurrentRow.DataBoundItem;
-                    _documents = _context.Document.Where(r => r.PartId == selectedPart.PartId).ToList();
+                    _documents = _context.Document.Where(r => r.PartID == selectedPart.PartID).ToList();
                     dgResources.DataSource = _documents;
                 }
             }
@@ -145,7 +145,7 @@ namespace Weaselware.InventoryFerret
                     PartForm partForm = new PartForm();
                     if (selectedPart != null)
                     {
-                        OpenPartDetails(selectedPart.PartId, _context);
+                        OpenPartDetails(selectedPart.PartID, _context);
 
                     }
 
@@ -184,7 +184,7 @@ namespace Weaselware.InventoryFerret
                 if (selectedPart != null  && _scanType == ScanType.associate)
                 {
                     partsService.AssociateSKU(selectedPart, foundBarCode);
-                    var _part = partsService.Find(selectedPart.PartId);
+                    var _part = partsService.Find(selectedPart.PartID);
                     if (_part.Sku == foundBarCode)
                     {
                         MessageBox.Show("Success Associating SKU to Part");                     
@@ -199,7 +199,7 @@ namespace Weaselware.InventoryFerret
                     if (!String.IsNullOrEmpty(partlookup.Sku))
                     {
                         reader.CloseScanner();
-                        Invoke(new MethodInvoker(() => { OpenPartDetailForm(partlookup.PartId , _context); ; }));
+                        Invoke(new MethodInvoker(() => { OpenPartDetailForm(partlookup.PartID , _context); ; }));
                     }
                     }
                 }
@@ -208,13 +208,13 @@ namespace Weaselware.InventoryFerret
             }
 
         // This needs to open Part Editor in a New Tab
-        public void OpenPartDetailForm(int partID, BadgerDataModel ctx)
-        { OpenPartDetails(partID, ctx);}
+        public void OpenPartDetailForm(int PartID, BadgerDataModel ctx)
+        { OpenPartDetails(PartID, ctx);}
            
 
-        private void OpenPartDetails(int partID, BadgerDataModel ctx)
+        private void OpenPartDetails(int PartID, BadgerDataModel ctx)
         {
-            Part partlookup = partsService.Find(partID);
+            Part partlookup = partsService.Find(PartID);
             if (partlookup != null)
             {
                 PartForm partForm = new PartForm();
@@ -244,7 +244,7 @@ namespace Weaselware.InventoryFerret
             //string jobName = oService.GetOrderByID(_receipt.OrderNum.Value).Job.jobname;
             if (selectedPart != null)
             {
-                ThermalLabel partLabel = labelService.GeneratePartLabel(selectedPart.PartId.ToString(),selectedPart.ItemDescription);
+                ThermalLabel partLabel = labelService.GeneratePartLabel(selectedPart.PartID.ToString(),selectedPart.ItemDescription);
                 lbService.PrintLabel(partLabel, 1);
             }
 

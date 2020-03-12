@@ -107,7 +107,7 @@ namespace Weaselware.InventoryFerret {
             
             foreach (PurchaseLineItem item in _purchaseOrder.PurchaseLineItem.ToList())
             {
-             ThermalLabel tLabel =  lbService.GenerateInventoryLabel(item.LineId.ToString(),jobName,recvDate);
+             ThermalLabel tLabel =  lbService.GenerateInventoryLabel(item.LineID.ToString(),jobName,recvDate);
              lbService.PrintLabel(tLabel);
 
             }       

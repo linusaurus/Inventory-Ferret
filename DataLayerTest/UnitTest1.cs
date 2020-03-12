@@ -33,7 +33,7 @@ namespace DataLayerTest
                 Description = "New Resource",
                 DateCreated = System.DateTime.Now,
                 Creator = "Richard",
-                PartId = 1,
+                PartID = 1,
                 DocumentPath = ".png",
                 DocumentView = "Front"
   
@@ -58,7 +58,7 @@ namespace DataLayerTest
                 Description = "New Resource",
                 DateCreated = System.DateTime.Now,
                 Creator = "Richard",
-                PartId = 1,
+                PartID = 1,
                 DocumentPath = ".png",
                 DocumentView = "Front"
 
@@ -104,11 +104,11 @@ namespace DataLayerTest
             //IPartsService repo = new PartsService(new BadgerDataModel());
             //var part = repo.New();
             //var test = repo.Add(part);
-            //if(test.PartId != 0)
+            //if(test.PartID != 0)
             //{
             //    repo.Delete(test);
             //}
-            //var result = repo.Find(test.PartId);
+            //var result = repo.Find(test.PartID);
            
 
 
@@ -148,7 +148,7 @@ namespace DataLayerTest
             
             var result = repo.StockLevel(6975);
 
-            Assert.IsTrue(result == 12.0m);
+            Assert.IsTrue(result == 21.0500m);
         }
 
         [TestMethod]
@@ -188,7 +188,7 @@ namespace DataLayerTest
 
             
 
-            Assert.IsTrue(result.Count == 1910);
+            Assert.IsTrue(result.Count == 1913);
         }
         /// <summary>
         /// Re

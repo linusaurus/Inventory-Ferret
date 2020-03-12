@@ -5,11 +5,11 @@ namespace DataLayer.Entities
 {
     public partial class PurchaseLineItem
     {
-        public int LineId { get; set; }
+        public int LineID { get; set; }
         public int? PurchaseOrderId { get; set; }
         public int? JobId { get; set; }
         public int? VendorId { get; set; }
-        public int? PartId { get; set; }
+        public int? PartID { get; set; }
         public decimal? UnitCost { get; set; }
         public string Description { get; set; }
         public decimal? Qnty { get; set; }

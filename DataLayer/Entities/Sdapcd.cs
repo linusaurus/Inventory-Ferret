@@ -11,6 +11,6 @@ namespace DataLayer.Entities
         public decimal? VocContent { get; set; }
         public decimal? MixRatio { get; set; }
         public decimal? VocLimit { get; set; }
-        public int? PartId { get; set; }
+        public int? PartID { get; set; }
     }
 }

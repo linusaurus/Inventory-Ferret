@@ -136,7 +136,7 @@ namespace Weaselware.InventoryFerret
             foreach (ClaimItem x in claim.ClaimItems)
             {
                 sb.AppendLine("---------------------------------------------------------------------------------------------");
-                sb.AppendLine(String.Format("{0:-8}|{1:-10}|{2:-20}|{3:-12}",x.LineId.ToString().PadRight(9),x.ClaimItemId.ToString().PadRight(10),x.Bcode.PadRight(20),x.PartId.ToString().PadRight(12)));
+                sb.AppendLine(String.Format("{0:-8}|{1:-10}|{2:-20}|{3:-12}",x.LineID.ToString().PadRight(9),x.ClaimItemId.ToString().PadRight(10),x.Bcode.PadRight(20),x.PartID.ToString().PadRight(12)));
                 sb.AppendLine("---------------------------------------------------------------------------------------------");
                 sb.AppendLine("");
                 sb.AppendLine(String.Format("ITEM -- {0:-80}",x.Description.ToString()));

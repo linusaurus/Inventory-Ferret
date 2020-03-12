@@ -6,7 +6,7 @@ namespace DataLayer.Entities
     public partial class Part
     {
         
-        public int PartId { get; set; }
+        public int PartID { get; set; }
         public string ItemName { get; set; }
         public string ItemDescription { get; set; }
         public string PartNum { get; set; }
@@ -16,7 +16,7 @@ namespace DataLayer.Entities
         public decimal? Cost { get; set; }
         public string Uop { get; set; }
         public decimal? Uopcost { get; set; }
-        public int? Uid { get; set; }
+        public int? UID { get; set; }
         public string Location { get; set; }
         public decimal? Weight { get; set; }
         public decimal? Waste { get; set; }
@@ -39,7 +39,7 @@ namespace DataLayer.Entities
 
         public virtual PartType PartType { get; set; }
         public virtual Supplier Supplier { get; set; }
-        public virtual UnitOfMeasure U { get; set; }
+        //public virtual UnitOfMeasure U { get; set; }
         
         public IList<DocumentParts> DocumentParts { get; set; }
         public IList<UnitOfPurchase> UnitOfPurchase { get; set; }

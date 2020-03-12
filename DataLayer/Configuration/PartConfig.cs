@@ -12,20 +12,11 @@ namespace DataLayer.Entities.Configuration
     {
         public void Configure(EntityTypeBuilder<Part> entity)
         {
-            entity.HasKey(p => p.PartId);
-
+            entity.HasKey(p => p.PartID);
 
             entity.HasOne(d => d.Supplier)
                 .WithMany(p => p.Part)
                 .HasForeignKey(d => d.SupplierId);
-
-            entity.HasOne(d => d.U)
-                .WithMany(p => p.Part)
-                .HasForeignKey(d => d.Uid);
-               
-           
-                
-
         }
     }
 }
