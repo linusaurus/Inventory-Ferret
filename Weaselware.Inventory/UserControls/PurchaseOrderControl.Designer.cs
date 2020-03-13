@@ -48,6 +48,7 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.txtOrderTotal = new System.Windows.Forms.TextBox();
             this.btnRemoveItem = new System.Windows.Forms.Button();
+            this.purchaseOrderHeaderControl1 = new Weaselware.InventoryFerret.PurchaseOrderHeaderControl();
             ((System.ComponentModel.ISupportInitialize)(this.CloseBox)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tbSearchPartName.SuspendLayout();
@@ -220,9 +221,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.view.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.view.Location = new System.Drawing.Point(11, 91);
+            this.view.Location = new System.Drawing.Point(11, 164);
             this.view.Name = "view";
-            this.view.Size = new System.Drawing.Size(1016, 381);
+            this.view.Size = new System.Drawing.Size(1016, 308);
             this.view.TabIndex = 11;
             this.view.SelectionChanged += new System.EventHandler(this.view_SelectionChanged);
             // 
@@ -240,7 +241,7 @@
             // txtOrderTotal
             // 
             this.txtOrderTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOrderTotal.Location = new System.Drawing.Point(927, 56);
+            this.txtOrderTotal.Location = new System.Drawing.Point(927, 135);
             this.txtOrderTotal.Name = "txtOrderTotal";
             this.txtOrderTotal.Size = new System.Drawing.Size(100, 20);
             this.txtOrderTotal.TabIndex = 13;
@@ -248,7 +249,7 @@
             // 
             // btnRemoveItem
             // 
-            this.btnRemoveItem.Location = new System.Drawing.Point(11, 62);
+            this.btnRemoveItem.Location = new System.Drawing.Point(11, 135);
             this.btnRemoveItem.Name = "btnRemoveItem";
             this.btnRemoveItem.Size = new System.Drawing.Size(124, 23);
             this.btnRemoveItem.TabIndex = 14;
@@ -256,11 +257,22 @@
             this.btnRemoveItem.UseVisualStyleBackColor = true;
             this.btnRemoveItem.Click += new System.EventHandler(this.btnRemove_Click);
             // 
+            // purchaseOrderHeaderControl1
+            // 
+            this.purchaseOrderHeaderControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.purchaseOrderHeaderControl1.Location = new System.Drawing.Point(15, 10);
+            this.purchaseOrderHeaderControl1.Name = "purchaseOrderHeaderControl1";
+            this.purchaseOrderHeaderControl1.Size = new System.Drawing.Size(982, 100);
+            this.purchaseOrderHeaderControl1.TabIndex = 15;
+            this.purchaseOrderHeaderControl1.Load += new System.EventHandler(this.purchaseOrderHeaderControl1_Load);
+            // 
             // PurchaseOrderControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
+            this.Controls.Add(this.purchaseOrderHeaderControl1);
             this.Controls.Add(this.btnRemoveItem);
             this.Controls.Add(this.txtOrderTotal);
             this.Controls.Add(this.btnSave);
@@ -305,5 +317,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colPartID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDescription;
         private System.Windows.Forms.Button btnRemoveItem;
+        private PurchaseOrderHeaderControl purchaseOrderHeaderControl1;
     }
 }

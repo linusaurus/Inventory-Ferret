@@ -101,6 +101,9 @@
     <Reference Include="AutoMapper.Extensions.ExpressionMapping, Version=3.0.6.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\packages\AutoMapper.Extensions.ExpressionMapping.3.0.6\lib\net461\AutoMapper.Extensions.ExpressionMapping.dll</HintPath>
     </Reference>
+    <Reference Include="Boxed.Mapping, Version=3.0.0.0, Culture=neutral, PublicKeyToken=fc5550082a9c642c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Boxed.Mapping.3.0.0\lib\netstandard2.0\Boxed.Mapping.dll</HintPath>
+    </Reference>
     <Reference Include="ComponentFactory.Krypton.Design">
       <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\Krypton-master\build\bin\Debug\ComponentFactory.Krypton.Design.dll</HintPath>
     </Reference>
@@ -283,6 +286,7 @@
     </Compile>
     <Compile Include="Helper\DataHelpers.cs" />
     <Compile Include="InventoryLookupItem.cs" />
+    <Compile Include="Mappers\PurchaseOrderMappers.cs" />
     <Compile Include="Mediator.cs" />
     <Compile Include="NewOrderDialog.cs">
       <SubType>Form</SubType>
@@ -361,11 +365,11 @@
     <Compile Include="UserControls\PartView.Designer.cs">
       <DependentUpon>PartView.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\PurchaseOrderDetailsControl.cs">
+    <Compile Include="UserControls\PurchaseOrderHeaderControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControls\PurchaseOrderDetailsControl.Designer.cs">
-      <DependentUpon>PurchaseOrderDetailsControl.cs</DependentUpon>
+    <Compile Include="UserControls\PurchaseOrderHeaderControl.Designer.cs">
+      <DependentUpon>PurchaseOrderHeaderControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\StockBill.cs">
       <SubType>UserControl</SubType>
@@ -429,12 +433,6 @@
     <Compile Include="UserControls\OrderReceiptControl.Designer.cs">
       <DependentUpon>OrderReceiptControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\PitemsGrid.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="UserControls\PitemsGrid.Designer.cs">
-      <DependentUpon>PitemsGrid.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Processing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -484,8 +482,8 @@
     <EmbeddedResource Include="UserControls\PartView.resx">
       <DependentUpon>PartView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\PurchaseOrderDetailsControl.resx">
-      <DependentUpon>PurchaseOrderDetailsControl.cs</DependentUpon>
+    <EmbeddedResource Include="UserControls\PurchaseOrderHeaderControl.resx">
+      <DependentUpon>PurchaseOrderHeaderControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\StockBill.resx">
       <DependentUpon>StockBill.cs</DependentUpon>
@@ -513,9 +511,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\OrderReceiptControl.resx">
       <DependentUpon>OrderReceiptControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControls\PitemsGrid.resx">
-      <DependentUpon>PitemsGrid.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

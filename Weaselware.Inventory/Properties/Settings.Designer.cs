@@ -93,5 +93,17 @@ namespace Weaselware.InventoryFerret.Properties {
                 this["LastClaimSearch"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0.0775")]
+        public decimal Taxrate {
+            get {
+                return ((decimal)(this["Taxrate"]));
+            }
+            set {
+                this["Taxrate"] = value;
+            }
+        }
     }
 }

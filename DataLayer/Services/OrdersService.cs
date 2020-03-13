@@ -27,10 +27,10 @@ namespace DataLayer.Services {
 
         public OrderDetailDto GetOrderDTO(int orderID)
         {
-            var _order = context.PurchaseOrder.Where(p => p.OrderNum == orderID).Select(d => new OrderDetailDto
+            var _order = context.PurchaseOrder.Include(r => r.PurchaseLineItem).Include(s => s.Supplier).Where(p => p.OrderNum == orderID).Select(d => new OrderDetailDto
             {
                 PurchaseOrderID = d.OrderNum,
-                OrderDate = d.OrderDate.Value,
+                OrderDate = d.OrderDate.Value.ToShortDateString(),
                 OrderTotal = d.OrderTotal.Value,
                 ExpectedDate = d.ExpectedDate.Value,
                 JobCostName = d.Job.Jobdesc,
@@ -47,8 +47,10 @@ namespace DataLayer.Services {
                 SupplierID = d.SupplierId.HasValue ? d.SupplierId.Value : 0,
                 SupplierPhone = d.Supplier.Phone,
                 SupplierZip = d.Supplier.Zip,
+                SupplierFax = d.Supplier.Fax,
                 Tax = d.Tax.HasValue ? d.Tax.Value : Decimal.Zero,
-                Taxable = d.SuppressTax.HasValue ? d.SuppressTax.Value : false
+                Taxable = d.SuppressTax.HasValue ? d.SuppressTax.Value : false,
+                LineItems = d.PurchaseLineItem
 
             });
             return _order.FirstOrDefault();
@@ -97,6 +99,7 @@ namespace DataLayer.Services {
             return context.PurchaseOrder
                 .Include(path=> path.PurchaseLineItem)
                 .Include(j => j.Job)
+                .Include(s => s.Supplier)
                 .Include(e => e.Employee).Where(c => c.OrderNum == orderNum).FirstOrDefault();
         }
 

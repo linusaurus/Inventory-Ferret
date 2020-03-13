@@ -6,9 +6,11 @@ using System.Windows.Forms;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Weaselware.InventoryFerret.Wrapper;
-using AutoMapper;
+using Boxed.Mapping;
 using DataLayer.Models;
 using System.Linq;
+using Weaselware.InventoryFerret.Mappers;
+
 
 namespace Weaselware.InventoryFerret
 {
@@ -29,11 +31,12 @@ namespace Weaselware.InventoryFerret
         BindingSource bsLineItems;
         Part _selectedPart = null;
         PurchaseLineItem _selectedPurchaseLineItem = null;
-        
+        OrderDetailDto orderHeader = new OrderDetailDto();
         private List<PurchaseLineItemWrapper> lineItems = new List<PurchaseLineItemWrapper>();
         private IEnumerable<SupplierLineItemDto> supplierLineItems;
        
         bool _isDirty = false;
+        IMapper<PurchaseOrder, OrderDetailDto> mapper;
 
 
         // Repos
@@ -49,6 +52,7 @@ namespace Weaselware.InventoryFerret
         {
             InitializeComponent();
             _po = purchaseOrder;
+            
           
             // Init the repos old school
             //_suppliersService = new SuppliersService(_ctx);
@@ -62,8 +66,12 @@ namespace Weaselware.InventoryFerret
         {
             InitializeComponent();
             _po = purchaseOrder;
-            
-            _ctx = new BadgerDataModel();
+
+
+            mapper = new Mappers.PurchaseOrderMapper();
+            mapper.Map(_po, orderHeader);
+          
+             _ctx = new BadgerDataModel();
             _selectedMeasure = new UnitOfMeasure { UID = 1, Uom = "Each" };
             _suppliersService = new SuppliersService(_ctx);
             _partService = new PartsService(_ctx);
@@ -103,6 +111,8 @@ namespace Weaselware.InventoryFerret
             view.CellValueChanged += View_CellValueChanged;
             view.CellContentClick += View_CellContentClick;
             bsLineItems.ListChanged += BsLineItems_ListChanged;
+            OrderDetailDto header = _ordersService.GetOrderDTO(_po.OrderNum);
+            this.purchaseOrderHeaderControl1.SetDataSource(header);
 
             btnSave.Enabled = _isDirty;
 
@@ -141,9 +151,7 @@ namespace Weaselware.InventoryFerret
                     Qnty = 1.0m,
                     Extended = 0.0m,
                     AmountReceived = 0.0m,
-                    PurchaseOrderId = 5000
-
-
+                    PurchaseOrderId = _po.OrderNum
                 };
                 _ctx.Entry(newLine).State = Microsoft.EntityFrameworkCore.EntityState.Added;
                 var addLine = new PurchaseLineItemWrapper(newLine);
@@ -357,7 +365,13 @@ namespace Weaselware.InventoryFerret
                     }
 
                 }
+
+                
                 this.txtOrderTotal.Text = result.ToString("C");
+                _po.OrderTotal = result;
+                 mapper.Map(_po, orderHeader);
+                purchaseOrderHeaderControl1.SetDataSource(orderHeader);
+                
             }
         }
 
@@ -507,6 +521,11 @@ namespace Weaselware.InventoryFerret
         private void btnSave_Click(object sender, EventArgs e)
         {
             SaveChanges();
+        }
+
+        private void purchaseOrderHeaderControl1_Load(object sender, EventArgs e)
+        {
+            
         }
     }
 }

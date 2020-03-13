@@ -20,5 +20,8 @@
     <Setting Name="LastClaimSearch" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="Taxrate" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">0.0775</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
