@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using DataLayer.Entities;
 using DataLayer.Models;
 
@@ -12,6 +13,7 @@ namespace DataLayer.Interfaces
         PurchaseOrder Add(PurchaseOrder order);
         List<PurchaseOrder> GetAllOrders();
         List<UnitOfMeasure> GetUnits();
+        BindingList<PurchaseLineItem> OrderLineItems(int purchaseOrderID);
         List<SupplierOrderDTO> GetSupplierOrdersDTO(int SupplierID);
         List<PurchaseOrder> GetJobOrders(int jobID);
         PurchaseOrder GetOrderByID(int orderNum);

@@ -9,7 +9,7 @@ namespace DataLayer.Entities
         {
             Attachment = new HashSet<Attachment>();
             Notification = new HashSet<Notification>();
-            PurchaseLineItem = new HashSet<PurchaseLineItem>();
+            PurchaseLineItem = new List<PurchaseLineItem>();
         }
 
         public int OrderNum { get; set; }
@@ -41,6 +41,6 @@ namespace DataLayer.Entities
         public virtual Supplier Supplier { get; set; }
         public virtual ICollection<Attachment> Attachment { get; set; }
         public virtual ICollection<Notification> Notification { get; set; }
-        public virtual ICollection<PurchaseLineItem> PurchaseLineItem { get; set; }
+        public virtual IList<PurchaseLineItem> PurchaseLineItem { get; set; }
     }
 }

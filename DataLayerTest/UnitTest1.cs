@@ -267,6 +267,23 @@ namespace DataLayerTest
 
         }
 
+        [TestMethod]
+        public void Orders_OrderDTO_ShouldReturnBindingList()
+        {
+            IOrdersService repo = new OrdersService(new BadgerDataModel());
+            var result = repo.GetOrderDTO(5000);
+
+            Assert.IsTrue(result.PurchaseOrderID == 5000);
+            Assert.IsTrue(result.SupplierName == "Alpine Glass & Door");
+            Assert.IsTrue(result.SupplierID == 1905);
+            Assert.IsTrue(result.Purchaser == "Richard Young");
+            Assert.IsTrue(System.DateTime.Equals(result.OrderDate, System.DateTime.Parse("3/16/2005")));
+            Assert.IsTrue(result.JobName == "Shores Elevator");
+            Assert.IsTrue(result.JobID == 334);
+            Assert.IsTrue(result.LineItems.Count == 12);
+
+        }
+
     }
 
 }

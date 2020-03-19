@@ -41,10 +41,7 @@ namespace Weaselware.InventoryFerret
 
         // Repos
         SuppliersService _suppliersService;
-        //IOrdersService orderService;
-        //IPartsService partsService;
-        //IJobsService jobsService;
-        //InventoryService inventoryService;
+      
 
 
         //This might remain for existing orders opening, not sure
@@ -62,6 +59,7 @@ namespace Weaselware.InventoryFerret
 
         }
 
+        // Hydrate a PO------------------------
         public PurchaseOrderControl(BadgerDataModel context, PurchaseOrder purchaseOrder)
         {
             InitializeComponent();
@@ -147,6 +145,8 @@ namespace Weaselware.InventoryFerret
                     Description = part.ItemDescription,
                     PartID = part.PartID,
                     UnitCost = part.Cost,
+                    VendorId = _supplier.SupplierId,
+                    JobId = _po.JobId,
                     Uom = part.UID,
                     Qnty = 1.0m,
                     Extended = 0.0m,
@@ -476,7 +476,9 @@ namespace Weaselware.InventoryFerret
                 {
                     LineID = 1102,
                     PartID = _selectedPart.PartID,
+                    PurchaseOrderId = _po.OrderNum,
                     Qnty = 0.0m,
+                    VendorId = _supplier.SupplierId,
                     UnitCost = _selectedPart.Cost.GetValueOrDefault(),
                     Extended = decimal.Zero,
                     Description = _selectedPart.ItemDescription

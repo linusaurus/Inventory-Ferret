@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="POdataset" targetNamespace="http://tempuri.org/POdataset.xsd" xmlns:mstns="http://tempuri.org/POdataset.xsd" xmlns="http://tempuri.org/POdataset.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="BadgerConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="BadgerConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Weaselware.InventoryFerret.Properties.Settings.GlobalReference.Default.BadgerConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables />
+        <Sources>
+          <DbSource ConnectionRef="BadgerConnectionString (Settings)" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="GetOrder" MethodsParameterType="CLR" Modifier="Public" Name="GetOrder" QueryType="Scalar" ScalarCallRetval="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="GetOrder">
+            <SelectCommand>
+              <DbCommand CommandType="Text" ModifiedByUser="true">
+                <CommandText>SELECT        PurchaseOrder.OrderNum, PurchaseOrder.OrderDate, PurchaseOrder.Expected_Date, PurchaseOrder.SupplierID, PurchaseOrder.EmployeeID, PurchaseOrder.SalesRep, PurchaseOrder.Job_id, PurchaseOrder.SuppressTax, 
+                         PurchaseOrder.ShipID, PurchaseOrder.OrderTotal, PurchaseOrder.Recieved, PurchaseOrder.ShippingCost, PurchaseOrder.Tax, PurchaseOrder.IsBackOrder, PurchaseOrder.RecievedDate, PurchaseOrder.SubTotal, 
+                         PurchaseOrder.Memo, Supplier.SupplierID AS Expr1, Supplier.SupplierName, Supplier.Address1, Supplier.City, Supplier.State, Supplier.Fax, Supplier.Phone, Supplier.Zip, PurchaseLineItem.LineID, 
+                         PurchaseLineItem.PurchaseOrderID, PurchaseLineItem.JobID, PurchaseLineItem.VendorID, PurchaseLineItem.PartID, PurchaseLineItem.UnitCost, PurchaseLineItem.Description, PurchaseLineItem.Qnty, 
+                         PurchaseLineItem.Extended, PurchaseLineItem.Recieved AS Expr2, PurchaseLineItem.Uom
+FROM            PurchaseOrder INNER JOIN
+                         PurchaseLineItem ON PurchaseOrder.OrderNum = PurchaseLineItem.PurchaseOrderID INNER JOIN
+                         Supplier ON PurchaseOrder.SupplierID = Supplier.SupplierID</CommandText>
+                <Parameters />
+              </DbCommand>
+            </SelectCommand>
+          </DbSource>
+        </Sources>
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="POdataset" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="POdataset" msprop:Generator_UserDSName="POdataset">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded" />
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

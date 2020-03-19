@@ -56,7 +56,7 @@
             // txtOrderNumber
             // 
             this.txtOrderNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOrderNumber.Location = new System.Drawing.Point(920, 8);
+            this.txtOrderNumber.Location = new System.Drawing.Point(806, 8);
             this.txtOrderNumber.Name = "txtOrderNumber";
             this.txtOrderNumber.Size = new System.Drawing.Size(92, 20);
             this.txtOrderNumber.TabIndex = 0;
@@ -144,7 +144,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(863, 13);
+            this.label3.Location = new System.Drawing.Point(749, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 2;
@@ -153,7 +153,7 @@
             // txtOrderDate
             // 
             this.txtOrderDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOrderDate.Location = new System.Drawing.Point(920, 31);
+            this.txtOrderDate.Location = new System.Drawing.Point(806, 31);
             this.txtOrderDate.Name = "txtOrderDate";
             this.txtOrderDate.Size = new System.Drawing.Size(92, 20);
             this.txtOrderDate.TabIndex = 0;
@@ -163,7 +163,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(857, 34);
+            this.label4.Location = new System.Drawing.Point(743, 34);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 2;
@@ -206,7 +206,7 @@
             // txtTax
             // 
             this.txtTax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTax.Location = new System.Drawing.Point(920, 54);
+            this.txtTax.Location = new System.Drawing.Point(806, 54);
             this.txtTax.Name = "txtTax";
             this.txtTax.Size = new System.Drawing.Size(92, 20);
             this.txtTax.TabIndex = 0;
@@ -215,7 +215,7 @@
             // txtOrderTotal
             // 
             this.txtOrderTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOrderTotal.Location = new System.Drawing.Point(920, 78);
+            this.txtOrderTotal.Location = new System.Drawing.Point(806, 78);
             this.txtOrderTotal.Name = "txtOrderTotal";
             this.txtOrderTotal.Size = new System.Drawing.Size(92, 20);
             this.txtOrderTotal.TabIndex = 0;
@@ -225,7 +225,7 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(856, 81);
+            this.label8.Location = new System.Drawing.Point(742, 81);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(60, 13);
             this.label8.TabIndex = 2;
@@ -243,7 +243,7 @@
             // 
             this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(850, 57);
+            this.checkBox1.Location = new System.Drawing.Point(736, 57);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(64, 17);
             this.checkBox1.TabIndex = 4;
@@ -286,7 +286,7 @@
             this.Controls.Add(this.txtPurchaser);
             this.Controls.Add(this.txtOrderNumber);
             this.Name = "PurchaseOrderHeaderControl";
-            this.Size = new System.Drawing.Size(1024, 114);
+            this.Size = new System.Drawing.Size(910, 114);
             this.Load += new System.EventHandler(this.PurchaseOrderHeaderControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

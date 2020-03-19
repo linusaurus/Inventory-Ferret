@@ -1,4 +1,4 @@
-﻿using AutoMapper;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +12,5 @@ namespace Weaselware.InventoryFerret.Profiles
 {
     
     
-        public class OrdersProfile : Profile
-        {
-            public OrdersProfile()
-            {
-                CreateMap<PurchaseLineItem, PurchaseLineItemWrapper>();
-               // CreateMap<Models.CourseForCreationDto, Entities.Course>();
-            }
-        }
-    
+        
 }

@@ -9,10 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataLayer.Entities;
 using DataLayer.Interfaces;
-using AutoMapper.Configuration;
 using DataLayer.Services;
 using Weaselware.InventoryFerret.Wrapper;
-using AutoMapper;
 using Weaselware.InventoryFerret.Profiles;
 
 
@@ -30,7 +28,7 @@ namespace Weaselware.InventoryFerret
         Part _selectedPart = null;
         PurchaseLineItem _selectedPurchaseLineItem = null;
         private List<PurchaseLineItemWrapper> lineItems = new List<PurchaseLineItemWrapper>();
-        IMapper mapper;
+     
         bool _isDirty = false;
 
         public DataForm()
@@ -43,14 +41,7 @@ namespace Weaselware.InventoryFerret
             bsLineItems = new BindingSource();
             this.Size = new Size(800, 450);
 
-            var config = new MapperConfiguration(cfg => {
-
-                cfg.AddProfile<OrdersProfile>();
-
-
-            });
- 
-            mapper = config.CreateMapper();
+       
            
         }
 

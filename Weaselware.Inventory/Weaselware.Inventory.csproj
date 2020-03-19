@@ -89,20 +89,8 @@
     <DelaySign>false</DelaySign>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.9.0.0\lib\net461\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoMapper.Collection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=e57c3f0a3d6646db, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.Collection.6.0.0\lib\net461\AutoMapper.Collection.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoMapper.Collection.EntityFrameworkCore, Version=1.0.1.0, Culture=neutral, PublicKeyToken=e57c3f0a3d6646db, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.Collection.EntityFrameworkCore.1.0.1\lib\net461\AutoMapper.Collection.EntityFrameworkCore.dll</HintPath>
-    </Reference>
-    <Reference Include="AutoMapper.Extensions.ExpressionMapping, Version=3.0.6.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.Extensions.ExpressionMapping.3.0.6\lib\net461\AutoMapper.Extensions.ExpressionMapping.dll</HintPath>
-    </Reference>
-    <Reference Include="Boxed.Mapping, Version=3.0.0.0, Culture=neutral, PublicKeyToken=fc5550082a9c642c, processorArchitecture=MSIL">
-      <HintPath>..\packages\Boxed.Mapping.3.0.0\lib\netstandard2.0\Boxed.Mapping.dll</HintPath>
+    <Reference Include="Boxed.Mapping, Version=4.0.0.0, Culture=neutral, PublicKeyToken=fc5550082a9c642c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Boxed.Mapping.4.0.0\lib\netstandard2.0\Boxed.Mapping.dll</HintPath>
     </Reference>
     <Reference Include="ComponentFactory.Krypton.Design">
       <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\Krypton-master\build\bin\Debug\ComponentFactory.Krypton.Design.dll</HintPath>
@@ -122,6 +110,9 @@
     <Reference Include="ComponentFactory.Krypton.Workspace">
       <HintPath>..\..\..\..\Documents\Visual Studio 2017\Projects\Krypton-master\build\bin\Debug\ComponentFactory.Krypton.Workspace.dll</HintPath>
     </Reference>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.4000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
@@ -271,6 +262,9 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
+    <Reference Include="TinyMapper, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TinyMapper.3.0.3\lib\net40\TinyMapper.dll</HintPath>
+    </Reference>
     <Reference Include="WeCantSpell.Hunspell, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WeCantSpell.Hunspell.3.0.1\lib\net45\WeCantSpell.Hunspell.dll</HintPath>
     </Reference>
@@ -312,16 +306,43 @@
     <Compile Include="PartForm.Designer.cs">
       <DependentUpon>PartForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="POdataset.cs">
+      <DependentUpon>POdataset.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="POdataset.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>POdataset.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Profiles\OrdersProfile.cs" />
-    <Compile Include="StartUp\Bootstrap.cs" />
+    <Compile Include="PurchaseOrderReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseOrderReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Services\Globals.cs" />
     <Compile Include="Services\LabelService.cs" />
     <Compile Include="Services\NotificationService.cs" />
+    <Compile Include="Services\OrdersBizService.cs" />
+    <Compile Include="TestHarnessForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestHarnessForm.Designer.cs">
+      <DependentUpon>TestHarnessForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AssemblyManagerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UserControls\AssemblyManagerControl.Designer.cs">
       <DependentUpon>AssemblyManagerControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\Bindinglist.cs" />
+    <Compile Include="UserControls\OrderEditControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OrderEditControl.Designer.cs">
+      <DependentUpon>OrderEditControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\PartDetailCOntrol.cs">
       <SubType>UserControl</SubType>
@@ -458,8 +479,18 @@
     <EmbeddedResource Include="PrintJobDialog.resx">
       <DependentUpon>PrintJobDialog.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PurchaseOrderReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PurchaseOrderReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TestHarnessForm.resx">
+      <DependentUpon>TestHarnessForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AssemblyManagerControl.resx">
       <DependentUpon>AssemblyManagerControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OrderEditControl.resx">
+      <DependentUpon>OrderEditControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\PartDetailCOntrol.resx">
       <DependentUpon>PartDetailCOntrol.cs</DependentUpon>
@@ -524,7 +555,17 @@
     </Compile>
     <None Include="Inventory-Ferrit-key.pfx" />
     <None Include="packages.config" />
-    <None Include="Properties\DataSources\BadgerData.Part.datasource" />
+    <None Include="POdataset.xsc">
+      <DependentUpon>POdataset.xsd</DependentUpon>
+    </None>
+    <None Include="POdataset.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>POdataset.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="POdataset.xss">
+      <DependentUpon>POdataset.xsd</DependentUpon>
+    </None>
     <None Include="Properties\DataSources\DataLayer.Entities.PurchaseOrder.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -543,6 +584,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5">

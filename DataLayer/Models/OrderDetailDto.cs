@@ -13,30 +13,211 @@ namespace DataLayer.Models
         private decimal tax;
         private decimal shippingCost;
         private bool taxable;
+        private int shipID;
+        private string supplierZip;
+        private string supplierState;
+        private string supplierCity;
+        private string supplierAddress;
+        private decimal orderTotal;
+        private DateTime expectedDate;
+        private string orderDate;
+        private string purchaser;
+        private string supplierFax;
+        private string supplierPhone;
+        private string supplierName;
+        private int supplierID;
+        private string jobCostName;
+        private string jobName;
+        private int jobID;
+        private int purchaseOrderID;
+        private string memo;
+ 
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        // PurchaseOrderID
         [Key]
-        public int PurchaseOrderID { get; set; }
-        public int JobID { get; set; }
-        public string JobName { get; set; }
-        public string JobCostName { get; set; }
-        public int SupplierID { get; set; }
-        public string SupplierName { get; set; }    
-        public string SupplierPhone { get; set; } 
-        public string SupplierFax { get; set; }
-        public string Purchaser { get; set; }
-        public string OrderDate { get; set; }
-        public DateTime ExpectedDate { get; set; }
-        public decimal OrderTotal { get; set; }
-        public string SupplierAddress { get; set; }
-        public string SupplierCity { get; set; }
-        public string SupplierState { get; set; }
-        public string SupplierZip { get; set; }
+        public int PurchaseOrderID
+        {
+            get {return purchaseOrderID ; }
+            set 
+            {
+              purchaseOrderID = value  ;
+                OnPropertyChange();
+            }
+        }
+        // JobID
+        public int JobID
+        {
+            get {return jobID; }
+            set
+            {
+                jobID = value ;
+                OnPropertyChange();
+            } 
+        }
+        // Job Name
+        public string JobName
+        {
+            get {return jobName; }
+            set 
+            {
+                jobName = value;
+                OnPropertyChange();
+            }
+        }
+        // Job Cost Name
+        public string JobCostName 
+        {
+            get {return jobCostName; }
+            set 
+            {
+                jobCostName = value;
+                OnPropertyChange();
+            }
+        }
+        // SupplierID
+        public int SupplierID
+        {
+            get {return supplierID; }
+            set 
+            {
+                supplierID = value;
+                OnPropertyChange();
+            }
+        }
+        // Supplier Name
+        public string SupplierName 
+        {
+            get {return supplierName; }
+            set 
+            {
+                supplierName = value;
+                OnPropertyChange();
+            }
+        } 
+        // Supplier Phone
+        public string SupplierPhone
+        {
+            get {return supplierPhone; }
+            set 
+            {
+                supplierPhone = value;
+                OnPropertyChange();
+            } 
+        } 
+        // Supplier Fax
+        public string SupplierFax
+        {
+            get {return supplierFax; }
+            set 
+            {
+                supplierFax = value;
+                OnPropertyChange();
+            }
+        }
+        // Purchaser
+        public string Purchaser
+        {
+            get {return purchaser; }
+            set 
+            {
+                purchaser = value;
+                OnPropertyChange();
+            } 
+        }
+        // Order Date
+        public string OrderDate
+        {
+            get {return orderDate; }
+            set
+            {
+                orderDate = value;
+                OnPropertyChange();
+            } 
+        }
+        // Expected Date
+        public DateTime ExpectedDate 
+        {
+            get {return expectedDate; }
+            set 
+            {
+                expectedDate = value;
+                OnPropertyChange();
+            } 
+        }
+        // Order Total
+        public decimal OrderTotal
+        {
+            get {return orderTotal; }
+            set
+            {
+                orderTotal = value;
+                OnPropertyChange();
+            }  
+        }
+        // SupplierAddress --
+        public string SupplierAddress
+        {
+            get {return supplierAddress; }
+            set
+            {
+                supplierAddress = value;
+                OnPropertyChange();
+            }
+        
+        }
+        // SupplierCity --
+        public string SupplierCity
+        {
+            get {return supplierCity; }
+            set
+            {
+                supplierCity = value ;
+                OnPropertyChange();
+            }
+        }
+        // SuppllierState
+        public string SupplierState
+        {
+            get {return supplierState; }
+            set
+            {  
+                supplierState = value;
+                OnPropertyChange();
+            }
+        }
+        // Memo
+        public string Memo
+        {
+            get { return memo; }
+            set 
+            {
+                memo = value;
+                OnPropertyChange();
+            }
+        }
+        // SupplierZip
+        public string SupplierZip
+        {
+            get {return supplierZip; }
+            set 
+            {   
+              supplierZip = value  ;
+              OnPropertyChange();
+            } 
+        
+        }
         // ShipID --
-        public int ShipID { get; set; }
-
-
+        public int ShipID
+        {
+            get {return shipID; }
+            set 
+            { 
+                shipID = value;
+                OnPropertyChange();
+            } 
+        }
         // Taxable--
         public bool Taxable
         {
@@ -48,7 +229,6 @@ namespace DataLayer.Models
             }
         
         }
-
         // ShippingCost
         public decimal ShippingCost
         {
@@ -73,12 +253,10 @@ namespace DataLayer.Models
 
         public decimal SubTotal { get; set; }
  
-        public ICollection<PurchaseLineItem> LineItems { get; set; } = new HashSet<PurchaseLineItem>();
+        public IList<LineItemDto> LineItems { get; set; } = new List<LineItemDto>();
 
-  
         protected void OnPropertyChange([CallerMemberName] string name=null)
-        {
-          
+        {        
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
     }

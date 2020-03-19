@@ -50,7 +50,7 @@ namespace DataLayer.Services {
                 SupplierFax = d.Supplier.Fax,
                 Tax = d.Tax.HasValue ? d.Tax.Value : Decimal.Zero,
                 Taxable = d.SuppressTax.HasValue ? d.SuppressTax.Value : false,
-                LineItems = d.PurchaseLineItem
+                //LineItems = d.PurchaseLineItem
 
             });
             return _order.FirstOrDefault();
@@ -65,7 +65,7 @@ namespace DataLayer.Services {
                 Quantity = d.Qnty.Value,
                 Price = d.UnitCost.Value,
                 Extended = d.Extended.Value,
-                PartID = d.PartID,
+                PartID = d.PartID.GetValueOrDefault(),
                 PurchaseOrderID = d.PurchaseOrderId.Value,
             });
             return _lineItems.ToList();
@@ -89,9 +89,10 @@ namespace DataLayer.Services {
 
         public BindingList<PurchaseLineItem> OrderLineItems(int purchaseOrderID)
         {
-            BindingList<PurchaseLineItem> result = new BindingList<PurchaseLineItem>();
+            BindingList<PurchaseLineItem> result = new BindingList<PurchaseLineItem>(context.PurchaseLineItem.Where(w => w.PurchaseOrderId == purchaseOrderID).ToList());
+            return  result;
           
-            return result;
+           
         }
 
         public PurchaseOrder GetOrderByID(int orderNum) {
@@ -316,6 +317,46 @@ namespace DataLayer.Services {
             context.PurchaseOrder.Add(order);
             context.SaveChanges();
             return order;
+        }
+
+        public void CreateOrUpdateOrder(OrderDetailDto orderDTO)
+        {
+           var ctx = context;
+           var order = ctx.PurchaseOrder.FirstOrDefault(o => o.OrderNum == orderDTO.PurchaseOrderID);
+            if (order == null)
+            {
+                order = new PurchaseOrder();
+                ctx.PurchaseOrder.Add(order);
+            }
+
+            //Map properties
+            order.OrderDate = DateTime.Parse(orderDTO.OrderDate);
+            order.OrderTotal = orderDTO.OrderTotal;
+            order.ExpectedDate = orderDTO.ExpectedDate;
+            order.JobId = orderDTO.JobID;
+            order.Memo = orderDTO.Memo;
+            order.SalesRep = "Rep Name";
+
+
+            //remove deleted details
+            order.PurchaseLineItem
+            .Where(d => !orderDTO.LineItems.Any(LineItemDto => LineItemDto.LineID == d.LineID)).ToList()
+            .ForEach(deleted => ctx.PurchaseLineItem.Remove(deleted));
+
+            //update or add details
+            orderDTO.LineItems.ToList().ForEach(detailDTO =>
+            {
+                var detail = order.PurchaseLineItem.FirstOrDefault(d => d.LineID == detailDTO.LineID);
+                if (detail == null)
+                {
+                    detail = new PurchaseLineItem();
+                    order.PurchaseLineItem.Add(detail);
+                }
+                detail.JobId = detailDTO.J;
+                detail.Quantity = detailDTO.Quantity;
+            });
+
+            context.SaveChanges();
         }
     }
 }

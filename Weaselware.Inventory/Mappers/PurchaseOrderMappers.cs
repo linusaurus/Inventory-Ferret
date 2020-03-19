@@ -11,6 +11,9 @@ namespace Weaselware.InventoryFerret.Mappers
 {
     public class PurchaseOrderMapper : IMapper<PurchaseOrder, OrderDetailDto>
     {
+        private readonly IMapper<PurchaseLineItem, LineItemDto> lineMapper = new LineItemMapper()  ;
+        
+
         public void Map(PurchaseOrder source, OrderDetailDto destination)
         {
             destination.ExpectedDate = source.ExpectedDate ?? DateTime.Today.AddDays(1.0);
@@ -34,6 +37,25 @@ namespace Weaselware.InventoryFerret.Mappers
             destination.SupplierID = source.SupplierId.GetValueOrDefault();
             destination.SupplierPhone = source.Supplier.Phone;
             destination.SupplierFax = source.Supplier.Fax;
+            destination.OrderTotal = source.OrderTotal.GetValueOrDefault();
+
+            destination.LineItems = lineMapper.MapList(source.PurchaseLineItem);
+        }
+    }
+
+    public class LineItemMapper : IMapper<PurchaseLineItem, LineItemDto>
+    {
+        public void Map(PurchaseLineItem source, LineItemDto destination)
+        {
+            destination.LineID = source.LineID;
+            destination.PartID = source.PartID.GetValueOrDefault();
+            destination.Price = source.UnitCost.GetValueOrDefault();
+            destination.PurchaseOrderID = source.PurchaseOrderId.GetValueOrDefault();
+            destination.Description = source.Description;
+            destination.Quantity = source.Qnty.GetValueOrDefault();
+            destination.UiD = source.Uom.GetValueOrDefault();
+            destination.Extended = source.Extended.GetValueOrDefault();
+           
         }
     }
 }

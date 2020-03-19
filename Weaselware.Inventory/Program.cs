@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DataLayer.Entities;
 using System.Windows.Forms;
-using AutoMapper;
+
 
 namespace Weaselware.InventoryFerret
 {
@@ -29,8 +29,9 @@ namespace Weaselware.InventoryFerret
 
             // Standard App Startup
             //---------------------------------------------------------------------------------
-            Main mainForm = new Main();
-            Bootstrap.bootstrap();
+           // Main mainForm = new Main();  -- replace normal main from
+            TestHarnessForm mainForm = new TestHarnessForm();
+           
             mainForm.LoggedOnUserID = 8;
             Globals.CurrentLoggedUserID = 8;
             //Application.Run(new DataForm());

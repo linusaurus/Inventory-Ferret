@@ -105,5 +105,17 @@ namespace Weaselware.InventoryFerret.Properties {
                 this["Taxrate"] = value;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=192.168.10.3;Initial Catalog=Badger;Persist Security Info=True;User I" +
+            "D=sa;Password=Kx09a32x;Pooling=False;MultipleActiveResultSets=False;Connect Time" +
+            "out=60;TrustServerCertificate=False")]
+        public string BadgerConnectionString {
+            get {
+                return ((string)(this["BadgerConnectionString"]));
+            }
+        }
     }
 }
