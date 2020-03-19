@@ -24,6 +24,7 @@ namespace DataLayer.Interfaces
         OrderReciept RecievedOrder(PurchaseOrder order, int employeeID);
         OrderDetailDto GetOrderDTO(int orderID);
         List<LineItemDto> GetLineItems(int orderID);
+        void CreateOrUpdateOrder(OrderDetailDto orderDTO);
         void Save();
     }
 }

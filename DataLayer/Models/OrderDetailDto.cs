@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using DataLayer.Entities;
@@ -31,6 +32,9 @@ namespace DataLayer.Models
         private int jobID;
         private int purchaseOrderID;
         private string memo;
+        private int employeeID;
+        private string salesRep;
+        private decimal subTotal;
  
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -55,6 +59,16 @@ namespace DataLayer.Models
                 jobID = value ;
                 OnPropertyChange();
             } 
+        }
+        // EmployeeID
+        public int EmployeeID
+        {
+            get { return employeeID; }
+            set
+            {
+                employeeID = value;
+                OnPropertyChange();
+            }
         }
         // Job Name
         public string JobName
@@ -125,6 +139,16 @@ namespace DataLayer.Models
                 purchaser = value;
                 OnPropertyChange();
             } 
+        }
+        // SaleRep
+        public string SalesRep
+        {
+            get { return salesRep; }
+            set
+            {
+                salesRep = value;
+                OnPropertyChange();
+            }
         }
         // Order Date
         public string OrderDate
@@ -225,6 +249,7 @@ namespace DataLayer.Models
             set {
                 
                 taxable = value;
+                Update();
                 OnPropertyChange();
             }
         
@@ -250,10 +275,37 @@ namespace DataLayer.Models
             } 
         
         }
+        // SubTotal
+        public decimal SubTotal
+        {
+            get {return subTotal; }
+            set
+            {
+                subTotal = value;
+               
+                OnPropertyChange();
+            }
+        }
 
-        public decimal SubTotal { get; set; }
+        public void Update()
+        {
+            decimal subtotal = decimal.Zero;
+            if (LineItems != null && LineItems.Count > 0)
+            {
+                foreach (LineItemDto item in LineItems)
+                {
+                    subtotal += item.Price * item.Quantity;
+                }
+                SubTotal = subtotal;
+                if (Taxable) { Tax = subtotal * 0.075m; }else
+                { Tax = 0.0m; }
+
+                OrderTotal = SubTotal + tax;
+            }
+        }
  
         public IList<LineItemDto> LineItems { get; set; } = new List<LineItemDto>();
+        
 
         protected void OnPropertyChange([CallerMemberName] string name=null)
         {        

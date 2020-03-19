@@ -335,7 +335,16 @@ namespace DataLayer.Services {
             order.ExpectedDate = orderDTO.ExpectedDate;
             order.JobId = orderDTO.JobID;
             order.Memo = orderDTO.Memo;
-            order.SalesRep = "Rep Name";
+            order.SalesRep = orderDTO.SalesRep;
+            order.EmployeeId = orderDTO.EmployeeID;
+            order.OrderNum = orderDTO.PurchaseOrderID;
+            order.ShipId = orderDTO.ShipID;
+            order.ShippingCost = orderDTO.ShippingCost;
+            order.SubTotal = orderDTO.SubTotal;
+            order.SupplierId = orderDTO.SupplierID;
+            order.SuppressTax = orderDTO.Taxable;
+            
+            order.Tax = orderDTO.Tax;
 
 
             //remove deleted details
@@ -352,8 +361,14 @@ namespace DataLayer.Services {
                     detail = new PurchaseLineItem();
                     order.PurchaseLineItem.Add(detail);
                 }
-                detail.JobId = detailDTO.J;
-                detail.Quantity = detailDTO.Quantity;
+                detail.JobId = detailDTO.JobID;
+                detail.Qnty = detailDTO.Quantity;
+                detail.PurchaseOrderId = detailDTO.PurchaseOrderID;
+                detail.PartID = detailDTO.PartID;
+                detail.UnitCost = detailDTO.Price;
+                detail.Uom = detailDTO.UiD;
+                detail.Extended = detailDTO.Extended;
+
             });
 
             context.SaveChanges();

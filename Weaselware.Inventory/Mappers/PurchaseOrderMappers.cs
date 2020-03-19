@@ -21,6 +21,7 @@ namespace Weaselware.InventoryFerret.Mappers
             destination.JobCostName = source.Job.Jobdesc;
             destination.JobID = source.JobId.GetValueOrDefault();
             destination.JobName = source.Job.Jobname;
+            destination.EmployeeID = source.EmployeeId.GetValueOrDefault();
             destination.OrderTotal = source.OrderTotal.GetValueOrDefault();
             destination.PurchaseOrderID = source.OrderNum;
             destination.Purchaser = source.Employee.Firstname + " " + source.Employee.Lastname;
@@ -32,13 +33,14 @@ namespace Weaselware.InventoryFerret.Mappers
             destination.SupplierCity = source.Supplier.City;
             destination.SupplierState = source.Supplier.State;
             destination.SupplierZip = source.Supplier.Zip;
+            destination.SalesRep = source.SalesRep;
             destination.Tax = source.Tax.GetValueOrDefault();
             destination.Taxable = source.SuppressTax.GetValueOrDefault();
             destination.SupplierID = source.SupplierId.GetValueOrDefault();
             destination.SupplierPhone = source.Supplier.Phone;
             destination.SupplierFax = source.Supplier.Fax;
             destination.OrderTotal = source.OrderTotal.GetValueOrDefault();
-
+            destination.Memo = source.Memo;
             destination.LineItems = lineMapper.MapList(source.PurchaseLineItem);
         }
     }

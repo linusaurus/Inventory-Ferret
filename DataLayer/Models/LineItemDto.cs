@@ -9,15 +9,22 @@ namespace DataLayer.Models
     public class LineItemDto : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
+       
 
         private int lineID;
         private int purchaseOrderID;
+        private int jobID;
         private int partID;
         private int uid;
         private decimal quantity;
         private string description;
         private decimal price;
         private decimal extended;
+
+        public decimal Update()
+        {
+           return  quantity * price;
+        }
 
         /// <summary>
         /// LineID
@@ -42,6 +49,18 @@ namespace DataLayer.Models
                 purchaseOrderID = value;
                 OnPropertyChange();
             } 
+        }
+        /// <summary>
+        /// JobID
+        /// </summary>
+        public int JobID
+        {
+            get { return jobID; }
+            set
+            {
+                jobID = value;
+                OnPropertyChange();
+            }
         }
         /// <summary>
         /// PartID

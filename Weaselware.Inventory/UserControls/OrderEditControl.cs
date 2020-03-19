@@ -56,6 +56,7 @@ namespace Weaselware.InventoryFerret.UserControls
                 if (_purchaseOrder != null)
                 {
                     this.purchaseOrderHeaderControl1.SetDataSource(orderDTO);
+
                     LoadOrder(id);
                    
                 }
@@ -69,7 +70,7 @@ namespace Weaselware.InventoryFerret.UserControls
        
             bslineItems.DataSource = lines;
             dgOrderLineItem.DataSource = bslineItems;
-
+            orderDTO.Update();
             bslineItems.AddingNew += BslineItems_AddingNew;
             
         }
@@ -87,7 +88,8 @@ namespace Weaselware.InventoryFerret.UserControls
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            _orderService.Save();
+            _orderService.CreateOrUpdateOrder(orderDTO);
+           // _orderService.Save();
            
         }
 
@@ -170,5 +172,10 @@ namespace Weaselware.InventoryFerret.UserControls
 
         }
         #endregion
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            orderDTO.Update();
+        }
     }
 }
