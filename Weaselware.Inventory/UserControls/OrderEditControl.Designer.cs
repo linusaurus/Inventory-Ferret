@@ -96,10 +96,12 @@
             this.purchaseOrderHeaderControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.purchaseOrderHeaderControl1.Location = new System.Drawing.Point(20, 15);
+            this.purchaseOrderHeaderControl1.MinimumSize = new System.Drawing.Size(920, 145);
             this.purchaseOrderHeaderControl1.Name = "purchaseOrderHeaderControl1";
             this.purchaseOrderHeaderControl1.PurchaseOrder = null;
-            this.purchaseOrderHeaderControl1.Size = new System.Drawing.Size(925, 129);
+            this.purchaseOrderHeaderControl1.Size = new System.Drawing.Size(925, 145);
             this.purchaseOrderHeaderControl1.TabIndex = 7;
+            this.purchaseOrderHeaderControl1.Load += new System.EventHandler(this.purchaseOrderHeaderControl1_Load);
             // 
             // OrderEditControl
             // 
@@ -112,6 +114,7 @@
             this.Controls.Add(this.txtLoadOrder);
             this.Controls.Add(this.dgOrderLineItem);
             this.MaximumSize = new System.Drawing.Size(1900, 800);
+            this.MinimumSize = new System.Drawing.Size(970, 0);
             this.Name = "OrderEditControl";
             this.Size = new System.Drawing.Size(971, 617);
             this.Load += new System.EventHandler(this.OrderEditControl_Load);

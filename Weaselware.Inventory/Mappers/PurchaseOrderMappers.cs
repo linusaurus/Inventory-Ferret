@@ -13,7 +13,7 @@ namespace Weaselware.InventoryFerret.Mappers
     {
         private readonly IMapper<PurchaseLineItem, LineItemDto> lineMapper = new LineItemMapper()  ;
         
-
+       
         public void Map(PurchaseOrder source, OrderDetailDto destination)
         {
             destination.ExpectedDate = source.ExpectedDate ?? DateTime.Today.AddDays(1.0);

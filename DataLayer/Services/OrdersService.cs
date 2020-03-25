@@ -363,6 +363,7 @@ namespace DataLayer.Services {
                 }
                 detail.JobId = detailDTO.JobID;
                 detail.Qnty = detailDTO.Quantity;
+                detail.Description = detailDTO.Description;
                 detail.PurchaseOrderId = detailDTO.PurchaseOrderID;
                 detail.PartID = detailDTO.PartID;
                 detail.UnitCost = detailDTO.Price;

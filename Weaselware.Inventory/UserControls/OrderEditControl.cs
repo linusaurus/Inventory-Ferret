@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using DataLayer.Entities;
 using DataLayer.Services;
@@ -26,8 +27,8 @@ namespace Weaselware.InventoryFerret.UserControls
         private PurchaseOrder _purchaseOrder;
         private OrderDetailDto orderDTO = new OrderDetailDto();
         private readonly IMapper<PurchaseOrder, OrderDetailDto> mapper = new PurchaseOrderMapper();
+        bool _isDirty = false;
 
-       
 
         public OrderEditControl()
         {
@@ -35,11 +36,96 @@ namespace Weaselware.InventoryFerret.UserControls
             _context = new BadgerDataModel();
             _orderService = new OrdersService(_context);
             _partService = new PartsService(_context);
+           
             dgOrderLineItem.AutoGenerateColumns = false;
+            // Event wiring -------------------------------------------------------------------
+            dgOrderLineItem.DataError += DgOrderLineItem_DataError;                       
+            dgOrderLineItem.CellValidating += DgOrderLineItem_CellValidating;
+            dgOrderLineItem.CellEndEdit += DgOrderLineItem_CellEndEdit;
+            dgOrderLineItem.CellValueChanged += DgOrderLineItem_CellValueChanged;
+            bslineItems.ListChanged += BslineItems_ListChanged;
 
             InitializeGrid();
-            // btnSave.Enabled = false;
+            btnSave.Enabled = _isDirty;
         }
+
+        private void DgOrderLineItem_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            // Clear the row error in case the user presses ESC.   
+            dgOrderLineItem.Rows[e.RowIndex].ErrorText = String.Empty;
+
+            dgOrderLineItem.Rows[e.RowIndex].Cells[6].Value = (decimal) dgOrderLineItem.Rows[e.RowIndex].Cells[4].Value
+                                                            *  (decimal)dgOrderLineItem.Rows[e.RowIndex].Cells[5].Value;
+        }
+
+        private void BslineItems_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (e.ListChangedType == System.ComponentModel.ListChangedType.ItemChanged)
+            {
+                _isDirty = true;
+                btnSave.Enabled = _isDirty;
+            }
+            if (e.ListChangedType == ListChangedType.ItemDeleted)
+            {
+                _isDirty = true;
+                btnSave.Enabled = _isDirty;
+
+            }
+        }
+
+        private void DgOrderLineItem_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            orderDTO.Update(); 
+        }
+
+        private void DgOrderLineItem_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            DataGridViewRow row = ((DataGridView)sender).CurrentRow;
+            decimal qnty = decimal.Zero;
+
+            // Description -----------------------
+            if (e.ColumnIndex == 2)
+            {
+                if (e.FormattedValue.ToString().Length < 10)
+                {
+                    dgOrderLineItem.Rows[e.RowIndex].ErrorText = "You have enter some reasonable description";
+                    e.Cancel = true;
+                }
+
+
+            }
+            // Price Column -----------------------
+            if (e.ColumnIndex == 4)
+            {
+                if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
+                {
+                    dgOrderLineItem.Rows[e.RowIndex].ErrorText = "Price can not be null";
+                    e.Cancel = true;
+                }
+
+
+            }
+            if (e.ColumnIndex == 5)
+            {
+                if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
+                {
+                    dgOrderLineItem.Rows[e.RowIndex].ErrorText = "Price can not be null";
+                    e.Cancel = true;
+                }
+                if (!decimal.TryParse(e.FormattedValue.ToString(), out qnty))
+                {
+                    dgOrderLineItem.Rows[e.RowIndex].ErrorText = "Quantity must be decimal";
+                    e.Cancel = true;
+                }
+
+            }
+        }
+
+        private void DgOrderLineItem_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            ;
+        }
+
         /// <summary>
         /// Load Order
         /// </summary>
@@ -56,9 +142,8 @@ namespace Weaselware.InventoryFerret.UserControls
                 if (_purchaseOrder != null)
                 {
                     this.purchaseOrderHeaderControl1.SetDataSource(orderDTO);
-
                     LoadOrder(id);
-                   
+                 
                 }
             }
         }
@@ -88,7 +173,10 @@ namespace Weaselware.InventoryFerret.UserControls
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            orderDTO.Update();
             _orderService.CreateOrUpdateOrder(orderDTO);
+            _isDirty = false;
+            btnSave.Enabled = false;
            // _orderService.Save();
            
         }
@@ -176,6 +264,11 @@ namespace Weaselware.InventoryFerret.UserControls
         private void button1_Click(object sender, EventArgs e)
         {
             orderDTO.Update();
+        }
+
+        private void purchaseOrderHeaderControl1_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

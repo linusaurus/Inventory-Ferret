@@ -21,10 +21,6 @@ namespace DataLayer.Models
         private decimal price;
         private decimal extended;
 
-        public decimal Update()
-        {
-           return  quantity * price;
-        }
 
         /// <summary>
         /// LineID
@@ -48,6 +44,7 @@ namespace DataLayer.Models
             {
                 purchaseOrderID = value;
                 OnPropertyChange();
+
             } 
         }
         /// <summary>
@@ -94,9 +91,11 @@ namespace DataLayer.Models
             get { return quantity; }
             set
             {
-               quantity= value  ;
-               extended = quantity * price;
-               OnPropertyChange();
+                quantity= value ;
+                extended = price * quantity;
+                OnPropertyChange();
+
+                
             }
         }
         /// <summary>
@@ -109,6 +108,7 @@ namespace DataLayer.Models
             {
                 description = value;
                 OnPropertyChange();
+               
             }
         }
         /// <summary>
@@ -120,8 +120,9 @@ namespace DataLayer.Models
             set
             {
                 price = value;
-                extended = quantity * price;
+                extended = price * quantity;
                 OnPropertyChange();
+                
             }
         }
         /// <summary>
