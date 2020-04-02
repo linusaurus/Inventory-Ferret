@@ -34,7 +34,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1000, 461);
+            this.MinimumSize = new System.Drawing.Size(1010, 500);
             this.Name = "TestHarnessForm";
             this.Text = "TestHarnessForm";
             this.Load += new System.EventHandler(this.TestHarnessForm_Load);

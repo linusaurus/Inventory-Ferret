@@ -46,13 +46,13 @@
             this.dgOrderLineItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgOrderLineItem.Location = new System.Drawing.Point(20, 165);
             this.dgOrderLineItem.Name = "dgOrderLineItem";
-            this.dgOrderLineItem.Size = new System.Drawing.Size(925, 395);
+            this.dgOrderLineItem.Size = new System.Drawing.Size(930, 308);
             this.dgOrderLineItem.TabIndex = 0;
             // 
             // txtLoadOrder
             // 
             this.txtLoadOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtLoadOrder.Location = new System.Drawing.Point(110, 575);
+            this.txtLoadOrder.Location = new System.Drawing.Point(110, 545);
             this.txtLoadOrder.Name = "txtLoadOrder";
             this.txtLoadOrder.Size = new System.Drawing.Size(86, 20);
             this.txtLoadOrder.TabIndex = 1;
@@ -61,7 +61,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(870, 575);
+            this.btnSave.Location = new System.Drawing.Point(875, 545);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 23);
             this.btnSave.TabIndex = 5;
@@ -72,7 +72,7 @@
             // btnLoadOrder
             // 
             this.btnLoadOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLoadOrder.Location = new System.Drawing.Point(20, 573);
+            this.btnLoadOrder.Location = new System.Drawing.Point(20, 543);
             this.btnLoadOrder.Name = "btnLoadOrder";
             this.btnLoadOrder.Size = new System.Drawing.Size(84, 23);
             this.btnLoadOrder.TabIndex = 6;
@@ -83,7 +83,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(789, 575);
+            this.button1.Location = new System.Drawing.Point(794, 545);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 8;
@@ -99,7 +99,7 @@
             this.purchaseOrderHeaderControl1.MinimumSize = new System.Drawing.Size(920, 145);
             this.purchaseOrderHeaderControl1.Name = "purchaseOrderHeaderControl1";
             this.purchaseOrderHeaderControl1.PurchaseOrder = null;
-            this.purchaseOrderHeaderControl1.Size = new System.Drawing.Size(925, 145);
+            this.purchaseOrderHeaderControl1.Size = new System.Drawing.Size(930, 145);
             this.purchaseOrderHeaderControl1.TabIndex = 7;
             this.purchaseOrderHeaderControl1.Load += new System.EventHandler(this.purchaseOrderHeaderControl1_Load);
             // 
@@ -116,7 +116,7 @@
             this.MaximumSize = new System.Drawing.Size(1900, 800);
             this.MinimumSize = new System.Drawing.Size(970, 0);
             this.Name = "OrderEditControl";
-            this.Size = new System.Drawing.Size(971, 617);
+            this.Size = new System.Drawing.Size(976, 587);
             this.Load += new System.EventHandler(this.OrderEditControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderLineItem)).EndInit();
             this.ResumeLayout(false);

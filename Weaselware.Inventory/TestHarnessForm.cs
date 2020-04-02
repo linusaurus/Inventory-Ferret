@@ -23,7 +23,8 @@ namespace Weaselware.InventoryFerret
 
         private void TestHarnessForm_Load(object sender, EventArgs e)
         {
-            OrderEditControl po = new OrderEditControl();
+            //OrderEditControl po = new OrderEditControl();
+            PartFinderControl po = new PartFinderControl();
             po.Dock = DockStyle.Fill;
             this.Controls.Add(po);
         }

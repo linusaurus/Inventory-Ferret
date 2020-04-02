@@ -38,6 +38,7 @@ namespace Weaselware.InventoryFerret
         public PartFinderControl()
         {
             InitializeComponent();
+            _ctx = new BadgerDataModel();
             partsService = new PartsService(_ctx);
             dgvPartsSearchResults.AutoGenerateColumns = false;
         }
@@ -112,7 +113,10 @@ namespace Weaselware.InventoryFerret
             DataGridView dgv = (DataGridView)sender;
             if (dgv.DataSource != null)
             {
-                _selectedPart = (Part)dgv.CurrentRow.DataBoundItem;
+                if (dgv.Rows.Count > 0)
+                {
+                    _selectedPart = (Part)dgv.CurrentRow.DataBoundItem;
+                }
             }
             
         }

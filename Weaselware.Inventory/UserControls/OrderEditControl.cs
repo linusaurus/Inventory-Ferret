@@ -24,6 +24,7 @@ namespace Weaselware.InventoryFerret.UserControls
         private readonly IOrdersService _orderService;
         private readonly IPartsService _partService;
         private readonly BindingSource bslineItems = new BindingSource();
+        private readonly BindingSource bsOrderHeader = new BindingSource();
         private PurchaseOrder _purchaseOrder;
         private OrderDetailDto orderDTO = new OrderDetailDto();
         private readonly IMapper<PurchaseOrder, OrderDetailDto> mapper = new PurchaseOrderMapper();
@@ -44,6 +45,7 @@ namespace Weaselware.InventoryFerret.UserControls
             dgOrderLineItem.CellEndEdit += DgOrderLineItem_CellEndEdit;
             dgOrderLineItem.CellValueChanged += DgOrderLineItem_CellValueChanged;
             bslineItems.ListChanged += BslineItems_ListChanged;
+            // Event Wiring -------------------------------------------------------------------
 
             InitializeGrid();
             btnSave.Enabled = _isDirty;
@@ -53,7 +55,7 @@ namespace Weaselware.InventoryFerret.UserControls
         {
             // Clear the row error in case the user presses ESC.   
             dgOrderLineItem.Rows[e.RowIndex].ErrorText = String.Empty;
-
+            // This little ditty sums the row-clean
             dgOrderLineItem.Rows[e.RowIndex].Cells[6].Value = (decimal) dgOrderLineItem.Rows[e.RowIndex].Cells[4].Value
                                                             *  (decimal)dgOrderLineItem.Rows[e.RowIndex].Cells[5].Value;
         }
@@ -141,13 +143,23 @@ namespace Weaselware.InventoryFerret.UserControls
                 mapper.Map(_purchaseOrder, orderDTO);
                 if (_purchaseOrder != null)
                 {
+                    bsOrderHeader.DataSource = orderDTO;
                     this.purchaseOrderHeaderControl1.SetDataSource(orderDTO);
+                    
                     LoadOrder(id);
-                 
+                    bsOrderHeader.ListChanged += BsOrderHeader_ListChanged;
                 }
             }
         }
 
+        private void BsOrderHeader_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (e.ListChangedType == System.ComponentModel.ListChangedType.ItemChanged)
+            {
+                _isDirty = true;
+                btnSave.Enabled = _isDirty;
+            };
+        }
 
         private void LoadOrder(int orderNumber)
         {

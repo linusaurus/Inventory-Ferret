@@ -16,6 +16,7 @@ namespace Weaselware.InventoryFerret.Mappers
        
         public void Map(PurchaseOrder source, OrderDetailDto destination)
         {
+            if (source == null) { return; }
             destination.ExpectedDate = source.ExpectedDate ?? DateTime.Today.AddDays(1.0);
             destination.OrderDate = source.OrderDate.Value.ToShortDateString();
             destination.JobCostName = source.Job.Jobdesc;

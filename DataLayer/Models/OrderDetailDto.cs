@@ -281,8 +281,7 @@ namespace DataLayer.Models
             get {return subTotal; }
             set
             {
-                subTotal = value;
-               
+                subTotal = value;             
                 OnPropertyChange();
             }
         }

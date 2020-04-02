@@ -52,6 +52,7 @@
             this.cbTaxable = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtSubTotal = new System.Windows.Forms.TextBox();
+            this.btnEditSupplier = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtOrderNumber
@@ -68,6 +69,7 @@
             this.txtSupplierName.Location = new System.Drawing.Point(5, 6);
             this.txtSupplierName.Margin = new System.Windows.Forms.Padding(2);
             this.txtSupplierName.Name = "txtSupplierName";
+            this.txtSupplierName.ReadOnly = true;
             this.txtSupplierName.Size = new System.Drawing.Size(289, 20);
             this.txtSupplierName.TabIndex = 1;
             // 
@@ -76,6 +78,7 @@
             this.txtSupplierAddress.Location = new System.Drawing.Point(5, 30);
             this.txtSupplierAddress.Margin = new System.Windows.Forms.Padding(2);
             this.txtSupplierAddress.Name = "txtSupplierAddress";
+            this.txtSupplierAddress.ReadOnly = true;
             this.txtSupplierAddress.Size = new System.Drawing.Size(289, 20);
             this.txtSupplierAddress.TabIndex = 1;
             // 
@@ -84,6 +87,7 @@
             this.txtCity.Location = new System.Drawing.Point(5, 54);
             this.txtCity.Margin = new System.Windows.Forms.Padding(2);
             this.txtCity.Name = "txtCity";
+            this.txtCity.ReadOnly = true;
             this.txtCity.Size = new System.Drawing.Size(155, 20);
             this.txtCity.TabIndex = 1;
             // 
@@ -92,6 +96,7 @@
             this.txtState.Location = new System.Drawing.Point(164, 54);
             this.txtState.Margin = new System.Windows.Forms.Padding(2);
             this.txtState.Name = "txtState";
+            this.txtState.ReadOnly = true;
             this.txtState.Size = new System.Drawing.Size(37, 20);
             this.txtState.TabIndex = 1;
             this.txtState.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -101,6 +106,7 @@
             this.txtZip.Location = new System.Drawing.Point(205, 54);
             this.txtZip.Margin = new System.Windows.Forms.Padding(2);
             this.txtZip.Name = "txtZip";
+            this.txtZip.ReadOnly = true;
             this.txtZip.Size = new System.Drawing.Size(89, 20);
             this.txtZip.TabIndex = 1;
             this.txtZip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -110,6 +116,7 @@
             this.txtPhone.Location = new System.Drawing.Point(69, 78);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(2);
             this.txtPhone.Name = "txtPhone";
+            this.txtPhone.ReadOnly = true;
             this.txtPhone.Size = new System.Drawing.Size(91, 20);
             this.txtPhone.TabIndex = 1;
             this.txtPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -119,6 +126,7 @@
             this.txtFax.Location = new System.Drawing.Point(205, 78);
             this.txtFax.Margin = new System.Windows.Forms.Padding(2);
             this.txtFax.Name = "txtFax";
+            this.txtFax.ReadOnly = true;
             this.txtFax.Size = new System.Drawing.Size(89, 20);
             this.txtFax.TabIndex = 1;
             this.txtFax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -234,10 +242,10 @@
             // 
             // txtMemo
             // 
-            this.txtMemo.Location = new System.Drawing.Point(354, 50);
+            this.txtMemo.Location = new System.Drawing.Point(384, 62);
             this.txtMemo.Multiline = true;
             this.txtMemo.Name = "txtMemo";
-            this.txtMemo.Size = new System.Drawing.Size(295, 65);
+            this.txtMemo.Size = new System.Drawing.Size(317, 65);
             this.txtMemo.TabIndex = 3;
             // 
             // cbTaxable
@@ -255,7 +263,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(356, 34);
+            this.label7.Location = new System.Drawing.Point(386, 44);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(99, 13);
             this.label7.TabIndex = 2;
@@ -270,8 +278,18 @@
             this.txtSubTotal.TabIndex = 0;
             this.txtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
+            // btnEditSupplier
+            // 
+            this.btnEditSupplier.Location = new System.Drawing.Point(14, 106);
+            this.btnEditSupplier.Name = "btnEditSupplier";
+            this.btnEditSupplier.Size = new System.Drawing.Size(89, 23);
+            this.btnEditSupplier.TabIndex = 5;
+            this.btnEditSupplier.Text = "Edit Supplier";
+            this.btnEditSupplier.UseVisualStyleBackColor = true;
+            // 
             // PurchaseOrderHeaderControl
             // 
+            this.Controls.Add(this.btnEditSupplier);
             this.Controls.Add(this.cbTaxable);
             this.Controls.Add(this.txtMemo);
             this.Controls.Add(this.label2);
@@ -331,5 +349,6 @@
         private System.Windows.Forms.CheckBox cbTaxable;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtSubTotal;
+        private System.Windows.Forms.Button btnEditSupplier;
     }
 }
