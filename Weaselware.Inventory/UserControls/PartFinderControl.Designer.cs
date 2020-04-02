@@ -40,7 +40,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnAddToOrder = new System.Windows.Forms.Button();
             this.btnNewPart = new System.Windows.Forms.Button();
-            this.btnAddHoc = new System.Windows.Forms.Button();
+            this.btnAddJobPart = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartsSearchResults)).BeginInit();
@@ -52,10 +52,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(3, 39);
+            this.tabControl1.Location = new System.Drawing.Point(3, 20);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(644, 206);
+            this.tabControl1.Size = new System.Drawing.Size(679, 206);
             this.tabControl1.TabIndex = 3;
             // 
             // tabPage1
@@ -67,7 +67,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(636, 180);
+            this.tabPage1.Size = new System.Drawing.Size(671, 180);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Parts Finder";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -98,7 +98,8 @@
             // 
             // dgvPartsSearchResults
             // 
-            this.dgvPartsSearchResults.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvPartsSearchResults.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvPartsSearchResults.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPartsSearchResults.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -107,7 +108,7 @@
             this.PartNumber_col});
             this.dgvPartsSearchResults.Location = new System.Drawing.Point(6, 32);
             this.dgvPartsSearchResults.Name = "dgvPartsSearchResults";
-            this.dgvPartsSearchResults.Size = new System.Drawing.Size(622, 141);
+            this.dgvPartsSearchResults.Size = new System.Drawing.Size(657, 141);
             this.dgvPartsSearchResults.TabIndex = 1;
             this.dgvPartsSearchResults.SelectionChanged += new System.EventHandler(this.dgvPartsSearchResults_SelectionChanged);
             // 
@@ -146,14 +147,15 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(636, 180);
+            this.tabPage2.Size = new System.Drawing.Size(671, 180);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Supplier Part";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // btnAddToOrder
             // 
-            this.btnAddToOrder.Location = new System.Drawing.Point(262, 6);
+            this.btnAddToOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddToOrder.Location = new System.Drawing.Point(294, 6);
             this.btnAddToOrder.Name = "btnAddToOrder";
             this.btnAddToOrder.Size = new System.Drawing.Size(123, 27);
             this.btnAddToOrder.TabIndex = 4;
@@ -163,32 +165,36 @@
             // 
             // btnNewPart
             // 
-            this.btnNewPart.Location = new System.Drawing.Point(391, 6);
+            this.btnNewPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNewPart.Location = new System.Drawing.Point(423, 6);
             this.btnNewPart.Name = "btnNewPart";
             this.btnNewPart.Size = new System.Drawing.Size(123, 27);
             this.btnNewPart.TabIndex = 4;
             this.btnNewPart.Text = "New Part";
             this.btnNewPart.UseVisualStyleBackColor = true;
+            this.btnNewPart.Click += new System.EventHandler(this.btnNewPart_Click);
             // 
-            // btnAddHoc
+            // btnAddJobPart
             // 
-            this.btnAddHoc.Location = new System.Drawing.Point(520, 6);
-            this.btnAddHoc.Name = "btnAddHoc";
-            this.btnAddHoc.Size = new System.Drawing.Size(123, 27);
-            this.btnAddHoc.TabIndex = 4;
-            this.btnAddHoc.Text = "Ad Hoc";
-            this.btnAddHoc.UseVisualStyleBackColor = true;
+            this.btnAddJobPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddJobPart.Location = new System.Drawing.Point(552, 6);
+            this.btnAddJobPart.Name = "btnAddJobPart";
+            this.btnAddJobPart.Size = new System.Drawing.Size(123, 27);
+            this.btnAddJobPart.TabIndex = 4;
+            this.btnAddJobPart.Text = "Add Job Part";
+            this.btnAddJobPart.UseVisualStyleBackColor = true;
+            this.btnAddJobPart.Click += new System.EventHandler(this.btnAddJobPart_Click);
             // 
             // PartFinderControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btnAddHoc);
+            this.Controls.Add(this.btnAddJobPart);
             this.Controls.Add(this.btnNewPart);
             this.Controls.Add(this.btnAddToOrder);
             this.Controls.Add(this.tabControl1);
             this.Name = "PartFinderControl";
-            this.Size = new System.Drawing.Size(650, 250);
+            this.Size = new System.Drawing.Size(685, 231);
             this.Load += new System.EventHandler(this.PartFinderControl_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -212,6 +218,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button btnAddToOrder;
         private System.Windows.Forms.Button btnNewPart;
-        private System.Windows.Forms.Button btnAddHoc;
+        private System.Windows.Forms.Button btnAddJobPart;
     }
 }

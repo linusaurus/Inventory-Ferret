@@ -362,7 +362,7 @@
             this.DocView});
             this.dataGridView1.Location = new System.Drawing.Point(9, 48);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(654, 282);
+            this.dataGridView1.Size = new System.Drawing.Size(594, 282);
             this.dataGridView1.TabIndex = 13;
             // 
             // DocIDColumn
@@ -526,7 +526,7 @@
             this.PartsDetailTabControl.Location = new System.Drawing.Point(17, 208);
             this.PartsDetailTabControl.Name = "PartsDetailTabControl";
             this.PartsDetailTabControl.SelectedIndex = 0;
-            this.PartsDetailTabControl.Size = new System.Drawing.Size(677, 379);
+            this.PartsDetailTabControl.Size = new System.Drawing.Size(617, 379);
             this.PartsDetailTabControl.TabIndex = 20;
             // 
             // tbResources
@@ -536,7 +536,7 @@
             this.tbResources.Location = new System.Drawing.Point(4, 22);
             this.tbResources.Name = "tbResources";
             this.tbResources.Padding = new System.Windows.Forms.Padding(3);
-            this.tbResources.Size = new System.Drawing.Size(669, 353);
+            this.tbResources.Size = new System.Drawing.Size(609, 353);
             this.tbResources.TabIndex = 0;
             this.tbResources.Text = "Resources";
             this.tbResources.UseVisualStyleBackColor = true;
@@ -555,7 +555,7 @@
             this.tbTransactions.Location = new System.Drawing.Point(4, 22);
             this.tbTransactions.Name = "tbTransactions";
             this.tbTransactions.Padding = new System.Windows.Forms.Padding(3);
-            this.tbTransactions.Size = new System.Drawing.Size(606, 323);
+            this.tbTransactions.Size = new System.Drawing.Size(669, 353);
             this.tbTransactions.TabIndex = 1;
             this.tbTransactions.Text = "Transactions";
             this.tbTransactions.UseVisualStyleBackColor = true;
@@ -730,7 +730,7 @@
             this.tbAdvanced.Controls.Add(this.labelBoilingPoint);
             this.tbAdvanced.Location = new System.Drawing.Point(4, 22);
             this.tbAdvanced.Name = "tbAdvanced";
-            this.tbAdvanced.Size = new System.Drawing.Size(606, 323);
+            this.tbAdvanced.Size = new System.Drawing.Size(669, 353);
             this.tbAdvanced.TabIndex = 2;
             this.tbAdvanced.Text = "Advanced";
             this.tbAdvanced.UseVisualStyleBackColor = true;

@@ -181,7 +181,8 @@ namespace Weaselware.InventoryFerret
             _part.ModifiedDate = DateTime.Today;
             //-------------------------------------
             _context.SaveChanges();
-
+            
+            
             TabPage tabpage = (TabPage)this.Parent;
             TabControl tabControl = (TabControl)tabpage.Parent;
             tabControl.TabPages.Remove(tabpage);
