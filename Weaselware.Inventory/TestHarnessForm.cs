@@ -27,7 +27,7 @@ namespace Weaselware.InventoryFerret
         private void TestHarnessForm_Load(object sender, EventArgs e)
         {
             //OrderEditControl po = new OrderEditControl();
-            PartFinderControl po = new PartFinderControl(_ctx);
+            PartFinderControl po = new PartFinderControl(_ctx,16);
             po.Dock = DockStyle.Fill;
             this.Controls.Add(po);
             // Wireup the events --

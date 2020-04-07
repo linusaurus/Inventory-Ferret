@@ -19,6 +19,8 @@ namespace Weaselware.InventoryFerret
         private static readonly Mediator _Instance = new Mediator();
         private Mediator() { }
 
+        public event EventHandler<OrderChangedArgs> OrderOpen;
+
 
         public static Mediator GetInstance()
         { return _Instance; }
@@ -48,16 +50,27 @@ namespace Weaselware.InventoryFerret
                 OrderChangedDelegate(this, new OrderChangedArgs { Order = order });
             }
         }
+        /// <summary>
+        /// When an Order needs to be Rendered
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="order"></param>
+        public void OnOrderOpened(object sender, PurchaseOrder order)
+        {
+
+            var OrderChangedDelegate = OrderChanged as EventHandler<OrderChangedArgs>;
+            if (OrderChangedDelegate != null)
+            {
+                OrderChangedDelegate(this, new OrderChangedArgs { Order = order });
+            }
+        }
 
 
 
         #endregion
 
 
-
         #region TabChanged
-
-
 
         public event EventHandler<TabPageChangedArgs> TabChanged;
         public void OnTabChanged(object sender, System.Windows.Forms.TabPage SelectedPage)

@@ -18,10 +18,13 @@ namespace Weaselware.InventoryFerret
     {
         private readonly BadgerDataModel _ctx;
         IPartsService partsService;
+        IOrdersService _ordersService;
         SearchOptions _searchOptions = SearchOptions.Contains;
         private Part _selectedPart;
         String currentPartSearch;
         BindingSource bsPart = new BindingSource();
+        private readonly List<SupplierLineItemDto> 
+            supplierLineItems = new List<SupplierLineItemDto>();
 
         #region Events
 
@@ -47,15 +50,34 @@ namespace Weaselware.InventoryFerret
 
         public Part SelectedPart { get => _selectedPart; set => _selectedPart = value; }
 
-        public PartFinderControl(BadgerDataModel context)
+        public PartFinderControl(BadgerDataModel context,int supplierID)
         {
             InitializeComponent();
             _ctx = context;
             partsService = new PartsService(_ctx);
+            _ordersService = new OrdersService(_ctx);
             dgvPartsSearchResults.AutoGenerateColumns = false;
+            dgSupplierParts.AutoGenerateColumns = false;
+            //This init the EF query-strangly its needed 
+            Part blow = partsService.Find(1);
+            supplierLineItems = _ordersService.GetSupplierLineItems(supplierID);
+            dgSupplierParts.DataSource = supplierLineItems;
+            dgSupplierParts.CellContentClick += DgSupplierParts_CellContentClick;
         }
 
-    
+        private void DgSupplierParts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dg = (DataGridView)sender;
+            int orderNumber = int.Parse(dg.CurrentCell.FormattedValue.ToString());
+
+            var order = _ordersService.GetOrderByID(5000);
+
+            // Open a Purchase Order Page for the order
+
+            Mediator.GetInstance().OnOrderOpened(this,order);
+
+        }
+
         private void PartFinderControl_Load(object sender, EventArgs e)
         {
 
