@@ -20,7 +20,7 @@ namespace Weaselware.InventoryFerret
         //Internals
         PurchaseOrder _po;
         Supplier _supplier = null;
-        Employee _employee = null;
+       
 
 
         // DATA OBJECTS
@@ -29,6 +29,7 @@ namespace Weaselware.InventoryFerret
         IOrdersService _ordersService;
         BadgerDataModel _ctx;
         BindingSource bsLineItems;
+        BindingSource bsOrderHeader;
         Part _selectedPart = null;
         PurchaseLineItem _selectedPurchaseLineItem = null;
         OrderDetailDto orderHeader = new OrderDetailDto();
@@ -37,7 +38,7 @@ namespace Weaselware.InventoryFerret
        
         bool _isDirty = false;
         IMapper<PurchaseOrder, OrderDetailDto> mapper;
-
+        
 
         // Repos
         SuppliersService _suppliersService;
@@ -49,13 +50,6 @@ namespace Weaselware.InventoryFerret
         {
             InitializeComponent();
             _po = purchaseOrder;
-            
-          
-            // Init the repos old school
-            //_suppliersService = new SuppliersService(_ctx);
-            //_orderService = new OrdersService(_ctx);
-            //_partsService = new PartsService(_ctx);
-            //_jobsService = new JobsService(_ctx);
 
         }
 
@@ -75,13 +69,11 @@ namespace Weaselware.InventoryFerret
             _partService = new PartsService(_ctx);
             _ordersService = new OrdersService(_ctx);
             bsLineItems = new BindingSource();
-
+            bsOrderHeader = new BindingSource();
             _supplier = _suppliersService.Find(_po.SupplierId.Value);
-
-            dgSupplierParts.AutoGenerateColumns = false;
+         
             supplierLineItems = _ordersService.GetSupplierLineItems(_supplier.SupplierId);
-            
-            dgSupplierParts.DataSource = _ordersService.GetSupplierLineItems(_supplier.SupplierId);
+                
         }
 
         private void BsLineItems_CurrentItemChanged(object sender, EventArgs e)
@@ -109,11 +101,19 @@ namespace Weaselware.InventoryFerret
             view.CellValueChanged += View_CellValueChanged;
             view.CellContentClick += View_CellContentClick;
             bsLineItems.ListChanged += BsLineItems_ListChanged;
+            bsOrderHeader.DataSource = _ordersService.GetOrderDTO(_po.OrderNum);
             OrderDetailDto header = _ordersService.GetOrderDTO(_po.OrderNum);
+            bsOrderHeader.DataSource = header;
             this.purchaseOrderHeaderControl1.SetDataSource(header);
 
+            bsOrderHeader.ListChanged += BsOrderHeader_ListChanged;
             btnSave.Enabled = _isDirty;
 
+        }
+
+        private void BsOrderHeader_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void BsLineItems_ListChanged(object sender, ListChangedEventArgs e)
@@ -276,7 +276,7 @@ namespace Weaselware.InventoryFerret
         private void BindGrid()
         {
 
-            var t = _ordersService.GetOrderByID(5000).PurchaseLineItem;
+            var t = _ordersService.GetOrderByID(_po.OrderNum).PurchaseLineItem;
 
             foreach (var item in t)
             {
@@ -364,15 +364,26 @@ namespace Weaselware.InventoryFerret
                         result += ((PurchaseLineItemWrapper)item).Extended;
                     }
 
-                }
-
-                
-                this.txtOrderTotal.Text = result.ToString("C");
+                }               
+              
                 _po.OrderTotal = result;
                  mapper.Map(_po, orderHeader);
                 purchaseOrderHeaderControl1.SetDataSource(orderHeader);
+                partFinderControl1.LoadDatasource(_ctx, _po.SupplierId.Value);
+                partFinderControl1.OnJobPartAdded += PartFinderControl1_OnJobPartAdded;
+                partFinderControl1.OnPartAdded += PartFinderControl1_OnPartAdded;
                 
             }
+        }
+
+        private void PartFinderControl1_OnPartAdded(object sender, PartFinderControl.PartAddedArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void PartFinderControl1_OnJobPartAdded(object sender, PartFinderControl.JobPartAddedArgs e)
+        {
+            throw new NotImplementedException();
         }
 
         private void View_DataError(object sender, DataGridViewDataErrorEventArgs e)
@@ -429,30 +440,7 @@ namespace Weaselware.InventoryFerret
             bsLineItems.ResetBindings(false);
         }
 
-        private void tbPartsSearch_TextChanged(object sender, EventArgs e)
-        {
-            TextBox tb = (TextBox)sender;
-            string search = tb.Text;
-            //partsService = new PartsService(_ctx);
-            var parts = _partService.SearchParts(search, SearchOptions.Contains);
-            this.lbPartsResults.DisplayMember = "ItemDescription";
-            this.lbPartsResults.DataSource = parts;
-
-        }
-  
-
         #region Search engines
-
-        private void tbSuppliersSearch_TextChanged(object sender, EventArgs e)
-        {
-            TextBox tb = (TextBox)sender;
-            string search = tb.Text;
-            //dgSupplierParts.DataSource.
-            var suppliers = _ordersService.GetSupplierLineItems(_supplier.SupplierId).Where(r => r.Description.Contains(search));
-            dgSupplierParts.DataSource = null;
-            dgSupplierParts.DataSource = suppliers;
-        }
-
 
         #endregion
 

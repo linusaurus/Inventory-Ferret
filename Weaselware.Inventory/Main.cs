@@ -16,6 +16,7 @@ namespace Weaselware.InventoryFerret {
         BadgerDataModel _context;
         int _loggedOnUserID;
         readonly OrdersService _ordersService;
+        Mediator mediator;
 
         public TabControl MainTabs {get;set;}
 
@@ -31,6 +32,7 @@ namespace Weaselware.InventoryFerret {
             _context = new BadgerDataModel();
             _ordersService = new OrdersService(_context);
             MainTabs = MainTabControl;
+            Mediator.GetInstance().OrderOpen += Main_OrderOpen;
         }
 
         public  TabControl GetTabControl()
@@ -52,12 +54,17 @@ namespace Weaselware.InventoryFerret {
             // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.ItemSearchPage));
             // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.RecieptManagerPage));
 
-            Mediator.GetInstance().OrderOpen += Main_OrderOpen;
+           
            
 
         }
 
         //Region Global new tab generator --------------------
+
+        public void OpenAnOrder(PurchaseOrder order)
+        {
+            MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage, order));
+        }
 
         private void Main_OrderOpen(object sender, OrderChangedArgs e)
         {
@@ -156,7 +163,7 @@ namespace Weaselware.InventoryFerret {
             // _ordersService.Add(order);
             // Test open existing order
 
-            var order = _ordersService.GetOrderByID(5000);
+            var order = _ordersService.GetOrderByID(23415);
  
             // Purchase Order Page
             MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage,order));

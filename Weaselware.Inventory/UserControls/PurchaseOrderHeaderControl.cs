@@ -23,14 +23,23 @@ namespace Weaselware.InventoryFerret
 
         public OrderDetailDto PurchaseOrder { get => _purchaseOrder; set => _purchaseOrder = value; }
 
+       
+
         public PurchaseOrderHeaderControl()
         {
             InitializeComponent();
             _TaxRate = Weaselware.InventoryFerret.Properties.Settings.Default.Taxrate;
         }
 
-     
+        //// Changed to using BindingSource ---
+        //public void SetDataSource(BindingSource purchaseOrder)
+        //{
+        //    PurchaseOrder = purchaseOrder;
+        //    Bind();
+        //}
 
+
+        // Changed to using BindingSource ---
         public void SetDataSource(OrderDetailDto purchaseOrder)
         {
             PurchaseOrder = purchaseOrder;

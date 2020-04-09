@@ -29,8 +29,8 @@ namespace Weaselware.InventoryFerret
 
             // Standard App Startup
             //---------------------------------------------------------------------------------
-           // Main mainForm = new Main();  -- replace normal main from
-            TestHarnessForm mainForm = new TestHarnessForm();
+            Main mainForm = new Main();  
+           // TestHarnessForm mainForm = new TestHarnessForm();
            
             mainForm.LoggedOnUserID = 8;
             Globals.CurrentLoggedUserID = 8;

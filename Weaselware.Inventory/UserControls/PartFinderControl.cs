@@ -16,16 +16,16 @@ namespace Weaselware.InventoryFerret
 {
     public partial class PartFinderControl : UserControl
     {
-        private readonly BadgerDataModel _ctx;
+        private  BadgerDataModel _ctx;
         IPartsService partsService;
         IOrdersService _ordersService;
         SearchOptions _searchOptions = SearchOptions.Contains;
         private Part _selectedPart;
         String currentPartSearch;
         BindingSource bsPart = new BindingSource();
-        private readonly List<SupplierLineItemDto> 
+        private  List<SupplierLineItemDto> 
             supplierLineItems = new List<SupplierLineItemDto>();
-
+        
         #region Events
 
         // Standard Part --------------
@@ -50,9 +50,18 @@ namespace Weaselware.InventoryFerret
 
         public Part SelectedPart { get => _selectedPart; set => _selectedPart = value; }
 
-        public PartFinderControl(BadgerDataModel context,int supplierID)
+        public PartFinderControl()
         {
             InitializeComponent();
+
+            
+           
+        }
+
+      
+
+        public void LoadDatasource(BadgerDataModel context, int supplierID)
+        {
             _ctx = context;
             partsService = new PartsService(_ctx);
             _ordersService = new OrdersService(_ctx);
@@ -65,17 +74,22 @@ namespace Weaselware.InventoryFerret
             dgSupplierParts.CellContentClick += DgSupplierParts_CellContentClick;
         }
 
-        private void DgSupplierParts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public PartFinderControl(BadgerDataModel context,int supplierID)
         {
-            DataGridView dg = (DataGridView)sender;
-            int orderNumber = int.Parse(dg.CurrentCell.FormattedValue.ToString());
+            InitializeComponent();         
+        }
 
-            var order = _ordersService.GetOrderByID(5000);
+        private void DgSupplierParts_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {               
+                DataGridView dg = (DataGridView)sender;
+                DataGridViewLinkCell cell = (DataGridViewLinkCell)
+                                 dg.Rows[e.RowIndex].Cells[e.ColumnIndex];
+                int orderNumber = int.Parse(cell.FormattedValue.ToString());
 
-            // Open a Purchase Order Page for the order
-
-            Mediator.GetInstance().OnOrderOpened(this,order);
-
+                var order = _ordersService.GetOrderByID(orderNumber);
+                //--Open a Purchase Order Page for the order---
+                Mediator.GetInstance().OnOrderOpened(this, order);
+ 
         }
 
         private void PartFinderControl_Load(object sender, EventArgs e)
@@ -97,7 +111,6 @@ namespace Weaselware.InventoryFerret
         {
             var parts = partsService.SearchParts(search, _searchOptions);
             this.dgvPartsSearchResults.DataSource = parts;
-
         }
         #region Search Options
 

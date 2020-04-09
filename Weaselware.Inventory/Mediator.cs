@@ -58,10 +58,10 @@ namespace Weaselware.InventoryFerret
         public void OnOrderOpened(object sender, PurchaseOrder order)
         {
 
-            var OrderChangedDelegate = OrderChanged as EventHandler<OrderChangedArgs>;
-            if (OrderChangedDelegate != null)
+            var OrderOpenedDelegate = OrderOpen as EventHandler<OrderChangedArgs>;
+            if (OrderOpenedDelegate != null)
             {
-                OrderChangedDelegate(this, new OrderChangedArgs { Order = order });
+                OrderOpenedDelegate(this, new OrderChangedArgs { Order = order });
             }
         }
 
