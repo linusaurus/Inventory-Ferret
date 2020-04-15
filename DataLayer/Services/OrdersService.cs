@@ -335,6 +335,7 @@ namespace DataLayer.Services {
             order.ExpectedDate = orderDTO.ExpectedDate;
             order.JobId = orderDTO.JobID;
             order.Memo = orderDTO.Memo;
+           
             order.SalesRep = orderDTO.SalesRep;
             order.EmployeeId = orderDTO.EmployeeID;
             order.OrderNum = orderDTO.PurchaseOrderID;

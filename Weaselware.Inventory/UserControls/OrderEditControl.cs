@@ -45,6 +45,7 @@ namespace Weaselware.InventoryFerret.UserControls
             dgOrderLineItem.CellEndEdit += DgOrderLineItem_CellEndEdit;
             dgOrderLineItem.CellValueChanged += DgOrderLineItem_CellValueChanged;
             bslineItems.ListChanged += BslineItems_ListChanged;
+            partFinderControl1.OnJobPartAdded += PartFinderControl1_OnJobPartAdded;
             // Event Wiring -------------------------------------------------------------------
 
             InitializeGrid();
@@ -55,7 +56,7 @@ namespace Weaselware.InventoryFerret.UserControls
         {
             // Clear the row error in case the user presses ESC.   
             dgOrderLineItem.Rows[e.RowIndex].ErrorText = String.Empty;
-            // This little ditty sums the row-clean
+            // This little ditty sums the row-cleanly
             dgOrderLineItem.Rows[e.RowIndex].Cells[6].Value = (decimal) dgOrderLineItem.Rows[e.RowIndex].Cells[4].Value
                                                             *  (decimal)dgOrderLineItem.Rows[e.RowIndex].Cells[5].Value;
         }
@@ -128,28 +129,34 @@ namespace Weaselware.InventoryFerret.UserControls
             ;
         }
 
-        /// <summary>
-        /// Load Order
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnLoadOrder_Click(object sender, EventArgs e)
+    
+        public void LoadByID(int id)
         {
-            string test = txtLoadOrder.Text;
-            int id;
-            if (int.TryParse(test,out id))
+           
+            if (id != default)
             {
                 _purchaseOrder = _orderService.GetOrderByID(id);
                 mapper.Map(_purchaseOrder, orderDTO);
+                bsOrderHeader.DataSource = orderDTO;
                 if (_purchaseOrder != null)
                 {
                     bsOrderHeader.DataSource = orderDTO;
-                    this.purchaseOrderHeaderControl1.SetDataSource(orderDTO);
-                    
+                    this.purchaseOrderHeaderControl1.SetDataSource(bsOrderHeader);
+
                     LoadOrder(id);
                     bsOrderHeader.ListChanged += BsOrderHeader_ListChanged;
+                    this.partFinderControl1.LoadDatasource(_context, _purchaseOrder.SupplierId.Value);
+                   
+                   
                 }
             }
+        }
+
+  
+
+        private void PartFinderControl1_OnJobPartAdded(object sender, PartFinderControl.JobPartAddedArgs e)
+        {
+            bslineItems.Add(new LineItemDto {Description="shit",PurchaseOrderID=_purchaseOrder.OrderNum,JobID=_purchaseOrder.JobId.Value });
         }
 
         private void BsOrderHeader_ListChanged(object sender, ListChangedEventArgs e)
@@ -189,8 +196,7 @@ namespace Weaselware.InventoryFerret.UserControls
             _orderService.CreateOrUpdateOrder(orderDTO);
             _isDirty = false;
             btnSave.Enabled = false;
-           // _orderService.Save();
-           
+            LoadByID(_purchaseOrder.OrderNum);
         }
 
         

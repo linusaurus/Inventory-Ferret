@@ -18,12 +18,13 @@ namespace Weaselware.InventoryFerret
     public partial class PurchaseOrderHeaderControl : UserControl
     {
 
-        OrderDetailDto _purchaseOrder;
+        //OrderDetailDto _purchaseOrder;
+        BindingSource _purchaseOrder;
         private  decimal _TaxRate;
 
-        public OrderDetailDto PurchaseOrder { get => _purchaseOrder; set => _purchaseOrder = value; }
+        //public OrderDetailDto PurchaseOrder { get => _purchaseOrder; set => _purchaseOrder = value; }
+        public BindingSource PurchaseOrder { get => _purchaseOrder; set => _purchaseOrder = value; }
 
-       
 
         public PurchaseOrderHeaderControl()
         {
@@ -32,15 +33,7 @@ namespace Weaselware.InventoryFerret
         }
 
         //// Changed to using BindingSource ---
-        //public void SetDataSource(BindingSource purchaseOrder)
-        //{
-        //    PurchaseOrder = purchaseOrder;
-        //    Bind();
-        //}
-
-
-        // Changed to using BindingSource ---
-        public void SetDataSource(OrderDetailDto purchaseOrder)
+        public void SetDataSource(BindingSource purchaseOrder)
         {
             PurchaseOrder = purchaseOrder;
             Bind();

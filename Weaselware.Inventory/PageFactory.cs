@@ -30,7 +30,7 @@ namespace Weaselware.InventoryFerret
 
         }
         
-        public static TabPage GetNewTabPage(BadgerDataModel ctx,TabPageType pageType,object model = null)
+        public static TabPage GetNewTabPage(BadgerDataModel ctx,TabPageType pageType,object key = null)
         {
             TabPage tab = new TabPage();
 
@@ -102,22 +102,23 @@ namespace Weaselware.InventoryFerret
                     break;
                 case TabPageType.PartDetailEdit:
                     {
-                        if (model is Part)
-                        {
-                            Part p = model as Part;
-                            tab.Text = $"Part Edit : {p.PartID.ToString()}";
-                            PartView ctr = new PartView(p,ctx);
-                            ctr.Dock = DockStyle.Fill;
-                            tab.Controls.Add(ctr);
-                        }
+                        //if (model is Part)
+                        //{
+                        //    Part p = model as Part;
+                        //    tab.Text = $"Part Edit : {p.PartID.ToString()}";
+                        //    PartView ctr = new PartView(p,ctx);
+                        //    ctr.Dock = DockStyle.Fill;
+                        //    tab.Controls.Add(ctr);
+                        //}
              
                     }
                     break;
                 case TabPageType.PurchaseOrderPage:
                     {
-                    var order = (PurchaseOrder)model;
-                    tab.Text = $"Purchase Order :{order.OrderNum.ToString()}";
-                    PurchaseOrderControl ctr = new PurchaseOrderControl(ctx,model as PurchaseOrder);
+                   // var order = (PurchaseOrder)model;
+                    tab.Text = $"Purchase Order :{key.ToString()}";
+                    OrderEditControl ctr = new OrderEditControl();
+                    ctr.LoadByID((int)key);
                     ctr.Dock = DockStyle.Fill;
                     tab.Controls.Add(ctr);
                     }

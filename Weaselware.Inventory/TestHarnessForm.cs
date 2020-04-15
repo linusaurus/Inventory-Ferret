@@ -26,13 +26,13 @@ namespace Weaselware.InventoryFerret
 
         private void TestHarnessForm_Load(object sender, EventArgs e)
         {
-            //OrderEditControl po = new OrderEditControl();
-            PartFinderControl po = new PartFinderControl(_ctx,16);
+            OrderEditControl po = new OrderEditControl();
+            //PartFinderControl po = new PartFinderControl(_ctx,16);
             po.Dock = DockStyle.Fill;
             this.Controls.Add(po);
             // Wireup the events --
-            po.OnPartAdded += Po_OnPartAdded;
-            po.OnJobPartAdded += Po_OnJobPartAdded;
+            //po.OnPartAdded += Po_OnPartAdded;
+           // po.OnJobPartAdded += Po_OnJobPartAdded;
         }
 
         private void Po_OnJobPartAdded(object sender, PartFinderControl.JobPartAddedArgs e)

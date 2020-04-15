@@ -166,7 +166,7 @@ namespace Weaselware.InventoryFerret {
             var order = _ordersService.GetOrderByID(23415);
  
             // Purchase Order Page
-            MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage,order));
+            MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage,23415));
 
         }
 

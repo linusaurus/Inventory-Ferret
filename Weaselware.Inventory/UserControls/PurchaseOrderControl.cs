@@ -59,15 +59,16 @@ namespace Weaselware.InventoryFerret
             InitializeComponent();
             _po = purchaseOrder;
 
-
             mapper = new Mappers.PurchaseOrderMapper();
             mapper.Map(_po, orderHeader);
-          
+           
              _ctx = new BadgerDataModel();
+            // Load related children data
             _selectedMeasure = new UnitOfMeasure { UID = 1, Uom = "Each" };
             _suppliersService = new SuppliersService(_ctx);
             _partService = new PartsService(_ctx);
             _ordersService = new OrdersService(_ctx);
+            // ----------------------------------
             bsLineItems = new BindingSource();
             bsOrderHeader = new BindingSource();
             _supplier = _suppliersService.Find(_po.SupplierId.Value);
@@ -101,10 +102,10 @@ namespace Weaselware.InventoryFerret
             view.CellValueChanged += View_CellValueChanged;
             view.CellContentClick += View_CellContentClick;
             bsLineItems.ListChanged += BsLineItems_ListChanged;
-            bsOrderHeader.DataSource = _ordersService.GetOrderDTO(_po.OrderNum);
-            OrderDetailDto header = _ordersService.GetOrderDTO(_po.OrderNum);
-            bsOrderHeader.DataSource = header;
-            this.purchaseOrderHeaderControl1.SetDataSource(header);
+            //bsOrderHeader.DataSource = _ordersService.GetOrderDTO(_po.OrderNum);
+            //OrderDetailDto header = _ordersService.GetOrderDTO(_po.OrderNum);
+            bsOrderHeader.DataSource = orderHeader;
+            this.purchaseOrderHeaderControl1.SetDataSource(bsOrderHeader);
 
             bsOrderHeader.ListChanged += BsOrderHeader_ListChanged;
             btnSave.Enabled = _isDirty;
@@ -113,7 +114,17 @@ namespace Weaselware.InventoryFerret
 
         private void BsOrderHeader_ListChanged(object sender, ListChangedEventArgs e)
         {
-            throw new NotImplementedException();
+            if (e.ListChangedType == System.ComponentModel.ListChangedType.ItemChanged)
+            {
+                _isDirty = true;
+                btnSave.Enabled = _isDirty;
+            }
+            if (e.ListChangedType == ListChangedType.ItemDeleted)
+            {
+                _isDirty = true;
+                btnSave.Enabled = _isDirty;
+
+            }
         }
 
         private void BsLineItems_ListChanged(object sender, ListChangedEventArgs e)
@@ -163,15 +174,30 @@ namespace Weaselware.InventoryFerret
 
         private void btnRemove_Click(object sender, EventArgs e)
         {
-            if (_selectedPurchaseLineItem != null)
+            if (view.DataSource != null)
             {
-                if (_selectedPurchaseLineItem.LineID != default(int))
+                if (view.Rows.Count > 0)
                 {
-                    _ctx.PurchaseLineItem.Remove(_selectedPurchaseLineItem);
+                    foreach (DataGridViewRow row in view.SelectedRows)
+                    {
+                        if (row.DataBoundItem != null)
+                        {
+                            PurchaseLineItem line = ((PurchaseLineItemWrapper)row.DataBoundItem).Model;
+                           
+                            if (line.LineID != default(int))
+                            {
+                                _ctx.PurchaseLineItem.Remove(line);
 
+                            }
+
+                            SaveChanges();
+                        }
+
+                    }
+                    
+                   
                 }
-
-                SaveChanges();
+               
             }
         }
 
@@ -276,7 +302,8 @@ namespace Weaselware.InventoryFerret
         private void BindGrid()
         {
 
-            var t = _ordersService.GetOrderByID(_po.OrderNum).PurchaseLineItem;
+            //var t = _ordersService.GetOrderByID(_po.OrderNum).PurchaseLineItem;
+            var t = _po.PurchaseLineItem;
 
             foreach (var item in t)
             {
@@ -368,7 +395,7 @@ namespace Weaselware.InventoryFerret
               
                 _po.OrderTotal = result;
                  mapper.Map(_po, orderHeader);
-                purchaseOrderHeaderControl1.SetDataSource(orderHeader);
+                purchaseOrderHeaderControl1.SetDataSource(bsOrderHeader);
                 partFinderControl1.LoadDatasource(_ctx, _po.SupplierId.Value);
                 partFinderControl1.OnJobPartAdded += PartFinderControl1_OnJobPartAdded;
                 partFinderControl1.OnPartAdded += PartFinderControl1_OnPartAdded;
@@ -433,6 +460,7 @@ namespace Weaselware.InventoryFerret
         private void SaveChanges()
         {
             _ctx.SaveChanges();
+            _ordersService.CreateOrUpdateOrder(orderHeader);
             _isDirty = false;
             btnSave.Enabled = false;
             view.Rows.Clear();
@@ -499,8 +527,6 @@ namespace Weaselware.InventoryFerret
             TextBox tb = (TextBox)sender;
 
         }
-
-
 
         #region Error Validation
 

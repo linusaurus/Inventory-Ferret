@@ -40,14 +40,14 @@
             this.PartNumber_col = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbSearchParts = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.btnAddToOrder = new System.Windows.Forms.Button();
-            this.btnNewPart = new System.Windows.Forms.Button();
-            this.btnAddJobPart = new System.Windows.Forms.Button();
             this.dgSupplierParts = new System.Windows.Forms.DataGridView();
             this.colPartId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colQnty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOrderNum = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.btnAddToOrder = new System.Windows.Forms.Button();
+            this.btnNewPart = new System.Windows.Forms.Button();
+            this.btnAddJobPart = new System.Windows.Forms.Button();
             this.tbSupplier.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPartsSearchResults)).BeginInit();
@@ -162,39 +162,6 @@
             this.tabPage2.Text = "Supplier Purchases";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // btnAddToOrder
-            // 
-            this.btnAddToOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddToOrder.Location = new System.Drawing.Point(294, 6);
-            this.btnAddToOrder.Name = "btnAddToOrder";
-            this.btnAddToOrder.Size = new System.Drawing.Size(123, 27);
-            this.btnAddToOrder.TabIndex = 4;
-            this.btnAddToOrder.Text = "Add to Order";
-            this.btnAddToOrder.UseVisualStyleBackColor = true;
-            this.btnAddToOrder.Click += new System.EventHandler(this.btnAddToOrder_Click);
-            // 
-            // btnNewPart
-            // 
-            this.btnNewPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNewPart.Location = new System.Drawing.Point(423, 6);
-            this.btnNewPart.Name = "btnNewPart";
-            this.btnNewPart.Size = new System.Drawing.Size(123, 27);
-            this.btnNewPart.TabIndex = 4;
-            this.btnNewPart.Text = "Use Supplier Part";
-            this.btnNewPart.UseVisualStyleBackColor = true;
-            this.btnNewPart.Click += new System.EventHandler(this.btnNewPart_Click);
-            // 
-            // btnAddJobPart
-            // 
-            this.btnAddJobPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddJobPart.Location = new System.Drawing.Point(552, 6);
-            this.btnAddJobPart.Name = "btnAddJobPart";
-            this.btnAddJobPart.Size = new System.Drawing.Size(123, 27);
-            this.btnAddJobPart.TabIndex = 4;
-            this.btnAddJobPart.Text = "Add Job Part";
-            this.btnAddJobPart.UseVisualStyleBackColor = true;
-            this.btnAddJobPart.Click += new System.EventHandler(this.btnAddJobPart_Click);
-            // 
             // dgSupplierParts
             // 
             this.dgSupplierParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -241,6 +208,40 @@
             this.colOrderNum.Name = "colOrderNum";
             this.colOrderNum.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.colOrderNum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // btnAddToOrder
+            // 
+            this.btnAddToOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddToOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddToOrder.Location = new System.Drawing.Point(294, 6);
+            this.btnAddToOrder.Name = "btnAddToOrder";
+            this.btnAddToOrder.Size = new System.Drawing.Size(123, 27);
+            this.btnAddToOrder.TabIndex = 4;
+            this.btnAddToOrder.Text = "Add to Order";
+            this.btnAddToOrder.UseVisualStyleBackColor = true;
+            this.btnAddToOrder.Click += new System.EventHandler(this.btnAddToOrder_Click);
+            // 
+            // btnNewPart
+            // 
+            this.btnNewPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNewPart.Location = new System.Drawing.Point(423, 6);
+            this.btnNewPart.Name = "btnNewPart";
+            this.btnNewPart.Size = new System.Drawing.Size(123, 27);
+            this.btnNewPart.TabIndex = 4;
+            this.btnNewPart.Text = "Use Supplier Part";
+            this.btnNewPart.UseVisualStyleBackColor = true;
+            this.btnNewPart.Click += new System.EventHandler(this.btnNewPart_Click);
+            // 
+            // btnAddJobPart
+            // 
+            this.btnAddJobPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddJobPart.Location = new System.Drawing.Point(552, 6);
+            this.btnAddJobPart.Name = "btnAddJobPart";
+            this.btnAddJobPart.Size = new System.Drawing.Size(123, 27);
+            this.btnAddJobPart.TabIndex = 4;
+            this.btnAddJobPart.Text = "Add Job Part";
+            this.btnAddJobPart.UseVisualStyleBackColor = true;
+            this.btnAddJobPart.Click += new System.EventHandler(this.btnAddJobPart_Click);
             // 
             // PartFinderControl
             // 
