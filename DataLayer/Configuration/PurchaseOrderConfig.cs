@@ -83,6 +83,10 @@ namespace DataLayer.Entities.Configuration
                 .HasColumnType("money")
                 .HasDefaultValueSql("((0.0))");
 
+            entity.HasMany(d => d.OrderFee)
+                .WithOne(e => e.PurchaseOrder)
+                .HasForeignKey(p => p.OrderfeeID);
+
             entity.HasOne(d => d.Employee)
                 .WithMany(p => p.PurchaseOrder)
                 .HasForeignKey(d => d.EmployeeId)

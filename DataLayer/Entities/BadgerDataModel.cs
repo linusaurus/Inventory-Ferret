@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using DataLayer.Entities.Configuration;
+using DataLayer.Configuration;
 
 namespace DataLayer.Entities
 {
@@ -45,6 +46,7 @@ namespace DataLayer.Entities
         public virtual DbSet<PartClass> PartClass { get; set; }
         public virtual DbSet<PartType> PartType { get; set; }
         public virtual DbSet<PartTypes> PartTypes { get; set; }
+        public virtual DbSet<OrderFee> OrderFee { get; set; }
        
   
        
@@ -97,7 +99,7 @@ namespace DataLayer.Entities
             modelBuilder.ApplyConfiguration(new UnitOfMeasureConfig());
             modelBuilder.ApplyConfiguration(new UnitOfPurchaseConfig());
             modelBuilder.ApplyConfiguration(new PurchaseOrderConfig());
-         
+            modelBuilder.ApplyConfiguration(new OrderFeeConfig());
 
             modelBuilder.Entity<Employee>(entity =>
             {

@@ -152,11 +152,9 @@ namespace Weaselware.InventoryFerret.UserControls
             }
         }
 
-  
-
         private void PartFinderControl1_OnJobPartAdded(object sender, PartFinderControl.JobPartAddedArgs e)
         {
-            bslineItems.Add(new LineItemDto {Description="shit",PurchaseOrderID=_purchaseOrder.OrderNum,JobID=_purchaseOrder.JobId.Value });
+            bslineItems.Add(new LineItemDto {Description="New Job Item",PurchaseOrderID=_purchaseOrder.OrderNum,JobID=_purchaseOrder.JobId.Value });
         }
 
         private void BsOrderHeader_ListChanged(object sender, ListChangedEventArgs e)
@@ -287,6 +285,18 @@ namespace Weaselware.InventoryFerret.UserControls
         private void purchaseOrderHeaderControl1_Load(object sender, EventArgs e)
         {
 
+        }
+        /// <summary>
+        /// Add an Order Fee
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnAddOrderFee_Click(object sender, EventArgs e)
+        {
+            if (_purchaseOrder != null && _purchaseOrder.OrderNum != default)
+            {
+                
+            }
         }
     }
 }

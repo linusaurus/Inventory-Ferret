@@ -304,6 +304,8 @@ namespace DataLayer.Models
         }
  
         public IList<LineItemDto> LineItems { get; set; } = new List<LineItemDto>();
+        public IList<OrderFeeDto> OrderFees { get; set; } = new List<OrderFeeDto>();
+        public IList<Attachment> Attachments { get; set; } = new List<Attachment>();
         
 
         protected void OnPropertyChange([CallerMemberName] string name=null)

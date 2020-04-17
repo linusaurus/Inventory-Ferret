@@ -61,4 +61,24 @@ namespace Weaselware.InventoryFerret.Mappers
            
         }
     }
+
+    public class OrderFeeMapper : IMapper<OrderFee, OrderFeeDto>
+    {
+        public void Map(OrderFee source, OrderFeeDto destination)
+        {
+            destination.OrderFeeID = source.OrderfeeID;
+            destination.FeeName = source.FeeName;
+            destination.Qnty = source.Qnty.GetValueOrDefault();
+            destination.Cost = source.Cost.GetValueOrDefault();
+            destination.Extension = source.Extension.GetValueOrDefault();
+        }
+    }
+
+    public class AttachmentMapper : IMapper<Attachment, AttachmentDto>
+    {
+        public void Map(Attachment source, AttachmentDto destination)
+        {
+            
+        }
+    }
 }
