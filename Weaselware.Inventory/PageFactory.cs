@@ -117,7 +117,7 @@ namespace Weaselware.InventoryFerret
                     {
                    // var order = (PurchaseOrder)model;
                     tab.Text = $"Purchase Order :{key.ToString()}";
-                    OrderEditControl ctr = new OrderEditControl();
+                    OrderEditControl ctr = new OrderEditControl( );
                     ctr.LoadByID((int)key);
                     ctr.Dock = DockStyle.Fill;
                     tab.Controls.Add(ctr);

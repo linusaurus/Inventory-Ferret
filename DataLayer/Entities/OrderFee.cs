@@ -11,6 +11,7 @@ namespace DataLayer.Entities
         public decimal? Qnty { get; set; }
         public decimal? Cost { get; set; }
         public decimal? Extension { get; set; }
+        public int? PurchaseOrderID { get; set; }
 
         //--Relationship
         public PurchaseOrder PurchaseOrder { get; set; }

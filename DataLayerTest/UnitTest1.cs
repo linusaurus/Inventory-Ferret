@@ -284,6 +284,23 @@ namespace DataLayerTest
 
         }
 
+        [TestMethod]
+        public void Orders_OrdersFee_ShouldSaveNewOrderFee()
+        {
+            var ctx = new BadgerDataModel();
+            OrderFee orderFee = new OrderFee();
+            //orderFee.PurchaseOrderID = 23415;
+            orderFee.FeeName = "Big Fat Fee";
+            orderFee.Cost = 1.25m;
+            orderFee.Qnty = 5.0m;
+            orderFee.Extension = decimal.Add(orderFee.Cost.Value, orderFee.Qnty.Value);
+            ctx.OrderFee.Add(orderFee);
+
+            ctx.SaveChanges();
+            Assert.IsTrue(orderFee.OrderfeeID != default);
+
+        }
+
     }
 
 }

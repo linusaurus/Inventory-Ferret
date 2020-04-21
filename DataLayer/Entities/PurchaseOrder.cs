@@ -7,7 +7,7 @@ namespace DataLayer.Entities
     {
         public PurchaseOrder()
         {
-            Attachment = new HashSet<Attachment>();
+            Attachment = new List<Attachment>();
             Notification = new HashSet<Notification>();
             PurchaseLineItem = new List<PurchaseLineItem>();
             OrderFee = new List<OrderFee>();

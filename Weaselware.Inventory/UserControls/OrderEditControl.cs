@@ -23,8 +23,12 @@ namespace Weaselware.InventoryFerret.UserControls
         private readonly BadgerDataModel _context;
         private readonly IOrdersService _orderService;
         private readonly IPartsService _partService;
+
         private readonly BindingSource bslineItems = new BindingSource();
         private readonly BindingSource bsOrderHeader = new BindingSource();
+        private readonly BindingSource bsOrderFees = new BindingSource();
+        private readonly BindingSource bsAttachments = new BindingSource();
+
         private PurchaseOrder _purchaseOrder;
         private OrderDetailDto orderDTO = new OrderDetailDto();
         private readonly IMapper<PurchaseOrder, OrderDetailDto> mapper = new PurchaseOrderMapper();
@@ -39,17 +43,25 @@ namespace Weaselware.InventoryFerret.UserControls
             _partService = new PartsService(_context);
            
             dgOrderLineItem.AutoGenerateColumns = false;
+            dgOrderFees.AutoGenerateColumns = false;
+            dgAttachments.AutoGenerateColumns = false;
             // Event wiring -------------------------------------------------------------------
             dgOrderLineItem.DataError += DgOrderLineItem_DataError;                       
             dgOrderLineItem.CellValidating += DgOrderLineItem_CellValidating;
             dgOrderLineItem.CellEndEdit += DgOrderLineItem_CellEndEdit;
             dgOrderLineItem.CellValueChanged += DgOrderLineItem_CellValueChanged;
             bslineItems.ListChanged += BslineItems_ListChanged;
+            bsOrderFees.ListChanged += BsOrderFees_ListChanged;
             partFinderControl1.OnJobPartAdded += PartFinderControl1_OnJobPartAdded;
             // Event Wiring -------------------------------------------------------------------
 
             InitializeGrid();
             btnSave.Enabled = _isDirty;
+        }
+
+        private void BsOrderFees_ListChanged(object sender, ListChangedEventArgs e)
+        {
+           ;
         }
 
         private void DgOrderLineItem_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -169,9 +181,17 @@ namespace Weaselware.InventoryFerret.UserControls
         private void LoadOrder(int orderNumber)
         {
             BindingList<LineItemDto> lines = new BindingList<LineItemDto>(orderDTO.LineItems);
-       
+            
+
             bslineItems.DataSource = lines;
             dgOrderLineItem.DataSource = bslineItems;
+
+            bsAttachments.DataSource = orderDTO.Attachments;
+            dgAttachments.DataSource = bsAttachments;
+
+            bsOrderFees.DataSource = orderDTO.OrderFees;
+            dgOrderFees.DataSource = bsOrderFees;
+
             orderDTO.Update();
             bslineItems.AddingNew += BslineItems_AddingNew;
             
@@ -296,7 +316,18 @@ namespace Weaselware.InventoryFerret.UserControls
             if (_purchaseOrder != null && _purchaseOrder.OrderNum != default)
             {
                 
+                OrderFeeDto newOrderFee = new OrderFeeDto
+                {
+                    Cost = decimal.Zero,
+                    FeeName = string.Empty,
+                    Qnty = decimal.Zero,
+                    Extension = decimal.Zero
+
+                };
+                bsOrderFees.Add(newOrderFee);
+               // orderDTO.OrderFees.Add(newOrderFee);
             }
+            
         }
     }
 }

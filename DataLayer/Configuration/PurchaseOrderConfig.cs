@@ -85,7 +85,7 @@ namespace DataLayer.Entities.Configuration
 
             entity.HasMany(d => d.OrderFee)
                 .WithOne(e => e.PurchaseOrder)
-                .HasForeignKey(p => p.OrderfeeID);
+                .HasForeignKey(p => p.PurchaseOrderID);
 
             entity.HasOne(d => d.Employee)
                 .WithMany(p => p.PurchaseOrder)

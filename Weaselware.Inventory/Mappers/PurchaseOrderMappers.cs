@@ -11,8 +11,9 @@ namespace Weaselware.InventoryFerret.Mappers
 {
     public class PurchaseOrderMapper : IMapper<PurchaseOrder, OrderDetailDto>
     {
-        private readonly IMapper<PurchaseLineItem, LineItemDto> lineMapper = new LineItemMapper()  ;
-        
+        private readonly IMapper<PurchaseLineItem, LineItemDto> lineMapper = new LineItemMapper();
+        private readonly IMapper<OrderFee, OrderFeeDto> orderFeeMapper = new OrderFeeMapper();
+        private readonly IMapper<Attachment, AttachmentDto> attachmentMapper = new AttachmentMapper();
        
         public void Map(PurchaseOrder source, OrderDetailDto destination)
         {
@@ -43,6 +44,8 @@ namespace Weaselware.InventoryFerret.Mappers
             destination.OrderTotal = source.OrderTotal.GetValueOrDefault();
             destination.Memo = source.Memo;
             destination.LineItems = lineMapper.MapList(source.PurchaseLineItem);
+            destination.Attachments = attachmentMapper.MapList(source.Attachment);
+            destination.OrderFees = orderFeeMapper.MapList(source.OrderFee);
         }
     }
 
@@ -71,6 +74,7 @@ namespace Weaselware.InventoryFerret.Mappers
             destination.Qnty = source.Qnty.GetValueOrDefault();
             destination.Cost = source.Cost.GetValueOrDefault();
             destination.Extension = source.Extension.GetValueOrDefault();
+            
         }
     }
 
@@ -78,7 +82,12 @@ namespace Weaselware.InventoryFerret.Mappers
     {
         public void Map(Attachment source, AttachmentDto destination)
         {
-            
+            destination.AttachmentID = source.AttachmentId;
+            destination.OrderNum = source.OrderNum.GetValueOrDefault();
+            destination.AttachmentDescription = source.AttachmentDescription;
+            destination.Src = source.Src;
+            destination.Ext = source.Ext;
+            destination.FileSource = source.Filesource;
         }
     }
 }

@@ -98,10 +98,13 @@ namespace DataLayer.Services {
         public PurchaseOrder GetOrderByID(int orderNum) {
 
             return context.PurchaseOrder
-                .Include(path=> path.PurchaseLineItem)
+                .Include(path => path.PurchaseLineItem)
                 .Include(j => j.Job)
                 .Include(s => s.Supplier)
+                .Include(t => t.Attachment)
+                .Include(p => p.OrderFee)
                 .Include(e => e.Employee).Where(c => c.OrderNum == orderNum).FirstOrDefault();
+                
         }
 
         public List<PurchaseOrder> GetAllOrders() {
@@ -348,7 +351,7 @@ namespace DataLayer.Services {
             order.Tax = orderDTO.Tax;
 
 
-            //remove deleted details
+            //remove deleted details -
             order.PurchaseLineItem
             .Where(d => !orderDTO.LineItems.Any(LineItemDto => LineItemDto.LineID == d.LineID)).ToList()
             .ForEach(deleted => ctx.PurchaseLineItem.Remove(deleted));
@@ -371,6 +374,25 @@ namespace DataLayer.Services {
                 detail.Uom = detailDTO.UiD;
                 detail.Extended = detailDTO.Extended;
 
+            });
+
+            //remove deleted orderfees -
+
+
+            //update or add OrderFees
+            orderDTO.OrderFees.ToList().ForEach(od =>
+            {
+                var orderfee = order.OrderFee.FirstOrDefault(r => r.OrderfeeID == od.OrderFeeID);
+                if (orderfee == null)
+                {
+                    orderfee = new OrderFee();
+                    order.OrderFee.Add(orderfee);
+                }
+                orderfee.PurchaseOrderID = order.OrderNum;
+                orderfee.FeeName = od.FeeName;
+                orderfee.Cost = od.Cost;
+                orderfee.Extension = od.Extension;
+                orderfee.Qnty = od.Qnty;
             });
 
             context.SaveChanges();
