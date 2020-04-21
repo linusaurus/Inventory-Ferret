@@ -15,6 +15,8 @@ using DataLayer.Models;
 using Boxed.Mapping;
 using Weaselware.InventoryFerret.Mappers;
 using Weaselware.InventoryFerret.Services;
+using System.IO;
+using System.Diagnostics;
 
 namespace Weaselware.InventoryFerret.UserControls
 {
@@ -33,6 +35,7 @@ namespace Weaselware.InventoryFerret.UserControls
         private OrderDetailDto orderDTO = new OrderDetailDto();
         private readonly IMapper<PurchaseOrder, OrderDetailDto> mapper = new PurchaseOrderMapper();
         bool _isDirty = false;
+        private AttachmentDto _selectedAttachmentDTO = null;
 
 
         public OrderEditControl()
@@ -41,7 +44,7 @@ namespace Weaselware.InventoryFerret.UserControls
             _context = new BadgerDataModel();
             _orderService = new OrdersService(_context);
             _partService = new PartsService(_context);
-           
+            //disable AutoGenerate Columns on grids
             dgOrderLineItem.AutoGenerateColumns = false;
             dgOrderFees.AutoGenerateColumns = false;
             dgAttachments.AutoGenerateColumns = false;
@@ -296,10 +299,12 @@ namespace Weaselware.InventoryFerret.UserControls
 
         }
         #endregion
-
+        //  Close the Tab and Contentss
         private void button1_Click(object sender, EventArgs e)
         {
-            orderDTO.Update();
+            TabPage tabpage = (TabPage)this.Parent;
+            TabControl tabControl = (TabControl)tabpage.Parent;
+            tabControl.TabPages.Remove(tabpage);
         }
 
         private void purchaseOrderHeaderControl1_Load(object sender, EventArgs e)
@@ -328,6 +333,112 @@ namespace Weaselware.InventoryFerret.UserControls
                // orderDTO.OrderFees.Add(newOrderFee);
             }
             
+        }
+
+        private void btnAddAttachment_Click(object sender, EventArgs e)
+        {
+            var fileContent = string.Empty;
+            var filePath = string.Empty;
+
+            AttachmentDto newAttachment = new AttachmentDto
+            {
+                OrderNum = orderDTO.PurchaseOrderID,
+                AttachmentDescription = string.Empty,
+                Src = string.Empty,
+                //FileSource = new byte[],
+                Ext = ".pdf",
+
+
+            };
+
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    //Get the path of specified file
+                    filePath = openFileDialog.FileName;
+                    FileInfo fileInfo = new FileInfo(filePath);
+
+                    newAttachment.Creator = orderDTO.Purchaser.ToString();
+                    newAttachment.CreatedDate = DateTime.Today;
+                    newAttachment.Ext = fileInfo.Extension;
+                    newAttachment.Src = filePath;
+                    //Read the bytes of the file into a byte array
+                    newAttachment.FileSource = File.ReadAllBytes(filePath);
+                    newAttachment.FileSize = FileHelpers.GetSizeInMemory( newAttachment.FileSource.Length);
+                }
+            }
+     
+            bsAttachments.Add(newAttachment);
+        }
+
+        private void dgAttachments_SelectionChanged(object sender, EventArgs e)
+        {
+            DataGridView dg = (DataGridView)sender;
+            DataGridViewRow row = dg.CurrentRow;
+
+            if (bsAttachments.DataSource != null)
+            {
+                if (dgAttachments.Rows.Count > 0)
+                {
+
+                    AttachmentDto selectedAttachment = (AttachmentDto) row.DataBoundItem;
+                    if (selectedAttachment != null)
+                    {
+                        _selectedAttachmentDTO = selectedAttachment;
+                    }
+                }
+            }
+        }
+
+        private void btnOpenAttachment_Click(object sender, EventArgs e)
+        {
+            
+            string localPath = String.Format("{0}\\WeaselScat\\", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+            if (!File.Exists(localPath))
+            {
+                System.IO.Directory.CreateDirectory(localPath);
+            }
+            
+            if (_selectedAttachmentDTO != null)
+            {
+                localPath += _selectedAttachmentDTO.Src;
+                System.IO.File.WriteAllBytes(localPath, _selectedAttachmentDTO.FileSource);
+                Process.Start(localPath);
+            }
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            if (_selectedAttachmentDTO != null)
+            {
+                var filePath = string.Empty;
+
+                using (OpenFileDialog openFileDialog = new OpenFileDialog())
+                {
+                    openFileDialog.InitialDirectory = "c:\\";
+                    openFileDialog.Filter = "All files (*.*)|*.*";
+                    openFileDialog.FilterIndex = 2;
+                    openFileDialog.RestoreDirectory = true;
+
+                    if (openFileDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        //Get the path of specified file
+                        filePath = openFileDialog.FileName;
+                        FileInfo fileInfo = new FileInfo(filePath);
+                        _selectedAttachmentDTO.Ext = fileInfo.Extension;
+                        _selectedAttachmentDTO.Src = fileInfo.Name.ToString();
+                        //Read the bytes of the file into a byte array
+                        _selectedAttachmentDTO.FileSource = File.ReadAllBytes(filePath);
+
+                    }
+                }
+            }
         }
     }
 }

@@ -88,6 +88,9 @@ namespace Weaselware.InventoryFerret.Mappers
             destination.Src = source.Src;
             destination.Ext = source.Ext;
             destination.FileSource = source.Filesource;
+            destination.Creator = source.Creator;
+            destination.CreatedDate = source.CreateDate;
+            destination.FileSize = source.FileSize;
         }
     }
 }

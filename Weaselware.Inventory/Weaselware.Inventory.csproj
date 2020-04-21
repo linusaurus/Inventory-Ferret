@@ -279,6 +279,7 @@
       <DependentUpon>DataForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Helper\DataHelpers.cs" />
+    <Compile Include="Helper\FileHelpers.cs" />
     <Compile Include="InventoryLookupItem.cs" />
     <Compile Include="Mappers\PurchaseOrderMappers.cs" />
     <Compile Include="Mediator.cs" />

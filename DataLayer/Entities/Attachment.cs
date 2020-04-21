@@ -11,6 +11,9 @@ namespace DataLayer.Entities
         public string Ext { get; set; }
         public string Src { get; set; }
         public byte[] Filesource { get; set; }
+        public string Creator { get; set; }
+        public DateTime CreateDate { get; set; }
+        public string FileSize { get; set; }
 
         public virtual PurchaseOrder OrderNumNavigation { get; set; }
     }

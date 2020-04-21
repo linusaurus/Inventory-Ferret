@@ -22,6 +22,40 @@ namespace DataLayer.Models
         public string ext { get; set; }
         public string src { get; set; }
         public byte[] filesource { get; set; }
+        public string creator { get; set; }
+        public DateTime createdDate { get; set; }
+        public string fileSize { get; set; }
+
+
+        public string FileSize
+        {
+            get { return fileSize; }
+            set
+            {
+                fileSize = value;
+                OnPropertyChange();
+            }
+        }
+
+        public DateTime CreatedDate
+        {
+            get { return createdDate; }
+            set
+            {
+                createdDate = value;
+                OnPropertyChange();
+            }
+        }
+
+        public string Creator
+        {
+            get { return creator; }
+            set
+            {
+                creator = value;
+                OnPropertyChange();
+            }
+        }
 
         public int AttachmentID 
         {

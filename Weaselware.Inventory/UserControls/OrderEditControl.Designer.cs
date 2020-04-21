@@ -28,12 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgOrderLineItem = new System.Windows.Forms.DataGridView();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnPrintOrder = new System.Windows.Forms.Button();
             this.dgOrderFees = new System.Windows.Forms.DataGridView();
+            this.colFeeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFeeDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFeeQnty = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFeeCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFeeExtension = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbOrderIncidentals = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.partFinderControl1 = new Weaselware.InventoryFerret.PartFinderControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnAddOrderFee = new System.Windows.Forms.Button();
             this.btnRemoveFee = new System.Windows.Forms.Button();
@@ -44,13 +51,13 @@
             this.btnAddAttachment = new System.Windows.Forms.Button();
             this.dgAttachments = new System.Windows.Forms.DataGridView();
             this.btnCLose = new System.Windows.Forms.Button();
-            this.partFinderControl1 = new Weaselware.InventoryFerret.PartFinderControl();
             this.purchaseOrderHeaderControl1 = new Weaselware.InventoryFerret.PurchaseOrderHeaderControl();
-            this.colFeeID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFeeDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFeeQnty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFeeCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFeeExtension = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAttachmentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCreator = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCreatedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAttachmentDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSrc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderLineItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderFees)).BeginInit();
             this.tbOrderIncidentals.SuspendLayout();
@@ -111,6 +118,41 @@
             this.dgOrderFees.Size = new System.Drawing.Size(785, 173);
             this.dgOrderFees.TabIndex = 10;
             // 
+            // colFeeID
+            // 
+            this.colFeeID.DataPropertyName = "OrderFeeID";
+            this.colFeeID.HeaderText = "ID";
+            this.colFeeID.Name = "colFeeID";
+            this.colFeeID.Width = 75;
+            // 
+            // colFeeDescription
+            // 
+            this.colFeeDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colFeeDescription.DataPropertyName = "FeeName";
+            this.colFeeDescription.HeaderText = "Description";
+            this.colFeeDescription.Name = "colFeeDescription";
+            // 
+            // colFeeQnty
+            // 
+            this.colFeeQnty.DataPropertyName = "Qnty";
+            this.colFeeQnty.HeaderText = "Qnty";
+            this.colFeeQnty.Name = "colFeeQnty";
+            this.colFeeQnty.Width = 60;
+            // 
+            // colFeeCost
+            // 
+            this.colFeeCost.DataPropertyName = "Cost";
+            this.colFeeCost.HeaderText = "Cost";
+            this.colFeeCost.Name = "colFeeCost";
+            this.colFeeCost.Width = 60;
+            // 
+            // colFeeExtension
+            // 
+            this.colFeeExtension.DataPropertyName = "Extension";
+            this.colFeeExtension.HeaderText = "Ext";
+            this.colFeeExtension.Name = "colFeeExtension";
+            this.colFeeExtension.Width = 75;
+            // 
             // tbOrderIncidentals
             // 
             this.tbOrderIncidentals.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -134,6 +176,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Part Lookup";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // partFinderControl1
+            // 
+            this.partFinderControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.partFinderControl1.Location = new System.Drawing.Point(3, 3);
+            this.partFinderControl1.Name = "partFinderControl1";
+            this.partFinderControl1.SelectedPart = null;
+            this.partFinderControl1.Size = new System.Drawing.Size(820, 229);
+            this.partFinderControl1.TabIndex = 9;
             // 
             // tabPage2
             // 
@@ -195,10 +246,11 @@
             // 
             this.btnUpdate.Location = new System.Drawing.Point(235, 24);
             this.btnUpdate.Name = "btnUpdate";
-            this.btnUpdate.Size = new System.Drawing.Size(105, 23);
+            this.btnUpdate.Size = new System.Drawing.Size(119, 23);
             this.btnUpdate.TabIndex = 1;
             this.btnUpdate.Text = "Update Attachment";
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnOpenAttachment
             // 
@@ -208,6 +260,7 @@
             this.btnOpenAttachment.TabIndex = 1;
             this.btnOpenAttachment.Text = "Open Attachment";
             this.btnOpenAttachment.UseVisualStyleBackColor = true;
+            this.btnOpenAttachment.Click += new System.EventHandler(this.btnOpenAttachment_Click);
             // 
             // btnAddAttachment
             // 
@@ -217,17 +270,27 @@
             this.btnAddAttachment.TabIndex = 1;
             this.btnAddAttachment.Text = "Add Attachment";
             this.btnAddAttachment.UseVisualStyleBackColor = true;
+            this.btnAddAttachment.Click += new System.EventHandler(this.btnAddAttachment_Click);
             // 
             // dgAttachments
             // 
+            this.dgAttachments.AllowUserToAddRows = false;
             this.dgAttachments.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgAttachments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgAttachments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colAttachmentID,
+            this.colCreator,
+            this.colCreatedDate,
+            this.colAttachmentDescription,
+            this.colSrc,
+            this.colFileSize});
             this.dgAttachments.Location = new System.Drawing.Point(10, 68);
             this.dgAttachments.Name = "dgAttachments";
             this.dgAttachments.Size = new System.Drawing.Size(806, 160);
             this.dgAttachments.TabIndex = 0;
+            this.dgAttachments.SelectionChanged += new System.EventHandler(this.dgAttachments_SelectionChanged);
             // 
             // btnCLose
             // 
@@ -239,15 +302,6 @@
             this.btnCLose.Text = "Close";
             this.btnCLose.UseVisualStyleBackColor = true;
             this.btnCLose.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // partFinderControl1
-            // 
-            this.partFinderControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.partFinderControl1.Location = new System.Drawing.Point(3, 3);
-            this.partFinderControl1.Name = "partFinderControl1";
-            this.partFinderControl1.SelectedPart = null;
-            this.partFinderControl1.Size = new System.Drawing.Size(820, 229);
-            this.partFinderControl1.TabIndex = 9;
             // 
             // purchaseOrderHeaderControl1
             // 
@@ -261,40 +315,49 @@
             this.purchaseOrderHeaderControl1.TabIndex = 7;
             this.purchaseOrderHeaderControl1.Load += new System.EventHandler(this.purchaseOrderHeaderControl1_Load);
             // 
-            // colFeeID
+            // colAttachmentID
             // 
-            this.colFeeID.DataPropertyName = "OrderFeeID";
-            this.colFeeID.HeaderText = "ID";
-            this.colFeeID.Name = "colFeeID";
-            this.colFeeID.Width = 75;
+            this.colAttachmentID.DataPropertyName = "AttachmentID";
+            this.colAttachmentID.HeaderText = "ID";
+            this.colAttachmentID.Name = "colAttachmentID";
+            this.colAttachmentID.Width = 45;
             // 
-            // colFeeDescription
+            // colCreator
             // 
-            this.colFeeDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colFeeDescription.DataPropertyName = "FeeName";
-            this.colFeeDescription.HeaderText = "Description";
-            this.colFeeDescription.Name = "colFeeDescription";
+            this.colCreator.DataPropertyName = "Creator";
+            this.colCreator.HeaderText = "Creator";
+            this.colCreator.Name = "colCreator";
+            this.colCreator.Width = 80;
             // 
-            // colFeeQnty
+            // colCreatedDate
             // 
-            this.colFeeQnty.DataPropertyName = "Qnty";
-            this.colFeeQnty.HeaderText = "Qnty";
-            this.colFeeQnty.Name = "colFeeQnty";
-            this.colFeeQnty.Width = 60;
+            this.colCreatedDate.DataPropertyName = "CreatedDate";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.colCreatedDate.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colCreatedDate.HeaderText = "Date";
+            this.colCreatedDate.Name = "colCreatedDate";
+            this.colCreatedDate.Width = 80;
             // 
-            // colFeeCost
+            // colAttachmentDescription
             // 
-            this.colFeeCost.DataPropertyName = "Cost";
-            this.colFeeCost.HeaderText = "Cost";
-            this.colFeeCost.Name = "colFeeCost";
-            this.colFeeCost.Width = 60;
+            this.colAttachmentDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colAttachmentDescription.DataPropertyName = "AttachmentDescription";
+            this.colAttachmentDescription.HeaderText = "Description";
+            this.colAttachmentDescription.Name = "colAttachmentDescription";
             // 
-            // colFeeExtension
+            // colSrc
             // 
-            this.colFeeExtension.DataPropertyName = "Extension";
-            this.colFeeExtension.HeaderText = "Ext";
-            this.colFeeExtension.Name = "colFeeExtension";
-            this.colFeeExtension.Width = 75;
+            this.colSrc.DataPropertyName = "Src";
+            this.colSrc.HeaderText = "Source File";
+            this.colSrc.Name = "colSrc";
+            this.colSrc.Width = 150;
+            // 
+            // colFileSize
+            // 
+            this.colFileSize.DataPropertyName = "FileSize";
+            this.colFileSize.HeaderText = "File Size";
+            this.colFileSize.Name = "colFileSize";
             // 
             // OrderEditControl
             // 
@@ -347,5 +410,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colFeeQnty;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFeeCost;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFeeExtension;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAttachmentID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCreator;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCreatedDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colAttachmentDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSrc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colFileSize;
     }
 }
