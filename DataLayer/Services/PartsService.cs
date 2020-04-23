@@ -139,7 +139,6 @@ namespace DataLayer.Services
             result.Cost = 0.0m;
             result.PartNum = string.Empty;
             result.DateAdded = DateTime.Today;
-            result.FinishId = 0;
             result.ItemName = string.Empty;
             result.UseSupplierNameFlag = false;
             result.Cost= 0.0m;

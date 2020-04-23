@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnOpenPart = new System.Windows.Forms.Button();
             this.txtPartNumber = new System.Windows.Forms.TextBox();
@@ -43,10 +43,6 @@
             this.rbStartsWith = new System.Windows.Forms.RadioButton();
             this.btnAddResource = new System.Windows.Forms.Button();
             this.dgResources = new System.Windows.Forms.DataGridView();
-            this.colDocID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCreator = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colModDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.CloseBox = new System.Windows.Forms.PictureBox();
             this.dgPartsList = new System.Windows.Forms.DataGridView();
@@ -54,6 +50,10 @@
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtPartSearch = new System.Windows.Forms.TextBox();
+            this.colDocID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCreator = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colModDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -227,6 +227,7 @@
             this.btnAddResource.Text = "Add Resource";
             this.btnAddResource.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAddResource.UseVisualStyleBackColor = false;
+            this.btnAddResource.Click += new System.EventHandler(this.btnAddResource_Click);
             // 
             // dgResources
             // 
@@ -241,32 +242,8 @@
             this.colModDate});
             this.dgResources.Location = new System.Drawing.Point(209, 499);
             this.dgResources.Name = "dgResources";
-            this.dgResources.Size = new System.Drawing.Size(629, 144);
+            this.dgResources.Size = new System.Drawing.Size(627, 144);
             this.dgResources.TabIndex = 14;
-            // 
-            // colDocID
-            // 
-            this.colDocID.HeaderText = "DocID";
-            this.colDocID.Name = "colDocID";
-            this.colDocID.Width = 70;
-            // 
-            // colDescription
-            // 
-            this.colDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDescription.HeaderText = "Description";
-            this.colDescription.Name = "colDescription";
-            // 
-            // colCreator
-            // 
-            this.colCreator.HeaderText = "Creator";
-            this.colCreator.Name = "colCreator";
-            this.colCreator.Width = 80;
-            // 
-            // colModDate
-            // 
-            this.colModDate.HeaderText = "Mod Date";
-            this.colModDate.Name = "colModDate";
-            this.colModDate.Width = 80;
             // 
             // label2
             // 
@@ -281,7 +258,7 @@
             // 
             this.CloseBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CloseBox.Image = global::Weaselware.InventoryFerret.Properties.Resources.close_window;
-            this.CloseBox.Location = new System.Drawing.Point(814, 14);
+            this.CloseBox.Location = new System.Drawing.Point(812, 14);
             this.CloseBox.Name = "CloseBox";
             this.CloseBox.Size = new System.Drawing.Size(24, 24);
             this.CloseBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -302,7 +279,7 @@
             this.dgPartsList.Location = new System.Drawing.Point(16, 47);
             this.dgPartsList.Name = "dgPartsList";
             this.dgPartsList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPartsList.Size = new System.Drawing.Size(822, 437);
+            this.dgPartsList.Size = new System.Drawing.Size(820, 437);
             this.dgPartsList.TabIndex = 0;
             this.dgPartsList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgPartsList_CellDoubleClick);
             this.dgPartsList.SelectionChanged += new System.EventHandler(this.dgPartsList_SelectionChanged);
@@ -324,10 +301,10 @@
             // UnitCost
             // 
             this.UnitCost.DataPropertyName = "Cost";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "C2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.UnitCost.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.UnitCost.DefaultCellStyle = dataGridViewCellStyle2;
             this.UnitCost.HeaderText = "UnitCost";
             this.UnitCost.Name = "UnitCost";
             this.UnitCost.Width = 70;
@@ -339,6 +316,34 @@
             this.txtPartSearch.Size = new System.Drawing.Size(253, 20);
             this.txtPartSearch.TabIndex = 0;
             this.txtPartSearch.TextChanged += new System.EventHandler(this.txtPartSearch_TextChanged);
+            // 
+            // colDocID
+            // 
+            this.colDocID.DataPropertyName = "DocID";
+            this.colDocID.HeaderText = "DocID";
+            this.colDocID.Name = "colDocID";
+            this.colDocID.Width = 70;
+            // 
+            // colDescription
+            // 
+            this.colDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colDescription.DataPropertyName = "Description";
+            this.colDescription.HeaderText = "Description";
+            this.colDescription.Name = "colDescription";
+            // 
+            // colCreator
+            // 
+            this.colCreator.DataPropertyName = "Creator";
+            this.colCreator.HeaderText = "Creator";
+            this.colCreator.Name = "colCreator";
+            this.colCreator.Width = 80;
+            // 
+            // colModDate
+            // 
+            this.colModDate.DataPropertyName = "ModDate";
+            this.colModDate.HeaderText = "Mod Date";
+            this.colModDate.Name = "colModDate";
+            this.colModDate.Width = 80;
             // 
             // PartEditor
             // 
@@ -384,11 +389,11 @@
         private System.Windows.Forms.DataGridView dgResources;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnAddResource;
+        private System.Windows.Forms.Button btnOpenPart;
+        private System.Windows.Forms.TextBox txtPartNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDocID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCreator;
         private System.Windows.Forms.DataGridViewTextBoxColumn colModDate;
-        private System.Windows.Forms.Button btnOpenPart;
-        private System.Windows.Forms.TextBox txtPartNumber;
     }
 }

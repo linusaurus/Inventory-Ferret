@@ -281,6 +281,7 @@
     <Compile Include="Helper\DataHelpers.cs" />
     <Compile Include="Helper\FileHelpers.cs" />
     <Compile Include="InventoryLookupItem.cs" />
+    <Compile Include="Mappers\PartDetailsMappers.cs" />
     <Compile Include="Mappers\PurchaseOrderMappers.cs" />
     <Compile Include="Mediator.cs" />
     <Compile Include="NewOrderDialog.cs">
@@ -554,7 +555,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <None Include="Inventory-Ferrit-key.pfx" />
     <None Include="packages.config" />
     <None Include="POdataset.xsc">
       <DependentUpon>POdataset.xsd</DependentUpon>

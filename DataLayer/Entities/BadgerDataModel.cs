@@ -48,8 +48,8 @@ namespace DataLayer.Entities
         public virtual DbSet<PartTypes> PartTypes { get; set; }
         public virtual DbSet<OrderFee> OrderFee { get; set; }
        
-  
-       
+        public virtual DbSet<Resource> Resource { get; set; }
+        public virtual DbSet<ResourceVersion> ResourceVersion { get; set; }
        
         public virtual DbSet<PurchaseLineItem> PurchaseLineItem { get; set; }
         public virtual DbSet<PurchaseOrder> PurchaseOrder { get; set; }
@@ -100,6 +100,8 @@ namespace DataLayer.Entities
             modelBuilder.ApplyConfiguration(new UnitOfPurchaseConfig());
             modelBuilder.ApplyConfiguration(new PurchaseOrderConfig());
             modelBuilder.ApplyConfiguration(new OrderFeeConfig());
+            modelBuilder.ApplyConfiguration(new ResourceConfig());
+            modelBuilder.ApplyConfiguration(new ResourceVersionConfig());
 
             modelBuilder.Entity<Employee>(entity =>
             {

@@ -23,7 +23,6 @@ namespace DataLayer.Entities
         public decimal? MarkUp { get; set; }
         public int? SupplierId { get; set; }
         public string SupplierDescription { get; set; }
-        public int? FinishId { get; set; }
         public string AddedBy { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime? DateAdded { get; set; }

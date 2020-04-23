@@ -94,14 +94,11 @@ namespace Weaselware.InventoryFerret
             if (dgPartsList.DataSource != null)
             {
                 if (dgPartsList.SelectedRows.Count > 0)
-                {
-                    PartForm partForm = new PartForm();
+                {                 
                     if (selectedPart != null)
                     {
                         OpenPartDetails(selectedPart.PartID, _context);
                     }
-
-
                 }
             }
         }
@@ -140,15 +137,13 @@ namespace Weaselware.InventoryFerret
                 if (dgPartsList.SelectedRows.Count > 0)
                 {
                     selectedPart = (Part)dv.CurrentRow.DataBoundItem;
-
-                    
+                   
                     PartForm partForm = new PartForm();
                     if (selectedPart != null)
                     {
                         OpenPartDetails(selectedPart.PartID, _context);
 
                     }
-
                 }
             }
         }
@@ -214,21 +209,13 @@ namespace Weaselware.InventoryFerret
 
         private void OpenPartDetails(int PartID, BadgerDataModel ctx)
         {
-            Part partlookup = partsService.Find(PartID);
-            if (partlookup != null)
-            {
-                PartForm partForm = new PartForm();
-                if (partlookup != null)
-                {
-
-                    var main = fc["Main"] as Main;
-                    var tabs = main.Controls["MainTabControl"] as TabControl;
-                    TabPage newPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PartDetailEdit, partlookup);
-                    tabs.TabPages.Add(newPage);
-                    tabs.SelectTab(newPage);
-               
-                }
-            }
+            
+               var main = fc["Main"] as Main;
+               var tabs = main.Controls["MainTabControl"] as TabControl;
+               TabPage newPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PartDetailEdit, PartID);
+               tabs.TabPages.Add(newPage);
+               tabs.SelectTab(newPage);
+    
         }
 
 
@@ -257,6 +244,11 @@ namespace Weaselware.InventoryFerret
             {
                 OpenPartDetails(partNumber, _context);
             }          
+        }
+
+        private void btnAddResource_Click(object sender, EventArgs e)
+        {
+
         }
     }
     

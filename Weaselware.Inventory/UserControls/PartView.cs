@@ -30,7 +30,11 @@ namespace Weaselware.InventoryFerret
         IInventoryService inventoryService;
         DataView transactionsView;
         BindingSource bsTransactions = new BindingSource();
-
+        /// <summary>
+        /// TODO  use PartID and DTO to hydrate the control
+        /// </summary>
+        /// <param name="part"></param>
+        /// <param name="ctx"></param>
         public PartView(Part part, BadgerDataModel ctx)
         {
             InitializeComponent();

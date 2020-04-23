@@ -100,17 +100,15 @@ namespace Weaselware.InventoryFerret
                     partEditorControl.Dock = DockStyle.Fill;
                     tab.Controls.Add(partEditorControl);
                     break;
+                
+                // Open Part for Detailed Editing w/ resource --
                 case TabPageType.PartDetailEdit:
                     {
-                        //if (model is Part)
-                        //{
-                        //    Part p = model as Part;
-                        //    tab.Text = $"Part Edit : {p.PartID.ToString()}";
-                        //    PartView ctr = new PartView(p,ctx);
-                        //    ctr.Dock = DockStyle.Fill;
-                        //    tab.Controls.Add(ctr);
-                        //}
-             
+                        Part p = ctx.Part.Find(key);
+                        tab.Text = $"Part Edit : {p.PartID.ToString()}";
+                        PartView ctr = new PartView(p, ctx);
+                        ctr.Dock = DockStyle.Fill;
+                        tab.Controls.Add(ctr);
                     }
                     break;
                 case TabPageType.PurchaseOrderPage:

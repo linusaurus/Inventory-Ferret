@@ -14,6 +14,7 @@ namespace DataLayer.Entities
         public string Creator { get; set; }
         public string Modifier { get; set; }
         public DateTime? DateModified { get; set; }
+     
 
         // Relationships
         public  IList<DocumentParts> DocumentParts { get; set; }
