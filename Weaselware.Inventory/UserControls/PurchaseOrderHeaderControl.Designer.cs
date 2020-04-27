@@ -52,13 +52,16 @@
             this.cbTaxable = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtSubTotal = new System.Windows.Forms.TextBox();
-            this.btnEditSupplier = new System.Windows.Forms.Button();
+            this.txtOtherFees = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtJobName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // txtOrderNumber
             // 
             this.txtOrderNumber.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOrderNumber.Location = new System.Drawing.Point(820, 8);
+            this.txtOrderNumber.Location = new System.Drawing.Point(921, 8);
             this.txtOrderNumber.Name = "txtOrderNumber";
             this.txtOrderNumber.Size = new System.Drawing.Size(92, 20);
             this.txtOrderNumber.TabIndex = 0;
@@ -153,7 +156,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(763, 13);
+            this.label3.Location = new System.Drawing.Point(864, 13);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 2;
@@ -162,7 +165,7 @@
             // txtOrderDate
             // 
             this.txtOrderDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOrderDate.Location = new System.Drawing.Point(820, 31);
+            this.txtOrderDate.Location = new System.Drawing.Point(921, 31);
             this.txtOrderDate.Name = "txtOrderDate";
             this.txtOrderDate.Size = new System.Drawing.Size(92, 20);
             this.txtOrderDate.TabIndex = 0;
@@ -172,7 +175,7 @@
             // 
             this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(757, 34);
+            this.label4.Location = new System.Drawing.Point(858, 34);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(59, 13);
             this.label4.TabIndex = 2;
@@ -215,7 +218,7 @@
             // txtTax
             // 
             this.txtTax.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtTax.Location = new System.Drawing.Point(820, 54);
+            this.txtTax.Location = new System.Drawing.Point(921, 78);
             this.txtTax.Name = "txtTax";
             this.txtTax.Size = new System.Drawing.Size(92, 20);
             this.txtTax.TabIndex = 0;
@@ -224,7 +227,7 @@
             // txtOrderTotal
             // 
             this.txtOrderTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtOrderTotal.Location = new System.Drawing.Point(820, 78);
+            this.txtOrderTotal.Location = new System.Drawing.Point(921, 104);
             this.txtOrderTotal.Name = "txtOrderTotal";
             this.txtOrderTotal.Size = new System.Drawing.Size(92, 20);
             this.txtOrderTotal.TabIndex = 0;
@@ -234,7 +237,7 @@
             // 
             this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(756, 81);
+            this.label8.Location = new System.Drawing.Point(857, 107);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(60, 13);
             this.label8.TabIndex = 2;
@@ -242,28 +245,28 @@
             // 
             // txtMemo
             // 
-            this.txtMemo.Location = new System.Drawing.Point(384, 62);
+            this.txtMemo.Location = new System.Drawing.Point(384, 54);
             this.txtMemo.Multiline = true;
             this.txtMemo.Name = "txtMemo";
-            this.txtMemo.Size = new System.Drawing.Size(317, 65);
+            this.txtMemo.Size = new System.Drawing.Size(317, 69);
             this.txtMemo.TabIndex = 3;
             // 
             // cbTaxable
             // 
             this.cbTaxable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cbTaxable.AutoSize = true;
-            this.cbTaxable.Location = new System.Drawing.Point(750, 57);
+            this.cbTaxable.Location = new System.Drawing.Point(871, 81);
             this.cbTaxable.Name = "cbTaxable";
-            this.cbTaxable.Size = new System.Drawing.Size(64, 17);
+            this.cbTaxable.Size = new System.Drawing.Size(44, 17);
             this.cbTaxable.TabIndex = 4;
-            this.cbTaxable.Text = "Taxable";
+            this.cbTaxable.Text = "Tax";
             this.cbTaxable.UseVisualStyleBackColor = true;
             this.cbTaxable.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(386, 44);
+            this.label7.Location = new System.Drawing.Point(386, 36);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(99, 13);
             this.label7.TabIndex = 2;
@@ -272,24 +275,54 @@
             // txtSubTotal
             // 
             this.txtSubTotal.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtSubTotal.Location = new System.Drawing.Point(820, 106);
+            this.txtSubTotal.Location = new System.Drawing.Point(921, 54);
             this.txtSubTotal.Name = "txtSubTotal";
             this.txtSubTotal.Size = new System.Drawing.Size(92, 20);
             this.txtSubTotal.TabIndex = 0;
             this.txtSubTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // btnEditSupplier
+            // txtOtherFees
             // 
-            this.btnEditSupplier.Location = new System.Drawing.Point(14, 106);
-            this.btnEditSupplier.Name = "btnEditSupplier";
-            this.btnEditSupplier.Size = new System.Drawing.Size(89, 23);
-            this.btnEditSupplier.TabIndex = 5;
-            this.btnEditSupplier.Text = "Edit Supplier";
-            this.btnEditSupplier.UseVisualStyleBackColor = true;
+            this.txtOtherFees.Location = new System.Drawing.Point(738, 100);
+            this.txtOtherFees.Name = "txtOtherFees";
+            this.txtOtherFees.Size = new System.Drawing.Size(82, 20);
+            this.txtOtherFees.TabIndex = 6;
+            this.txtOtherFees.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(863, 58);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(51, 13);
+            this.label9.TabIndex = 7;
+            this.label9.Text = "Net Total";
+            this.label9.Click += new System.EventHandler(this.label9_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(735, 83);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(85, 13);
+            this.label10.TabIndex = 8;
+            this.label10.Text = "Other Cost/Fees";
+            // 
+            // txtJobName
+            // 
+            this.txtJobName.Location = new System.Drawing.Point(5, 104);
+            this.txtJobName.Name = "txtJobName";
+            this.txtJobName.ReadOnly = true;
+            this.txtJobName.Size = new System.Drawing.Size(289, 20);
+            this.txtJobName.TabIndex = 9;
             // 
             // PurchaseOrderHeaderControl
             // 
-            this.Controls.Add(this.btnEditSupplier);
+            this.Controls.Add(this.txtJobName);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.txtOtherFees);
             this.Controls.Add(this.cbTaxable);
             this.Controls.Add(this.txtMemo);
             this.Controls.Add(this.label2);
@@ -314,9 +347,9 @@
             this.Controls.Add(this.txtAttention);
             this.Controls.Add(this.txtPurchaser);
             this.Controls.Add(this.txtOrderNumber);
-            this.MinimumSize = new System.Drawing.Size(920, 145);
+            this.MinimumSize = new System.Drawing.Size(920, 135);
             this.Name = "PurchaseOrderHeaderControl";
-            this.Size = new System.Drawing.Size(924, 145);
+            this.Size = new System.Drawing.Size(1025, 135);
             this.Load += new System.EventHandler(this.PurchaseOrderHeaderControl_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -349,6 +382,9 @@
         private System.Windows.Forms.CheckBox cbTaxable;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtSubTotal;
-        private System.Windows.Forms.Button btnEditSupplier;
+        private System.Windows.Forms.TextBox txtOtherFees;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox txtJobName;
     }
 }

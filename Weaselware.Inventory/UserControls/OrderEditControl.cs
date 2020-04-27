@@ -55,17 +55,63 @@ namespace Weaselware.InventoryFerret.UserControls
             dgOrderLineItem.CellValueChanged += DgOrderLineItem_CellValueChanged;
             bslineItems.ListChanged += BslineItems_ListChanged;
             bsOrderFees.ListChanged += BsOrderFees_ListChanged;
+            bsAttachments.ListChanged += BsAttachments_ListChanged;
             partFinderControl1.OnJobPartAdded += PartFinderControl1_OnJobPartAdded;
+            partFinderControl1.OnPartAdded += PartFinderControl1_OnPartAdded;
             // Event Wiring -------------------------------------------------------------------
 
             InitializeGrid();
             btnSave.Enabled = _isDirty;
         }
 
+        private void BsAttachments_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (e.ListChangedType == System.ComponentModel.ListChangedType.ItemChanged)
+            {
+                _isDirty = true;
+                btnSave.Enabled = _isDirty;
+            }
+            if (e.ListChangedType == ListChangedType.ItemDeleted)
+            {
+                _isDirty = true;
+                btnSave.Enabled = _isDirty;
+
+            }
+        }
+
         private void BsOrderFees_ListChanged(object sender, ListChangedEventArgs e)
         {
-           ;
+            if (e.ListChangedType == System.ComponentModel.ListChangedType.ItemChanged)
+            {
+                
+                _isDirty = true;
+                btnSave.Enabled = _isDirty;
+               orderDTO.ShippingCost = orderDTO.OrderFees.ToList().Sum(d => d.Cost * d.Qnty);
+            }
+            if (e.ListChangedType == ListChangedType.ItemDeleted)
+            {
+                _isDirty = true;
+                btnSave.Enabled = _isDirty;
+                orderDTO.ShippingCost = orderDTO.OrderFees.ToList().Sum(d => d.Cost * d.Qnty);
+
+            }
         }
+
+        private void PartFinderControl1_OnPartAdded(object sender, PartFinderControl.PartAddedArgs e)
+        {
+            bslineItems.Add(new LineItemDto
+            {
+                Description = e.selectPart.ItemDescription, 
+                PurchaseOrderID = _purchaseOrder.OrderNum,
+                JobID = _purchaseOrder.JobId.Value,
+                PartID = e.selectPart.PartID,
+                UiD = e.selectPart.UID.GetValueOrDefault(),
+                Price = e.selectPart.Cost.GetValueOrDefault(),
+                Quantity = 0.0m
+            }); 
+        }
+
+      
 
         private void DgOrderLineItem_CellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
@@ -319,18 +365,16 @@ namespace Weaselware.InventoryFerret.UserControls
         private void btnAddOrderFee_Click(object sender, EventArgs e)
         {
             if (_purchaseOrder != null && _purchaseOrder.OrderNum != default)
-            {
-                
+            {               
                 OrderFeeDto newOrderFee = new OrderFeeDto
                 {
                     Cost = decimal.Zero,
                     FeeName = string.Empty,
-                    Qnty = decimal.Zero,
+                    Qnty = 1.0m,
                     Extension = decimal.Zero
 
                 };
-                bsOrderFees.Add(newOrderFee);
-               // orderDTO.OrderFees.Add(newOrderFee);
+                bsOrderFees.Add(newOrderFee);             
             }
             
         }
@@ -360,17 +404,17 @@ namespace Weaselware.InventoryFerret.UserControls
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
+                   
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
                     FileInfo fileInfo = new FileInfo(filePath);
-
-                    newAttachment.Creator = orderDTO.Purchaser.ToString();
-                    newAttachment.CreatedDate = DateTime.Today;
                     newAttachment.Ext = fileInfo.Extension;
-                    newAttachment.Src = filePath;
+                    newAttachment.Src = fileInfo.Name.ToString();
+                    newAttachment.FileSize = FileHelpers.GetSizeInMemory(fileInfo.Length);
+                    newAttachment.creator = orderDTO.Purchaser;
+                    newAttachment.CreatedDate = DateTime.Today;
                     //Read the bytes of the file into a byte array
                     newAttachment.FileSource = File.ReadAllBytes(filePath);
-                    newAttachment.FileSize = FileHelpers.GetSizeInMemory( newAttachment.FileSource.Length);
                 }
             }
      
@@ -433,6 +477,9 @@ namespace Weaselware.InventoryFerret.UserControls
                         FileInfo fileInfo = new FileInfo(filePath);
                         _selectedAttachmentDTO.Ext = fileInfo.Extension;
                         _selectedAttachmentDTO.Src = fileInfo.Name.ToString();
+                        _selectedAttachmentDTO.FileSize = FileHelpers.GetSizeInMemory(fileInfo.Length);
+                        _selectedAttachmentDTO.creator = orderDTO.Purchaser;
+                        _selectedAttachmentDTO.CreatedDate = DateTime.Today;
                         //Read the bytes of the file into a byte array
                         _selectedAttachmentDTO.FileSource = File.ReadAllBytes(filePath);
 
@@ -440,5 +487,22 @@ namespace Weaselware.InventoryFerret.UserControls
                 }
             }
         }
+
+        private void partFinderControl1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDeleteAttachment_Click(object sender, EventArgs e)
+        {
+            if (_selectedAttachmentDTO != null)
+            {
+
+                bsAttachments.Remove(_selectedAttachmentDTO);
+                
+            }
+        }
+
+       
     }
 }

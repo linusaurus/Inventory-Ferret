@@ -6,7 +6,7 @@ namespace DataLayer.Entities
 {
     public class Resource
     {
-        public int ResourceID { get; set; }
+        public Guid ResourceGuid { get; set; }
         public string ResourceDescription { get; set; }
         public string Createdby { get; set; }
         public int CurrentVersion { get; set; }
@@ -18,7 +18,7 @@ namespace DataLayer.Entities
     public class ResourceVersion
     { 
         public int ResourceVersionID { get; set; }
-        public int ResourceID { get; set; }
+        public int ResourceGuid { get; set; }
         public int RVersion { get; set; }
         public string VersionComment { get; set; }
         public Byte[] Resource { get; set; }

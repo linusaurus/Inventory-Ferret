@@ -4,5 +4,8 @@
 
     partial class POdataset
     {
+        partial class DataTable1DataTable
+        {
+        }
     }
 }

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnOpenPart = new System.Windows.Forms.Button();
             this.txtPartNumber = new System.Windows.Forms.TextBox();
@@ -41,27 +41,30 @@
             this.gbSearchOptions = new System.Windows.Forms.GroupBox();
             this.rbContains = new System.Windows.Forms.RadioButton();
             this.rbStartsWith = new System.Windows.Forms.RadioButton();
-            this.btnAddResource = new System.Windows.Forms.Button();
             this.dgResources = new System.Windows.Forms.DataGridView();
+            this.colDocID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCreator = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colModDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
-            this.CloseBox = new System.Windows.Forms.PictureBox();
             this.dgPartsList = new System.Windows.Forms.DataGridView();
             this.PartID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtPartSearch = new System.Windows.Forms.TextBox();
-            this.colDocID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCreator = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colModDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button4 = new System.Windows.Forms.Button();
+            this.btnNewVersion = new System.Windows.Forms.Button();
+            this.btnOpenResource = new System.Windows.Forms.Button();
+            this.btnAddResource = new System.Windows.Forms.Button();
+            this.CloseBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             this.gbSearchOptions.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgResources)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CloseBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgPartsList)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CloseBox)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -90,6 +93,9 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.Controls.Add(this.button4);
+            this.splitContainer1.Panel2.Controls.Add(this.btnNewVersion);
+            this.splitContainer1.Panel2.Controls.Add(this.btnOpenResource);
             this.splitContainer1.Panel2.Controls.Add(this.btnAddResource);
             this.splitContainer1.Panel2.Controls.Add(this.dgResources);
             this.splitContainer1.Panel2.Controls.Add(this.label2);
@@ -213,22 +219,6 @@
             this.rbStartsWith.Text = "Starts With";
             this.rbStartsWith.UseVisualStyleBackColor = true;
             // 
-            // btnAddResource
-            // 
-            this.btnAddResource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnAddResource.BackColor = System.Drawing.SystemColors.Control;
-            this.btnAddResource.FlatAppearance.BorderSize = 0;
-            this.btnAddResource.Image = global::Weaselware.InventoryFerret.Properties.Resources.round_add_circle_black_24dp1;
-            this.btnAddResource.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddResource.Location = new System.Drawing.Point(66, 499);
-            this.btnAddResource.Name = "btnAddResource";
-            this.btnAddResource.Size = new System.Drawing.Size(116, 30);
-            this.btnAddResource.TabIndex = 15;
-            this.btnAddResource.Text = "Add Resource";
-            this.btnAddResource.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddResource.UseVisualStyleBackColor = false;
-            this.btnAddResource.Click += new System.EventHandler(this.btnAddResource_Click);
-            // 
             // dgResources
             // 
             this.dgResources.AllowUserToResizeColumns = false;
@@ -240,82 +230,10 @@
             this.colDescription,
             this.colCreator,
             this.colModDate});
-            this.dgResources.Location = new System.Drawing.Point(209, 499);
+            this.dgResources.Location = new System.Drawing.Point(147, 499);
             this.dgResources.Name = "dgResources";
-            this.dgResources.Size = new System.Drawing.Size(627, 144);
+            this.dgResources.Size = new System.Drawing.Size(687, 144);
             this.dgResources.TabIndex = 14;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(41, 13);
-            this.label2.TabIndex = 13;
-            this.label2.Text = "Search";
-            // 
-            // CloseBox
-            // 
-            this.CloseBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.CloseBox.Image = global::Weaselware.InventoryFerret.Properties.Resources.close_window;
-            this.CloseBox.Location = new System.Drawing.Point(812, 14);
-            this.CloseBox.Name = "CloseBox";
-            this.CloseBox.Size = new System.Drawing.Size(24, 24);
-            this.CloseBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.CloseBox.TabIndex = 12;
-            this.CloseBox.TabStop = false;
-            this.CloseBox.Click += new System.EventHandler(this.CloseBox_Click);
-            // 
-            // dgPartsList
-            // 
-            this.dgPartsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgPartsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgPartsList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.PartID,
-            this.Description,
-            this.UnitCost});
-            this.dgPartsList.Location = new System.Drawing.Point(16, 47);
-            this.dgPartsList.Name = "dgPartsList";
-            this.dgPartsList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPartsList.Size = new System.Drawing.Size(820, 437);
-            this.dgPartsList.TabIndex = 0;
-            this.dgPartsList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgPartsList_CellDoubleClick);
-            this.dgPartsList.SelectionChanged += new System.EventHandler(this.dgPartsList_SelectionChanged);
-            // 
-            // PartID
-            // 
-            this.PartID.DataPropertyName = "PartID";
-            this.PartID.HeaderText = "PartID";
-            this.PartID.Name = "PartID";
-            this.PartID.Width = 70;
-            // 
-            // Description
-            // 
-            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Description.DataPropertyName = "ItemDescription";
-            this.Description.HeaderText = "Description";
-            this.Description.Name = "Description";
-            // 
-            // UnitCost
-            // 
-            this.UnitCost.DataPropertyName = "Cost";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.UnitCost.DefaultCellStyle = dataGridViewCellStyle2;
-            this.UnitCost.HeaderText = "UnitCost";
-            this.UnitCost.Name = "UnitCost";
-            this.UnitCost.Width = 70;
-            // 
-            // txtPartSearch
-            // 
-            this.txtPartSearch.Location = new System.Drawing.Point(66, 17);
-            this.txtPartSearch.Name = "txtPartSearch";
-            this.txtPartSearch.Size = new System.Drawing.Size(253, 20);
-            this.txtPartSearch.TabIndex = 0;
-            this.txtPartSearch.TextChanged += new System.EventHandler(this.txtPartSearch_TextChanged);
             // 
             // colDocID
             // 
@@ -345,6 +263,142 @@
             this.colModDate.Name = "colModDate";
             this.colModDate.Width = 80;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(41, 13);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "Search";
+            // 
+            // dgPartsList
+            // 
+            this.dgPartsList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgPartsList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgPartsList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.PartID,
+            this.Description,
+            this.UnitCost});
+            this.dgPartsList.Location = new System.Drawing.Point(16, 47);
+            this.dgPartsList.Name = "dgPartsList";
+            this.dgPartsList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgPartsList.Size = new System.Drawing.Size(818, 437);
+            this.dgPartsList.TabIndex = 0;
+            this.dgPartsList.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgPartsList_CellDoubleClick);
+            this.dgPartsList.SelectionChanged += new System.EventHandler(this.dgPartsList_SelectionChanged);
+            // 
+            // PartID
+            // 
+            this.PartID.DataPropertyName = "PartID";
+            this.PartID.HeaderText = "PartID";
+            this.PartID.Name = "PartID";
+            this.PartID.Width = 70;
+            // 
+            // Description
+            // 
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Description.DataPropertyName = "ItemDescription";
+            this.Description.HeaderText = "Description";
+            this.Description.Name = "Description";
+            // 
+            // UnitCost
+            // 
+            this.UnitCost.DataPropertyName = "Cost";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.UnitCost.DefaultCellStyle = dataGridViewCellStyle1;
+            this.UnitCost.HeaderText = "UnitCost";
+            this.UnitCost.Name = "UnitCost";
+            this.UnitCost.Width = 70;
+            // 
+            // txtPartSearch
+            // 
+            this.txtPartSearch.Location = new System.Drawing.Point(66, 17);
+            this.txtPartSearch.Name = "txtPartSearch";
+            this.txtPartSearch.Size = new System.Drawing.Size(253, 20);
+            this.txtPartSearch.TabIndex = 0;
+            this.txtPartSearch.TextChanged += new System.EventHandler(this.txtPartSearch_TextChanged);
+            // 
+            // button4
+            // 
+            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button4.BackColor = System.Drawing.SystemColors.Control;
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.Image = global::Weaselware.InventoryFerret.Properties.Resources.baseline_visibility_black_24dp;
+            this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button4.Location = new System.Drawing.Point(16, 607);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(116, 30);
+            this.button4.TabIndex = 15;
+            this.button4.Text = "Show Versions";
+            this.button4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button4.UseVisualStyleBackColor = false;
+            this.button4.Click += new System.EventHandler(this.btnAddResource_Click);
+            // 
+            // btnNewVersion
+            // 
+            this.btnNewVersion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnNewVersion.BackColor = System.Drawing.SystemColors.Control;
+            this.btnNewVersion.FlatAppearance.BorderSize = 0;
+            this.btnNewVersion.Image = global::Weaselware.InventoryFerret.Properties.Resources.baseline_get_app_black_24dp;
+            this.btnNewVersion.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnNewVersion.Location = new System.Drawing.Point(16, 571);
+            this.btnNewVersion.Name = "btnNewVersion";
+            this.btnNewVersion.Size = new System.Drawing.Size(116, 30);
+            this.btnNewVersion.TabIndex = 15;
+            this.btnNewVersion.Text = "New Version";
+            this.btnNewVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNewVersion.UseVisualStyleBackColor = false;
+            this.btnNewVersion.Click += new System.EventHandler(this.btnAddResource_Click);
+            // 
+            // btnOpenResource
+            // 
+            this.btnOpenResource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnOpenResource.BackColor = System.Drawing.SystemColors.Control;
+            this.btnOpenResource.FlatAppearance.BorderSize = 0;
+            this.btnOpenResource.Image = global::Weaselware.InventoryFerret.Properties.Resources.baseline_launch_black_24dp;
+            this.btnOpenResource.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOpenResource.Location = new System.Drawing.Point(16, 535);
+            this.btnOpenResource.Name = "btnOpenResource";
+            this.btnOpenResource.Size = new System.Drawing.Size(116, 30);
+            this.btnOpenResource.TabIndex = 15;
+            this.btnOpenResource.Text = "Open Resource";
+            this.btnOpenResource.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOpenResource.UseVisualStyleBackColor = false;
+            this.btnOpenResource.Click += new System.EventHandler(this.btnAddResource_Click);
+            // 
+            // btnAddResource
+            // 
+            this.btnAddResource.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnAddResource.BackColor = System.Drawing.SystemColors.Control;
+            this.btnAddResource.FlatAppearance.BorderSize = 0;
+            this.btnAddResource.Image = global::Weaselware.InventoryFerret.Properties.Resources.round_add_circle_black_24dp1;
+            this.btnAddResource.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddResource.Location = new System.Drawing.Point(16, 499);
+            this.btnAddResource.Name = "btnAddResource";
+            this.btnAddResource.Size = new System.Drawing.Size(116, 30);
+            this.btnAddResource.TabIndex = 15;
+            this.btnAddResource.Text = "Add Resource";
+            this.btnAddResource.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddResource.UseVisualStyleBackColor = false;
+            this.btnAddResource.Click += new System.EventHandler(this.btnAddResource_Click);
+            // 
+            // CloseBox
+            // 
+            this.CloseBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.CloseBox.Image = global::Weaselware.InventoryFerret.Properties.Resources.close_window;
+            this.CloseBox.Location = new System.Drawing.Point(810, 14);
+            this.CloseBox.Name = "CloseBox";
+            this.CloseBox.Size = new System.Drawing.Size(24, 24);
+            this.CloseBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
+            this.CloseBox.TabIndex = 12;
+            this.CloseBox.TabStop = false;
+            this.CloseBox.Click += new System.EventHandler(this.CloseBox_Click);
+            // 
             // PartEditor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -362,8 +416,8 @@
             this.gbSearchOptions.ResumeLayout(false);
             this.gbSearchOptions.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgResources)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.CloseBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgPartsList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CloseBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -395,5 +449,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCreator;
         private System.Windows.Forms.DataGridViewTextBoxColumn colModDate;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btnNewVersion;
+        private System.Windows.Forms.Button btnOpenResource;
     }
 }

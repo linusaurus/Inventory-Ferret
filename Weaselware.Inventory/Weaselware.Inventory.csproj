@@ -302,6 +302,7 @@
     <Compile Include="NewResourceForm.Designer.cs">
       <DependentUpon>NewResourceForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="OrderPrintData.cs" />
     <Compile Include="PartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -322,6 +323,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PurchaseOrderReport.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ReportOrderData.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportOrderData.xsd</DependentUpon>
     </Compile>
     <Compile Include="Services\Globals.cs" />
     <Compile Include="Services\LabelService.cs" />
@@ -605,6 +611,17 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ReportOrderData.xsc">
+      <DependentUpon>ReportOrderData.xsd</DependentUpon>
+    </None>
+    <None Include="ReportOrderData.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportOrderData.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ReportOrderData.xss">
+      <DependentUpon>ReportOrderData.xsd</DependentUpon>
+    </None>
     <None Include="Resources\close_window.bmp" />
   </ItemGroup>
   <ItemGroup>
@@ -702,7 +719,9 @@
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\baseline_launch_black_24dp.png" />
+  </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
@@ -711,6 +730,12 @@
       <Project>{55ec0411-78f2-4408-a3bb-a9162e48d8f1}</Project>
       <Name>DataLayer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\baseline_get_app_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\baseline_visibility_black_24dp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

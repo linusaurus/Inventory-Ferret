@@ -12,7 +12,8 @@ using DataLayer.Services;
 using DataLayer.Interfaces;
 using Neodynamic.SDK.Printing;
 using System.Text.RegularExpressions;
-
+using System.IO;
+using DataLayer.Models;
 
 namespace Weaselware.InventoryFerret
 {
@@ -245,10 +246,48 @@ namespace Weaselware.InventoryFerret
                 OpenPartDetails(partNumber, _context);
             }          
         }
-
+        /// <summary>
+        /// Add New Resource
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnAddResource_Click(object sender, EventArgs e)
         {
+            
+            var fileContent = string.Empty;
+            var filePath = string.Empty;
+            // Create a shelled out Resource Object
+            ResourceDto newResource = new ResourceDto
+            {
+                Createdby = "richard",
+                CurrentVersion = 1
+            };
 
+            //Open the File Dialog
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
+            {
+                openFileDialog.InitialDirectory = "c:\\";
+                openFileDialog.Filter = "All files (*.*)|*.*";
+                openFileDialog.FilterIndex = 2;
+                openFileDialog.RestoreDirectory = true;
+
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+
+                    //Get the path of specified file
+                    filePath = openFileDialog.FileName;
+                    FileInfo fileInfo = new FileInfo(filePath);
+                    newResource.Ext = fileInfo.Extension;
+                    newResource.Src = fileInfo.Name.ToString();
+                    newResource.FileSize = FileHelpers.GetSizeInMemory(fileInfo.Length);
+                    newResource.creator = orderDTO.Purchaser;
+                    newResource.C = DateTime.Today;
+                    //Read the bytes of the file into a byte array
+                    newResource.F = File.ReadAllBytes(filePath);
+                }
+            }
+
+            //bsAttachments.Add(newAttachment);
         }
     }
     

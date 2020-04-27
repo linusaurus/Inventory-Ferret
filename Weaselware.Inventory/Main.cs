@@ -16,7 +16,7 @@ namespace Weaselware.InventoryFerret {
         BadgerDataModel _context;
         int _loggedOnUserID;
         readonly OrdersService _ordersService;
-        Mediator mediator;
+        
 
         public TabControl MainTabs {get;set;}
 
@@ -68,7 +68,7 @@ namespace Weaselware.InventoryFerret {
 
         private void Main_OrderOpen(object sender, OrderChangedArgs e)
         {
-            MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage, e.Order));
+            MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage, e.Order.OrderNum));
         }
 
         private void MaintabControl_SelectedIndexChanged(object sender, EventArgs e)

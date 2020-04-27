@@ -94,12 +94,23 @@ namespace Weaselware.InventoryFerret
             // Taxable
             cbTaxable.DataBindings.Clear();
             cbTaxable.DataBindings.Add("Checked", PurchaseOrder, "Taxable", true, DataSourceUpdateMode.OnPropertyChanged);
+            // SHipping and Fees
+            txtOtherFees.DataBindings.Clear();
+            txtOtherFees.DataBindings.Add("Text", PurchaseOrder, "ShippingCost", true, DataSourceUpdateMode.OnPropertyChanged,0.0,"C");
+            // Jobname --
+            txtJobName.DataBindings.Clear();
+            txtJobName.DataBindings.Add("Text", PurchaseOrder, "JobName", true, DataSourceUpdateMode.OnPropertyChanged);
 
         }
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
            
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

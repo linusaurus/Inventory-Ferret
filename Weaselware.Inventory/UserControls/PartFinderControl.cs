@@ -46,6 +46,15 @@ namespace Weaselware.InventoryFerret
         public event AddJobPartHandler OnJobPartAdded;
 
 
+        // Supplier-Part  ----------------------------
+        public class SupplierPartAddedArgs : System.EventArgs
+        {
+            public LineItemDto jobLineItem { get; set; }
+        }
+        public delegate void SupplierPartHandler(object sender, JobPartAddedArgs e);
+        public event AddJobPartHandler OnSupplierPartAdded;
+
+
         #endregion
 
         public Part SelectedPart { get => _selectedPart; set => _selectedPart = value; }
@@ -81,14 +90,20 @@ namespace Weaselware.InventoryFerret
 
         private void DgSupplierParts_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {               
-                DataGridView dg = (DataGridView)sender;
-                DataGridViewLinkCell cell = (DataGridViewLinkCell)
-                                 dg.Rows[e.RowIndex].Cells[e.ColumnIndex];
-                int orderNumber = int.Parse(cell.FormattedValue.ToString());
+            DataGridView dg = (DataGridView)sender;
+            if (dg.DataSource != null)
+            {
+                SupplierLineItemDto _selectedSupplierLineItem = (SupplierLineItemDto)dg.CurrentRow.DataBoundItem;
+                if (_selectedSupplierLineItem != null)
+                {
+                    var order = _ordersService.GetOrderByID(_selectedSupplierLineItem.OrderNum);
+                    //--Open a Purchase Order Page for the order---
+                    Mediator.GetInstance().OnOrderOpened(this, order);
+                }
 
-                var order = _ordersService.GetOrderByID(orderNumber);
-                //--Open a Purchase Order Page for the order---
-                Mediator.GetInstance().OnOrderOpened(this, order);
+
+            }
+               
  
         }
 
@@ -166,12 +181,11 @@ namespace Weaselware.InventoryFerret
 
         private void btnNewPart_Click(object sender, EventArgs e)
         {
-            Part newPart = partsService.New();
-            Form partForm = new Form();
-            PartView partEditorControl = new PartView(newPart,_ctx);
-            partForm.Controls.Add(partEditorControl);
-            partEditorControl.Dock = DockStyle.Fill;
-            partForm.ShowDialog();
+            if (OnJobPartAdded != null)
+            {
+                if (OnJobPartAdded != null)
+                { OnJobPartAdded(this, new JobPartAddedArgs { jobLineItem = new LineItemDto { Description = "JobPart" } }); }
+            }
         }
     }
 }
