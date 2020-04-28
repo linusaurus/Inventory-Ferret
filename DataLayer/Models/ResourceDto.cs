@@ -8,17 +8,17 @@ namespace DataLayer.Models
 {
     public class ResourceDto  : INotifyPropertyChanged
     {
-        private int resourceGuid;
+        private int resourceID;
         private string resourceDescription;
         private string createdby;
         private int currentVersion;
    
-        public int ResourceID 
+        public int ResourceID
         {
-            get { return resourceGuid; }
+            get { return resourceID; }
             set
             {
-                resourceGuid = value;
+                resourceID = value;
                 OnPropertyChange();
             }
         }
@@ -50,6 +50,8 @@ namespace DataLayer.Models
             }
         }
 
+        public List<ResourceVersionDto> Versions { get; set; } = new List<ResourceVersionDto>();
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChange([CallerMemberName] string name = null)
@@ -66,7 +68,7 @@ namespace DataLayer.Models
 public class ResourceVersionDto : INotifyPropertyChanged
 {
     private int resourceVersionID { get; set; }
-    private int resourceGuid { get; set; }
+    private int resourceID { get; set; }
     private int rVersion { get; set; }
     private string versionComment { get; set; }
     private Byte[] resource { get; set; }
@@ -82,12 +84,12 @@ public class ResourceVersionDto : INotifyPropertyChanged
            OnPropertyChange();
         }
     }
-    public int ResourceID 
+    public int ResourceID
     {
-        get { return resourceGuid; }
+        get { return resourceID; }
         set
         {
-           resourceGuid = value ;
+           resourceID = value ;
            OnPropertyChange();
         }
     }

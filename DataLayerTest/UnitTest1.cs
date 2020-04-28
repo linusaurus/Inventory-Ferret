@@ -3,8 +3,8 @@ using DataLayer;
 using DataLayer.Entities;
 using DataLayer.Services;
 using DataLayer.Interfaces;
-
-
+using DataLayer.Models;
+using System;
 
 namespace DataLayerTest
 {
@@ -298,6 +298,31 @@ namespace DataLayerTest
 
             ctx.SaveChanges();
             Assert.IsTrue(orderFee.OrderfeeID != default);
+
+        }
+
+
+        [TestMethod]
+        public void Resource_CreateNew_ReturnNewVersion()
+        {
+            var ctx = new BadgerDataModel();
+            ResourceService _service = new ResourceService(ctx);
+            ResourceDto resourceDto = new ResourceDto();
+            resourceDto.Createdby = "richard";
+            resourceDto.ResourceDescription = "Can not be a meaningless garble";
+
+            ResourceVersionDto child = new ResourceVersionDto();
+
+            child.ModifiedBy = "richard";
+            child.ModDate = DateTime.Today;
+            child.RVersion = 1;
+
+
+            resourceDto.Versions.Add(child);
+
+            _service.CreateOrUpdateOrder(resourceDto);
+            //ctx.SaveChanges();
+          //  Assert.IsTrue(orderFee.OrderfeeID != default);
 
         }
 

@@ -259,6 +259,7 @@ namespace Weaselware.InventoryFerret
             // Create a shelled out Resource Object
             ResourceDto newResource = new ResourceDto
             {
+               
                 Createdby = "richard",
                 CurrentVersion = 1
             };
@@ -277,13 +278,13 @@ namespace Weaselware.InventoryFerret
                     //Get the path of specified file
                     filePath = openFileDialog.FileName;
                     FileInfo fileInfo = new FileInfo(filePath);
-                    newResource.Ext = fileInfo.Extension;
-                    newResource.Src = fileInfo.Name.ToString();
-                    newResource.FileSize = FileHelpers.GetSizeInMemory(fileInfo.Length);
-                    newResource.creator = orderDTO.Purchaser;
-                    newResource.C = DateTime.Today;
-                    //Read the bytes of the file into a byte array
-                    newResource.F = File.ReadAllBytes(filePath);
+                    //newResource.Ext = fileInfo.Extension;
+                    //newResource.Src = fileInfo.Name.ToString();
+                    //newResource.FileSize = FileHelpers.GetSizeInMemory(fileInfo.Length);
+                    //newResource.creator = orderDTO.Purchaser;
+                    //newResource.C = DateTime.Today;
+                    ////Read the bytes of the file into a byte array
+                    //newResource.F = File.ReadAllBytes(filePath);
                 }
             }
 

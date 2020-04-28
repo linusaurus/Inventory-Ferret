@@ -13,6 +13,7 @@ namespace DataLayer.Entities.Configuration
         public void Configure(EntityTypeBuilder<ResourceVersion> entity)
         {
             entity.HasKey(p => p.ResourceVersionID);
+            entity.HasOne(p => p.GetResource).WithMany().HasForeignKey(r => r.ResourceID);
         }
     }
 }
