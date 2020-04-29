@@ -227,149 +227,149 @@ namespace DataLayer.Models
     }
 
 
-    public class ResourceDTO : INotifyPropertyChanged
-    {
-        private int resourceID;
-        private string resourceDescription;
-        private string createdby;
-        private int currentVersion;
+    //public class ResourceDTO : INotifyPropertyChanged
+    //{
+    //    private int resourceID;
+    //    private string resourceDescription;
+    //    private string createdby;
+    //    private int currentVersion;
         
-        public int ResourceID 
-        {
-            get { return resourceID; }
-            set
-            {
-                resourceID = value;
-                OnPropertyChange();
-            }
-        }
+    //    public int ResourceID 
+    //    {
+    //        get { return resourceID; }
+    //        set
+    //        {
+    //            resourceID = value;
+    //            OnPropertyChange();
+    //        }
+    //    }
 
-        public string ResourceDescription 
-        {
-            get { return resourceDescription; }
-            set
-            {
-               resourceDescription = value ;
-               OnPropertyChange();
-            }
-        }
+    //    public string ResourceDescription 
+    //    {
+    //        get { return resourceDescription; }
+    //        set
+    //        {
+    //           resourceDescription = value ;
+    //           OnPropertyChange();
+    //        }
+    //    }
 
-        public string Createdby
-        {
-            get { return createdby; }
-            set
-            {
-                createdby = value;
-                OnPropertyChange();
-            }
-        }
+    //    public string Createdby
+    //    {
+    //        get { return createdby; }
+    //        set
+    //        {
+    //            createdby = value;
+    //            OnPropertyChange();
+    //        }
+    //    }
 
-        public int CurrentVersion 
-        {
-            get {return currentVersion; }
-            set
-            {
-               currentVersion = value ;
-               OnPropertyChange();
-            } 
-        }
+    //    public int CurrentVersion 
+    //    {
+    //        get {return currentVersion; }
+    //        set
+    //        {
+    //           currentVersion = value ;
+    //           OnPropertyChange();
+    //        } 
+    //    }
 
-        public List<ResourceVersionDTO> ResourceVersions { get; set; }
+    //    public List<ResourceVersionDTO> ResourceVersions { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+    //    public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChange([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
-    }
+    //    protected void OnPropertyChange([CallerMemberName] string name = null)
+    //    {
+    //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    //    }
+    //}
 
-    public class ResourceVersionDTO
-    {
-        public int resourceVersionID;
-        public int resourceID;
-        public int rVersion;
-        public string versionComment;
-        public Byte[] resource;
-        public string modifiedBy;
-        public DateTime modDate;
+    //public class ResourceVersionDTO
+    //{
+    //    public int resourceVersionID;
+    //    public int resourceID;
+    //    public int rVersion;
+    //    public string versionComment;
+    //    public Byte[] resource;
+    //    public string modifiedBy;
+    //    public DateTime modDate;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+    //    public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChange([CallerMemberName] string name = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
-        }
+    //    protected void OnPropertyChange([CallerMemberName] string name = null)
+    //    {
+    //        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+    //    }
 
-        public int ResourceVersionID 
-        {
-            get { return resourceVersionID; }
-            set
-            {
-               resourceVersionID = value ;
-               OnPropertyChange();
-            }
-        }
+    //    public int ResourceVersionID 
+    //    {
+    //        get { return resourceVersionID; }
+    //        set
+    //        {
+    //           resourceVersionID = value ;
+    //           OnPropertyChange();
+    //        }
+    //    }
 
-        public int ResourceID 
-        {
-            get { return resourceID; }
-            set
-            {
-               resourceID = value ;
-               OnPropertyChange();
-            } 
-        }
+    //    public int ResourceID 
+    //    {
+    //        get { return resourceID; }
+    //        set
+    //        {
+    //           resourceID = value ;
+    //           OnPropertyChange();
+    //        } 
+    //    }
 
-        public int RVersion
-        {
-            get { return rVersion; }
-            set
-            {
-              rVersion = value  ;
-              OnPropertyChange();
-            } 
-        }
+    //    public int RVersion
+    //    {
+    //        get { return rVersion; }
+    //        set
+    //        {
+    //          rVersion = value  ;
+    //          OnPropertyChange();
+    //        } 
+    //    }
 
-        public string VersionComment 
-        {
-            get {return versionComment; }
-            set
-            {
-                versionComment = value;
-                OnPropertyChange();
-            }
+    //    public string VersionComment 
+    //    {
+    //        get {return versionComment; }
+    //        set
+    //        {
+    //            versionComment = value;
+    //            OnPropertyChange();
+    //        }
             
-        }
+    //    }
 
-        public Byte[] Resource 
-        {
-            get {return resource; }
-            set
-            {
-               resource = value ;
-               OnPropertyChange();
-            } 
-        }
+    //    public Byte[] Resource 
+    //    {
+    //        get {return resource; }
+    //        set
+    //        {
+    //           resource = value ;
+    //           OnPropertyChange();
+    //        } 
+    //    }
 
-        public string ModifiedBy
-        {
-            get {return modifiedBy; }
-            set
-            {
-               modifiedBy = value ;
-               OnPropertyChange();
-            }
-        }
+    //    public string ModifiedBy
+    //    {
+    //        get {return modifiedBy; }
+    //        set
+    //        {
+    //           modifiedBy = value ;
+    //           OnPropertyChange();
+    //        }
+    //    }
 
-        public DateTime ModDate
-        {
-            get {return modDate; }
-            set 
-            {
-               modDate = value ;
-               OnPropertyChange();
-            }
-        }
-    }
+    //    public DateTime ModDate
+    //    {
+    //        get {return modDate; }
+    //        set 
+    //        {
+    //           modDate = value ;
+    //           OnPropertyChange();
+    //        }
+    //    }
+    //}
 }

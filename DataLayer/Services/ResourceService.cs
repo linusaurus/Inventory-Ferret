@@ -22,9 +22,10 @@ namespace DataLayer.Services
             var resource = ctx.Resource.FirstOrDefault(o => o.ResourceID == resourceDTO.ResourceID);
             if (resource == null)
             {
-                resource = new Resource();
+                resource = new Resource();               
                 ctx.Resource.Add(resource);
                 // Save to DB to get the new ID --
+
                 ctx.SaveChanges();
              }
             //Map properties --------------------------------------------------

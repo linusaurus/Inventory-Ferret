@@ -12,5 +12,6 @@ namespace Weaselware.InventoryFerret {
     public class Globals {
 
         public static int CurrentLoggedUserID;
+        public static string CurrentUserName;
     }
 }

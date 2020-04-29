@@ -322,7 +322,29 @@ namespace DataLayerTest
 
             _service.CreateOrUpdateOrder(resourceDto);
             //ctx.SaveChanges();
-          //  Assert.IsTrue(orderFee.OrderfeeID != default);
+            Assert.IsTrue(child.ResourceVersionID != default);
+
+        }
+
+        [TestMethod]
+        public void Resource_Add_ResourceVersion()
+        {
+            var ctx = new BadgerDataModel();
+
+
+            ResourceVersion _version = new ResourceVersion();
+
+            _version.ResourceID = 5;
+            _version.RVersion = 1;
+            _version.VersionComment = "Revised for some reason";
+            _version.ModifiedBy = "dick";
+            _version.ModDate = DateTime.Today;
+
+            ctx.ResourceVersion.Add(_version);
+
+            // _service.CreateOrUpdateOrder(resourceDto);
+            ctx.SaveChanges();
+            Assert.IsTrue(_version.ResourceVersionID != default);
 
         }
 

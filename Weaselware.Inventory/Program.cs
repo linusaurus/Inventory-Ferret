@@ -34,6 +34,7 @@ namespace Weaselware.InventoryFerret
            
             mainForm.LoggedOnUserID = 8;
             Globals.CurrentLoggedUserID = 8;
+            Globals.CurrentUserName = "Richard";
             //Application.Run(new DataForm());
 
             Application.Run(mainForm);

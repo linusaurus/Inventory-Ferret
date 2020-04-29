@@ -46,7 +46,7 @@
             // 
             // btnSubmit
             // 
-            this.btnSubmit.Location = new System.Drawing.Point(446, 96);
+            this.btnSubmit.Location = new System.Drawing.Point(446, 104);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(75, 23);
             this.btnSubmit.TabIndex = 0;
@@ -56,12 +56,13 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(364, 96);
+            this.btnCancel.Location = new System.Drawing.Point(364, 104);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 0;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnBrowse
             // 
@@ -87,6 +88,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.Size = new System.Drawing.Size(412, 20);
             this.textBox1.TabIndex = 3;
+            this.textBox1.Validating += new System.ComponentModel.CancelEventHandler(this.textBox1_Validating);
             // 
             // lblDescription
             // 
@@ -105,21 +107,21 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(108, 72);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
+            this.textBox2.Size = new System.Drawing.Size(332, 20);
             this.textBox2.TabIndex = 5;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(63, 76);
+            this.label1.Location = new System.Drawing.Point(33, 76);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(30, 13);
+            this.label1.Size = new System.Drawing.Size(60, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "View";
+            this.label1.Text = "Source File";
             // 
             // txtFileExtension
             // 
-            this.txtFileExtension.Location = new System.Drawing.Point(242, 72);
+            this.txtFileExtension.Location = new System.Drawing.Point(474, 69);
             this.txtFileExtension.Name = "txtFileExtension";
             this.txtFileExtension.Size = new System.Drawing.Size(46, 20);
             this.txtFileExtension.TabIndex = 5;
@@ -127,7 +129,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(214, 76);
+            this.label2.Location = new System.Drawing.Point(446, 72);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(22, 13);
             this.label2.TabIndex = 4;
@@ -137,7 +139,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 131);
+            this.ClientSize = new System.Drawing.Size(533, 143);
             this.ControlBox = false;
             this.Controls.Add(this.txtFileExtension);
             this.Controls.Add(this.textBox2);

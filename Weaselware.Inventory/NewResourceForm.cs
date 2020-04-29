@@ -18,12 +18,13 @@ namespace Weaselware.InventoryFerret
     {
         private Part _part;
         private OpenFileDialog openFileDialog;
+        
 
         public NewResourceForm(Part part)
         {
             InitializeComponent();
             _part = part;
-            this.Text = $"Part : {_part.PartID.ToString()}";
+            this.Text =String.Format("Part : {0} --{1}", _part.PartID.ToString(),_part.ItemDescription.ToString().Substring(0,40));
             openFileDialog = new OpenFileDialog();
         }
 
@@ -34,9 +35,19 @@ namespace Weaselware.InventoryFerret
 
         private void SetText(FileInfo info)
         {
-           this.txtFilePath.Text = info.Name.ToString();
-            this.txtFileExtension.Text = info.Extension.ToString();
+           this.txtFilePath.Text = info.Name.ToString();          
+           this.txtFileExtension.Text = info.Extension.ToString();
+
         }
+
+        private FileInfo resourcePath;
+
+        public FileInfo ResourcePath
+        {
+            get { return resourcePath; }
+            set { resourcePath = value; }
+        }
+
 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
@@ -48,9 +59,10 @@ namespace Weaselware.InventoryFerret
                     FileInfo info = new FileInfo(path);
 
                     SetText(info);
+                    resourcePath = info;
                 }
                 catch (SecurityException ex)
-                {
+                {                  
                     MessageBox.Show($"Security error.\n\nError message: {ex.Message}\n\n" +
                     $"Details:\n\n{ex.StackTrace}");
                 }
@@ -60,6 +72,35 @@ namespace Weaselware.InventoryFerret
         private void btnSubmit_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void textBox1_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            
+            string errorMsg = "Resource must have a decent description";
+            if (tb.Text.Length > 20)
+            {
+                // Cancel the event and select the text to be corrected by the user.
+                e.Cancel = true;
+                tb.Select(0, textBox1.Text.Length);
+
+                // Set the ErrorProvider error with the text to display. 
+                this.errorProvider1.SetError(tb, errorMsg);
+            }
+
+        }
+
+        private void textBox1_Validated(object sender, System.EventArgs e)
+        {
+            TextBox tb = (TextBox)sender;
+            // If all conditions have been met, clear the ErrorProvider of errors.
+            errorProvider1.SetError(tb, "");
         }
     }
 }

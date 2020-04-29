@@ -257,27 +257,18 @@ namespace Weaselware.InventoryFerret
             var fileContent = string.Empty;
             var filePath = string.Empty;
             // Create a shelled out Resource Object
-            ResourceDto newResource = new ResourceDto
+            if (selectedPart != null)
             {
-               
-                Createdby = "richard",
-                CurrentVersion = 1
-            };
-
-            //Open the File Dialog
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                NewResourceForm rform = new NewResourceForm(selectedPart);
+                if (rform.ShowDialog() == DialogResult.OK)
                 {
-
-                    //Get the path of specified file
-                    filePath = openFileDialog.FileName;
-                    FileInfo fileInfo = new FileInfo(filePath);
+                   
+                    FileInfo fileInfo = rform.ResourcePath;
+                    // Create a shelled out Resource Object
+                    ResourceDto rdto = new ResourceDto();
+                    rdto.Createdby = Globals.CurrentUserName;
+                    rdto.CurrentVersion = 1;
+                    //rdto.ResourceDescription = 
                     //newResource.Ext = fileInfo.Extension;
                     //newResource.Src = fileInfo.Name.ToString();
                     //newResource.FileSize = FileHelpers.GetSizeInMemory(fileInfo.Length);
@@ -287,6 +278,18 @@ namespace Weaselware.InventoryFerret
                     //newResource.F = File.ReadAllBytes(filePath);
                 }
             }
+            
+
+
+
+
+            ResourceDto newResource = new ResourceDto
+            {               
+                Createdby = Globals.CurrentUserName,              
+                CurrentVersion = 1
+            };
+
+  
 
             //bsAttachments.Add(newAttachment);
         }

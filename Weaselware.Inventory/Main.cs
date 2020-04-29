@@ -48,14 +48,14 @@ namespace Weaselware.InventoryFerret {
             
                 var emp = _context.Employee.Where(p => p.EmployeeId == LoggedOnUserID).FirstOrDefault();
                 this.toolStripStatusLabel1.Text = "User= " + emp.Firstname + " " + emp.Lastname;
-
+                Globals.CurrentUserName = emp.Firstname + " " + emp.Lastname;
             // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context,PageFactory.TabPageType.SupplierOrdersPage));
             // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.JobOrdersPage));
             // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.ItemSearchPage));
             // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.RecieptManagerPage));
 
-           
-           
+
+
 
         }
 
