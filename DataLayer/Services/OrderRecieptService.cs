@@ -44,6 +44,8 @@ namespace DataLayer.Services {
 
         }
 
+        //public List<>
+
         public OrderReciept GetReceivedOrderReceipt(int purchaseOrderID) {
 
             return context.OrderReciept.Where(c => c.OrderNum == purchaseOrderID).FirstOrDefault();

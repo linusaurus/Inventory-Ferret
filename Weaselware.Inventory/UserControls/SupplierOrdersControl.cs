@@ -78,10 +78,12 @@ namespace Weaselware.InventoryFerret {
 
         // Populate the Supplier Order List ---
         private void lbSuppliers_SelectedIndexChanged(object sender, EventArgs e) {
+
             List<PurchaseOrder> ordersList = new List<PurchaseOrder>();
             ListBox lb = (ListBox)sender;
             selectedSupplier = (Supplier)lb.SelectedItem;
             int key = selectedSupplier.SupplierId;
+
             if (selectedSupplier != null)
                 LoadSupplierOrders(selectedSupplier);
 
@@ -97,6 +99,8 @@ namespace Weaselware.InventoryFerret {
                 int orderNum;
                 if (int.TryParse(temp, out orderNum))
                 {
+                   
+                    // Needs to bring in lineitems for recieving, targeted ---
                     selectedOrder = ordersService.GetOrderByID(orderNum);
                     bsLineItems.DataSource = lineItemService.GetOrderItems(orderNum);
                     dgOrderItems.DataSource = bsLineItems;
@@ -152,6 +156,7 @@ namespace Weaselware.InventoryFerret {
             CheckBox cb = (CheckBox)sender;
             LoadSupplierOrders(selectedSupplier);
         }
+
 
         private void LoadSupplierOrders(Supplier supplier) {
 
