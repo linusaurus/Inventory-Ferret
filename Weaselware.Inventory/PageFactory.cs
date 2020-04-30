@@ -45,9 +45,10 @@ namespace Weaselware.InventoryFerret
                         tab.Controls.Add(ctr);
                     }
                     break;
+                // Order Seach/Display Page
                 case TabPageType.PurchaseOrdersPage:
                     tab.Text = "Purchase Order";
-                    PurchaseOrderControl po = new PurchaseOrderControl(new PurchaseOrder());
+                    OrderManager po = new OrderManager(ctx);
                     po.Dock = DockStyle.Fill;
                     tab.Controls.Add(po);
                     break;

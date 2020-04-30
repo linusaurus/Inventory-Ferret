@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewResourceForm));
-            this.btnSubmit = new System.Windows.Forms.Button();
-            this.btnCancel = new System.Windows.Forms.Button();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.txtFilePath = new System.Windows.Forms.TextBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -41,28 +39,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtFileExtension = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnSubmit = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnSubmit
-            // 
-            this.btnSubmit.Location = new System.Drawing.Point(446, 104);
-            this.btnSubmit.Name = "btnSubmit";
-            this.btnSubmit.Size = new System.Drawing.Size(75, 23);
-            this.btnSubmit.TabIndex = 0;
-            this.btnSubmit.Text = "Submit";
-            this.btnSubmit.UseVisualStyleBackColor = true;
-            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Location = new System.Drawing.Point(364, 104);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // btnBrowse
             // 
@@ -121,7 +101,7 @@
             // 
             // txtFileExtension
             // 
-            this.txtFileExtension.Location = new System.Drawing.Point(474, 69);
+            this.txtFileExtension.Location = new System.Drawing.Point(474, 71);
             this.txtFileExtension.Name = "txtFileExtension";
             this.txtFileExtension.Size = new System.Drawing.Size(46, 20);
             this.txtFileExtension.TabIndex = 5;
@@ -135,11 +115,36 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Ext";
             // 
+            // btnCancel
+            // 
+            this.btnCancel.Image = global::Weaselware.InventoryFerret.Properties.Resources.baseline_highlight_off_black_24dp;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnCancel.Location = new System.Drawing.Point(295, 109);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(105, 30);
+            this.btnCancel.TabIndex = 0;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // btnSubmit
+            // 
+            this.errorProvider1.SetIconPadding(this.btnSubmit, 2);
+            this.btnSubmit.Image = global::Weaselware.InventoryFerret.Properties.Resources.baseline_done_black_24dp;
+            this.btnSubmit.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSubmit.Location = new System.Drawing.Point(406, 109);
+            this.btnSubmit.Name = "btnSubmit";
+            this.btnSubmit.Size = new System.Drawing.Size(114, 30);
+            this.btnSubmit.TabIndex = 0;
+            this.btnSubmit.Text = "Submit";
+            this.btnSubmit.UseVisualStyleBackColor = true;
+            this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            // 
             // NewResourceForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(533, 143);
+            this.ClientSize = new System.Drawing.Size(546, 150);
             this.ControlBox = false;
             this.Controls.Add(this.txtFileExtension);
             this.Controls.Add(this.textBox2);

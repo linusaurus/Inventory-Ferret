@@ -352,6 +352,12 @@
     <Compile Include="UserControls\OrderEditControl.Designer.cs">
       <DependentUpon>OrderEditControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\OrderManager.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OrderManager.Designer.cs">
+      <DependentUpon>OrderManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\PartDetailCOntrol.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -499,6 +505,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\OrderEditControl.resx">
       <DependentUpon>OrderEditControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OrderManager.resx">
+      <DependentUpon>OrderManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\PartDetailCOntrol.resx">
       <DependentUpon>PartDetailCOntrol.cs</DependentUpon>
@@ -736,6 +745,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\baseline_visibility_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\baseline_done_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\baseline_highlight_off_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\baseline_clear_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\baseline_clear_black_24dp1.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

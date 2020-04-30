@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using DataLayer.Entities;
 using DataLayer.Interfaces;
 using DataLayer.Models;
-
+using System.Runtime.InteropServices.ComTypes;
 
 namespace DataLayer.Services {
 
@@ -112,12 +112,28 @@ namespace DataLayer.Services {
             return context.PurchaseOrder.ToList();
         }
 
-        public List<PurchaseOrder> GetSupplierOrders(int supplierID) {
+        //public List<OrderListDto> GetSupplierOrders(int supplierID)
+        //{
+        //    var result = context.PurchaseOrder.Where(s => s.SupplierId == supplierID).Select(d => new OrderListDto
+        //    {
+        //       OrderNum = d.OrderNum,
+
+        //    })
+        //     .ToList();
+        //    return result;
+
+
+
+        //}
+
+        public List<PurchaseOrder> GetSupplierOrders(int supplierID)
+        {
 
             return context.PurchaseOrder.Where(c => c.SupplierId == supplierID).OrderByDescending(d => d.OrderDate).ToList();
         }
 
-        public List<PurchaseOrder> GetJobOrders(int jobID) {
+        public List<PurchaseOrder> GetJobOrders(int jobID)
+        {
 
             return context.PurchaseOrder.Where(c => c.JobId == jobID).ToList();
         }
@@ -422,6 +438,30 @@ namespace DataLayer.Services {
             });
 
             context.SaveChanges();
+        }
+
+        public List<OrderListDto> FindSupplierOrders(int supplierID)
+        {
+            return context.PurchaseOrder
+                .Include(j => j.Job)
+                .Include(e => e.Employee)
+                .Include(s => s.Supplier).OrderByDescending(r => r.OrderDate).Where(c => c.SupplierId == supplierID).AsNoTracking().Select(d => new OrderListDto
+            {
+                OrderNum = d.OrderNum,
+                JobName = d.Job.Jobname,
+                Purchaser = d.Employee.Firstname,
+                OrderDate = d.OrderDate.GetValueOrDefault(),
+                OrderTotal = d.OrderTotal.GetValueOrDefault(),
+                Recieved = d.Recieved.GetValueOrDefault(),
+                Supplier = d.Supplier.SupplierName
+                
+
+            }).ToList();
+
+                
+                
+                
+            
         }
     }
 }

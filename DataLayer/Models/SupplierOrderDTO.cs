@@ -31,6 +31,7 @@ namespace DataLayer.Models
             public string JobName { get => jobName; set => jobName = value; }
             public string SupplierName { get => supplierName; set => supplierName = value; }
             public int? OrderNum1 { get => orderNum; set => orderNum = value; }
+
         }
     
 }

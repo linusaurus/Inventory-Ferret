@@ -133,9 +133,49 @@ namespace Weaselware.InventoryFerret.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap baseline_clear_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_clear_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_clear_black_24dp1 {
+            get {
+                object obj = ResourceManager.GetObject("baseline_clear_black_24dp1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_done_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_done_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap baseline_get_app_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("baseline_get_app_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_highlight_off_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_highlight_off_black_24dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

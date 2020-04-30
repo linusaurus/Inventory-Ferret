@@ -18,6 +18,7 @@ namespace DataLayer.Interfaces
         List<PurchaseOrder> GetJobOrders(int jobID);
         PurchaseOrder GetOrderByID(int orderNum);
         List<PurchaseOrder> GetSupplierOrders(int supplierID);
+        List<OrderListDto> FindSupplierOrders(int supplierID);
         List<SupplierLineItemDto> GetSupplierLineItems(int supplierID);
         void InsertOrUpdate(PurchaseOrder order);
         PurchaseOrder NewDefault(int employee, int supplierId, int jobID);

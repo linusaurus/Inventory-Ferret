@@ -82,13 +82,13 @@
             // 
             // tsbFindOrder
             // 
-            this.tsbFindOrder.Enabled = false;
             this.tsbFindOrder.Image = ((System.Drawing.Image)(resources.GetObject("tsbFindOrder.Image")));
             this.tsbFindOrder.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbFindOrder.Name = "tsbFindOrder";
             this.tsbFindOrder.Size = new System.Drawing.Size(67, 52);
             this.tsbFindOrder.Text = "Find Order";
             this.tsbFindOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbFindOrder.Click += new System.EventHandler(this.tsbFindOrder_Click);
             // 
             // tsbReceiveOrder
             // 

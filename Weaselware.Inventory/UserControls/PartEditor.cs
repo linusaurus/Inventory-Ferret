@@ -278,18 +278,12 @@ namespace Weaselware.InventoryFerret
                     //newResource.F = File.ReadAllBytes(filePath);
                 }
             }
-            
-
-
-
 
             ResourceDto newResource = new ResourceDto
             {               
                 Createdby = Globals.CurrentUserName,              
                 CurrentVersion = 1
             };
-
-  
 
             //bsAttachments.Add(newAttachment);
         }

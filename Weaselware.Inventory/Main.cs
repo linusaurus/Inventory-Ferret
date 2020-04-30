@@ -191,5 +191,12 @@ namespace Weaselware.InventoryFerret {
             MainTabControl.TabPages.Add(AssembliesTab);
             MainTabControl.SelectedTab = AssembliesTab;
         }
+
+        private void tsbFindOrder_Click(object sender, EventArgs e)
+        {
+            TabPage AssembliesTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrdersPage);
+            MainTabControl.TabPages.Add(AssembliesTab);
+            MainTabControl.SelectedTab = AssembliesTab;
+        }
     }
 }

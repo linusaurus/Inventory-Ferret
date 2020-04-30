@@ -84,7 +84,7 @@ namespace Weaselware.InventoryFerret
             TextBox tb = (TextBox)sender;
             
             string errorMsg = "Resource must have a decent description";
-            if (tb.Text.Length > 20)
+            if (tb.Text.Length < 20)
             {
                 // Cancel the event and select the text to be corrected by the user.
                 e.Cancel = true;
