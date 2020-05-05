@@ -11,6 +11,7 @@ using DataLayer.Entities;
 using System.Runtime.InteropServices.ComTypes;
 using DataLayer.Interfaces;
 using DataLayer.Services;
+using DataLayer.Models;
 
 namespace Weaselware.InventoryFerret.UserControls
 {
@@ -21,6 +22,7 @@ namespace Weaselware.InventoryFerret.UserControls
         private ISuppliersService supplierService;
         private IJobsService jobsService;
         private Supplier _selectedSupplier;
+        private OrderListDto _selectOrderDto;
         
         public OrderManager(BadgerDataModel context)
         {
@@ -82,19 +84,26 @@ namespace Weaselware.InventoryFerret.UserControls
                 }
             }
         }
-        /// <summary>
-        /// Search For Job Orders
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void txtSearchJobs_TextChanged(object sender, EventArgs e)
+
+        private void dgOrders_SelectionChanged(object sender, EventArgs e)
         {
-            TextBox tb = (TextBox)sender;
-            if (tb.Text.Length > 0)
+            DataGridView grid = (DataGridView)sender;
+            if (grid.DataSource != null)
             {
-                lbJobsList.DataSource = jobsService.GetJobs(tb.Text);
-                lbJobsList.DisplayMember = "JobName";
-                lbJobsList.ValueMember = "JobID";
+                if (grid.SelectedRows.Count > 0)
+                {
+                    _selectOrderDto = (OrderListDto)grid.CurrentRow.DataBoundItem;
+                  
+                }
+            }
+        }
+
+        private void dgOrders_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (_selectOrderDto.OrderNum != default)
+            {
+                ((Main)Application.OpenForms[0]).OpenAnOrder(_selectOrderDto.OrderNum);
+
 
             }
         }

@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using DataLayer.Entities;
 using Weaselware.InventoryFerret.UserControls;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Weaselware.InventoryFerret
 {
@@ -30,7 +31,7 @@ namespace Weaselware.InventoryFerret
 
         }
         
-        public static TabPage GetNewTabPage(BadgerDataModel ctx,TabPageType pageType,object key = null)
+        public static TabPage GetNewTabPage(BadgerDataModel ctx,TabPageType pageType,int key = 0)
         {
             TabPage tab = new TabPage();
 
@@ -47,7 +48,7 @@ namespace Weaselware.InventoryFerret
                     break;
                 // Order Seach/Display Page
                 case TabPageType.PurchaseOrdersPage:
-                    tab.Text = "Purchase Order";
+                    tab.Text = "Orders Manager";
                     OrderManager po = new OrderManager(ctx);
                     po.Dock = DockStyle.Fill;
                     tab.Controls.Add(po);
@@ -100,6 +101,7 @@ namespace Weaselware.InventoryFerret
                     PartEditor partEditorControl = new PartEditor(ctx);
                     partEditorControl.Dock = DockStyle.Fill;
                     tab.Controls.Add(partEditorControl);
+                  
                     break;
                 
                 // Open Part for Detailed Editing w/ resource --
@@ -113,13 +115,12 @@ namespace Weaselware.InventoryFerret
                     }
                     break;
                 case TabPageType.PurchaseOrderPage:
-                    {
-                   // var order = (PurchaseOrder)model;
-                    tab.Text = $"Purchase Order :{key.ToString()}";
-                    OrderEditControl ctr = new OrderEditControl( );
-                    ctr.LoadByID((int)key);
-                    ctr.Dock = DockStyle.Fill;
-                    tab.Controls.Add(ctr);
+                    {                        
+                         tab.Text = $"Purchase Order :{key}";
+                         OrderEditControl ctr = new OrderEditControl();
+                         ctr.LoadByID(key);
+                         ctr.Dock = DockStyle.Fill;
+                         tab.Controls.Add(ctr);                
                     }
                     break;
 

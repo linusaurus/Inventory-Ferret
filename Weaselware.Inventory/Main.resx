@@ -123,27 +123,14 @@
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="tsbFindOrder.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAARhSURBVGhD7ZjbThNRFIZ5BB/BR/ARvOOCAK/AhZdGTYxG
-        8dQYD5Foqq1GjRgUTU3wUJF6QNGxKCKhOJWWjqXFPkIfYbv/6Z5mz9prYOhMay9YyZ+GZJj5/j1r7bVm
-        D+zFXvRB3LbsA2nLPgg9t2sH50otZe3GPnVJf0XSsvel8vZY+utaNp23ha4X9qbIlbfakkYa8jeZKzcO
-        qH//fwFwCZlI55ebFNwTNUBk4c2o2/U23BTJrzY4aF07GPCU7Gl6STC56jzw5PeiyK6WxLxddrVUqYqV
-        PzVXVqXOwbua/V23e5JWMs+nOHBAr2444m+9uq1qUoVqTcxvcEacZldNSFBj5bHiYcCpYOSHfCucia6k
-        Uyvn/fAzK+uiuvmHBQyr35ub4r35Niz12Hiitdv4CxbwHFAnqtTMQp8r1Y+px0cPCexLHaRN0MoXlgvi
-        +XRO3L76xKeHqRkx/+aLqDoV/v9kXfhNxJRKrdX37/NczgOMA6e6fz0jlvM/jf+H6C41V9pKKIzOw+2w
-        Gjx2G/pgwE/ffckCB2lxYcm8D0kldG2F0XnQ8YBb/TArz6lYsI17mb0i4raqwyP36QOR8xzcjcQDcXk8
-        7erqmTsidfmxcc2zyVnjfr9ILURKI3eq1Axw6cOtPqBPHr7o0/jRK+LmpSnjWvoWaBrlSltZhbP7oHs/
-        RgP9YRAFwspTeE/nj08Y12Nnovf0GYjSEzoxwK2+Lnp9Tw0srm8YD6NAuoHzJ66Ji6dv9I+BMG8ABevB
-        Tj+YEVfO3Wr/ferIJeP6/24AHVYHwm6DggX4u9kFnwGY06+FuH4QmwH1xdU2kPlpzj9YQQqF3ebVs7dt
-        A1h5Dh5dmY4WZTncEQNJhdNZ0CGOzkAAAIgOlpl8I5a+FFw9uhPcobn0MUfs+phC6SxSX38ldQOfi2Yh
-        Y7bxoO5OZMTip5UdDWD0oPeB6GgdeaCjzSxoEkUuA+x15mMbPsgA4Lmp1JhIozQxPW7l1yzdRG7N7MgQ
-        uurqDzvQAFKNSxsIHZiufmwnFnQ3gpbL/FwPVSuOWJcmIevDNxcab4hbdQiflwvmB3/nuw8XtBbufSuK
-        orP7b2FO3x0K7zTfO4396tHxROv0rWDrJiCuqMMKacOsvEi9y4uzT7PRdh8uWgVtnsKhP2xUd/dxj3Mi
-        5mNeTC0WxLmnr10dGr/QOxOeEcxLQWbQpLDPc+AUfuzocTE6OipGRkaiNTIukE50ZwpSuKNFp4m0ofCe
-        hoeHLfnbhbOivH1su4NdKIQBCwWLnOfgPQ0NDTXkb/yndmpeSgQd9AYakE2K7vPIeQqua3BwsCl/468L
-        L1TXTuAgACkGvVirWhLYUxKzzXbjAXKeglN1pS7iDJXzLLynrtVFHAEwlfMsvKeu1UUcATCV8yy8p67X
-        RZQAmA4bJGUi3tEjrghT1ErRz1G7FWGKWqp/DUi4MEXdvwYQEnCnou7PGtBDQo4FmOjPXYgLCbtfKqGp
-        /1c+fAwM/AMyv4WQE0d5WQAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFUSURBVEhL7dQhMERRFIfxFwRBEARBEAVBEARhZwRBEARB
+        EERBEARBEIUNoiBs3CCIgiCIgiAIoigIgsD3GffNOHve2qEws/+ZX9l73nt7zz3vVcP8m8xgDZufVjGN
+        X2UKR3jEW4MH7GMCA2cEh3hBdtPME3bwbcZxgXiDa2xgFrZmHXeIdR2MIs0YrhAvcjfuKsYbnSLWd5HV
+        p8WXMKVttzjHCowPyXZygC9ZRizSAsw24lrp+Rbi2itsZ50bxCKV+M/jmteYOcQ1naHOPbIiz8U8I655
+        XsZxjmsq7f2IE5IVLcI4HXHNSTKeR1xTubaOhxeLnAjjTvbgi+XMt+HByxGO1x2jJ5PIJsJDbIqTFett
+        XWltT+xndqDupEyFL+MS7HGs8zfX+8anZz3vx7EsbRs48/Cfe3F2U/m9OoFf2x/HHfki7sI3VL5kLTR+
+        d4b5K6mqdwUFusWVwft7AAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="tsbJobOrders.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

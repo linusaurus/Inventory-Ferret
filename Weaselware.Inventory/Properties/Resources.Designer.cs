@@ -153,6 +153,16 @@ namespace Weaselware.InventoryFerret.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap baseline_close_black_18dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_close_black_18dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap baseline_done_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("baseline_done_black_24dp", resourceCulture);
@@ -506,6 +516,56 @@ namespace Weaselware.InventoryFerret.Properties {
         internal static System.Drawing.Bitmap stamped_document {
             get {
                 object obj = ResourceManager.GetObject("stamped_document", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap twotone_account_tree_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("twotone_account_tree_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap twotone_add_box_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("twotone_add_box_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap twotone_extension_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("twotone_extension_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap twotone_shopping_cart_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("twotone_shopping_cart_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap twotone_track_changes_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("twotone_track_changes_black_24dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

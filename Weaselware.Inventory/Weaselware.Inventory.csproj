@@ -758,6 +758,27 @@
   <ItemGroup>
     <None Include="Resources\baseline_clear_black_24dp1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\close.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\baseline_close_black_18dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twotone_extension_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twotone_account_tree_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twotone_track_changes_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twotone_shopping_cart_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twotone_add_box_black_24dp.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

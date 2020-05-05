@@ -6,8 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using DataLayer.Entities;
 using DataLayer.Models;
 using DataLayer.Services;
-
-
+using System.Drawing;
 
 namespace Weaselware.InventoryFerret {
     public partial class Main : Form
@@ -42,7 +41,10 @@ namespace Weaselware.InventoryFerret {
 
         private void Main_Load(object sender, EventArgs e)
         {
-            
+
+            closeImage = Properties.Resources.baseline_close_black_18dp;
+            MainTabs.Padding = new System.Drawing.Point(26, 4);
+
             this.toolStripStatusLabel1.Text = "UserID=" + _loggedOnUserID.ToString() ;
             _context = new BadgerDataModel();
             
@@ -54,16 +56,15 @@ namespace Weaselware.InventoryFerret {
             // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.ItemSearchPage));
             // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.RecieptManagerPage));
 
-
-
-
         }
 
         //Region Global new tab generator --------------------
 
-        public void OpenAnOrder(PurchaseOrder order)
+        public void OpenAnOrder(int orderID)
         {
-            MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage, order));
+            TabPage page = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage, orderID);
+            MainTabControl.TabPages.Add(page);
+            MainTabControl.SelectedTab = page;
         }
 
         private void Main_OrderOpen(object sender, OrderChangedArgs e)
@@ -197,6 +198,39 @@ namespace Weaselware.InventoryFerret {
             TabPage AssembliesTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrdersPage);
             MainTabControl.TabPages.Add(AssembliesTab);
             MainTabControl.SelectedTab = AssembliesTab;
+        }
+
+        private void MainTabControl_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            Image img = new Bitmap(closeImage);
+            Rectangle r = e.Bounds;
+            r = this.MainTabs.GetTabRect(e.Index);
+            r.Offset(2, 2);
+            Brush TitleBrush = new SolidBrush(Color.Black);
+            Font f = this.Font;
+            string title = this.MainTabs.TabPages[e.Index].Text;
+            e.Graphics.DrawString(title, f, TitleBrush, new PointF(r.X, r.Y));
+            e.Graphics.DrawImage(img, new Point(r.X + (this.MainTabs.GetTabRect(e.Index).Width - _imageLocation.X), _imageLocation.Y));
+        }
+
+        private void MainTabControl_MouseClick(object sender, MouseEventArgs e)
+        {
+            TabControl tabControl = (TabControl)sender;
+            Point p = e.Location;
+            int _tabWidth = 0;
+            _tabWidth = this.MainTabs.GetTabRect(tabControl.SelectedIndex).Width - (_imgHitArea.X);
+            Rectangle r = this.MainTabs.GetTabRect(tabControl.SelectedIndex);
+            r.Offset(_tabWidth, _imgHitArea.Y);
+            r.Width = 16;
+            r.Height = 16;
+            if (MainTabs.SelectedIndex >= 0)
+            {
+                if (r.Contains(p))
+                {
+                    TabPage tabPage = (TabPage)tabControl.TabPages[tabControl.SelectedIndex];
+                    tabControl.TabPages.Remove(tabPage);
+                }
+            }
         }
     }
 }

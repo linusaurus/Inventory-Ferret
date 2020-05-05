@@ -112,20 +112,6 @@ namespace DataLayer.Services {
             return context.PurchaseOrder.ToList();
         }
 
-        //public List<OrderListDto> GetSupplierOrders(int supplierID)
-        //{
-        //    var result = context.PurchaseOrder.Where(s => s.SupplierId == supplierID).Select(d => new OrderListDto
-        //    {
-        //       OrderNum = d.OrderNum,
-
-        //    })
-        //     .ToList();
-        //    return result;
-
-
-
-        //}
-
         public List<PurchaseOrder> GetSupplierOrders(int supplierID)
         {
 

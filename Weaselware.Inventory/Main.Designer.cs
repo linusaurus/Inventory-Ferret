@@ -1,4 +1,6 @@
-﻿namespace Weaselware.InventoryFerret
+﻿using System.Drawing;
+
+namespace Weaselware.InventoryFerret
 {
     partial class Main
     {
@@ -30,14 +32,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.mainToolStrip = new System.Windows.Forms.ToolStrip();
-            this.tsOrderButton = new System.Windows.Forms.ToolStripButton();
-            this.tsbFindOrder = new System.Windows.Forms.ToolStripButton();
-            this.tsbReceiveOrder = new System.Windows.Forms.ToolStripButton();
-            this.tsPartEditor = new System.Windows.Forms.ToolStripButton();
-            this.tsbJobItems = new System.Windows.Forms.ToolStripButton();
-            this.tsScanBarCode = new System.Windows.Forms.ToolStripLabel();
-            this.tsbJobOrders = new System.Windows.Forms.ToolStripButton();
-            this.tsSettingsButton = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainTabControl = new System.Windows.Forms.TabControl();
@@ -46,6 +40,14 @@
             this.sqlUpdateCommand1 = new System.Data.SqlClient.SqlCommand();
             this.sqlDeleteCommand1 = new System.Data.SqlClient.SqlCommand();
             this.sqlDataAdapter1 = new System.Data.SqlClient.SqlDataAdapter();
+            this.tsOrderButton = new System.Windows.Forms.ToolStripButton();
+            this.tsbFindOrder = new System.Windows.Forms.ToolStripButton();
+            this.tsbReceiveOrder = new System.Windows.Forms.ToolStripButton();
+            this.tsPartEditor = new System.Windows.Forms.ToolStripButton();
+            this.tsbJobItems = new System.Windows.Forms.ToolStripButton();
+            this.tsScanBarCode = new System.Windows.Forms.ToolStripLabel();
+            this.tsbJobOrders = new System.Windows.Forms.ToolStripButton();
+            this.tsSettingsButton = new System.Windows.Forms.ToolStripButton();
             this.mainToolStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -69,9 +71,47 @@
             this.mainToolStrip.TabIndex = 0;
             this.mainToolStrip.Text = "mainToolStrip";
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 614);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1116, 22);
+            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(84, 17);
+            this.toolStripStatusLabel1.Text = "{{Current Tab}}";
+            // 
+            // MainTabControl
+            // 
+            this.MainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainTabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.MainTabControl.ItemSize = new System.Drawing.Size(58, 24);
+            this.MainTabControl.Location = new System.Drawing.Point(0, 55);
+            this.MainTabControl.Name = "MainTabControl";
+            this.MainTabControl.SelectedIndex = 0;
+            this.MainTabControl.ShowToolTips = true;
+            this.MainTabControl.Size = new System.Drawing.Size(1116, 559);
+            this.MainTabControl.TabIndex = 2;
+            this.MainTabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.MainTabControl_DrawItem);
+            this.MainTabControl.SelectedIndexChanged += new System.EventHandler(this.MaintabControl_SelectedIndexChanged);
+            this.MainTabControl.MouseClick += new System.Windows.Forms.MouseEventHandler(this.MainTabControl_MouseClick);
+            // 
+            // sqlDataAdapter1
+            // 
+            this.sqlDataAdapter1.DeleteCommand = this.sqlDeleteCommand1;
+            this.sqlDataAdapter1.InsertCommand = this.sqlInsertCommand1;
+            this.sqlDataAdapter1.SelectCommand = this.sqlSelectCommand1;
+            this.sqlDataAdapter1.UpdateCommand = this.sqlUpdateCommand1;
+            // 
             // tsOrderButton
             // 
-            this.tsOrderButton.Image = global::Weaselware.InventoryFerret.Properties.Resources.stamped_document;
+            this.tsOrderButton.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_add_box_black_24dp;
             this.tsOrderButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsOrderButton.Name = "tsOrderButton";
             this.tsOrderButton.Size = new System.Drawing.Size(68, 52);
@@ -85,14 +125,14 @@
             this.tsbFindOrder.Image = ((System.Drawing.Image)(resources.GetObject("tsbFindOrder.Image")));
             this.tsbFindOrder.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbFindOrder.Name = "tsbFindOrder";
-            this.tsbFindOrder.Size = new System.Drawing.Size(67, 52);
-            this.tsbFindOrder.Text = "Find Order";
+            this.tsbFindOrder.Size = new System.Drawing.Size(92, 52);
+            this.tsbFindOrder.Text = "Supplier Orders";
             this.tsbFindOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsbFindOrder.Click += new System.EventHandler(this.tsbFindOrder_Click);
             // 
             // tsbReceiveOrder
             // 
-            this.tsbReceiveOrder.Image = global::Weaselware.InventoryFerret.Properties.Resources.edit;
+            this.tsbReceiveOrder.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_shopping_cart_black_24dp;
             this.tsbReceiveOrder.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbReceiveOrder.Name = "tsbReceiveOrder";
             this.tsbReceiveOrder.Size = new System.Drawing.Size(89, 52);
@@ -103,7 +143,7 @@
             // 
             // tsPartEditor
             // 
-            this.tsPartEditor.Image = global::Weaselware.InventoryFerret.Properties.Resources.gear;
+            this.tsPartEditor.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_extension_black_24dp;
             this.tsPartEditor.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsPartEditor.Margin = new System.Windows.Forms.Padding(15, 2, 15, 2);
             this.tsPartEditor.Name = "tsPartEditor";
@@ -115,7 +155,7 @@
             // 
             // tsbJobItems
             // 
-            this.tsbJobItems.Image = global::Weaselware.InventoryFerret.Properties.Resources.product_in_progress;
+            this.tsbJobItems.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_account_tree_black_24dp;
             this.tsbJobItems.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsbJobItems.Name = "tsbJobItems";
             this.tsbJobItems.Size = new System.Drawing.Size(61, 52);
@@ -126,7 +166,7 @@
             // 
             // tsScanBarCode
             // 
-            this.tsScanBarCode.Image = global::Weaselware.InventoryFerret.Properties.Resources.barcode;
+            this.tsScanBarCode.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_track_changes_black_24dp;
             this.tsScanBarCode.Margin = new System.Windows.Forms.Padding(15, 1, 15, 2);
             this.tsScanBarCode.Name = "tsScanBarCode";
             this.tsScanBarCode.Size = new System.Drawing.Size(79, 52);
@@ -156,41 +196,6 @@
             this.tsSettingsButton.Text = "search";
             this.tsSettingsButton.Click += new System.EventHandler(this.tsSettingsButton_Click);
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 614);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1116, 22);
-            this.statusStrip1.TabIndex = 1;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(84, 17);
-            this.toolStripStatusLabel1.Text = "{{Current Tab}}";
-            // 
-            // MainTabControl
-            // 
-            this.MainTabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.MainTabControl.ItemSize = new System.Drawing.Size(58, 24);
-            this.MainTabControl.Location = new System.Drawing.Point(0, 55);
-            this.MainTabControl.Name = "MainTabControl";
-            this.MainTabControl.SelectedIndex = 0;
-            this.MainTabControl.ShowToolTips = true;
-            this.MainTabControl.Size = new System.Drawing.Size(1116, 559);
-            this.MainTabControl.TabIndex = 2;
-            this.MainTabControl.SelectedIndexChanged += new System.EventHandler(this.MaintabControl_SelectedIndexChanged);
-            // 
-            // sqlDataAdapter1
-            // 
-            this.sqlDataAdapter1.DeleteCommand = this.sqlDeleteCommand1;
-            this.sqlDataAdapter1.InsertCommand = this.sqlInsertCommand1;
-            this.sqlDataAdapter1.SelectCommand = this.sqlSelectCommand1;
-            this.sqlDataAdapter1.UpdateCommand = this.sqlUpdateCommand1;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,6 +220,10 @@
         }
 
         #endregion
+
+        Point _imageLocation = new Point(20, 4);
+        Point _imgHitArea = new Point(20, 4);
+        Image closeImage;
 
         private System.Windows.Forms.ToolStrip mainToolStrip;
         private System.Windows.Forms.StatusStrip statusStrip1;
