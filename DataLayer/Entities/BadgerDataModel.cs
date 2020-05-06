@@ -74,7 +74,7 @@ namespace DataLayer.Entities
             if (!optionsBuilder.IsConfigured)
             {
 
-                optionsBuilder.UseSqlServer("Server=192.168.10.34;database=Badger;uid=sa;pwd=Kx09a32x;");
+                optionsBuilder.UseSqlServer("Server=192.168.10.3;database=Badger;uid=sa;pwd=Kx09a32x;");
             }
         }
 

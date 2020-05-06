@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgOrders = new System.Windows.Forms.DataGridView();
             this.colOrderNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,6 +44,7 @@
             this.txtSearchSuppliers = new System.Windows.Forms.TextBox();
             this.lbSuppliers = new System.Windows.Forms.ListBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.btnMyOrders = new System.Windows.Forms.Button();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrders)).BeginInit();
             this.tableLayoutPanel2.SuspendLayout();
@@ -62,6 +63,7 @@
             this.tableLayoutPanel1.Controls.Add(this.button1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.dataGridView1, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnMyOrders, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 14);
             this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -94,8 +96,8 @@
             // colOrderNum
             // 
             this.colOrderNum.DataPropertyName = "OrderNum";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colOrderNum.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colOrderNum.DefaultCellStyle = dataGridViewCellStyle1;
             this.colOrderNum.HeaderText = "Order#";
             this.colOrderNum.Name = "colOrderNum";
             this.colOrderNum.Width = 80;
@@ -103,10 +105,10 @@
             // colOrderDate
             // 
             this.colOrderDate.DataPropertyName = "OrderDate";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle17.Format = "d";
-            dataGridViewCellStyle17.NullValue = null;
-            this.colOrderDate.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.colOrderDate.DefaultCellStyle = dataGridViewCellStyle2;
             this.colOrderDate.HeaderText = "Date";
             this.colOrderDate.Name = "colOrderDate";
             this.colOrderDate.Width = 80;
@@ -121,8 +123,8 @@
             // colPurchaser
             // 
             this.colPurchaser.DataPropertyName = "Purchaser";
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colPurchaser.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colPurchaser.DefaultCellStyle = dataGridViewCellStyle3;
             this.colPurchaser.HeaderText = "Purchaser";
             this.colPurchaser.Name = "colPurchaser";
             // 
@@ -201,6 +203,16 @@
             this.dataGridView1.Size = new System.Drawing.Size(912, 138);
             this.dataGridView1.TabIndex = 5;
             // 
+            // btnMyOrders
+            // 
+            this.btnMyOrders.Location = new System.Drawing.Point(222, 3);
+            this.btnMyOrders.Name = "btnMyOrders";
+            this.btnMyOrders.Size = new System.Drawing.Size(75, 23);
+            this.btnMyOrders.TabIndex = 6;
+            this.btnMyOrders.Text = "My Orders";
+            this.btnMyOrders.UseVisualStyleBackColor = true;
+            this.btnMyOrders.Click += new System.EventHandler(this.btnMyOrders_Click);
+            // 
             // OrderManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -231,5 +243,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colOrderTotal;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colRecieved;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button btnMyOrders;
     }
 }

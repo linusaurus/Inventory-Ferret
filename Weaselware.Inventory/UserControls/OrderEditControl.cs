@@ -118,8 +118,8 @@ namespace Weaselware.InventoryFerret.UserControls
             // Clear the row error in case the user presses ESC.   
             dgOrderLineItem.Rows[e.RowIndex].ErrorText = String.Empty;
             // This little ditty sums the row-cleanly
-            dgOrderLineItem.Rows[e.RowIndex].Cells[6].Value = (decimal) dgOrderLineItem.Rows[e.RowIndex].Cells[4].Value
-                                                            *  (decimal)dgOrderLineItem.Rows[e.RowIndex].Cells[5].Value;
+            dgOrderLineItem.Rows[e.RowIndex].Cells[5].Value = (decimal) dgOrderLineItem.Rows[e.RowIndex].Cells[3].Value
+                                                            *  (decimal)dgOrderLineItem.Rows[e.RowIndex].Cells[4].Value;
         }
 
         private void BslineItems_ListChanged(object sender, ListChangedEventArgs e)
@@ -141,14 +141,18 @@ namespace Weaselware.InventoryFerret.UserControls
         {
             orderDTO.Update(); 
         }
-
+        /// <summary>
+        /// TODO need to remove the Unit of Purchase
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DgOrderLineItem_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
             DataGridViewRow row = ((DataGridView)sender).CurrentRow;
             decimal qnty = decimal.Zero;
 
             // Description -----------------------
-            if (e.ColumnIndex == 2)
+             if (e.ColumnIndex == 2)
             {
                 if (e.FormattedValue.ToString().Length < 10)
                 {
@@ -159,7 +163,7 @@ namespace Weaselware.InventoryFerret.UserControls
 
             }
             // Price Column -----------------------
-            if (e.ColumnIndex == 4)
+            if (e.ColumnIndex == 3)
             {
                 if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
                 {
@@ -169,7 +173,7 @@ namespace Weaselware.InventoryFerret.UserControls
 
 
             }
-            if (e.ColumnIndex == 5)
+            if (e.ColumnIndex == 4)
             {
                 if (string.IsNullOrEmpty(e.FormattedValue.ToString()))
                 {
@@ -312,11 +316,11 @@ namespace Weaselware.InventoryFerret.UserControls
 
 
             // Unit of Measure --
-            DataGridViewComboBoxColumn colUnit = new DataGridViewComboBoxColumn();
-            colUnit.Width = 60;
-            colUnit.DisplayMember = "UOM";
-            colUnit.ValueMember = "UiD";
-            colUnit.DataPropertyName = "UiD";
+            //DataGridViewComboBoxColumn colUnit = new DataGridViewComboBoxColumn();
+            //colUnit.Width = 60;
+            //colUnit.DisplayMember = "UOM";
+            //colUnit.ValueMember = "UiD";
+            //colUnit.DataPropertyName = "UiD";
             // UnitCost ----------
             DataGridViewTextBoxColumn colCost = new DataGridViewTextBoxColumn();
             colCost.Width = 60;
@@ -339,8 +343,8 @@ namespace Weaselware.InventoryFerret.UserControls
             colExtended.DataPropertyName = "Extended";
             colExtended.DefaultCellStyle = dstyleCurrency;
 
-            colUnit.DataSource = _partService.Units();
-            dgOrderLineItem.Columns.AddRange(colID, colPartID, colDescription, colUnit, colCost, colQnty, colExtended);
+            //colUnit.DataSource = _partService.Units();
+            dgOrderLineItem.Columns.AddRange(colID, colPartID, colDescription, colCost, colQnty, colExtended);
        
 
         }
@@ -353,10 +357,7 @@ namespace Weaselware.InventoryFerret.UserControls
             tabControl.TabPages.Remove(tabpage);
         }
 
-        private void purchaseOrderHeaderControl1_Load(object sender, EventArgs e)
-        {
-
-        }
+   
         /// <summary>
         /// Add an Order Fee
         /// </summary>

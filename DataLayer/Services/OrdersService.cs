@@ -449,5 +449,25 @@ namespace DataLayer.Services {
                 
             
         }
+
+        public List<OrderListDto> GetMyOrders(int employeeID)
+        {
+            return context.PurchaseOrder
+               .Include(j => j.Job)
+               .Include(e => e.Employee)
+               .Include(s => s.Supplier).OrderByDescending(r => r.OrderDate).Where(c => c.EmployeeId == employeeID)
+               .AsNoTracking().Select(d => new OrderListDto
+               {
+                   OrderNum = d.OrderNum,
+                   JobName = d.Job.Jobname,
+                   Purchaser = d.Employee.Firstname,
+                   OrderDate = d.OrderDate.GetValueOrDefault(),
+                   OrderTotal = d.OrderTotal.GetValueOrDefault(),
+                   Recieved = d.Recieved.GetValueOrDefault(),
+                   Supplier = d.Supplier.SupplierName
+
+
+               }).ToList();
+        }
     }
 }

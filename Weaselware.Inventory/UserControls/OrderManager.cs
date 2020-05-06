@@ -35,11 +35,6 @@ namespace Weaselware.InventoryFerret.UserControls
             dgOrders.AutoGenerateColumns = false;
         }
 
-
-
-
-
-
         /// <summary>
         /// Close the Tab --
         /// </summary>
@@ -74,7 +69,7 @@ namespace Weaselware.InventoryFerret.UserControls
                 {
                     if (_selectedSupplier != null)
                     {                       
-                        dgOrders.DataSource = ordersService.FindSupplierOrders(_selectedSupplier.SupplierId).ToList(); ;
+                        dgOrders.DataSource = ordersService.FindSupplierOrders(_selectedSupplier.SupplierId).ToList() ;
                     }
                     else
                     {
@@ -106,6 +101,11 @@ namespace Weaselware.InventoryFerret.UserControls
 
 
             }
+        }
+
+        private void btnMyOrders_Click(object sender, EventArgs e)
+        {
+            dgOrders.DataSource = ordersService.GetMyOrders(8).ToList();
         }
     }
 }

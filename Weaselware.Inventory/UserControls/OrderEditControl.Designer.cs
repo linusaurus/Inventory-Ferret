@@ -40,6 +40,7 @@
             this.colFeeExtension = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbOrderIncidentals = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.partFinderControl1 = new Weaselware.InventoryFerret.PartFinderControl();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btnAddOrderFee = new System.Windows.Forms.Button();
             this.btnRemoveFee = new System.Windows.Forms.Button();
@@ -56,7 +57,6 @@
             this.colSrc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCLose = new System.Windows.Forms.Button();
-            this.partFinderControl1 = new Weaselware.InventoryFerret.PartFinderControl();
             this.purchaseOrderHeaderControl1 = new Weaselware.InventoryFerret.PurchaseOrderHeaderControl();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderLineItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderFees)).BeginInit();
@@ -76,13 +76,13 @@
             this.dgOrderLineItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgOrderLineItem.Location = new System.Drawing.Point(20, 166);
             this.dgOrderLineItem.Name = "dgOrderLineItem";
-            this.dgOrderLineItem.Size = new System.Drawing.Size(1018, 189);
+            this.dgOrderLineItem.Size = new System.Drawing.Size(1018, 242);
             this.dgOrderLineItem.TabIndex = 0;
             // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(886, 402);
+            this.btnSave.Location = new System.Drawing.Point(886, 455);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(121, 23);
             this.btnSave.TabIndex = 5;
@@ -93,7 +93,7 @@
             // btnPrintOrder
             // 
             this.btnPrintOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPrintOrder.Location = new System.Drawing.Point(886, 431);
+            this.btnPrintOrder.Location = new System.Drawing.Point(886, 484);
             this.btnPrintOrder.Name = "btnPrintOrder";
             this.btnPrintOrder.Size = new System.Drawing.Size(121, 23);
             this.btnPrintOrder.TabIndex = 8;
@@ -160,7 +160,7 @@
             this.tbOrderIncidentals.Controls.Add(this.tabPage1);
             this.tbOrderIncidentals.Controls.Add(this.tabPage2);
             this.tbOrderIncidentals.Controls.Add(this.tabPage3);
-            this.tbOrderIncidentals.Location = new System.Drawing.Point(20, 378);
+            this.tbOrderIncidentals.Location = new System.Drawing.Point(20, 431);
             this.tbOrderIncidentals.Name = "tbOrderIncidentals";
             this.tbOrderIncidentals.SelectedIndex = 0;
             this.tbOrderIncidentals.Size = new System.Drawing.Size(839, 261);
@@ -176,6 +176,15 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Part Lookup";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // partFinderControl1
+            // 
+            this.partFinderControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.partFinderControl1.Location = new System.Drawing.Point(3, 3);
+            this.partFinderControl1.Name = "partFinderControl1";
+            this.partFinderControl1.SelectedPart = null;
+            this.partFinderControl1.Size = new System.Drawing.Size(825, 229);
+            this.partFinderControl1.TabIndex = 9;
             // 
             // tabPage2
             // 
@@ -332,22 +341,13 @@
             // btnCLose
             // 
             this.btnCLose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCLose.Location = new System.Drawing.Point(886, 609);
+            this.btnCLose.Location = new System.Drawing.Point(886, 662);
             this.btnCLose.Name = "btnCLose";
             this.btnCLose.Size = new System.Drawing.Size(121, 23);
             this.btnCLose.TabIndex = 8;
             this.btnCLose.Text = "Close";
             this.btnCLose.UseVisualStyleBackColor = true;
             this.btnCLose.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // partFinderControl1
-            // 
-            this.partFinderControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.partFinderControl1.Location = new System.Drawing.Point(3, 3);
-            this.partFinderControl1.Name = "partFinderControl1";
-            this.partFinderControl1.SelectedPart = null;
-            this.partFinderControl1.Size = new System.Drawing.Size(825, 229);
-            this.partFinderControl1.TabIndex = 9;
             // 
             // purchaseOrderHeaderControl1
             // 
@@ -359,7 +359,6 @@
             this.purchaseOrderHeaderControl1.PurchaseOrder = null;
             this.purchaseOrderHeaderControl1.Size = new System.Drawing.Size(1018, 145);
             this.purchaseOrderHeaderControl1.TabIndex = 7;
-            this.purchaseOrderHeaderControl1.Load += new System.EventHandler(this.purchaseOrderHeaderControl1_Load);
             // 
             // OrderEditControl
             // 
@@ -374,7 +373,7 @@
             this.MaximumSize = new System.Drawing.Size(1900, 800);
             this.MinimumSize = new System.Drawing.Size(1064, 654);
             this.Name = "OrderEditControl";
-            this.Size = new System.Drawing.Size(1064, 662);
+            this.Size = new System.Drawing.Size(1064, 715);
             this.Load += new System.EventHandler(this.OrderEditControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderLineItem)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderFees)).EndInit();
