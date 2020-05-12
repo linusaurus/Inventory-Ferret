@@ -98,15 +98,6 @@ namespace Weaselware.InventoryFerret {
             MainTabControl.SelectedTab = searchPage;
         }
 
-        private void tsPartEditor_Click(object sender, EventArgs e)
-        {
-            TabPage partEditorPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PartEditorPage);
-            MainTabControl.TabPages.Add(partEditorPage);
-            MainTabControl.SelectedTab = partEditorPage;
-        }
-
-       
-
         #endregion
 
         private void tsbPullStockOrder_Click(object sender, EventArgs e) {
@@ -177,14 +168,7 @@ namespace Weaselware.InventoryFerret {
             ToolStripButton tsb = (ToolStripButton)ts.GetItemAt(395, 792);
         }
 
-       
-
-        private void tsbReceiveOrder_Click(object sender, EventArgs e)
-        {
-            TabPage suppliersTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.SupplierOrdersPage);
-            MainTabControl.TabPages.Add(suppliersTab);
-            MainTabControl.SelectedTab = suppliersTab;
-        }
+        
 
         private void tsbJobItems_OnClick(object sender, EventArgs e)
         {
@@ -230,6 +214,67 @@ namespace Weaselware.InventoryFerret {
                     TabPage tabPage = (TabPage)tabControl.TabPages[tabControl.SelectedIndex];
                     tabControl.TabPages.Remove(tabPage);
                 }
+            }
+        }
+
+        private void mainToolStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            switch (e.ClickedItem.Name)
+            {
+                case "tsOrderButton":
+
+                    var jobID = 0 ;
+                    var supplierID = 0;
+
+                    NewOrderDialog diag = new NewOrderDialog(_context);
+                    if (diag.ShowDialog() == DialogResult.OK)
+                    {
+                        jobID = diag.JobNumber;
+                        supplierID = diag.SupplierID;
+                    }
+
+                    var order = _ordersService.NewDefault(LoggedOnUserID, supplierID, jobID);
+                   _ordersService.Add(order);
+                   
+
+                    
+
+                    // Purchase Order Page
+                    MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage, order.OrderNum));
+
+                    break;
+                /// My Orders -------+
+                case "tsMyOrders":
+
+                    TabPage myOrdersTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.MyOrdersPage);
+                    MainTabControl.TabPages.Add(myOrdersTab);
+                    MainTabControl.SelectedTab = myOrdersTab;
+
+                    break;
+                case "tsSupplerOrders":
+
+
+                    break;
+                case "tsbReceiveOrder":
+
+                    TabPage suppliersTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.SupplierOrdersPage);
+                    MainTabControl.TabPages.Add(suppliersTab);
+                    MainTabControl.SelectedTab = suppliersTab;
+
+                    break;
+
+                case "tsPartEditor":
+
+                    TabPage partEditorPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PartEditorPage);
+                    MainTabControl.TabPages.Add(partEditorPage);
+                    MainTabControl.SelectedTab = partEditorPage;
+                    break;
+                case "tsSettingsButton":
+
+                    break;
+                default:
+                    break;
+
             }
         }
     }

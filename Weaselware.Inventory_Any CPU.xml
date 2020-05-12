@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<iasettings>
+  <projectproperties>
+    <manufacturer>rich</manufacturer>
+    <productname>Weaselware.Inventory</productname>
+    <productversion>1.1.0.3</productversion>
+    <productcode>{55e53f11-d1ef-497e-84a4-209e0883da15}</productcode>
+    <upgradecode>{0a494f6e-d0e3-4d67-b0d3-63ab76431b69}</upgradecode>
+    <language>0</language>
+    <languagename>English</languagename>
+  </projectproperties>
+  <summary>
+    <title>Weaselware.Inventory</title>
+    <subject>Weaselware.Inventory</subject>
+    <author>rich</author>
+    <summarycomments>Weaselware.Inventory</summarycomments>
+    <revisioncode>{7da3b139-48b4-45bf-a8fe-c71154e3a373}</revisioncode>
+    <uacelevation>highestAvailable</uacelevation>
+  </summary>
+  <addremove>
+    <publishername>rich</publishername>
+    <contactname>rich</contactname>
+    <helplink>http://www.mywebsite.com</helplink>
+    <productupdatelink>http://www.mywebsite.com</productupdatelink>
+    <addremovecomments>All Rights Reserved</addremovecomments>
+    <iconfile />
+  </addremove>
+  <codegen>
+    <generateincludefiles>0</generateincludefiles>
+    <generatefeatures>1</generatefeatures>
+    <refreshscript>0</refreshscript>
+  </codegen>
+  <compilervariables>
+    <variables />
+  </compilervariables>
+  <build>
+    <buildtype>0</buildtype>
+    <buildasmsi>False</buildasmsi>
+    <cachesources>1</cachesources>
+  </build>
+  <targetfolders />
+  <files>
+    <filedetails filename="C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Inventory-Ferrit\Weaselware.Inventory\bin\Debug\Weaselware.InventoryFerret.exe" targetlocation="$TARGETDIR$" type="1" generatenativeimage="0" registerassembly="0" runinstallerclass="0" createshortcut="1" runprogram="0" installfilecommand="1" />
+    <filedetails filename="C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Inventory-Ferrit\DataLayerTest\bin\Debug\netcoreapp3.1\DataLayerTest.dll" targetlocation="$TARGETDIR$" type="2" generatenativeimage="0" registerassembly="0" runinstallerclass="0" createshortcut="0" runprogram="0" installfilecommand="1" />
+    <filedetails filename="C:\Users\Rich.DESIGNSYNTHESIS\source\repos\Inventory-Ferrit\DataLayer\bin\Debug\netstandard2.0\DataLayer.dll" targetlocation="$TARGETDIR$" type="3" generatenativeimage="0" registerassembly="0" runinstallerclass="0" createshortcut="0" runprogram="0" installfilecommand="1" />
+  </files>
+  <dependencies />
+  <registry />
+  <dialogtheme>
+    <themename>Official</themename>
+  </dialogtheme>
+  <authenticode>
+    <sign>0</sign>
+    <mode>0</mode>
+    <certificatefile />
+    <keyfile />
+    <pfxfile />
+    <productinfourl />
+    <authpassword />
+    <timestampurl />
+    <signall>0</signall>
+  </authenticode>
+  <compression>
+    <compressiontype>8</compressiontype>
+    <encrypt>0</encrypt>
+    <compressionpassword />
+  </compression>
+  <output>
+    <outputtype>0</outputtype>
+    <location />
+    <filename />
+    <calculatefilehash>0</calculatefilehash>
+    <refreshrevisioncode>1</refreshrevisioncode>
+  </output>
+</iasettings>

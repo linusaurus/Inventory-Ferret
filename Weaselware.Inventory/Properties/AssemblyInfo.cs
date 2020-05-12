@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Weaselware.InventoryFerret")]
+[assembly: AssemblyTitle("Part Ferret")]
 [assembly: AssemblyDescription("Inventory Manager")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("WeaselWare")]

@@ -64,16 +64,16 @@ namespace DataLayer.Services {
 
         public List<JobListDto> All()
         {
-            var jobs = context.Job.AsNoTracking()
-                                   .Where(d => d.Retired == false)
+            var jobs = context.Job.AsNoTracking().OrderByDescending(p => p.JobId)
+                                  
                                    .Select(j => new JobListDto()
                                    {
                                        JobID = j.JobId,
                                        JobName = j.Jobname
-                                   });
+                                   }).ToList();
 
 
-            return jobs.ToList();
+            return jobs;
 
         }
     }

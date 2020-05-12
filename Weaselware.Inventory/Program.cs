@@ -16,7 +16,7 @@ namespace Weaselware.InventoryFerret
         /// 
 
         public static int loggedInUser;
-
+        
 
         [STAThread]
         static void Main()
@@ -26,6 +26,7 @@ namespace Weaselware.InventoryFerret
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhadledException;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+         
 
             // Standard App Startup
             //---------------------------------------------------------------------------------

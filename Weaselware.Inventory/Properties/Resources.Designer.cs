@@ -553,6 +553,26 @@ namespace Weaselware.InventoryFerret.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap twotone_face_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("twotone_face_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap twotone_home_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("twotone_home_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap twotone_shopping_cart_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("twotone_shopping_cart_black_24dp", resourceCulture);

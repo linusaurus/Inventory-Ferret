@@ -347,6 +347,25 @@ namespace DataLayerTest
             Assert.IsTrue(_version.ResourceVersionID != default);
 
         }
+        [TestClass]
+        public class JobRepo 
+        { 
+        
+       
+        [TestMethod]
+        public void Get_All_Job_list()
+        {
+            var ctx = new BadgerDataModel();
+
+
+            JobsService service = new JobsService(ctx);
+
+            var jobs = service.All();
+            Assert.IsTrue(jobs.Count > 100);
+
+        }
+
+        }
 
     }
 

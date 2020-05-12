@@ -150,7 +150,6 @@ namespace Weaselware.InventoryFerret.UserControls
         {
             DataGridViewRow row = ((DataGridView)sender).CurrentRow;
             decimal qnty = decimal.Zero;
-
             // Description -----------------------
              if (e.ColumnIndex == 2)
             {
@@ -159,7 +158,6 @@ namespace Weaselware.InventoryFerret.UserControls
                     dgOrderLineItem.Rows[e.RowIndex].ErrorText = "You have enter some reasonable description";
                     e.Cancel = true;
                 }
-
 
             }
             // Price Column -----------------------
@@ -170,8 +168,6 @@ namespace Weaselware.InventoryFerret.UserControls
                     dgOrderLineItem.Rows[e.RowIndex].ErrorText = "Price can not be null";
                     e.Cancel = true;
                 }
-
-
             }
             if (e.ColumnIndex == 4)
             {
@@ -185,7 +181,6 @@ namespace Weaselware.InventoryFerret.UserControls
                     dgOrderLineItem.Rows[e.RowIndex].ErrorText = "Quantity must be decimal";
                     e.Cancel = true;
                 }
-
             }
         }
 

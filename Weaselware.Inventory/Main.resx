@@ -121,18 +121,6 @@
     <value>17, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="tsbFindOrder.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAFUSURBVEhL7dQhMERRFIfxFwRBEARBEAVBEARhZwRBEARB
-        EERBEARBEIUNoiBs3CCIgiCIgiAIoigIgsD3GffNOHve2qEws/+ZX9l73nt7zz3vVcP8m8xgDZufVjGN
-        X2UKR3jEW4MH7GMCA2cEh3hBdtPME3bwbcZxgXiDa2xgFrZmHXeIdR2MIs0YrhAvcjfuKsYbnSLWd5HV
-        p8WXMKVttzjHCowPyXZygC9ZRizSAsw24lrp+Rbi2itsZ50bxCKV+M/jmteYOcQ1naHOPbIiz8U8I655
-        XsZxjmsq7f2IE5IVLcI4HXHNSTKeR1xTubaOhxeLnAjjTvbgi+XMt+HByxGO1x2jJ5PIJsJDbIqTFett
-        XWltT+xndqDupEyFL+MS7HGs8zfX+8anZz3vx7EsbRs48/Cfe3F2U/m9OoFf2x/HHfki7sI3VL5kLTR+
-        d4b5K6mqdwUFusWVwft7AAAAAElFTkSuQmCC
-</value>
-  </data>
   <data name="tsbJobOrders.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8

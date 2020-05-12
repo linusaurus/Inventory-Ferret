@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using DataLayer.Entities;
 using Weaselware.InventoryFerret.UserControls;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Weaselware.UserControls;
 
 namespace Weaselware.InventoryFerret
 {
@@ -17,7 +18,7 @@ namespace Weaselware.InventoryFerret
         {
             SupplierOrdersPage,
             PurchaseOrdersPage,
-            OrderPage,
+            MyOrdersPage,
             OrderRecieptPage,
             ItemSearchPage,
             RecieptManagerPage,
@@ -53,11 +54,11 @@ namespace Weaselware.InventoryFerret
                     po.Dock = DockStyle.Fill;
                     tab.Controls.Add(po);
                     break;
-                case TabPageType.OrderPage:
+                case TabPageType.MyOrdersPage:
                     tab.Text = "Order";
-                    PurchaseOrderControl poctr = new PurchaseOrderControl(new PurchaseOrder());
-                    poctr.Dock = DockStyle.Fill;
-                    tab.Controls.Add(poctr);
+                    MyOrdersControl myOrdersPage = new MyOrdersControl(ctx,Globals.CurrentLoggedUserID);
+                    myOrdersPage.Dock = DockStyle.Fill;
+                    tab.Controls.Add(myOrdersPage);
 
                     break;
                 case TabPageType.OrderRecieptPage:
@@ -108,10 +109,13 @@ namespace Weaselware.InventoryFerret
                 case TabPageType.PartDetailEdit:
                     {
                         Part p = ctx.Part.Find(key);
+                        if(p != null)
+                        { 
                         tab.Text = $"Part Edit : {p.PartID.ToString()}";
                         PartView ctr = new PartView(p, ctx);
                         ctr.Dock = DockStyle.Fill;
                         tab.Controls.Add(ctr);
+                        }
                     }
                     break;
                 case TabPageType.PurchaseOrderPage:
