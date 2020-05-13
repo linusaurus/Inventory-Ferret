@@ -24,11 +24,15 @@ namespace Weaselware.InventoryFerret
         BadgerDataModel _context;
         public Form HostForm { get; set; }
         private List<Document> _documents;
+
         BindingSource bsDocuments = new BindingSource();
         BarCodeReader barCodeReader = new BarCodeReader();
         IPartsService partsService;
         IInventoryService inventoryService;
         DataView transactionsView;
+
+        private bool _isDirty = false;
+
         BindingSource bsTransactions = new BindingSource();
         /// <summary>
         /// TODO  use PartID and DTO to hydrate the control
@@ -51,6 +55,8 @@ namespace Weaselware.InventoryFerret
             else
             {
                 _part = partsService.New();
+                _part.AddedBy = Globals.CurrentUserName;
+                _part.DateAdded = DateTime.Today;
             }        
             cboSuppliers.DisplayMember = "SupplierName";
             cboSuppliers.ValueMember = "SupplierID";
@@ -72,7 +78,8 @@ namespace Weaselware.InventoryFerret
             
             // This triggers the Save Button On changed--
             bsPart.CurrentItemChanged += BsPart_CurrentItemChanged;
-            this.btnSave.Enabled = false;
+            
+            this.btnSave.Enabled = _isDirty;
             this.txtSupplierDesc.Enabled = false;
             _documents = _context.Document.Where(r => r.PartID == _part.PartID).ToList();
            // _documents = _part.Document.ToList();
@@ -80,31 +87,35 @@ namespace Weaselware.InventoryFerret
             this.dataGridView1.DataSource = bsDocuments;
 
             LoadTransaction();
-            //transactionsView = DataBuilders.BuildDataTable( inventoryService.GetInventoryByPartID(_part.PartID)).DefaultView;
-            //bsTransactions.DataSource = transactionsView;
             
-            //this.dgvTransactions.DataSource = bsTransactions;
-            //var sum = transactionsView.Table.AsEnumerable().Sum(x => x.Field<decimal>(5));
-            //this.txtStockOnHand.Text = sum.ToString();
             this.rbRecieved.Checked = true;
         }
 
         private void LoadTransaction()
         {
-            transactionsView = DataBuilders.BuildDataTable(inventoryService.GetInventoryByPartID(_part.PartID)).DefaultView;
-            bsTransactions.DataSource = transactionsView;
+            if (_part.PartID != 0)
+            {
+                transactionsView = DataBuilders.BuildDataTable(inventoryService.GetInventoryByPartID(_part.PartID)).DefaultView;
+                bsTransactions.DataSource = transactionsView;
 
-            this.dgvTransactions.DataSource = bsTransactions;
-            var sum = transactionsView.Table.AsEnumerable().Sum(x => x.Field<decimal>(5));
-            this.txtStockOnHand.Text = sum.ToString();
+                this.dgvTransactions.DataSource = bsTransactions;
+                var sum = transactionsView.Table.AsEnumerable().Sum(x => x.Field<decimal>(5));
+                this.txtStockOnHand.Text = sum.ToString();
+            }
+            
         }
 
        
 
+
+    
+
         private void BsPart_CurrentItemChanged(object sender, EventArgs e)
         {
-            btnSave.Enabled = true;
-            //this.ParentForm.Text = 
+            _isDirty = true;
+            btnSave.Enabled = _isDirty;
+
+            
         }
 
         private void PartView_Load(object sender, EventArgs e)
@@ -168,7 +179,11 @@ namespace Weaselware.InventoryFerret
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
-        {((Form)this.TopLevelControl).Close();}
+        {
+            TabPage tabpage = (TabPage)this.Parent;
+            TabControl tabControl = (TabControl)tabpage.Parent;
+            tabControl.TabPages.Remove(tabpage);
+        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
@@ -180,13 +195,13 @@ namespace Weaselware.InventoryFerret
             }
            // Date and Name stamp modifications --
             var user = Globals.CurrentLoggedUserID;
-            string username = _context.Employee.Find(user)?.Firstname ?? "Unknown User";
-            _part.ModifiedBy = username;
+           
+            _part.ModifiedBy = Globals.CurrentUserName;
             _part.ModifiedDate = DateTime.Today;
             //-------------------------------------
             _context.SaveChanges();
-            
-            
+
+            _isDirty = false;
             TabPage tabpage = (TabPage)this.Parent;
             TabControl tabControl = (TabControl)tabpage.Parent;
             tabControl.TabPages.Remove(tabpage);
@@ -219,7 +234,6 @@ namespace Weaselware.InventoryFerret
                 e.Handled = true;
                 return;
             }
-
             // checks to make sure only 1 decimal is allowed
             if (e.KeyChar == 46)
             {
@@ -230,21 +244,47 @@ namespace Weaselware.InventoryFerret
 
         private void CloseBox_Click(object sender, EventArgs e)
         {
-            TabPage tabpage = (TabPage)this.Parent;
-            TabControl tabControl = (TabControl)tabpage.Parent;
-            tabControl.TabPages.Remove(tabpage);
+            if (!_isDirty)
+            {
+                TabPage tabpage = (TabPage)this.Parent;
+                TabControl tabControl = (TabControl)tabpage.Parent;
+                tabControl.TabPages.Remove(tabpage);
+            }
+            else
+            {
+                // Initializes the variables to pass to the MessageBox.Show method.
+                string message = "Save changes before closing?";
+                string caption = "Unsaved Changes";
+                MessageBoxButtons buttons = MessageBoxButtons.YesNo;
+                DialogResult result;
+
+                // Displays the MessageBox.
+                result = MessageBox.Show(message, caption, buttons);
+                if (result == System.Windows.Forms.DialogResult.Yes)
+                {
+                    var user = Globals.CurrentLoggedUserID;
+                    //string username = _context.Employee.Find(user)?.Firstname ?? "Unknown User";
+                    _part.ModifiedBy = Globals.CurrentUserName;
+                    _part.ModifiedDate = DateTime.Today;
+                    //-------------------------------------
+                    _context.SaveChanges();
+                    TabPage tabpage = (TabPage)this.Parent;
+                    TabControl tabControl = (TabControl)tabpage.Parent;
+                    tabControl.TabPages.Remove(tabpage);
+
+                }
+                else
+                {
+                    bsPart.CancelEdit();
+                    TabPage tabpage = (TabPage)this.Parent;
+                    TabControl tabControl = (TabControl)tabpage.Parent;
+                    tabControl.TabPages.Remove(tabpage);
+                }
+            }
+
         }
 
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
+    
         private void btnAddResource_Click(object sender, EventArgs e)
         {
             NewResourceForm form = new NewResourceForm(_part);

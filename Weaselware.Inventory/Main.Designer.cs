@@ -32,16 +32,9 @@ namespace Weaselware.InventoryFerret
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.mainToolStrip = new System.Windows.Forms.ToolStrip();
-            this.tsOrderButton = new System.Windows.Forms.ToolStripButton();
-            this.tsMyOrders = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tsSupplerOrders = new System.Windows.Forms.ToolStripButton();
-            this.tsbReceiveOrder = new System.Windows.Forms.ToolStripButton();
-            this.tsPartEditor = new System.Windows.Forms.ToolStripButton();
-            this.tsbJobItems = new System.Windows.Forms.ToolStripButton();
-            this.tsScanBarCode = new System.Windows.Forms.ToolStripLabel();
-            this.tsbJobOrders = new System.Windows.Forms.ToolStripButton();
-            this.tsSettingsButton = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.MainTabControl = new System.Windows.Forms.TabControl();
@@ -50,8 +43,16 @@ namespace Weaselware.InventoryFerret
             this.sqlUpdateCommand1 = new System.Data.SqlClient.SqlCommand();
             this.sqlDeleteCommand1 = new System.Data.SqlClient.SqlCommand();
             this.sqlDataAdapter1 = new System.Data.SqlClient.SqlDataAdapter();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.tsOrderButton = new System.Windows.Forms.ToolStripButton();
+            this.tsMyOrders = new System.Windows.Forms.ToolStripButton();
+            this.tsSupplerOrders = new System.Windows.Forms.ToolStripButton();
+            this.tsbReceiveOrder = new System.Windows.Forms.ToolStripButton();
+            this.tsPartEditor = new System.Windows.Forms.ToolStripButton();
+            this.tsJobsManager = new System.Windows.Forms.ToolStripButton();
+            this.tsbJobItems = new System.Windows.Forms.ToolStripButton();
+            this.tsbJobOrders = new System.Windows.Forms.ToolStripButton();
+            this.tsScanBarCode = new System.Windows.Forms.ToolStripLabel();
+            this.tsSettingsButton = new System.Windows.Forms.ToolStripButton();
             this.mainToolStrip.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -68,6 +69,7 @@ namespace Weaselware.InventoryFerret
             this.tsbReceiveOrder,
             this.tsPartEditor,
             this.toolStripSeparator2,
+            this.tsJobsManager,
             this.tsbJobItems,
             this.tsbJobOrders,
             this.toolStripSeparator3,
@@ -80,105 +82,20 @@ namespace Weaselware.InventoryFerret
             this.mainToolStrip.Text = "mainToolStrip";
             this.mainToolStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mainToolStrip_ItemClicked);
             // 
-            // tsOrderButton
-            // 
-            this.tsOrderButton.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_add_box_black_24dp;
-            this.tsOrderButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsOrderButton.Name = "tsOrderButton";
-            this.tsOrderButton.Size = new System.Drawing.Size(68, 52);
-            this.tsOrderButton.Text = "New Order";
-            this.tsOrderButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsOrderButton.ToolTipText = "New Order";
-            this.tsOrderButton.Click += new System.EventHandler(this.tsOrderButton_Click);
-            // 
-            // tsMyOrders
-            // 
-            this.tsMyOrders.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.tsMyOrders.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_home_black_24dp;
-            this.tsMyOrders.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsMyOrders.Name = "tsMyOrders";
-            this.tsMyOrders.Size = new System.Drawing.Size(66, 52);
-            this.tsMyOrders.Text = "My Orders";
-            this.tsMyOrders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
             this.toolStripSeparator1.Size = new System.Drawing.Size(6, 55);
             // 
-            // tsSupplerOrders
+            // toolStripSeparator2
             // 
-            this.tsSupplerOrders.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_face_black_24dp;
-            this.tsSupplerOrders.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsSupplerOrders.Name = "tsSupplerOrders";
-            this.tsSupplerOrders.Size = new System.Drawing.Size(92, 52);
-            this.tsSupplerOrders.Text = "Supplier Orders";
-            this.tsSupplerOrders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsSupplerOrders.Click += new System.EventHandler(this.tsbFindOrder_Click);
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 55);
             // 
-            // tsbReceiveOrder
+            // toolStripSeparator3
             // 
-            this.tsbReceiveOrder.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_shopping_cart_black_24dp;
-            this.tsbReceiveOrder.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbReceiveOrder.Name = "tsbReceiveOrder";
-            this.tsbReceiveOrder.Size = new System.Drawing.Size(89, 52);
-            this.tsbReceiveOrder.Text = "Recieve Orders";
-            this.tsbReceiveOrder.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.tsbReceiveOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // tsPartEditor
-            // 
-            this.tsPartEditor.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_extension_black_24dp;
-            this.tsPartEditor.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsPartEditor.Margin = new System.Windows.Forms.Padding(15, 2, 15, 2);
-            this.tsPartEditor.Name = "tsPartEditor";
-            this.tsPartEditor.Size = new System.Drawing.Size(66, 51);
-            this.tsPartEditor.Text = "Part Editor";
-            this.tsPartEditor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsPartEditor.ToolTipText = "Parts Manager";
-            // 
-            // tsbJobItems
-            // 
-            this.tsbJobItems.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_account_tree_black_24dp;
-            this.tsbJobItems.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbJobItems.Name = "tsbJobItems";
-            this.tsbJobItems.Size = new System.Drawing.Size(61, 52);
-            this.tsbJobItems.Text = "Job Items";
-            this.tsbJobItems.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsbJobItems.ToolTipText = "Pull Stock";
-            this.tsbJobItems.Click += new System.EventHandler(this.tsbJobItems_OnClick);
-            // 
-            // tsScanBarCode
-            // 
-            this.tsScanBarCode.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_track_changes_black_24dp;
-            this.tsScanBarCode.Margin = new System.Windows.Forms.Padding(15, 1, 15, 2);
-            this.tsScanBarCode.Name = "tsScanBarCode";
-            this.tsScanBarCode.Size = new System.Drawing.Size(79, 52);
-            this.tsScanBarCode.Text = "Stock Actions";
-            this.tsScanBarCode.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.tsScanBarCode.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.tsScanBarCode.ToolTipText = "Lookup Stock Tag";
-            this.tsScanBarCode.Click += new System.EventHandler(this.tsScanBarCode_Click);
-            // 
-            // tsbJobOrders
-            // 
-            this.tsbJobOrders.Image = ((System.Drawing.Image)(resources.GetObject("tsbJobOrders.Image")));
-            this.tsbJobOrders.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsbJobOrders.Name = "tsbJobOrders";
-            this.tsbJobOrders.Size = new System.Drawing.Size(67, 52);
-            this.tsbJobOrders.Text = "Job Orders";
-            this.tsbJobOrders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // tsSettingsButton
-            // 
-            this.tsSettingsButton.CheckOnClick = true;
-            this.tsSettingsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsSettingsButton.Image = global::Weaselware.InventoryFerret.Properties.Resources.printer;
-            this.tsSettingsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.tsSettingsButton.Name = "tsSettingsButton";
-            this.tsSettingsButton.Size = new System.Drawing.Size(36, 52);
-            this.tsSettingsButton.Text = "search";
-            this.tsSettingsButton.Click += new System.EventHandler(this.tsSettingsButton_Click);
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 55);
             // 
             // statusStrip1
             // 
@@ -218,15 +135,109 @@ namespace Weaselware.InventoryFerret
             this.sqlDataAdapter1.SelectCommand = this.sqlSelectCommand1;
             this.sqlDataAdapter1.UpdateCommand = this.sqlUpdateCommand1;
             // 
-            // toolStripSeparator2
+            // tsOrderButton
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 55);
+            this.tsOrderButton.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_add_box_black_24dp1;
+            this.tsOrderButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsOrderButton.Name = "tsOrderButton";
+            this.tsOrderButton.Size = new System.Drawing.Size(68, 52);
+            this.tsOrderButton.Text = "New Order";
+            this.tsOrderButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsOrderButton.ToolTipText = "New Order";
+            this.tsOrderButton.Click += new System.EventHandler(this.tsOrderButton_Click);
             // 
-            // toolStripSeparator3
+            // tsMyOrders
             // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 55);
+            this.tsMyOrders.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.tsMyOrders.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_account_box_black_24dp;
+            this.tsMyOrders.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsMyOrders.Name = "tsMyOrders";
+            this.tsMyOrders.Size = new System.Drawing.Size(66, 52);
+            this.tsMyOrders.Text = "My Orders";
+            this.tsMyOrders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // tsSupplerOrders
+            // 
+            this.tsSupplerOrders.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_local_shipping_black_24dp;
+            this.tsSupplerOrders.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsSupplerOrders.Name = "tsSupplerOrders";
+            this.tsSupplerOrders.Size = new System.Drawing.Size(92, 52);
+            this.tsSupplerOrders.Text = "Supplier Orders";
+            this.tsSupplerOrders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsSupplerOrders.Click += new System.EventHandler(this.tsbFindOrder_Click);
+            // 
+            // tsbReceiveOrder
+            // 
+            this.tsbReceiveOrder.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_save_alt_black_24dp;
+            this.tsbReceiveOrder.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbReceiveOrder.Name = "tsbReceiveOrder";
+            this.tsbReceiveOrder.Size = new System.Drawing.Size(89, 52);
+            this.tsbReceiveOrder.Text = "Recieve Orders";
+            this.tsbReceiveOrder.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.tsbReceiveOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // tsPartEditor
+            // 
+            this.tsPartEditor.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_extension_black_24dp;
+            this.tsPartEditor.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsPartEditor.Margin = new System.Windows.Forms.Padding(15, 2, 15, 2);
+            this.tsPartEditor.Name = "tsPartEditor";
+            this.tsPartEditor.Size = new System.Drawing.Size(66, 51);
+            this.tsPartEditor.Text = "Part Editor";
+            this.tsPartEditor.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsPartEditor.ToolTipText = "Parts Manager";
+            // 
+            // tsJobsManager
+            // 
+            this.tsJobsManager.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_home_work_black_24dp;
+            this.tsJobsManager.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsJobsManager.Name = "tsJobsManager";
+            this.tsJobsManager.Size = new System.Drawing.Size(36, 52);
+            this.tsJobsManager.Text = "Jobs";
+            this.tsJobsManager.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // tsbJobItems
+            // 
+            this.tsbJobItems.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_account_tree_black_24dp;
+            this.tsbJobItems.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbJobItems.Name = "tsbJobItems";
+            this.tsbJobItems.Size = new System.Drawing.Size(61, 52);
+            this.tsbJobItems.Text = "Job Items";
+            this.tsbJobItems.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsbJobItems.ToolTipText = "Pull Stock";
+            this.tsbJobItems.Click += new System.EventHandler(this.tsbJobItems_OnClick);
+            // 
+            // tsbJobOrders
+            // 
+            this.tsbJobOrders.Image = ((System.Drawing.Image)(resources.GetObject("tsbJobOrders.Image")));
+            this.tsbJobOrders.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbJobOrders.Name = "tsbJobOrders";
+            this.tsbJobOrders.Size = new System.Drawing.Size(67, 52);
+            this.tsbJobOrders.Text = "Job Orders";
+            this.tsbJobOrders.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // tsScanBarCode
+            // 
+            this.tsScanBarCode.Image = global::Weaselware.InventoryFerret.Properties.Resources.twotone_equalizer_black_24dp;
+            this.tsScanBarCode.Margin = new System.Windows.Forms.Padding(15, 1, 15, 2);
+            this.tsScanBarCode.Name = "tsScanBarCode";
+            this.tsScanBarCode.Size = new System.Drawing.Size(79, 52);
+            this.tsScanBarCode.Text = "Stock Actions";
+            this.tsScanBarCode.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tsScanBarCode.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.tsScanBarCode.ToolTipText = "Lookup Stock Tag";
+            this.tsScanBarCode.Click += new System.EventHandler(this.tsScanBarCode_Click);
+            // 
+            // tsSettingsButton
+            // 
+            this.tsSettingsButton.CheckOnClick = true;
+            this.tsSettingsButton.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsSettingsButton.Image = global::Weaselware.InventoryFerret.Properties.Resources.printer;
+            this.tsSettingsButton.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsSettingsButton.Name = "tsSettingsButton";
+            this.tsSettingsButton.Size = new System.Drawing.Size(36, 52);
+            this.tsSettingsButton.Text = "search";
+            this.tsSettingsButton.Click += new System.EventHandler(this.tsSettingsButton_Click);
             // 
             // Main
             // 
@@ -278,5 +289,6 @@ namespace Weaselware.InventoryFerret
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton tsJobsManager;
     }
 }

@@ -49,7 +49,7 @@ namespace DataLayer.Services {
 
             return context.Job
                 .Include(p => p.PurchaseOrder).ThenInclude(p => p.PurchaseLineItem)
-                .Where(c => c.Jobname.StartsWith(jobName)).ToList();
+                .Where(c => c.Jobname.StartsWith(jobName)).OrderByDescending(t => t.start_ts).Take(25).ToList();
         }
 
 
@@ -59,12 +59,13 @@ namespace DataLayer.Services {
             context.SaveChanges();
         }
 
-        public void Dispose() {
-
+        public void Dispose()
+        {
             context.Dispose();
         }
 
-        public Job Find(int jobNumber) {
+        public Job Find(int jobNumber) 
+        {
 
             return context.Job.Where(c => c.JobId == jobNumber).FirstOrDefault();
         }

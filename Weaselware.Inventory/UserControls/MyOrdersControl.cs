@@ -108,5 +108,17 @@ namespace Weaselware.UserControls
                 }
             }
         }
+
+        private void btnOpenOrder_Click(object sender, EventArgs e)
+        {
+           int ordernumber;
+           if (int.TryParse(txtOrderNumber.Text, out ordernumber))
+           {
+                Main main = (Main)Application.OpenForms["Main"];
+                main.OpenAnOrder(ordernumber);
+           }
+            
+
+        }
     }
 }

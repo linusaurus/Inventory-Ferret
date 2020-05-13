@@ -48,7 +48,7 @@ namespace DataLayer.Services
 
         public Claim Find(int id)
         {
-            ///TODO  fix navigation in new context
+            
             Claim c = _ctx.Claim.Where(f => f.ClaimId == id).First(); 
             return c;
         }

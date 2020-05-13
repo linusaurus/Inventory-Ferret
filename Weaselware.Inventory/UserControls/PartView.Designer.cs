@@ -110,7 +110,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSave.Location = new System.Drawing.Point(860, 563);
+            this.btnSave.Location = new System.Drawing.Point(749, 559);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(91, 24);
             this.btnSave.TabIndex = 9;
@@ -121,7 +121,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.Location = new System.Drawing.Point(758, 563);
+            this.btnCancel.Location = new System.Drawing.Point(657, 559);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(86, 24);
             this.btnCancel.TabIndex = 8;
@@ -238,7 +238,6 @@
             this.label6.Size = new System.Drawing.Size(53, 13);
             this.label6.TabIndex = 2;
             this.label6.Text = "Unit Price";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // txtUnitPrice
             // 
@@ -555,7 +554,7 @@
             this.tbTransactions.Location = new System.Drawing.Point(4, 22);
             this.tbTransactions.Name = "tbTransactions";
             this.tbTransactions.Padding = new System.Windows.Forms.Padding(3);
-            this.tbTransactions.Size = new System.Drawing.Size(669, 353);
+            this.tbTransactions.Size = new System.Drawing.Size(609, 353);
             this.tbTransactions.TabIndex = 1;
             this.tbTransactions.Text = "Transactions";
             this.tbTransactions.UseVisualStyleBackColor = true;
@@ -730,7 +729,7 @@
             this.tbAdvanced.Controls.Add(this.labelBoilingPoint);
             this.tbAdvanced.Location = new System.Drawing.Point(4, 22);
             this.tbAdvanced.Name = "tbAdvanced";
-            this.tbAdvanced.Size = new System.Drawing.Size(669, 353);
+            this.tbAdvanced.Size = new System.Drawing.Size(609, 353);
             this.tbAdvanced.TabIndex = 2;
             this.tbAdvanced.Text = "Advanced";
             this.tbAdvanced.UseVisualStyleBackColor = true;
@@ -739,7 +738,7 @@
             // 
             this.CloseBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CloseBox.Image = global::Weaselware.InventoryFerret.Properties.Resources.close_window;
-            this.CloseBox.Location = new System.Drawing.Point(947, 13);
+            this.CloseBox.Location = new System.Drawing.Point(867, 13);
             this.CloseBox.Name = "CloseBox";
             this.CloseBox.Size = new System.Drawing.Size(24, 24);
             this.CloseBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -772,7 +771,7 @@
             this.MaximumSize = new System.Drawing.Size(1200, 800);
             this.MinimumSize = new System.Drawing.Size(644, 460);
             this.Name = "PartView";
-            this.Size = new System.Drawing.Size(987, 601);
+            this.Size = new System.Drawing.Size(907, 601);
             this.Load += new System.EventHandler(this.PartView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errDescription)).EndInit();
             this.gbCostFactors.ResumeLayout(false);

@@ -721,6 +721,24 @@
   <ItemGroup>
     <None Include="Resources\twotone_face_black_24dp.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twotone_home_work_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twotone_local_shipping_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twotone_save_alt_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twotone_add_box_black_24dp1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twotone_account_box_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\twotone_equalizer_black_24dp.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

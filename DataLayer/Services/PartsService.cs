@@ -10,7 +10,7 @@ using DataLayer.Services;
 
 namespace DataLayer.Services
 {
-    public class PartsService : IPartsService
+    public class PartsService : IPartsService , IDisposable
     {
         BadgerDataModel _context;
         String partEditorName = string.Empty;
@@ -56,8 +56,19 @@ namespace DataLayer.Services
 
         public void Dispose()
         {
-            ;
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                // free managed resources
+            }
+            // free native resources if there are any.
+        }
+
 
         public bool Exist(int PartID)
         {
@@ -202,6 +213,7 @@ namespace DataLayer.Services
             }
             return part;
         }
+
         
     }
 }

@@ -51,7 +51,9 @@ namespace Weaselware.InventoryFerret {
                 var emp = _context.Employee.Where(p => p.EmployeeId == LoggedOnUserID).FirstOrDefault();
                 this.toolStripStatusLabel1.Text = "User= " + emp.Firstname + " " + emp.Lastname;
                 Globals.CurrentUserName = emp.Firstname + " " + emp.Lastname;
-               MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context,PageFactory.TabPageType.MyOrdersPage));
+                TabPage myOrdersTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.MyOrdersPage);
+                myOrdersTab.Name = "myOrdersTab";
+                MainTabControl.TabPages.Add(myOrdersTab);
  
 
         }
@@ -119,15 +121,9 @@ namespace Weaselware.InventoryFerret {
             if (keyData == (Keys.Escape))
             {              
                 TabPage tabpage = MainTabControl.SelectedTab;
-                if (tabpage.Text != "Supplier Orders")  
-                {
-                    if (tabpage.Text != "Job Orders")
-                    {
-                        if (tabpage.Text != "Order Reciepts")
-                        {
-                            MainTabControl.TabPages.Remove(tabpage);
-                        }
-                    }                   
+                if (MainTabControl.TabPages.Count > 1)  
+                {               
+                    MainTabControl.TabPages.Remove(tabpage);             
                 }              
             }
             return base.ProcessCmdKey(ref msg, keyData);
@@ -221,7 +217,7 @@ namespace Weaselware.InventoryFerret {
             {
                 case "tsOrderButton":
 
-                    var jobID = 0 ;
+                    var jobID = 0;
                     var supplierID = 0;
 
                     NewOrderDialog diag = new NewOrderDialog(_context);
@@ -232,7 +228,7 @@ namespace Weaselware.InventoryFerret {
                     }
 
                     var order = _ordersService.NewDefault(LoggedOnUserID, supplierID, jobID);
-                   _ordersService.Add(order);
+                    _ordersService.Add(order);
                     // Purchase Order Page
                     MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage, order.OrderNum));
 
@@ -241,8 +237,20 @@ namespace Weaselware.InventoryFerret {
                 case "tsMyOrders":
 
                     TabPage myOrdersTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.MyOrdersPage);
-                    MainTabControl.TabPages.Add(myOrdersTab);
-                    MainTabControl.SelectedTab = myOrdersTab;
+                    myOrdersTab.Name = "myordersTab";
+
+                    if (!MainTabControl.TabPages.ContainsKey("myordersTab"))
+                    {
+                        MainTabControl.TabPages.Add(myOrdersTab);
+                        MainTabControl.SelectedTab = myOrdersTab;
+                    }
+                    else
+                    {
+                        if (MainTabControl.TabPages.ContainsKey("myordersTab"))
+                        { MainTabControl.SelectTab("myordersTab"); }
+                    }
+
+                    
 
                     break;
                 case "tsSupplerOrders":
@@ -252,23 +260,56 @@ namespace Weaselware.InventoryFerret {
                 case "tsbReceiveOrder":
 
                     TabPage suppliersTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.SupplierOrdersPage);
-                    MainTabControl.TabPages.Add(suppliersTab);
-                    MainTabControl.SelectedTab = suppliersTab;
+                    suppliersTab.Name = "SupplierTab";
+                    if (!MainTabControl.TabPages.ContainsKey("SupplierTab"))
+                    {
+                        MainTabControl.TabPages.Add(suppliersTab);
+                        MainTabControl.SelectedTab = suppliersTab;
+                    }
+                    else
+                    {
+                        if (MainTabControl.TabPages.ContainsKey("SupplierTab"))
+                        { MainTabControl.SelectTab("SupplierTab"); }  
+                    }
+
 
                     break;
 
                 case "tsPartEditor":
 
-                    TabPage partEditorPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PartEditorPage);
-                    MainTabControl.TabPages.Add(partEditorPage);
-                    MainTabControl.SelectedTab = partEditorPage;
+                    TabPage partEditorPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PartEditorPage); ;
+                    partEditorPage.Name = "partEditorPage";
+
+                    if (!MainTabControl.TabPages.ContainsKey("partEditorPage"))
+                    {
+                        MainTabControl.TabPages.Add(partEditorPage);
+                        MainTabControl.SelectedTab = partEditorPage;
+                    }
+                    else
+                    {
+                        if (MainTabControl.TabPages.ContainsKey("partEditorPage"))
+                        { MainTabControl.SelectTab("partEditorPage"); }
+                    }
+
                     break;
-               
+
                 case "tsbJobOrders":
 
                     TabPage jobOrdersPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.JobOrdersPage);
-                    MainTabControl.TabPages.Add(jobOrdersPage);
-                    MainTabControl.SelectedTab = jobOrdersPage;
+                        
+                    jobOrdersPage.Name = "JobOrderPage";
+                    if (!MainTabControl.TabPages.ContainsKey("JobOrderPage"))
+                    {
+                        MainTabControl.TabPages.Add(jobOrdersPage);
+                        MainTabControl.SelectedTab = jobOrdersPage;
+                    }
+                    else
+                    {
+                     if(MainTabControl.TabPages.ContainsKey("JobOrderPage"))
+                        { MainTabControl.SelectTab("JobOrderPage"); }
+  
+                    }
+                    
 
                     break;
                 default:

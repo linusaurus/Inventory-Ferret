@@ -56,6 +56,7 @@ namespace Weaselware.InventoryFerret
                     break;
                 case TabPageType.MyOrdersPage:
                     tab.Text = "Order";
+                    tab.Name = "myOrdersPage";
                     MyOrdersControl myOrdersPage = new MyOrdersControl(ctx,Globals.CurrentLoggedUserID);
                     myOrdersPage.Dock = DockStyle.Fill;
                     tab.Controls.Add(myOrdersPage);
@@ -74,10 +75,12 @@ namespace Weaselware.InventoryFerret
                     tab.Controls.Add(searchctr);
                     break;
                 case TabPageType.JobOrdersPage:
-                     tab.Text = "Job Orders";
+                     
+                     TabPage jobTab = new TabPage("Job Orders");
                      JobOrdersControl jobControl = new JobOrdersControl(ctx);
                      jobControl.Dock = DockStyle.Fill;
-                     tab.Controls.Add(jobControl);
+                     jobTab.Controls.Add(jobControl);
+                    return jobTab;
                     break;
                 case TabPageType.RecieptManagerPage:
                     tab.Text = "Order Reciepts";
@@ -108,14 +111,33 @@ namespace Weaselware.InventoryFerret
                 // Open Part for Detailed Editing w/ resource --
                 case TabPageType.PartDetailEdit:
                     {
-                        Part p = ctx.Part.Find(key);
-                        if(p != null)
-                        { 
-                        tab.Text = $"Part Edit : {p.PartID.ToString()}";
-                        PartView ctr = new PartView(p, ctx);
-                        ctr.Dock = DockStyle.Fill;
-                        tab.Controls.Add(ctr);
+
+                        if (key != 0)
+                        {
+                            Part p = ctx.Part.Find(key);
+                            if (p != null)
+                            {
+                                tab.Text = $"Part Edit : {p.PartID.ToString()}";
+                                PartView ctr = new PartView(p, ctx);
+                                ctr.Dock = DockStyle.Fill;
+                                tab.Controls.Add(ctr);
+
+                            }
                         }
+                        // This is a new Part
+                        else
+                        {
+                            tab.Text = $"Part Edit : {"New*"}";
+                            Part newPart;
+                            using ( var partService = new DataLayer.Services.PartsService(ctx))
+                            {
+                               newPart = partService.New();
+                            }
+                            PartView ctr = new PartView(newPart, ctx);
+                            ctr.Dock = DockStyle.Fill;
+                            tab.Controls.Add(ctr);
+                        }
+                        
                     }
                     break;
                 case TabPageType.PurchaseOrderPage:

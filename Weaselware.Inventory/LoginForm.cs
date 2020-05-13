@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataLayer.Entities;
+using DataLayer.Interfaces;
+using DataLayer.Services;
 
 namespace Weaselware.InventoryFerret
 {
@@ -16,7 +18,7 @@ namespace Weaselware.InventoryFerret
         BadgerDataModel _context;
         bool isValidated = false;
         int _employeeID;
-
+        IEmployeeService _employeeService;
 
         
         public LoginForm()
@@ -37,6 +39,8 @@ namespace Weaselware.InventoryFerret
             string password = txtPassWord.Text;
             using(_context = new BadgerDataModel() )
             {
+                _employeeService = new EmployeeService(_context);
+
                 var user = _context.Employee.Where(c => c.Login == username).FirstOrDefault();
                 if (user != null)
                 {
@@ -47,8 +51,8 @@ namespace Weaselware.InventoryFerret
                     this.DialogResult = System.Windows.Forms.DialogResult.OK;
                     isValidated = true;
                     this._employeeID = user.EmployeeId;
-                    //Set the global user information for the application
-                   // Weaselware.InventoryFerret.Properties.Settings.Default.
+                    Globals.CurrentLoggedUserID = user.EmployeeId;
+                    Globals.CurrentUserName = _employeeService.FullName(user.EmployeeId);
                 }
                 else
                 {

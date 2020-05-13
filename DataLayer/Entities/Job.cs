@@ -23,6 +23,7 @@ namespace DataLayer.Entities
         public bool? Retired { get; set; }
         public int? Manager { get; set; }
         public bool? Visible { get; set; }
+        public DateTime? start_ts { get; set; }
         
 
         public virtual ICollection<PurchaseOrder> PurchaseOrder { get; set; }

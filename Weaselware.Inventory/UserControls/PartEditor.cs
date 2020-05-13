@@ -106,14 +106,9 @@ namespace Weaselware.InventoryFerret
 
         private void btnCreateNewPart_Click(object sender, EventArgs e)
         {
-            PartForm partForm = new PartForm();
-            IPartsService partService = new PartsService(_context);
-            Part part = partsService.New();
 
-            PartView partView = new PartView(part, _context);
-            partForm.Controls.Add(partView);
-            partView.Dock = DockStyle.Fill;
-            partForm.Show();
+            OpenPartDetails(0, _context);
+     
         }
 
         private void dgPartsList_SelectionChanged(object sender, EventArgs e)
@@ -210,12 +205,26 @@ namespace Weaselware.InventoryFerret
 
         private void OpenPartDetails(int PartID, BadgerDataModel ctx)
         {
-            
-               var main = fc["Main"] as Main;
-               var tabs = main.Controls["MainTabControl"] as TabControl;
-               TabPage newPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PartDetailEdit, PartID);
-               tabs.TabPages.Add(newPage);
-               tabs.SelectTab(newPage);
+            if (PartID != 0)
+            {
+
+                Main main = (Main)Application.OpenForms["Main"];
+                var tabs = main.MainTabControl.TabPages;
+                TabPage newPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PartDetailEdit, PartID);
+                tabs.Add(newPage);
+                main.MainTabControl.SelectTab(newPage);
+
+            }
+            //The part is new/added
+            else
+            {
+                Main main = (Main)Application.OpenForms["Main"];
+                var tabs = main.MainTabControl.TabPages;
+                TabPage newPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PartDetailEdit, PartID);
+                tabs.Add(newPage);
+                main.MainTabControl.SelectTab(newPage);
+            }
+
     
         }
 

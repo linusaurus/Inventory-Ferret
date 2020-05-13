@@ -24,7 +24,7 @@ namespace Weaselware.InventoryFerret
         {
             InitializeComponent();
             _part = part;
-            this.Text =String.Format("Part : {0} --{1}", _part.PartID.ToString(),_part.ItemDescription.ToString().Substring(0,40));
+          //  this.Text =String.Format("Part : {0} --{1}", _part.PartID.ToString(),_part.ItemDescription.ToString().Substring(0,40));
             openFileDialog = new OpenFileDialog();
         }
 
