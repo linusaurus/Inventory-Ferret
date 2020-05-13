@@ -51,10 +51,8 @@ namespace Weaselware.InventoryFerret {
                 var emp = _context.Employee.Where(p => p.EmployeeId == LoggedOnUserID).FirstOrDefault();
                 this.toolStripStatusLabel1.Text = "User= " + emp.Firstname + " " + emp.Lastname;
                 Globals.CurrentUserName = emp.Firstname + " " + emp.Lastname;
-            // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context,PageFactory.TabPageType.SupplierOrdersPage));
-            // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.JobOrdersPage));
-            // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.ItemSearchPage));
-            // MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.RecieptManagerPage));
+               MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context,PageFactory.TabPageType.MyOrdersPage));
+ 
 
         }
 
@@ -235,10 +233,6 @@ namespace Weaselware.InventoryFerret {
 
                     var order = _ordersService.NewDefault(LoggedOnUserID, supplierID, jobID);
                    _ordersService.Add(order);
-                   
-
-                    
-
                     // Purchase Order Page
                     MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage, order.OrderNum));
 
@@ -269,7 +263,12 @@ namespace Weaselware.InventoryFerret {
                     MainTabControl.TabPages.Add(partEditorPage);
                     MainTabControl.SelectedTab = partEditorPage;
                     break;
-                case "tsSettingsButton":
+               
+                case "tsbJobOrders":
+
+                    TabPage jobOrdersPage = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.JobOrdersPage);
+                    MainTabControl.TabPages.Add(jobOrdersPage);
+                    MainTabControl.SelectedTab = jobOrdersPage;
 
                     break;
                 default:

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DataLayer.Entities;
 using DataLayer.Interfaces;
-
+using DataLayer.Models;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -19,9 +19,15 @@ namespace DataLayer.Services {
             context = Context;
         }
 
-        public List<Employee> All
+        public List<EmployeeListDto> All()
         {
-            get { return context.Employee.ToList(); }
+            var _emps = context.Employee.AsNoTracking().OrderBy(p => p.Lastname).Select(d => new EmployeeListDto
+            {
+                EmployeeID = d.EmployeeId,
+                FullName = String.Format("{0} {1}",d.Firstname, d.Lastname)
+
+            }).ToList();
+            return _emps; 
         }
 
         public List<Employee> AllIncluding(params System.Linq.Expressions.Expression<Func<Employee, object>>[] includeProperties) {

@@ -26,8 +26,7 @@ namespace DataLayer.Services
 
         public void AddNew(Assembly assembly)
         {
-            _context.Assembly.Add(assembly);
-           
+            _context.Assembly.Add(assembly);          
         }
 
         public Assembly Find(int productID)

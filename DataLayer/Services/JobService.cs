@@ -40,9 +40,16 @@ namespace DataLayer.Services {
             return context.PurchaseOrder.Where(c => c.JobId == jobNumber).ToList();
         }
 
+        /// <summary>
+        /// TODO  refactor to use lightweight DTO return object
+        /// </summary>
+        /// <param name="jobName"></param>
+        /// <returns></returns>
         public List<Job> GetJobs(string jobName) {
 
-            return context.Job.Where(c => c.Jobname.StartsWith(jobName)).ToList();
+            return context.Job
+                .Include(p => p.PurchaseOrder).ThenInclude(p => p.PurchaseLineItem)
+                .Where(c => c.Jobname.StartsWith(jobName)).ToList();
         }
 
 

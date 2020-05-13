@@ -32,8 +32,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgMyOrdersGrid = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.ckbShowRecieved = new System.Windows.Forms.CheckBox();
             this.cbJobName = new System.Windows.Forms.ComboBox();
+            this.ckbShowRecieved = new System.Windows.Forms.CheckBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.colOrderNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOrderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSupplier = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -69,6 +70,7 @@
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.cbJobName);
             this.panel1.Controls.Add(this.ckbShowRecieved);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -76,6 +78,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1079, 63);
             this.panel1.TabIndex = 1;
+            // 
+            // cbJobName
+            // 
+            this.cbJobName.FormattingEnabled = true;
+            this.cbJobName.Location = new System.Drawing.Point(233, 21);
+            this.cbJobName.Name = "cbJobName";
+            this.cbJobName.Size = new System.Drawing.Size(188, 21);
+            this.cbJobName.TabIndex = 2;
+            this.cbJobName.SelectedIndexChanged += new System.EventHandler(this.cbJobName_SelectedIndexChanged);
             // 
             // ckbShowRecieved
             // 
@@ -88,13 +99,14 @@
             this.ckbShowRecieved.UseVisualStyleBackColor = true;
             this.ckbShowRecieved.CheckedChanged += new System.EventHandler(this.ckbShowRecieved_CheckedChanged);
             // 
-            // cbJobName
+            // label1
             // 
-            this.cbJobName.FormattingEnabled = true;
-            this.cbJobName.Location = new System.Drawing.Point(444, 21);
-            this.cbJobName.Name = "cbJobName";
-            this.cbJobName.Size = new System.Drawing.Size(339, 21);
-            this.cbJobName.TabIndex = 2;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(174, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(53, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Employee";
             // 
             // colOrderNum
             // 
@@ -134,6 +146,7 @@
             this.colOrderTotal.DefaultCellStyle = dataGridViewCellStyle2;
             this.colOrderTotal.HeaderText = "Total";
             this.colOrderTotal.Name = "colOrderTotal";
+            this.colOrderTotal.Width = 125;
             // 
             // colRecieved
             // 
@@ -167,6 +180,7 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.CheckBox ckbShowRecieved;
         private System.Windows.Forms.ComboBox cbJobName;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOrderNum;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOrderDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSupplier;

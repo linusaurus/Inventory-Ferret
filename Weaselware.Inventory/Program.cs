@@ -15,9 +15,6 @@ namespace Weaselware.InventoryFerret
         /// </summary>
         /// 
 
-        public static int loggedInUser;
-        
-
         [STAThread]
         static void Main()
         {

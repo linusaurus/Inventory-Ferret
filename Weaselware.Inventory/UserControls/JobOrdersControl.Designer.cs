@@ -24,13 +24,12 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtJobNameSearch = new System.Windows.Forms.TextBox();
             this.txtJobItemSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dgJobOrders = new System.Windows.Forms.DataGridView();
-            this.OrderNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbJobsList = new System.Windows.Forms.ListBox();
             this.dgJobOrderItems = new System.Windows.Forms.DataGridView();
             this.LineID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -38,6 +37,8 @@
             this.Qnty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgJobOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgJobOrderItems)).BeginInit();
             this.SuspendLayout();
@@ -46,13 +47,13 @@
             // 
             this.txtJobNameSearch.Location = new System.Drawing.Point(15, 29);
             this.txtJobNameSearch.Name = "txtJobNameSearch";
-            this.txtJobNameSearch.Size = new System.Drawing.Size(190, 20);
+            this.txtJobNameSearch.Size = new System.Drawing.Size(347, 20);
             this.txtJobNameSearch.TabIndex = 0;
             this.txtJobNameSearch.TextChanged += new System.EventHandler(this.txtJobNameSearch_TextChanged);
             // 
             // txtJobItemSearch
             // 
-            this.txtJobItemSearch.Location = new System.Drawing.Point(211, 29);
+            this.txtJobItemSearch.Location = new System.Drawing.Point(381, 29);
             this.txtJobItemSearch.Name = "txtJobItemSearch";
             this.txtJobItemSearch.Size = new System.Drawing.Size(313, 20);
             this.txtJobItemSearch.TabIndex = 1;
@@ -70,7 +71,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(208, 13);
+            this.label2.Location = new System.Drawing.Point(378, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 13);
             this.label2.TabIndex = 2;
@@ -91,32 +92,16 @@
             this.dgJobOrders.ReadOnly = true;
             this.dgJobOrders.RowHeadersVisible = false;
             this.dgJobOrders.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgJobOrders.Size = new System.Drawing.Size(178, 259);
+            this.dgJobOrders.Size = new System.Drawing.Size(347, 565);
             this.dgJobOrders.TabIndex = 3;
             this.dgJobOrders.SelectionChanged += new System.EventHandler(this.dgJobOrders_SelectionChanged);
-            // 
-            // OrderNumber
-            // 
-            this.OrderNumber.DataPropertyName = "OrderNum";
-            this.OrderNumber.HeaderText = "PO";
-            this.OrderNumber.Name = "OrderNumber";
-            this.OrderNumber.ReadOnly = true;
-            this.OrderNumber.Width = 75;
-            // 
-            // OrderDate
-            // 
-            this.OrderDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OrderDate.DataPropertyName = "OrderDate";
-            this.OrderDate.HeaderText = "Date";
-            this.OrderDate.Name = "OrderDate";
-            this.OrderDate.ReadOnly = true;
             // 
             // lbJobsList
             // 
             this.lbJobsList.FormattingEnabled = true;
             this.lbJobsList.Location = new System.Drawing.Point(15, 55);
             this.lbJobsList.Name = "lbJobsList";
-            this.lbJobsList.Size = new System.Drawing.Size(190, 121);
+            this.lbJobsList.Size = new System.Drawing.Size(347, 121);
             this.lbJobsList.TabIndex = 4;
             this.lbJobsList.SelectedIndexChanged += new System.EventHandler(this.lbJobsList_SelectedIndexChanged);
             // 
@@ -134,10 +119,10 @@
             this.Qnty,
             this.Description,
             this.UnitCost});
-            this.dgJobOrderItems.Location = new System.Drawing.Point(211, 55);
+            this.dgJobOrderItems.Location = new System.Drawing.Point(381, 55);
             this.dgJobOrderItems.Name = "dgJobOrderItems";
             this.dgJobOrderItems.ReadOnly = true;
-            this.dgJobOrderItems.Size = new System.Drawing.Size(671, 386);
+            this.dgJobOrderItems.Size = new System.Drawing.Size(889, 692);
             this.dgJobOrderItems.TabIndex = 5;
             // 
             // LineID
@@ -179,6 +164,25 @@
             this.UnitCost.Name = "UnitCost";
             this.UnitCost.ReadOnly = true;
             // 
+            // OrderNumber
+            // 
+            this.OrderNumber.DataPropertyName = "OrderNum";
+            this.OrderNumber.HeaderText = "PO";
+            this.OrderNumber.Name = "OrderNumber";
+            this.OrderNumber.ReadOnly = true;
+            this.OrderNumber.Width = 75;
+            // 
+            // OrderDate
+            // 
+            this.OrderDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OrderDate.DataPropertyName = "OrderDate";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.OrderDate.DefaultCellStyle = dataGridViewCellStyle1;
+            this.OrderDate.HeaderText = "Date";
+            this.OrderDate.Name = "OrderDate";
+            this.OrderDate.ReadOnly = true;
+            // 
             // JobOrdersControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -191,7 +195,7 @@
             this.Controls.Add(this.txtJobItemSearch);
             this.Controls.Add(this.txtJobNameSearch);
             this.Name = "JobOrdersControl";
-            this.Size = new System.Drawing.Size(900, 490);
+            this.Size = new System.Drawing.Size(1288, 796);
             this.Load += new System.EventHandler(this.JobOrdersControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgJobOrders)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgJobOrderItems)).EndInit();
@@ -208,13 +212,13 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DataGridView dgJobOrders;
         private System.Windows.Forms.ListBox lbJobsList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderDate;
         private System.Windows.Forms.DataGridView dgJobOrderItems;
         private System.Windows.Forms.DataGridViewTextBoxColumn LineID;
         private System.Windows.Forms.DataGridViewTextBoxColumn PartID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qnty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitCost;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderDate;
     }
 }

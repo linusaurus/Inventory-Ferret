@@ -52,8 +52,7 @@ namespace Weaselware.InventoryFerret.UserControls
             {
                 lbSuppliers.DataSource = supplierService.Find(tb.Text);
                 lbSuppliers.DisplayMember = "SupplierName";
-                lbSuppliers.ValueMember = "SupplierID";
-               
+                lbSuppliers.ValueMember = "SupplierID";              
             }
 
         }
@@ -87,18 +86,16 @@ namespace Weaselware.InventoryFerret.UserControls
             {
                 if (grid.SelectedRows.Count > 0)
                 {
-                    _selectOrderDto = (OrderListDto)grid.CurrentRow.DataBoundItem;
-                  
+                    _selectOrderDto = (OrderListDto)grid.CurrentRow.DataBoundItem;                  
                 }
             }
         }
 
         private void dgOrders_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if (_selectOrderDto.OrderNum != default)
+            if (_selectOrderDto != null)
             {
                 ((Main)Application.OpenForms[0]).OpenAnOrder(_selectOrderDto.OrderNum);
-
 
             }
         }

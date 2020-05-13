@@ -18,10 +18,11 @@ namespace Weaselware.UserControls
     public partial class MyOrdersControl : UserControl
     {
         private readonly IOrdersService _ordersService;
-        private readonly IJobsService _jobsService;
+        private readonly IEmployeeService _employeeService;
         private readonly BadgerDataModel ctx;
         private int _employeeID;
         private int _selectedOrderId;
+        private bool _showRecieved = false;
 
         public MyOrdersControl(BadgerDataModel context, int employeeID)
         {
@@ -29,13 +30,10 @@ namespace Weaselware.UserControls
             ctx = context;
             _employeeID = employeeID;
             _ordersService = new OrdersService(ctx);
-            _jobsService = new JobsService(ctx);
-
-      
-            
-
+            _employeeService = new EmployeeService(ctx);
+            //---
             dgMyOrdersGrid.AutoGenerateColumns = false;
-    
+            //---
             dgMyOrdersGrid.CellFormatting += DgMyOrdersGrid_CellFormatting;
         }
 
@@ -56,13 +54,12 @@ namespace Weaselware.UserControls
 
         private void MyOrdersControl_Load(object sender, EventArgs e)
         {
-           
-            var list = _jobsService.All();
 
-            cbJobName.DataSource = _jobsService.All();
-            cbJobName.DisplayMember = "JobName";
-            cbJobName.ValueMember = "JobID";
-            this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, false);
+            cbJobName.DataSource = _employeeService.All();
+            cbJobName.DisplayMember = "FullName";
+            cbJobName.ValueMember = "EmployeeID";
+            this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, _showRecieved);
+            cbJobName.SelectedValue = _employeeID;
         }
 
         private void dgMyOrdersGrid_SelectionChanged(object sender, EventArgs e)
@@ -89,15 +86,27 @@ namespace Weaselware.UserControls
         private void ckbShowRecieved_CheckedChanged(object sender, EventArgs e)
         {
            CheckBox cb = (CheckBox)sender;
+
             if (cb.Checked)
-            { this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, true); }
+            { _showRecieved = true; }
 
             else
-            { this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, false); }
-               
+            { _showRecieved = false; }
 
+            this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, _showRecieved);
         }
 
-       
+        private void cbJobName_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            ComboBox cb = (ComboBox)sender;
+            if (cb.DataSource != null)
+            {
+                if (cb.SelectedIndex > 0)
+                {
+                    _employeeID = (int)cb.SelectedValue;
+                    this.dgMyOrdersGrid.DataSource = _ordersService.GetMyOrders(_employeeID, _showRecieved);
+                }
+            }
+        }
     }
 }

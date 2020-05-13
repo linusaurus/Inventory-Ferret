@@ -10,8 +10,8 @@ namespace Weaselware.InventoryFerret {
     public partial class JobOrdersControl : UserControl {
 
         BadgerDataModel _context;
-        JobsService jService;
-        LineItemsService iService;
+        JobsService _jobService;
+        LineItemsService _lineService;
         Job currentJob;
 
         public JobOrdersControl(BadgerDataModel ctx) {
@@ -20,8 +20,8 @@ namespace Weaselware.InventoryFerret {
             _context = ctx;
             dgJobOrders.AutoGenerateColumns = false;
             dgJobOrderItems.AutoGenerateColumns = false;
-            jService = new JobsService(_context);
-            iService = new LineItemsService(_context);
+            _jobService = new JobsService(_context);
+            _lineService = new LineItemsService(_context);
             txtJobNameSearch.Text = (InventoryFerret.Properties.Settings.Default.LastJobSearch != String.Empty)? Properties.Settings.Default.LastJobSearch : string.Empty;
         }
 
@@ -33,7 +33,8 @@ namespace Weaselware.InventoryFerret {
             string searchTerm = tb.Text.ToString();
             if (tb.Text.Length > 0){
 
-                lbJobsList.DataSource = jService.GetJobs(searchTerm);
+                lbJobsList.DataSource = _jobService.GetJobs(searchTerm);
+                lbJobsList.DisplayMember = "JobName";
                 Properties.Settings.Default.LastJobSearch = searchTerm;
                 Properties.Settings.Default.Save();
             }
@@ -79,7 +80,7 @@ namespace Weaselware.InventoryFerret {
 
                 if (currentJob != null)
                 {
-                    dgJobOrderItems.DataSource = iService.GetJobItems(currentJob.JobId, searchTerm);
+                    dgJobOrderItems.DataSource = _lineService.GetJobItems(currentJob.JobId, searchTerm);
                 }
             }
         }
