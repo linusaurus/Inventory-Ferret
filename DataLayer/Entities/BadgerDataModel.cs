@@ -8,13 +8,22 @@ namespace DataLayer.Entities
 {
     public partial class BadgerDataModel : DbContext
     {
+
+        
         public BadgerDataModel()
         {
         }
 
+        //public BadgerDataModel()
+        //  : base()
+        //{
+
+        //}
+
         public BadgerDataModel(DbContextOptions<BadgerDataModel> options)
             : base(options)
         {
+
         }
 
         public virtual DbSet<AccountType> AccountType { get; set; }
@@ -74,6 +83,7 @@ namespace DataLayer.Entities
             if (!optionsBuilder.IsConfigured)
             {
                 optionsBuilder.UseSqlServer("Server=192.168.10.3;database=Badger;uid=sa;pwd=Kx09a32x;");
+                
             }
         }
 

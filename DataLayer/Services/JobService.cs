@@ -51,8 +51,25 @@ namespace DataLayer.Services {
                 .Include(p => p.PurchaseOrder).ThenInclude(p => p.PurchaseLineItem)
                 .Where(c => c.Jobname.StartsWith(jobName)).OrderByDescending(t => t.start_ts).Take(25).ToList();
         }
+        /// <summary>
+        /// Return lightweight list of jobs with 
+        /// </summary>
+        /// <param name="jobName"></param>
+        /// <returns></returns>
+        //public List<JobListDto> GetJobsList(string jobName)
+        //{
 
+        //    var query = context.Job.AsNoTracking().Include(j => j.PurchaseOrder).ThenInclude(s => s.Supplier)
+        //        .OrderByDescending(d => d.start_ts).Take(25)
+        //        .Select(d = new JobListDto()
+        //        {
+        //            d
+        //        }).ToList();
 
+        //    //return context.Job
+        //    //    .Include(p => p.PurchaseOrder).ThenInclude(p => p.PurchaseLineItem)
+        //    //    .Where(c => c.Jobname.StartsWith(jobName)).OrderByDescending(t => t.start_ts).Take(25).ToList();
+        //}
 
         public void Save() {
 

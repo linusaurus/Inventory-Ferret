@@ -25,11 +25,14 @@
         /// </summary>
         private void InitializeComponent() {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtJobNameSearch = new System.Windows.Forms.TextBox();
             this.txtJobItemSearch = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.dgJobOrders = new System.Windows.Forms.DataGridView();
+            this.OrderNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OrderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lbJobsList = new System.Windows.Forms.ListBox();
             this.dgJobOrderItems = new System.Windows.Forms.DataGridView();
             this.LineID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -37,8 +40,6 @@
             this.Qnty = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UnitCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OrderDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgJobOrders)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgJobOrderItems)).BeginInit();
             this.SuspendLayout();
@@ -95,6 +96,25 @@
             this.dgJobOrders.Size = new System.Drawing.Size(347, 565);
             this.dgJobOrders.TabIndex = 3;
             this.dgJobOrders.SelectionChanged += new System.EventHandler(this.dgJobOrders_SelectionChanged);
+            // 
+            // OrderNumber
+            // 
+            this.OrderNumber.DataPropertyName = "OrderNum";
+            this.OrderNumber.HeaderText = "PO";
+            this.OrderNumber.Name = "OrderNumber";
+            this.OrderNumber.ReadOnly = true;
+            this.OrderNumber.Width = 75;
+            // 
+            // OrderDate
+            // 
+            this.OrderDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OrderDate.DataPropertyName = "OrderDate";
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.OrderDate.DefaultCellStyle = dataGridViewCellStyle1;
+            this.OrderDate.HeaderText = "Date";
+            this.OrderDate.Name = "OrderDate";
+            this.OrderDate.ReadOnly = true;
             // 
             // lbJobsList
             // 
@@ -160,28 +180,12 @@
             // UnitCost
             // 
             this.UnitCost.DataPropertyName = "UnitCost";
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.UnitCost.DefaultCellStyle = dataGridViewCellStyle2;
             this.UnitCost.HeaderText = "UnitCost";
             this.UnitCost.Name = "UnitCost";
             this.UnitCost.ReadOnly = true;
-            // 
-            // OrderNumber
-            // 
-            this.OrderNumber.DataPropertyName = "OrderNum";
-            this.OrderNumber.HeaderText = "PO";
-            this.OrderNumber.Name = "OrderNumber";
-            this.OrderNumber.ReadOnly = true;
-            this.OrderNumber.Width = 75;
-            // 
-            // OrderDate
-            // 
-            this.OrderDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OrderDate.DataPropertyName = "OrderDate";
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.OrderDate.DefaultCellStyle = dataGridViewCellStyle1;
-            this.OrderDate.HeaderText = "Date";
-            this.OrderDate.Name = "OrderDate";
-            this.OrderDate.ReadOnly = true;
             // 
             // JobOrdersControl
             // 
@@ -213,12 +217,12 @@
         private System.Windows.Forms.DataGridView dgJobOrders;
         private System.Windows.Forms.ListBox lbJobsList;
         private System.Windows.Forms.DataGridView dgJobOrderItems;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OrderDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn LineID;
         private System.Windows.Forms.DataGridViewTextBoxColumn PartID;
         private System.Windows.Forms.DataGridViewTextBoxColumn Qnty;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn UnitCost;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn OrderDate;
     }
 }

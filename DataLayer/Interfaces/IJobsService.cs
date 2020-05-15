@@ -13,6 +13,7 @@ namespace DataLayer.Interfaces
         PurchaseOrder GetJob(int jobNumber);
         List<PurchaseOrder> GetJobOrders(int jobNumber);
         List<Job> GetJobs(string jobName);
+       // List<JobListDto> GetJobsList(string JobName);
         void Save();
     }
 }

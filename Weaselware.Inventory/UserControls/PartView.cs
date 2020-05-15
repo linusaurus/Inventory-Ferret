@@ -384,13 +384,15 @@ namespace Weaselware.InventoryFerret
         private void rbRecieved_CheckedChanged(object sender, EventArgs e)
         {
             RadioButton rb = (RadioButton)sender;
-            if (rb.Checked | rb.Name=="rbReceived")
-            {
-                bsTransactions.Filter = "TransactionType = '1' OR TransactionType = '4'";
-                DataView view = ((DataView)bsTransactions.DataSource);
-                txtTransCalc.Text = view.Table.DefaultView.Table.Compute("SUM(QntyRev)", "TransactionType = '1' OR TransactionType = '4'").ToString();
+            if (_part.PartID != 0)
+            {         
+                if (rb.Checked | rb.Name=="rbReceived")
+                {
+                    bsTransactions.Filter = "TransactionType = '1' OR TransactionType = '4'";
+                    DataView view = ((DataView)bsTransactions.DataSource);
+                    txtTransCalc.Text = view.Table.DefaultView.Table.Compute("SUM(QntyRev)", "TransactionType = '1' OR TransactionType = '4'").ToString();
+                }
             }
-
            
         }
 

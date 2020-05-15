@@ -28,6 +28,7 @@ namespace Weaselware.InventoryFerret {
         public Main()
         {
             InitializeComponent();
+            // This should be the main contect wireup for everything else
             _context = new BadgerDataModel();
             _ordersService = new OrdersService(_context);
             MainTabs = MainTabControl;
@@ -49,8 +50,8 @@ namespace Weaselware.InventoryFerret {
             _context = new BadgerDataModel();
             
                 var emp = _context.Employee.Where(p => p.EmployeeId == LoggedOnUserID).FirstOrDefault();
-                this.toolStripStatusLabel1.Text = "User= " + emp.Firstname + " " + emp.Lastname;
-                Globals.CurrentUserName = emp.Firstname + " " + emp.Lastname;
+                this.toolStripStatusLabel1.Text = "User= " + Globals.CurrentUserName;
+               // Globals.CurrentUserName = emp.Firstname + " " + emp.Lastname;
                 TabPage myOrdersTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.MyOrdersPage);
                 myOrdersTab.Name = "myOrdersTab";
                 MainTabControl.TabPages.Add(myOrdersTab);

@@ -22,11 +22,11 @@ namespace Weaselware.InventoryFerret {
             dgJobOrderItems.AutoGenerateColumns = false;
             _jobService = new JobsService(_context);
             _lineService = new LineItemsService(_context);
-            txtJobNameSearch.Text = (InventoryFerret.Properties.Settings.Default.LastJobSearch != String.Empty)? Properties.Settings.Default.LastJobSearch : string.Empty;
+            // Use last entered search term ---
+            txtJobNameSearch.Text = (InventoryFerret.Properties.Settings.Default.LastJobSearch != String.Empty)? 
+                Properties.Settings.Default.LastJobSearch : string.Empty;
         }
-
   
-
         private void txtJobNameSearch_TextChanged(object sender, EventArgs e) {
 
             TextBox tb = (TextBox)sender;
