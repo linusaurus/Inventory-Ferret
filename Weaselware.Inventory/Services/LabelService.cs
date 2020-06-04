@@ -197,8 +197,8 @@ namespace Weaselware.InventoryFerret {
                 pj.ThermalLabel = label; // set the ThermalLabel object
                 pj.PrinterSettings.Dpi = 203;
                 pj.Copies = Qnty;
-                //pj.Print(); // print the ThermalLabel object  
-                pj.ExportToImage(label, @"c:\temp\myLabel.jpg", new ImageSettings(ImageFormat.Jpeg), 300);
+                pj.Print(); // print the ThermalLabel object  
+               // pj.ExportToImage(label, @"c:\temp\myLabel.jpg", new ImageSettings(ImageFormat.Jpeg), 300);
             }
         }
 

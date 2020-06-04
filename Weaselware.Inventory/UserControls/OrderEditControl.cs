@@ -17,6 +17,9 @@ using Weaselware.InventoryFerret.Mappers;
 using Weaselware.InventoryFerret.Services;
 using System.IO;
 using System.Diagnostics;
+using CrystalDecisions.CrystalReports.Engine;
+using CrystalDecisions.Shared;
+using Microsoft.Data.SqlClient;
 
 namespace Weaselware.InventoryFerret.UserControls
 {
@@ -498,7 +501,12 @@ namespace Weaselware.InventoryFerret.UserControls
                 
             }
         }
-
-       
+        // Print the Order
+        private void btnPrintOrder_Click(object sender, EventArgs e)
+        {           
+            PrintOrderForm orderFrom = new PrintOrderForm();
+            orderFrom.OrderNum = orderDTO.PurchaseOrderID;           
+            orderFrom.Show();
+        }
     }
 }

@@ -31,8 +31,8 @@ namespace Weaselware.InventoryFerret
             //TestHarnessForm mainForm = new TestHarnessForm();
            
             //mainForm.LoggedOnUserID = 92;
-            Globals.CurrentLoggedUserID = 92;
-            Globals.CurrentUserName = "Jared";
+            Globals.CurrentLoggedUserID = 8;
+            Globals.CurrentUserName = "Richard";
             //Application.Run(new DataForm());
 
             //Application.Run(mainForm);

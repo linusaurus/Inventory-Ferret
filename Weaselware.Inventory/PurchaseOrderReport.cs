@@ -90,7 +90,7 @@ namespace Weaselware.InventoryFerret {
         
         [Browsable(false)]
         [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_p1 {
+        public CrystalDecisions.Shared.IParameterField Parameter_ordNum {
             get {
                 return this.DataDefinition.ParameterFields[0];
             }
