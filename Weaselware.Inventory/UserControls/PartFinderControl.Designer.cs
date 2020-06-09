@@ -77,7 +77,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(671, 127);
+            this.tabPage1.Size = new System.Drawing.Size(671, 82);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Parts Finder";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -225,6 +225,7 @@
             // btnNewPart
             // 
             this.btnNewPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNewPart.Enabled = false;
             this.btnNewPart.Location = new System.Drawing.Point(423, 9);
             this.btnNewPart.Name = "btnNewPart";
             this.btnNewPart.Size = new System.Drawing.Size(123, 27);

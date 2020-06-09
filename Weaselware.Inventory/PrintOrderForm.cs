@@ -1,5 +1,6 @@
 ﻿using CrystalDecisions.CrystalReports.Engine;
 using CrystalDecisions.Shared;
+using DataLayer.Models;
 using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
@@ -19,56 +20,26 @@ namespace Weaselware.InventoryFerret
 {
     public partial class PrintOrderForm : Form
     {
-        private int orderNum;
+        private POdataset ds;
 
-        public int OrderNum
-        {
-            get { return orderNum; }
-            set { orderNum = value; }
-        }
-
-        public PrintOrderForm()
+        public PrintOrderForm(POdataset DS)
         {
             InitializeComponent();
-           
+            // Pass in the loaded Dataset --
+            ds = DS;
         }
 
         private void PrintOrderForm_Load(object sender, EventArgs e)
         {
+            PO_PrintReport report = new PO_PrintReport();
+          
+            report.SetDataSource(ds);
 
-            DataTable dt = new DataTable();
-            DataTable df = new DataTable();
-            DataSet ds = new DataSet();
+            this.crystalReportViewer1.ReportSource = report;
+            this.crystalReportViewer1.RefreshReport();
+            
+        }
 
-            // Create a connection
-            using (SqlConnection cnn = new SqlConnection(Weaselware.InventoryFerret.Properties.Settings.Default.BadgerConnectionString))
-            {
       
-                SqlCommand cmd = new SqlCommand("PrintPO", cnn);
-                cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@ordNum", SqlDbType.Int).Value = orderNum;
-                cnn.Open();
-                dt.Load(cmd.ExecuteReader());
-
-                SqlCommand cmd2 = new SqlCommand("PrintPOfees", cnn);
-                cmd2.CommandType = CommandType.StoredProcedure;
-                cmd2.Parameters.Add("ordNum", SqlDbType.Int).Value = orderNum;
-                df.Load(cmd2.ExecuteReader());
-                ds.Tables.Add(dt);
-                ds.Tables.Add(df);
-
-                PurchaseOrderReport1.SetDataSource(ds); 
-                
-                
-            }
-
-            
-
-        }
-
-        private void crystalReportViewer1_Load(object sender, EventArgs e)
-        {
-            
-        }
     }
 }

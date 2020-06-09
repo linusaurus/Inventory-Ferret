@@ -229,7 +229,6 @@
     <Compile Include="NewResourceForm.Designer.cs">
       <DependentUpon>NewResourceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="OrderPrintData.cs" />
     <Compile Include="PartForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -244,6 +243,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>POdataset.xsd</DependentUpon>
     </Compile>
+    <Compile Include="PO_PrintReport.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PO_PrintReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="PrintOrderForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -257,21 +262,16 @@
       <DependentUpon>PurchaseOrderReport.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="ReportOrderData.Designer.cs">
+    <Compile Include="Reports\PurchaseOrderReport.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>ReportOrderData.xsd</DependentUpon>
+      <DependentUpon>PurchaseOrderReport.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Services\Globals.cs" />
     <Compile Include="Services\LabelService.cs" />
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\OrdersBizService.cs" />
-    <Compile Include="TestHarnessForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="TestHarnessForm.Designer.cs">
-      <DependentUpon>TestHarnessForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="UserControls\AssemblyManagerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -429,6 +429,10 @@
     <EmbeddedResource Include="PartForm.resx">
       <DependentUpon>PartForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="PO_PrintReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PO_PrintReport.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="PrintJobDialog.resx">
       <DependentUpon>PrintJobDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -439,8 +443,9 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PurchaseOrderReport.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="TestHarnessForm.resx">
-      <DependentUpon>TestHarnessForm.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\PurchaseOrderReport.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>PurchaseOrderReport.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AssemblyManagerControl.resx">
       <DependentUpon>AssemblyManagerControl.cs</DependentUpon>
@@ -565,17 +570,6 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ReportOrderData.xsc">
-      <DependentUpon>ReportOrderData.xsd</DependentUpon>
-    </None>
-    <None Include="ReportOrderData.xsd">
-      <SubType>Designer</SubType>
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ReportOrderData.Designer.cs</LastGenOutput>
-    </None>
-    <None Include="ReportOrderData.xss">
-      <DependentUpon>ReportOrderData.xsd</DependentUpon>
-    </None>
     <None Include="Resources\close_window.bmp" />
   </ItemGroup>
   <ItemGroup>
@@ -654,22 +648,22 @@
   <ItemGroup>
     <PublishFile Include="Interop.CoreScanner">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>Assembly</FileType>
     </PublishFile>
     <PublishFile Include="pika_Kdk_icon.ico">
       <Visible>False</Visible>
+      <PublishState>Include</PublishState>
+      <IncludeHash>True</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Include</PublishState>
-      <IncludeHash>True</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
   </ItemGroup>

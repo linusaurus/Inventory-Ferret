@@ -16,14 +16,14 @@ namespace Weaselware.InventoryFerret {
     using CrystalDecisions.CrystalReports.Engine;
     
     
-    public class PurchaseOrderReport : ReportClass {
+    public class PO_PrintReport : ReportClass {
         
-        public PurchaseOrderReport() {
+        public PO_PrintReport() {
         }
         
         public override string ResourceName {
             get {
-                return "PurchaseOrderReport.rpt";
+                return "PO_PrintReport.rpt";
             }
             set {
                 // Do nothing
@@ -41,7 +41,7 @@ namespace Weaselware.InventoryFerret {
         
         public override string FullResourceName {
             get {
-                return "Weaselware.InventoryFerret.PurchaseOrderReport.rpt";
+                return "Weaselware.InventoryFerret.PO_PrintReport.rpt";
             }
             set {
                 // Do nothing
@@ -87,20 +87,12 @@ namespace Weaselware.InventoryFerret {
                 return this.ReportDefinition.Sections[4];
             }
         }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Fees_Pm_PrintPO1OrderNum {
-            get {
-                return this.DataDefinition.ParameterFields[0];
-            }
-        }
     }
     
     [System.Drawing.ToolboxBitmapAttribute(typeof(CrystalDecisions.Shared.ExportOptions), "report.bmp")]
-    public class CachedPurchaseOrderReport : Component, ICachedReport {
+    public class CachedPO_PrintReport : Component, ICachedReport {
         
-        public CachedPurchaseOrderReport() {
+        public CachedPO_PrintReport() {
         }
         
         [Browsable(false)]
@@ -137,7 +129,7 @@ namespace Weaselware.InventoryFerret {
         }
         
         public virtual CrystalDecisions.CrystalReports.Engine.ReportDocument CreateReport() {
-            PurchaseOrderReport rpt = new PurchaseOrderReport();
+            PO_PrintReport rpt = new PO_PrintReport();
             rpt.Site = this.Site;
             return rpt;
         }

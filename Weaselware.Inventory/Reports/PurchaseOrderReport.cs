@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Weaselware.InventoryFerret {
+namespace Weaselware.InventoryFerret.Reports {
     using System;
     using System.ComponentModel;
     using CrystalDecisions.Shared;
@@ -41,7 +41,7 @@ namespace Weaselware.InventoryFerret {
         
         public override string FullResourceName {
             get {
-                return "Weaselware.InventoryFerret.PurchaseOrderReport.rpt";
+                return "Weaselware.InventoryFerret.Reports.PurchaseOrderReport.rpt";
             }
             set {
                 // Do nothing
@@ -85,14 +85,6 @@ namespace Weaselware.InventoryFerret {
         public CrystalDecisions.CrystalReports.Engine.Section Section5 {
             get {
                 return this.ReportDefinition.Sections[4];
-            }
-        }
-        
-        [Browsable(false)]
-        [DesignerSerializationVisibilityAttribute(System.ComponentModel.DesignerSerializationVisibility.Hidden)]
-        public CrystalDecisions.Shared.IParameterField Parameter_Fees_Pm_PrintPO1OrderNum {
-            get {
-                return this.DataDefinition.ParameterFields[0];
             }
         }
     }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.crystalReportViewer1 = new CrystalDecisions.Windows.Forms.CrystalReportViewer();
-            this.PurchaseOrderReport1 = new Weaselware.InventoryFerret.PurchaseOrderReport();
+            this.PO_PrintReport1 = new Weaselware.InventoryFerret.PO_PrintReport();
             this.SuspendLayout();
             // 
             // crystalReportViewer1
@@ -40,11 +40,10 @@
             this.crystalReportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.crystalReportViewer1.Location = new System.Drawing.Point(0, 0);
             this.crystalReportViewer1.Name = "crystalReportViewer1";
-            this.crystalReportViewer1.ReportSource = this.PurchaseOrderReport1;
+            this.crystalReportViewer1.ReportSource = this.PO_PrintReport1;
             this.crystalReportViewer1.Size = new System.Drawing.Size(1151, 806);
             this.crystalReportViewer1.TabIndex = 0;
             this.crystalReportViewer1.ToolPanelView = CrystalDecisions.Windows.Forms.ToolPanelViewType.None;
-            this.crystalReportViewer1.Load += new System.EventHandler(this.crystalReportViewer1_Load);
             // 
             // PrintOrderForm
             // 
@@ -63,6 +62,6 @@
         #endregion
 
        CrystalDecisions.Windows.Forms.CrystalReportViewer crystalReportViewer1;
-        private PurchaseOrderReport PurchaseOrderReport1;
+        private PO_PrintReport PO_PrintReport1;
     }
 }

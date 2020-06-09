@@ -503,10 +503,35 @@ namespace Weaselware.InventoryFerret.UserControls
         }
         // Print the Order
         private void btnPrintOrder_Click(object sender, EventArgs e)
-        {           
-            PrintOrderForm orderFrom = new PrintOrderForm();
-            orderFrom.OrderNum = orderDTO.PurchaseOrderID;           
-            orderFrom.Show();
+        {
+            if (orderDTO != null || orderDTO.PurchaseOrderID != default)
+            {
+                POdataset ds = new POdataset();
+
+                // Create a connection
+               //
+                //    cnn.Open();
+                    POdatasetTableAdapters.PurchaseOrder1TableAdapter adapter = new POdatasetTableAdapters.PurchaseOrder1TableAdapter();
+                    POdatasetTableAdapters.EmployeeTableAdapter empAdapter = new POdatasetTableAdapters.EmployeeTableAdapter();
+                    POdatasetTableAdapters.PurchaseLineItemTableAdapter lineAdaper = new POdatasetTableAdapters.PurchaseLineItemTableAdapter();
+                    POdatasetTableAdapters.OrderFeeTableAdapter feeAdapers = new POdatasetTableAdapters.OrderFeeTableAdapter();
+                    POdatasetTableAdapters.SupplierTableAdapter supplierAdapter = new POdatasetTableAdapters.SupplierTableAdapter();
+                    // Hydrate all the internal tables 
+                    adapter.Fill(ds.PurchaseOrder1, orderDTO.PurchaseOrderID);
+                    empAdapter.Fill(ds.Employee, orderDTO.EmployeeID);
+                    lineAdaper.Fill(ds.PurchaseLineItem, orderDTO.PurchaseOrderID);
+                    feeAdapers.Fill(ds.OrderFee, orderDTO.PurchaseOrderID);
+                    supplierAdapter.Fill(ds.Supplier, orderDTO.SupplierID);
+                    // PurchaseOrderReport1.SetDataSource(ds);
+               // }
+
+                PrintOrderForm orderFrom = new PrintOrderForm(ds);
+                
+                orderFrom.Show();
+
+            }
+        
+           
         }
     }
 }
