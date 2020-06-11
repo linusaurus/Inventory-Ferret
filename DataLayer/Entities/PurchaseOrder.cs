@@ -31,6 +31,7 @@ namespace DataLayer.Entities
         public decimal? SubTotal { get; set; }
         public string Memo { get; set; }
         public int? OrderState { get; set; }
+        public double? TaxRate { get; set; }
         public DateTime? DateAdded { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public string AddedBy { get; set; }

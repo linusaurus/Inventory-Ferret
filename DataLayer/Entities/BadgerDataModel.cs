@@ -78,6 +78,8 @@ namespace DataLayer.Entities
         public virtual DbSet<WorkOrder> WorkOrder { get; set; }
         public virtual DbSet<WorkOrderRouting> WorkOrderRouting { get; set; }
 
+        public virtual DbSet<TaxRate> TaxRate { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             if (!optionsBuilder.IsConfigured)
@@ -111,6 +113,7 @@ namespace DataLayer.Entities
             modelBuilder.ApplyConfiguration(new OrderFeeConfig());
             modelBuilder.ApplyConfiguration(new ResourceConfig());
             modelBuilder.ApplyConfiguration(new ResourceVersionConfig());
+            modelBuilder.ApplyConfiguration(new TaxRateConfig());
 
             modelBuilder.Entity<Employee>(entity =>
             {

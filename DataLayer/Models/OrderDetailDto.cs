@@ -35,6 +35,7 @@ namespace DataLayer.Models
         private int employeeID;
         private string salesRep;
         private decimal subTotal;
+        private double taxRate;
  
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -50,6 +51,18 @@ namespace DataLayer.Models
                 OnPropertyChange();
             }
         }
+
+        // TaxRate
+        public double TaxRate
+        {
+            get { return taxRate; }
+            set
+            {
+                taxRate = value;
+                OnPropertyChange();
+            }
+        }
+
         // JobID
         public int JobID
         {

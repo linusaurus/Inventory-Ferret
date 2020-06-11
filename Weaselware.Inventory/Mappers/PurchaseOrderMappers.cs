@@ -46,6 +46,7 @@ namespace Weaselware.InventoryFerret.Mappers
             destination.LineItems = lineMapper.MapList(source.PurchaseLineItem);
             destination.Attachments = attachmentMapper.MapList(source.Attachment);
             destination.OrderFees = orderFeeMapper.MapList(source.OrderFee);
+            destination.TaxRate = source.TaxRate.GetValueOrDefault();
         }
     }
 

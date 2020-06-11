@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgOrderLineItem = new System.Windows.Forms.DataGridView();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnPrintOrder = new System.Windows.Forms.Button();
@@ -58,6 +58,7 @@
             this.colFileSize = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnCLose = new System.Windows.Forms.Button();
             this.purchaseOrderHeaderControl1 = new Weaselware.InventoryFerret.PurchaseOrderHeaderControl();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderLineItem)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgOrderFees)).BeginInit();
             this.tbOrderIncidentals.SuspendLayout();
@@ -161,10 +162,10 @@
             this.tbOrderIncidentals.Controls.Add(this.tabPage1);
             this.tbOrderIncidentals.Controls.Add(this.tabPage2);
             this.tbOrderIncidentals.Controls.Add(this.tabPage3);
-            this.tbOrderIncidentals.Location = new System.Drawing.Point(20, 442);
+            this.tbOrderIncidentals.Location = new System.Drawing.Point(20, 447);
             this.tbOrderIncidentals.Name = "tbOrderIncidentals";
             this.tbOrderIncidentals.SelectedIndex = 0;
-            this.tbOrderIncidentals.Size = new System.Drawing.Size(839, 190);
+            this.tbOrderIncidentals.Size = new System.Drawing.Size(839, 196);
             this.tbOrderIncidentals.TabIndex = 11;
             // 
             // tabPage1
@@ -173,7 +174,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(831, 164);
+            this.tabPage1.Size = new System.Drawing.Size(831, 170);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Part Lookup";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -184,7 +185,7 @@
             this.partFinderControl1.Location = new System.Drawing.Point(3, 3);
             this.partFinderControl1.Name = "partFinderControl1";
             this.partFinderControl1.SelectedPart = null;
-            this.partFinderControl1.Size = new System.Drawing.Size(825, 158);
+            this.partFinderControl1.Size = new System.Drawing.Size(825, 164);
             this.partFinderControl1.TabIndex = 9;
             // 
             // tabPage2
@@ -195,7 +196,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(10);
-            this.tabPage2.Size = new System.Drawing.Size(831, 164);
+            this.tabPage2.Size = new System.Drawing.Size(831, 170);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Fees and Charges";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -229,7 +230,7 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(10);
-            this.tabPage3.Size = new System.Drawing.Size(831, 164);
+            this.tabPage3.Size = new System.Drawing.Size(831, 170);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Attachments";
             this.tabPage3.UseVisualStyleBackColor = true;
@@ -311,10 +312,10 @@
             // colCreatedDate
             // 
             this.colCreatedDate.DataPropertyName = "CreatedDate";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Format = "d";
-            dataGridViewCellStyle5.NullValue = null;
-            this.colCreatedDate.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.colCreatedDate.DefaultCellStyle = dataGridViewCellStyle1;
             this.colCreatedDate.HeaderText = "Date";
             this.colCreatedDate.Name = "colCreatedDate";
             this.colCreatedDate.Width = 80;
@@ -352,17 +353,26 @@
             // 
             // purchaseOrderHeaderControl1
             // 
-            this.purchaseOrderHeaderControl1.Location = new System.Drawing.Point(17, 25);
+            this.purchaseOrderHeaderControl1.Location = new System.Drawing.Point(17, 12);
             this.purchaseOrderHeaderControl1.MinimumSize = new System.Drawing.Size(920, 135);
             this.purchaseOrderHeaderControl1.Name = "purchaseOrderHeaderControl1";
             this.purchaseOrderHeaderControl1.PurchaseOrder = null;
             this.purchaseOrderHeaderControl1.Size = new System.Drawing.Size(1025, 135);
             this.purchaseOrderHeaderControl1.TabIndex = 12;
             // 
+            // splitter1
+            // 
+            this.splitter1.Location = new System.Drawing.Point(0, 0);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(3, 654);
+            this.splitter1.TabIndex = 13;
+            this.splitter1.TabStop = false;
+            // 
             // OrderEditControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.splitter1);
             this.Controls.Add(this.purchaseOrderHeaderControl1);
             this.Controls.Add(this.tbOrderIncidentals);
             this.Controls.Add(this.btnCLose);
@@ -416,6 +426,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colAttachmentDescription;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSrc;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFileSize;
+        private System.Windows.Forms.Splitter splitter1;
         //p
     }
 }

@@ -95,6 +95,13 @@ namespace DataLayer.Services {
            
         }
 
+        public double GetSupplierTaxRate(int zipcode)
+        {
+
+            //var result = context.TaxRate.Where(z => z.ZipCode == zipcode).FirstOrDefault();
+            return double.Parse("0.0775");
+        }
+
         public PurchaseOrder GetOrderByID(int orderNum) {
 
             return context.PurchaseOrder

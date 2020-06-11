@@ -283,7 +283,7 @@
             // 
             // txtOtherFees
             // 
-            this.txtOtherFees.Location = new System.Drawing.Point(738, 100);
+            this.txtOtherFees.Location = new System.Drawing.Point(738, 101);
             this.txtOtherFees.Name = "txtOtherFees";
             this.txtOtherFees.Size = new System.Drawing.Size(82, 20);
             this.txtOtherFees.TabIndex = 6;
@@ -303,7 +303,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(735, 83);
+            this.label10.Location = new System.Drawing.Point(735, 84);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(85, 13);
             this.label10.TabIndex = 8;

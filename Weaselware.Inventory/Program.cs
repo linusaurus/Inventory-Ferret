@@ -23,13 +23,13 @@ namespace Weaselware.InventoryFerret
             AppDomain.CurrentDomain.UnhandledException += CurrentDomainOnUnhadledException;
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-         
+
 
             // Standard App Startup
             //---------------------------------------------------------------------------------
-            Main mainForm = new Main();  
-            //TestHarnessForm mainForm = new TestHarnessForm();
-           
+           // Main mainForm = new Main();
+            Harness mainForm = new Harness();
+
             //mainForm.LoggedOnUserID = 92;
             Globals.CurrentLoggedUserID = 8;
             Globals.CurrentUserName = "Richard";
@@ -46,7 +46,7 @@ namespace Weaselware.InventoryFerret
             //    Main mainForm = new Main();
             //    mainForm.LoggedOnUserID = loginForm.EmployeeID;
             //    Globals.CurrentLoggedUserID = loginForm.EmployeeID;
-            //   // Globals.CurrentUserName = loginForm.UserN
+            //    // Globals.CurrentUserName = loginForm.UserN
             //    Application.Run(mainForm);
             //}
 

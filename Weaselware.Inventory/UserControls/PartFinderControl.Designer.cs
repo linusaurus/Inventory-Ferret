@@ -65,7 +65,7 @@
             this.tbSupplier.Location = new System.Drawing.Point(3, 25);
             this.tbSupplier.Name = "tbSupplier";
             this.tbSupplier.SelectedIndex = 0;
-            this.tbSupplier.Size = new System.Drawing.Size(679, 108);
+            this.tbSupplier.Size = new System.Drawing.Size(679, 130);
             this.tbSupplier.TabIndex = 3;
             // 
             // tabPage1
@@ -77,7 +77,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(671, 82);
+            this.tabPage1.Size = new System.Drawing.Size(671, 104);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Parts Finder";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -118,7 +118,7 @@
             this.PartNumber_col});
             this.dgvPartsSearchResults.Location = new System.Drawing.Point(6, 32);
             this.dgvPartsSearchResults.Name = "dgvPartsSearchResults";
-            this.dgvPartsSearchResults.Size = new System.Drawing.Size(657, 88);
+            this.dgvPartsSearchResults.Size = new System.Drawing.Size(657, 110);
             this.dgvPartsSearchResults.TabIndex = 1;
             this.dgvPartsSearchResults.SelectionChanged += new System.EventHandler(this.dgvPartsSearchResults_SelectionChanged);
             // 
@@ -158,7 +158,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(671, 82);
+            this.tabPage2.Size = new System.Drawing.Size(671, 85);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Supplier Purchases";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -174,7 +174,7 @@
             this.dgSupplierParts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgSupplierParts.Location = new System.Drawing.Point(3, 3);
             this.dgSupplierParts.Name = "dgSupplierParts";
-            this.dgSupplierParts.Size = new System.Drawing.Size(665, 76);
+            this.dgSupplierParts.Size = new System.Drawing.Size(665, 79);
             this.dgSupplierParts.TabIndex = 0;
             // 
             // colPartId
@@ -254,7 +254,7 @@
             this.Controls.Add(this.btnAddToOrder);
             this.Controls.Add(this.tbSupplier);
             this.Name = "PartFinderControl";
-            this.Size = new System.Drawing.Size(685, 139);
+            this.Size = new System.Drawing.Size(685, 161);
             this.Load += new System.EventHandler(this.PartFinderControl_Load);
             this.tbSupplier.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
