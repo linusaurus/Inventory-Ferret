@@ -39,7 +39,7 @@ namespace Weaselware.InventoryFerret
                 mapper.Map(_purchaseOrder, orderDTO);
                 
                 BSorder.DataSource = orderDTO;
-                this.orderEditSplitPanelControl1.SetDataSource(ctx, BSorder);
+                this.orderEditSplitPanelControl1.SetDataSource(ctx, 5000);
             }
             
 

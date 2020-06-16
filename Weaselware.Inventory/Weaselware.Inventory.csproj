@@ -284,6 +284,12 @@
     <Compile Include="UserControls\AssemblyManagerControl.Designer.cs">
       <DependentUpon>AssemblyManagerControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\AttachmentControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\AttachmentControl.Designer.cs">
+      <DependentUpon>AttachmentControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\Bindinglist.cs" />
     <Compile Include="UserControls\MyOrdersControl.cs">
       <SubType>UserControl</SubType>
@@ -302,6 +308,12 @@
     </Compile>
     <Compile Include="UserControls\OrderEditSplitPanelControl.Designer.cs">
       <DependentUpon>OrderEditSplitPanelControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControls\OrderFeeControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\OrderFeeControl.Designer.cs">
+      <DependentUpon>OrderFeeControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\OrderHeaderVerticalControl.cs">
       <SubType>UserControl</SubType>
@@ -471,6 +483,9 @@
     <EmbeddedResource Include="UserControls\AssemblyManagerControl.resx">
       <DependentUpon>AssemblyManagerControl.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\AttachmentControl.resx">
+      <DependentUpon>AttachmentControl.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControls\MyOrdersControl.resx">
       <DependentUpon>MyOrdersControl.cs</DependentUpon>
     </EmbeddedResource>
@@ -479,6 +494,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\OrderEditSplitPanelControl.resx">
       <DependentUpon>OrderEditSplitPanelControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\OrderFeeControl.resx">
+      <DependentUpon>OrderFeeControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\OrderHeaderVerticalControl.resx">
       <DependentUpon>OrderHeaderVerticalControl.cs</DependentUpon>
@@ -792,6 +810,27 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\round_print_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\outline_link_black_24dp1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\outline_delete_black_24dp1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\outline_delete_black_24dp2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\round_keyboard_arrow_down_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\round_keyboard_arrow_up_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\baseline_post_add_black_24dp.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\baseline_push_pin_black_24dp.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

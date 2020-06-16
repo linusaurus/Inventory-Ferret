@@ -31,6 +31,8 @@
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tsTooglePanels = new System.Windows.Forms.ToolStripButton();
             this.tsToogleHeader = new System.Windows.Forms.ToolStripButton();
+            this.tsbToggleAttachment = new System.Windows.Forms.ToolStripButton();
+            this.tsbLoadPartFinder = new System.Windows.Forms.ToolStripButton();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.orderHeaderVerticalControl1 = new Weaselware.InventoryFerret.UserControls.OrderHeaderVerticalControl();
             this.scLineItems = new System.Windows.Forms.SplitContainer();
@@ -54,7 +56,9 @@
             this.toolStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tsTooglePanels,
-            this.tsToogleHeader});
+            this.tsToogleHeader,
+            this.tsbToggleAttachment,
+            this.tsbLoadPartFinder});
             this.toolStrip1.Location = new System.Drawing.Point(6, 733);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1149, 31);
@@ -65,7 +69,7 @@
             // 
             this.tsTooglePanels.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
             this.tsTooglePanels.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.tsTooglePanels.Image = global::Weaselware.InventoryFerret.Properties.Resources.outline_message_black_24dp2;
+            this.tsTooglePanels.Image = global::Weaselware.InventoryFerret.Properties.Resources.round_keyboard_arrow_up_black_24dp;
             this.tsTooglePanels.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tsTooglePanels.Name = "tsTooglePanels";
             this.tsTooglePanels.Size = new System.Drawing.Size(28, 28);
@@ -83,9 +87,33 @@
             this.tsToogleHeader.Text = "toolStripButton1";
             this.tsToogleHeader.Click += new System.EventHandler(this.tsToogleHeader_Click);
             // 
+            // tsbToggleAttachment
+            // 
+            this.tsbToggleAttachment.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbToggleAttachment.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbToggleAttachment.Image = global::Weaselware.InventoryFerret.Properties.Resources.baseline_post_add_black_24dp;
+            this.tsbToggleAttachment.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbToggleAttachment.Name = "tsbToggleAttachment";
+            this.tsbToggleAttachment.Size = new System.Drawing.Size(28, 28);
+            this.tsbToggleAttachment.Text = "toolStripButton1";
+            this.tsbToggleAttachment.ToolTipText = "find parts";
+            this.tsbToggleAttachment.Click += new System.EventHandler(this.tsbToggleAttachment_Click);
+            // 
+            // tsbLoadPartFinder
+            // 
+            this.tsbLoadPartFinder.Alignment = System.Windows.Forms.ToolStripItemAlignment.Right;
+            this.tsbLoadPartFinder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.tsbLoadPartFinder.Image = global::Weaselware.InventoryFerret.Properties.Resources.baseline_push_pin_black_24dp;
+            this.tsbLoadPartFinder.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.tsbLoadPartFinder.Name = "tsbLoadPartFinder";
+            this.tsbLoadPartFinder.Size = new System.Drawing.Size(28, 28);
+            this.tsbLoadPartFinder.Text = "toolStripButton1";
+            this.tsbLoadPartFinder.Click += new System.EventHandler(this.tsbLoadPartFinder_Click);
+            // 
             // splitContainerMain
             // 
             this.splitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainerMain.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainerMain.Location = new System.Drawing.Point(6, 6);
             this.splitContainerMain.Name = "splitContainerMain";
             // 
@@ -98,7 +126,7 @@
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.scLineItems);
             this.splitContainerMain.Size = new System.Drawing.Size(1149, 727);
-            this.splitContainerMain.SplitterDistance = 350;
+            this.splitContainerMain.SplitterDistance = 340;
             this.splitContainerMain.TabIndex = 1;
             // 
             // orderHeaderVerticalControl1
@@ -108,8 +136,9 @@
             this.orderHeaderVerticalControl1.MinimumSize = new System.Drawing.Size(325, 0);
             this.orderHeaderVerticalControl1.Name = "orderHeaderVerticalControl1";
             this.orderHeaderVerticalControl1.Padding = new System.Windows.Forms.Padding(6);
-            this.orderHeaderVerticalControl1.Size = new System.Drawing.Size(342, 719);
+            this.orderHeaderVerticalControl1.Size = new System.Drawing.Size(332, 719);
             this.orderHeaderVerticalControl1.TabIndex = 0;
+           
             // 
             // scLineItems
             // 
@@ -121,23 +150,24 @@
             // scLineItems.Panel1
             // 
             this.scLineItems.Panel1.Controls.Add(this.dgOrderLineItem);
-            this.scLineItems.Panel1.Padding = new System.Windows.Forms.Padding(4);
+            this.scLineItems.Panel1.Padding = new System.Windows.Forms.Padding(4, 26, 4, 4);
             // 
             // scLineItems.Panel2
             // 
             this.scLineItems.Panel2.Controls.Add(this.partFinderControl1);
             this.scLineItems.Panel2.Padding = new System.Windows.Forms.Padding(4);
-            this.scLineItems.Size = new System.Drawing.Size(795, 727);
+            this.scLineItems.Size = new System.Drawing.Size(805, 727);
             this.scLineItems.SplitterDistance = 440;
             this.scLineItems.TabIndex = 0;
             // 
             // dgOrderLineItem
             // 
+            this.dgOrderLineItem.AllowUserToAddRows = false;
             this.dgOrderLineItem.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgOrderLineItem.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgOrderLineItem.Location = new System.Drawing.Point(4, 4);
+            this.dgOrderLineItem.Location = new System.Drawing.Point(4, 26);
             this.dgOrderLineItem.Name = "dgOrderLineItem";
-            this.dgOrderLineItem.Size = new System.Drawing.Size(787, 432);
+            this.dgOrderLineItem.Size = new System.Drawing.Size(797, 410);
             this.dgOrderLineItem.TabIndex = 0;
             // 
             // partFinderControl1
@@ -146,7 +176,7 @@
             this.partFinderControl1.Location = new System.Drawing.Point(4, 4);
             this.partFinderControl1.Name = "partFinderControl1";
             this.partFinderControl1.SelectedPart = null;
-            this.partFinderControl1.Size = new System.Drawing.Size(787, 275);
+            this.partFinderControl1.Size = new System.Drawing.Size(797, 275);
             this.partFinderControl1.TabIndex = 0;
             this.partFinderControl1.Load += new System.EventHandler(this.partFinderControl1_Load);
             // 
@@ -185,5 +215,7 @@
         private System.Windows.Forms.ToolStripButton tsToogleHeader;
         private OrderHeaderVerticalControl orderHeaderVerticalControl1;
         private PartFinderControl partFinderControl1;
+        private System.Windows.Forms.ToolStripButton tsbToggleAttachment;
+        private System.Windows.Forms.ToolStripButton tsbLoadPartFinder;
     }
 }

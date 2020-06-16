@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbSupplier = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.rbStartsWith = new System.Windows.Forms.RadioButton();
@@ -65,7 +65,7 @@
             this.tbSupplier.Location = new System.Drawing.Point(3, 25);
             this.tbSupplier.Name = "tbSupplier";
             this.tbSupplier.SelectedIndex = 0;
-            this.tbSupplier.Size = new System.Drawing.Size(679, 130);
+            this.tbSupplier.Size = new System.Drawing.Size(794, 169);
             this.tbSupplier.TabIndex = 3;
             // 
             // tabPage1
@@ -77,7 +77,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(671, 104);
+            this.tabPage1.Size = new System.Drawing.Size(786, 143);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Parts Finder";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -118,7 +118,7 @@
             this.PartNumber_col});
             this.dgvPartsSearchResults.Location = new System.Drawing.Point(6, 32);
             this.dgvPartsSearchResults.Name = "dgvPartsSearchResults";
-            this.dgvPartsSearchResults.Size = new System.Drawing.Size(657, 110);
+            this.dgvPartsSearchResults.Size = new System.Drawing.Size(772, 149);
             this.dgvPartsSearchResults.TabIndex = 1;
             this.dgvPartsSearchResults.SelectionChanged += new System.EventHandler(this.dgvPartsSearchResults_SelectionChanged);
             // 
@@ -158,7 +158,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(671, 85);
+            this.tabPage2.Size = new System.Drawing.Size(671, 104);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Supplier Purchases";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -174,7 +174,7 @@
             this.dgSupplierParts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgSupplierParts.Location = new System.Drawing.Point(3, 3);
             this.dgSupplierParts.Name = "dgSupplierParts";
-            this.dgSupplierParts.Size = new System.Drawing.Size(665, 79);
+            this.dgSupplierParts.Size = new System.Drawing.Size(665, 98);
             this.dgSupplierParts.TabIndex = 0;
             // 
             // colPartId
@@ -195,16 +195,16 @@
             // 
             this.colDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colDescription.DataPropertyName = "Description";
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.colDescription.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.colDescription.DefaultCellStyle = dataGridViewCellStyle3;
             this.colDescription.HeaderText = "Description";
             this.colDescription.Name = "colDescription";
             // 
             // colOrderNum
             // 
             this.colOrderNum.DataPropertyName = "OrderNum";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colOrderNum.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colOrderNum.DefaultCellStyle = dataGridViewCellStyle4;
             this.colOrderNum.HeaderText = "Order Num";
             this.colOrderNum.Name = "colOrderNum";
             this.colOrderNum.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -214,7 +214,7 @@
             // 
             this.btnAddToOrder.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAddToOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddToOrder.Location = new System.Drawing.Point(294, 9);
+            this.btnAddToOrder.Location = new System.Drawing.Point(409, 9);
             this.btnAddToOrder.Name = "btnAddToOrder";
             this.btnAddToOrder.Size = new System.Drawing.Size(123, 27);
             this.btnAddToOrder.TabIndex = 4;
@@ -226,7 +226,7 @@
             // 
             this.btnNewPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnNewPart.Enabled = false;
-            this.btnNewPart.Location = new System.Drawing.Point(423, 9);
+            this.btnNewPart.Location = new System.Drawing.Point(538, 9);
             this.btnNewPart.Name = "btnNewPart";
             this.btnNewPart.Size = new System.Drawing.Size(123, 27);
             this.btnNewPart.TabIndex = 4;
@@ -237,7 +237,7 @@
             // btnAddJobPart
             // 
             this.btnAddJobPart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAddJobPart.Location = new System.Drawing.Point(552, 9);
+            this.btnAddJobPart.Location = new System.Drawing.Point(667, 9);
             this.btnAddJobPart.Name = "btnAddJobPart";
             this.btnAddJobPart.Size = new System.Drawing.Size(123, 27);
             this.btnAddJobPart.TabIndex = 4;
@@ -254,7 +254,7 @@
             this.Controls.Add(this.btnAddToOrder);
             this.Controls.Add(this.tbSupplier);
             this.Name = "PartFinderControl";
-            this.Size = new System.Drawing.Size(685, 161);
+            this.Size = new System.Drawing.Size(800, 200);
             this.Load += new System.EventHandler(this.PartFinderControl_Load);
             this.tbSupplier.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

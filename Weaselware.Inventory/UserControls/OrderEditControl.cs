@@ -533,5 +533,10 @@ namespace Weaselware.InventoryFerret.UserControls
         
            
         }
+
+        private void purchaseOrderHeaderControl1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

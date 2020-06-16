@@ -64,6 +64,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.gbCOst.SuspendLayout();
             this.gbSpecialnstruction.SuspendLayout();
             this.gbDetails.SuspendLayout();
@@ -232,7 +233,6 @@
             this.NetTotalLabel.Size = new System.Drawing.Size(82, 13);
             this.NetTotalLabel.TabIndex = 37;
             this.NetTotalLabel.Text = "Line Items Total";
-            this.NetTotalLabel.Click += new System.EventHandler(this.label9_Click);
             // 
             // cbTaxable
             // 
@@ -272,7 +272,6 @@
             this.POLabel.Size = new System.Drawing.Size(29, 13);
             this.POLabel.TabIndex = 35;
             this.POLabel.Text = "PO#";
-            this.POLabel.Click += new System.EventHandler(this.label3_Click);
             // 
             // txtSubTotal
             // 
@@ -405,29 +404,41 @@
             // 
             this.btnSave.Image = global::Weaselware.InventoryFerret.Properties.Resources.baseline_save_black_24dp1;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(152, 608);
+            this.btnSave.Location = new System.Drawing.Point(154, 608);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(151, 29);
             this.btnSave.TabIndex = 46;
             this.btnSave.Text = "Save Changes";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnPrint
             // 
             this.btnPrint.Image = global::Weaselware.InventoryFerret.Properties.Resources.round_print_black_24dp;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(63, 608);
+            this.btnPrint.Location = new System.Drawing.Point(78, 608);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(71, 29);
             this.btnPrint.TabIndex = 45;
             this.btnPrint.Text = "Print";
             this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(18, 608);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(56, 29);
+            this.button1.TabIndex = 47;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // OrderHeaderVerticalControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.label3);
@@ -448,7 +459,6 @@
             this.Name = "OrderHeaderVerticalControl";
             this.Padding = new System.Windows.Forms.Padding(6);
             this.Size = new System.Drawing.Size(325, 711);
-            this.Load += new System.EventHandler(this.OrderHeaderVerticalControl_Load);
             this.gbCOst.ResumeLayout(false);
             this.gbCOst.PerformLayout();
             this.gbSpecialnstruction.ResumeLayout(false);
@@ -498,5 +508,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -203,6 +203,26 @@ namespace Weaselware.InventoryFerret.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap baseline_post_add_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_post_add_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap baseline_push_pin_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("baseline_push_pin_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap baseline_save_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("baseline_save_black_24dp", resourceCulture);
@@ -383,6 +403,26 @@ namespace Weaselware.InventoryFerret.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap outline_delete_black_24dp1 {
+            get {
+                object obj = ResourceManager.GetObject("outline_delete_black_24dp1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap outline_delete_black_24dp2 {
+            get {
+                object obj = ResourceManager.GetObject("outline_delete_black_24dp2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap outline_launch_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("outline_launch_black_24dp", resourceCulture);
@@ -396,6 +436,16 @@ namespace Weaselware.InventoryFerret.Properties {
         internal static System.Drawing.Bitmap outline_link_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("outline_link_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap outline_link_black_24dp1 {
+            get {
+                object obj = ResourceManager.GetObject("outline_link_black_24dp1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -516,6 +566,26 @@ namespace Weaselware.InventoryFerret.Properties {
         internal static System.Drawing.Bitmap round_add_circle_outline_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("round_add_circle_outline_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap round_keyboard_arrow_down_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("round_keyboard_arrow_down_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap round_keyboard_arrow_up_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("round_keyboard_arrow_up_black_24dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -359,6 +359,7 @@
             this.purchaseOrderHeaderControl1.PurchaseOrder = null;
             this.purchaseOrderHeaderControl1.Size = new System.Drawing.Size(1025, 135);
             this.purchaseOrderHeaderControl1.TabIndex = 12;
+            this.purchaseOrderHeaderControl1.Load += new System.EventHandler(this.purchaseOrderHeaderControl1_Load);
             // 
             // splitter1
             // 
