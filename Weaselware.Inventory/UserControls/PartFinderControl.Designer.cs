@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbSupplier = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.rbStartsWith = new System.Windows.Forms.RadioButton();
@@ -41,10 +39,6 @@
             this.tbSearchParts = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgSupplierParts = new System.Windows.Forms.DataGridView();
-            this.colPartId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQnty = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOrderNum = new System.Windows.Forms.DataGridViewLinkColumn();
             this.btnAddToOrder = new System.Windows.Forms.Button();
             this.btnNewPart = new System.Windows.Forms.Button();
             this.btnAddJobPart = new System.Windows.Forms.Button();
@@ -158,7 +152,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(671, 104);
+            this.tabPage2.Size = new System.Drawing.Size(786, 143);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Supplier Purchases";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -166,49 +160,11 @@
             // dgSupplierParts
             // 
             this.dgSupplierParts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgSupplierParts.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colPartId,
-            this.colQnty,
-            this.colDescription,
-            this.colOrderNum});
             this.dgSupplierParts.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgSupplierParts.Location = new System.Drawing.Point(3, 3);
             this.dgSupplierParts.Name = "dgSupplierParts";
-            this.dgSupplierParts.Size = new System.Drawing.Size(665, 98);
+            this.dgSupplierParts.Size = new System.Drawing.Size(780, 137);
             this.dgSupplierParts.TabIndex = 0;
-            // 
-            // colPartId
-            // 
-            this.colPartId.DataPropertyName = "PartID";
-            this.colPartId.HeaderText = "PartID";
-            this.colPartId.Name = "colPartId";
-            this.colPartId.Width = 75;
-            // 
-            // colQnty
-            // 
-            this.colQnty.DataPropertyName = "Qnty";
-            this.colQnty.HeaderText = "Qnty";
-            this.colQnty.Name = "colQnty";
-            this.colQnty.Width = 75;
-            // 
-            // colDescription
-            // 
-            this.colDescription.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colDescription.DataPropertyName = "Description";
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.colDescription.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colDescription.HeaderText = "Description";
-            this.colDescription.Name = "colDescription";
-            // 
-            // colOrderNum
-            // 
-            this.colOrderNum.DataPropertyName = "OrderNum";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colOrderNum.DefaultCellStyle = dataGridViewCellStyle4;
-            this.colOrderNum.HeaderText = "Order Num";
-            this.colOrderNum.Name = "colOrderNum";
-            this.colOrderNum.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colOrderNum.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // btnAddToOrder
             // 
@@ -282,9 +238,5 @@
         private System.Windows.Forms.Button btnNewPart;
         private System.Windows.Forms.Button btnAddJobPart;
         private System.Windows.Forms.DataGridView dgSupplierParts;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colPartId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colQnty;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colDescription;
-        private System.Windows.Forms.DataGridViewLinkColumn colOrderNum;
     }
 }

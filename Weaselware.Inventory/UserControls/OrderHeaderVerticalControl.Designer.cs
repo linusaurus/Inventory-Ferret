@@ -402,11 +402,12 @@
             // 
             // btnSave
             // 
+            this.btnSave.Enabled = false;
             this.btnSave.Image = global::Weaselware.InventoryFerret.Properties.Resources.baseline_save_black_24dp1;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(154, 608);
+            this.btnSave.Location = new System.Drawing.Point(177, 608);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(151, 29);
+            this.btnSave.Size = new System.Drawing.Size(128, 29);
             this.btnSave.TabIndex = 46;
             this.btnSave.Text = "Save Changes";
             this.btnSave.UseVisualStyleBackColor = true;
@@ -416,7 +417,7 @@
             // 
             this.btnPrint.Image = global::Weaselware.InventoryFerret.Properties.Resources.round_print_black_24dp;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(78, 608);
+            this.btnPrint.Location = new System.Drawing.Point(101, 608);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(71, 29);
             this.btnPrint.TabIndex = 45;
@@ -429,9 +430,9 @@
             // 
             this.button1.Location = new System.Drawing.Point(18, 608);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(56, 29);
+            this.button1.Size = new System.Drawing.Size(77, 29);
             this.button1.TabIndex = 47;
-            this.button1.Text = "button1";
+            this.button1.Text = "Clone";
             this.button1.UseVisualStyleBackColor = true;
             // 
             // OrderHeaderVerticalControl
@@ -507,7 +508,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.Button btnSave;
     }
 }

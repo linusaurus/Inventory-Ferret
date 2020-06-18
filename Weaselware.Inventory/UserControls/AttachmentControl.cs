@@ -26,11 +26,11 @@ namespace Weaselware.InventoryFerret.UserControls
         }
 
 
-        public void SetDatasource(BadgerDataModel context,BindingSource Source)
-        {
-            
-            orderDTO = (OrderDetailDto)Source.DataSource;
-            bsAttachements.DataSource = orderDTO.Attachments;
+        public void SetDatasource(OrderDetailDto OrderDTO,BindingSource Source)
+        {           
+           
+            bsAttachements = Source;
+            orderDTO = OrderDTO;
             this.dgResources.DataSource = bsAttachements;
         }
 

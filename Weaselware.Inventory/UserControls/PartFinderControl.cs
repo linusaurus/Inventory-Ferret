@@ -28,10 +28,11 @@ namespace Weaselware.InventoryFerret
         
         #region Events
 
-        // Standard Part --------------
+        // Standard Part --------------+
         public class PartAddedArgs : System.EventArgs
         {
             public Part selectPart { get; set; }
+
         }
         public delegate void AddPartHandler(object sender, PartAddedArgs e);
         public event AddPartHandler OnPartAdded;
@@ -42,6 +43,7 @@ namespace Weaselware.InventoryFerret
         {
             public LineItemDto jobLineItem { get; set; }
         }
+
         public delegate void AddJobPartHandler(object sender, JobPartAddedArgs e);
         public event AddJobPartHandler OnJobPartAdded;
 
@@ -51,10 +53,7 @@ namespace Weaselware.InventoryFerret
         {
             public LineItemDto jobLineItem { get; set; }
         }
-        public delegate void SupplierPartHandler(object sender, JobPartAddedArgs e);
-        public event AddJobPartHandler OnSupplierPartAdded;
-
-
+        
         #endregion
 
         public Part SelectedPart { get => _selectedPart; set => _selectedPart = value; }
@@ -62,12 +61,9 @@ namespace Weaselware.InventoryFerret
         public PartFinderControl()
         {
             InitializeComponent();
-
-            
-           
+            BuildSupplierPartGrid();
         }
 
-      
 
         public void LoadDatasource(BadgerDataModel context, int supplierID)
         {
@@ -76,7 +72,7 @@ namespace Weaselware.InventoryFerret
             _ordersService = new OrdersService(_ctx);
             dgvPartsSearchResults.AutoGenerateColumns = false;
             dgSupplierParts.AutoGenerateColumns = false;
-            //This init the EF query-strangly its needed 
+            //This init the EF query-strangely its needed 
             Part blow = partsService.Find(1);
             supplierLineItems = _ordersService.GetSupplierLineItems(supplierID);
             dgSupplierParts.DataSource = supplierLineItems;
@@ -163,10 +159,11 @@ namespace Weaselware.InventoryFerret
         {
             if (OnPartAdded != null)
             {
-                if (OnPartAdded != null)
-                {     if (_selectedPart != null)
-                    {OnPartAdded(this, new PartAddedArgs { selectPart = _selectedPart }); }             
-                }
+               
+                     if (_selectedPart != null)
+                    {OnPartAdded(this, new PartAddedArgs { selectPart = _selectedPart }); } 
+                    
+                
             }
         }
 
@@ -186,6 +183,58 @@ namespace Weaselware.InventoryFerret
                 if (OnJobPartAdded != null)
                 { OnJobPartAdded(this, new JobPartAddedArgs { jobLineItem = new LineItemDto { Description = "JobPart" } }); }
             }
+        }
+
+        private void BuildSupplierPartGrid()
+        {
+            dgSupplierParts.AutoGenerateColumns = false;
+            dgSupplierParts.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+            // PartID Column --
+            DataGridViewTextBoxColumn colID = new DataGridViewTextBoxColumn();
+            colID.HeaderText = "ID";
+            colID.DataPropertyName = "PartID";
+            colID.Width = 75;
+
+            // Qnty ----------
+            DataGridViewTextBoxColumn colQnty = new DataGridViewTextBoxColumn();
+            colQnty.Width = 75;
+            colQnty.HeaderText = "Qnty";
+            colQnty.DataPropertyName = "Qnty";
+            colQnty.DefaultCellStyle = dstyleDecimal;
+
+            // Description Column --
+            DataGridViewTextBoxColumn colDescription = new DataGridViewTextBoxColumn();
+            colDescription.DefaultCellStyle = dstyleWrapText;
+            colDescription.HeaderText = "Description";
+            colDescription.DataPropertyName = "Description";
+            colDescription.Width = 450;
+            colDescription.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+
+            // Order No. ----------
+            DataGridViewLinkColumn colOrderNum = new DataGridViewLinkColumn();
+            colOrderNum.Width = 85;
+            colOrderNum.HeaderText = "Order No#";
+            colOrderNum.DataPropertyName = "OrderNum";
+
+            //colUnit.DataSource = _partService.Units();
+            dgSupplierParts.Columns.AddRange(colID, colQnty, colDescription, colOrderNum);
         }
     }
 }

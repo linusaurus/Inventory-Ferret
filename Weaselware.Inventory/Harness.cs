@@ -20,34 +20,12 @@ namespace Weaselware.InventoryFerret
         {
             InitializeComponent();
             ctx = new BadgerDataModel();
-            _orderService = new OrdersService(ctx);
-            // Init the mapper
-            Mappers.PurchaseOrderMapper mapper = new Mappers.PurchaseOrderMapper();
-            // Retrieve to PurchaseOrder Entity
-            _purchaseOrder = _orderService.GetOrderByID(5000);
-           
-
-            int zip;           
-            if (int.TryParse(_purchaseOrder.Supplier.Zip.ToString(),out zip ))
-            {
-                 _purchaseOrder.TaxRate = _orderService.GetSupplierTaxRate(zip);
-            }
-
-            if (_purchaseOrder != null)
-            {
-                // Map to the DTO detached data transfer object
-                mapper.Map(_purchaseOrder, orderDTO);
-                
-                BSorder.DataSource = orderDTO;
-                this.orderEditSplitPanelControl1.SetDataSource(ctx, 5000);
-            }
             
+            this.orderEditSplitPanelControl1.SetDataSource(ctx, 5000);
+         
 
         }
 
-        private void Harness_Load(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

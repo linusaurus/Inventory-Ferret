@@ -50,7 +50,6 @@ namespace Weaselware.InventoryFerret
             this.Controls.Add(this.orderEditSplitPanelControl1);
             this.Name = "Harness";
             this.Text = "Harness";
-            this.Load += new System.EventHandler(this.Harness_Load);
             this.ResumeLayout(false);
 
         }

@@ -393,6 +393,36 @@ namespace Weaselware.InventoryFerret.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap outline_attach_file_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_attach_file_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap outline_attach_money_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_attach_money_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap outline_attach_money_black_24dp1 {
+            get {
+                object obj = ResourceManager.GetObject("outline_attach_money_black_24dp1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap outline_delete_black_24dp {
             get {
                 object obj = ResourceManager.GetObject("outline_delete_black_24dp", resourceCulture);
@@ -416,6 +446,16 @@ namespace Weaselware.InventoryFerret.Properties {
         internal static System.Drawing.Bitmap outline_delete_black_24dp2 {
             get {
                 object obj = ResourceManager.GetObject("outline_delete_black_24dp2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap outline_delete_black_24dp3 {
+            get {
+                object obj = ResourceManager.GetObject("outline_delete_black_24dp3", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -476,6 +516,26 @@ namespace Weaselware.InventoryFerret.Properties {
         internal static System.Drawing.Bitmap outline_message_black_24dp2 {
             get {
                 object obj = ResourceManager.GetObject("outline_message_black_24dp2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap outline_note_add_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_note_add_black_24dp", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap outline_request_quote_black_24dp {
+            get {
+                object obj = ResourceManager.GetObject("outline_request_quote_black_24dp", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

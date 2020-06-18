@@ -19,7 +19,9 @@ namespace Weaselware.InventoryFerret
         private static readonly Mediator _Instance = new Mediator();
         private Mediator() { }
 
+
         public event EventHandler<OrderChangedArgs> OrderOpen;
+       
 
 
         public static Mediator GetInstance()
@@ -27,6 +29,7 @@ namespace Weaselware.InventoryFerret
 
         #region Order Changed
 
+        
         public event EventHandler<Part> PartOpenForEdit;
 
         public void OnPartOpened(object sender, Part part)
@@ -66,9 +69,7 @@ namespace Weaselware.InventoryFerret
         }
 
 
-
         #endregion
-
 
         #region TabChanged
 
@@ -82,16 +83,19 @@ namespace Weaselware.InventoryFerret
             }
         }
 
-
         #endregion
-
 
 
         #region EventArgs
 
+        public class OrderIsDirtyChangedArgs : EventArgs
+        {      
+            public bool IsDirty { get; set; }
+        }
+
+
 
         public class TabPageChangedArgs : EventArgs
-
         {
             public System.Windows.Forms.TabPage Tabpage { get; set; }
         }

@@ -19,10 +19,19 @@ namespace Weaselware.InventoryFerret.UserControls
 
         private BindingSource bsOrder = new BindingSource();
         private BindingSource bsLineitems = new BindingSource();
+        private BindingSource bsOrderFees = new BindingSource();
+        private BindingSource bsAttachments = new BindingSource();
         private  BadgerDataModel ctx;
         private OrderDetailDto orderDTO = new OrderDetailDto();
         private OrdersService _orderService;
         private PurchaseOrder _purchaseOrder;
+
+        private AttachmentControl attachmentControl;
+        private PartFinderControl partFinderControl;
+        private OrderFeeControl orderFeeControl;
+
+        Mappers.PurchaseOrderMapper mapper; 
+        
 
         #region Ctors
 
@@ -32,9 +41,12 @@ namespace Weaselware.InventoryFerret.UserControls
             InitializeGrid();
             this.orderHeaderVerticalControl1.OnSaveHandler += OrderHeaderVerticalControl1_OnSaveHandler;
             this.orderHeaderVerticalControl1.OnPrintHandler += OrderHeaderVerticalControl1_OnPrintHandler;
+            mapper = new Mappers.PurchaseOrderMapper();
+          
+            LoadOrderPanelControl(partFinderControl);
         }
 
-      
+       
 
         public OrderEditSplitPanelControl(BadgerDataModel context, BindingSource BSorder)
         {
@@ -43,22 +55,23 @@ namespace Weaselware.InventoryFerret.UserControls
             orderDTO =(OrderDetailDto) BSorder.DataSource;
             this.orderHeaderVerticalControl1.OnSaveHandler += OrderHeaderVerticalControl1_OnSaveHandler;
             this.orderHeaderVerticalControl1.OnPrintHandler += OrderHeaderVerticalControl1_OnPrintHandler;
+            
         }
 
         private void OrderHeaderVerticalControl1_OnSaveHandler(object sender, EventArgs e)
         {
-           // this new to save the Order using OrderService instance --0(
+            _orderService.CreateOrUpdateOrder(orderDTO);
+            LoadOrder();
         }
+
+        
 
         private void OrderHeaderVerticalControl1_OnPrintHandler(object sender, EventArgs e)
         {
             if (orderDTO != null || orderDTO.PurchaseOrderID != default)
             {
                 POdataset ds = new POdataset();
-
-                // Create a connection
-                //
-                //    cnn.Open();
+ 
                 POdatasetTableAdapters.PurchaseOrder1TableAdapter adapter = new POdatasetTableAdapters.PurchaseOrder1TableAdapter();
                 POdatasetTableAdapters.EmployeeTableAdapter empAdapter = new POdatasetTableAdapters.EmployeeTableAdapter();
                 POdatasetTableAdapters.PurchaseLineItemTableAdapter lineAdaper = new POdatasetTableAdapters.PurchaseLineItemTableAdapter();
@@ -70,17 +83,35 @@ namespace Weaselware.InventoryFerret.UserControls
                 lineAdaper.Fill(ds.PurchaseLineItem, orderDTO.PurchaseOrderID);
                 feeAdapers.Fill(ds.OrderFee, orderDTO.PurchaseOrderID);
                 supplierAdapter.Fill(ds.Supplier, orderDTO.SupplierID);
-                // PurchaseOrderReport1.SetDataSource(ds);
-                // }
-
+                
                 PrintOrderForm orderFrom = new PrintOrderForm(ds);
-
+                // Show the form with report for printing
                 orderFrom.Show();
 
             }
         }
         
+        private bool LoadOrder()
+        {
+            bool result= false;
+            if (orderDTO != null )
+            {
+                _purchaseOrder = _orderService.GetOrderByID(orderDTO.PurchaseOrderID);
+                mapper.Map(_purchaseOrder, orderDTO);
+                bsOrder.DataSource = orderDTO;
+                bsLineitems.DataSource = orderDTO.LineItems;
 
+                bsAttachments.DataSource = orderDTO.Attachments;
+                if (attachmentControl != null){ attachmentControl.SetDatasource(orderDTO, bsAttachments); }
+                
+                bsOrderFees.DataSource = orderDTO.OrderFees;
+                if (orderFeeControl != null) { orderFeeControl.SetDataSource(orderDTO, bsOrderFees); }
+
+                BindLineItemsToGrid(bsLineitems);
+            }
+
+            return result;
+        }
         // Main preferred control datasource --
         public void SetDataSource(BadgerDataModel context, int orderID)
         {
@@ -90,7 +121,7 @@ namespace Weaselware.InventoryFerret.UserControls
             orderDTO = new OrderDetailDto();
             _orderService = new OrdersService(ctx);
             // Init the mapper
-            Mappers.PurchaseOrderMapper mapper = new Mappers.PurchaseOrderMapper();
+           
             // Retrieve to PurchaseOrder Entity
             _purchaseOrder = _orderService.GetOrderByID(orderID);
 
@@ -103,26 +134,56 @@ namespace Weaselware.InventoryFerret.UserControls
                 // Bind line items to the grid
                 bsLineitems.DataSource = orderDTO.LineItems;
                 BindLineItemsToGrid(bsLineitems);
-
+                bsOrderFees.DataSource = orderDTO.OrderFees;
+                bsAttachments.DataSource = orderDTO.Attachments;
             }
 
-            // Event wiring -------------------------------------------------------------------
-           // dgOrderLineItem.DataError += DgOrderLineItem_DataError;
+            // Event wiring -------------------------------------------------------------------  
+            
+            // dgOrderLineItem.DataError += DgOrderLineItem_DataError;
             dgOrderLineItem.CellValidating += DgOrderLineItem_CellValidating;
             dgOrderLineItem.CellEndEdit += DgOrderLineItem_CellEndEdit;
             dgOrderLineItem.CellValueChanged += DgOrderLineItem_CellValueChanged;
             bsLineitems.ListChanged += BslineItems_ListChanged;
-            //bsOrderFees.ListChanged += BsOrderFees_ListChanged;
-            //bsAttachments.ListChanged += BsAttachments_ListChanged;
-            //partFinderControl1.OnJobPartAdded += PartFinderControl1_OnJobPartAdded;
-            //partFinderControl1.OnPartAdded += PartFinderControl1_OnPartAdded;
+
+            bsOrder.ListChanged += BsOrder_ListChanged;
+            bsOrderFees.ListChanged += BsOrderFees_ListChanged; ;
+            bsAttachments.ListChanged += BsAttachments_ListChanged;  
+            
             // Event Wiring -------------------------------------------------------------------
 
-            // int the PartFinder
-            this.partFinderControl1
-                .LoadDatasource(ctx, ((OrderDetailDto)bsOrder.DataSource).SupplierID);
-            this.orderHeaderVerticalControl1.LoadDataSource(bsOrder);
+            // start with the PartFinder
+           //    partFinderControl
+           //         .LoadDatasource(ctx, orderDTO.SupplierID);
+                  orderHeaderVerticalControl1.LoadDataSource(bsOrder);
 
+        }
+      
+
+        private void BsAttachments_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            CheckForDirtyState(e);
+        }
+
+        private void BsOrderFees_ListChanged(object sender, ListChangedEventArgs e)
+        {CheckForDirtyState(e);  }
+
+        private void BsOrder_ListChanged(object sender, ListChangedEventArgs e)
+        {  CheckForDirtyState(e); }
+        private void BslineItems_ListChanged(object sender, ListChangedEventArgs e)
+        {CheckForDirtyState(e);  }
+
+        private void CheckForDirtyState(ListChangedEventArgs e)
+        {
+            if (e.ListChangedType == System.ComponentModel.ListChangedType.ItemChanged)
+            {orderHeaderVerticalControl1.btnSave.Enabled = true;
+            }
+            if (e.ListChangedType == ListChangedType.ItemDeleted)
+            { orderHeaderVerticalControl1.btnSave.Enabled = true;
+            }
+            if (e.ListChangedType == ListChangedType.ItemAdded)
+            { orderHeaderVerticalControl1.btnSave.Enabled = true;
+            }
         }
 
         private void DgOrderLineItem_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -130,24 +191,13 @@ namespace Weaselware.InventoryFerret.UserControls
             orderDTO.Update();
         }
 
-        private void BslineItems_ListChanged(object sender, ListChangedEventArgs e)
-        {
-            if (e.ListChangedType == System.ComponentModel.ListChangedType.ItemChanged)
-            {
-                //_isDirty = true;
-                //btnSave.Enabled = _isDirty;
-            }
-            if (e.ListChangedType == ListChangedType.ItemDeleted)
-            {
-                //_isDirty = true;
-                //btnSave.Enabled = _isDirty;
 
-            }
-        }
 
         private void InitializeGrid()
         {
             dgOrderLineItem.AutoGenerateColumns = false;
+            dgOrderLineItem.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
             // Currency Decimal Style
             DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
             dstyleCurrency.Format = "C";
@@ -179,18 +229,13 @@ namespace Weaselware.InventoryFerret.UserControls
 
             // Description Column --
             DataGridViewTextBoxColumn colDescription = new DataGridViewTextBoxColumn();
+            colDescription.DefaultCellStyle = dstyleWrapText;
             colDescription.HeaderText = "Description";
             colDescription.DataPropertyName = "Description";
+            
             colDescription.Width = 450;
             colDescription.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-
-            // Unit of Measure --
-            //DataGridViewComboBoxColumn colUnit = new DataGridViewComboBoxColumn();
-            //colUnit.Width = 60;
-            //colUnit.DisplayMember = "UOM";
-            //colUnit.ValueMember = "UiD";
-            //colUnit.DataPropertyName = "UiD";
             // UnitCost ----------
             DataGridViewTextBoxColumn colCost = new DataGridViewTextBoxColumn();
             colCost.Width = 60;
@@ -268,17 +313,11 @@ namespace Weaselware.InventoryFerret.UserControls
 
         #endregion
 
+
         private void BindLineItemsToGrid(BindingSource bsOrder)
-        {
-            dgOrderLineItem.DataSource = bsOrder;
-        }
-
-       
-
-        private void partFinderControl1_Load(object sender, EventArgs e)
-        {
-            //partFinderControl1.LoadDatasource()
-        }
+        {dgOrderLineItem.DataSource = bsOrder;}
+            
+        
 
         private void tsTooglePanels_Click(object sender, EventArgs e)
         {
@@ -298,22 +337,97 @@ namespace Weaselware.InventoryFerret.UserControls
 
         private void tsbToggleAttachment_Click(object sender, EventArgs e)
         {
-            scLineItems.Panel2.Controls.Clear();
-            PartFinderControl control = new PartFinderControl();
-            control.LoadDatasource(ctx, ((OrderDetailDto)bsOrder.DataSource).SupplierID);
-            control.Dock = DockStyle.Fill;
-            scLineItems.Panel2.Controls.Add(control);
+            attachmentControl = new AttachmentControl();
+            attachmentControl.SetDatasource(orderDTO, bsAttachments);
+            
+            LoadOrderPanelControl(attachmentControl);
+
         }
 
         private void tsbLoadPartFinder_Click(object sender, EventArgs e)
         {
-            scLineItems.Panel2.Controls.Clear();
-            AttachmentControl control = new AttachmentControl();
-            control.SetDatasource(ctx, bsOrder);
-            control.Dock = DockStyle.Fill;
-            scLineItems.Panel2.Controls.Add(control);
+            partFinderControl = new PartFinderControl();
+            partFinderControl.LoadDatasource(ctx, orderDTO.SupplierID);
+
+            partFinderControl.OnJobPartAdded += PartFinderControl_OnJobPartAdded1;
+            partFinderControl.OnPartAdded += PartFinderControl_OnPartAdded1;
+
+            LoadOrderPanelControl(partFinderControl);         
         }
 
-       
+        private void PartFinderControl_OnPartAdded1(object sender, PartFinderControl.PartAddedArgs e)
+        {
+            if (e.selectPart != null)
+            {
+                LineItemDto newLineItem = new LineItemDto
+                {
+                    PurchaseOrderID = orderDTO.PurchaseOrderID,
+                    Description = e.selectPart.ItemDescription,
+                    JobID = orderDTO.JobID,
+                    Quantity = 1.0m,
+                    PartID = e.selectPart.PartID,
+                    Price = e.selectPart.Cost.GetValueOrDefault(),
+                    UiD = e.selectPart.UID.GetValueOrDefault()
+                    
+                };
+
+                bsLineitems.Add(newLineItem);
+                
+            }
+        }
+
+        private void PartFinderControl_OnJobPartAdded1(object sender, PartFinderControl.JobPartAddedArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void tsbToogleOrderFee_Click(object sender, EventArgs e)
+        {
+            orderFeeControl = new OrderFeeControl();
+        
+            orderFeeControl.SetDataSource(orderDTO, bsOrderFees);
+            LoadOrderPanelControl(orderFeeControl);
+        }
+
+      
+
+        private void LoadOrderPanelControl(UserControl control)
+        {
+            if (control is PartFinderControl)
+            {
+                if (!scLineItems.Panel2.Controls.Contains(control))
+                {
+                    scLineItems.Panel2.Controls.Remove(attachmentControl);
+                    scLineItems.Panel2.Controls.Remove(orderFeeControl);              
+                    control.Dock = DockStyle.Fill;
+                    scLineItems.Panel2.Controls.Add(control);
+                }
+            }
+            else if (control is AttachmentControl)
+            {
+                if (!scLineItems.Panel2.Controls.Contains(control))
+                {                  
+                    scLineItems.Panel2.Controls.Remove(partFinderControl);              
+                    scLineItems.Panel2.Controls.Remove(orderFeeControl);
+                    attachmentControl.SetDatasource(orderDTO, bsAttachments);
+                    attachmentControl.Dock = DockStyle.Fill;
+                    scLineItems.Panel2.Controls.Add(attachmentControl);
+                }
+            }
+            else if (control is OrderFeeControl)
+            {
+                if (!scLineItems.Panel2.Controls.Contains(control))
+                {
+                    
+                    scLineItems.Panel2.Controls.Remove(partFinderControl);
+                    scLineItems.Panel2.Controls.Remove(attachmentControl);
+                    control.Dock = DockStyle.Fill;
+                    scLineItems.Panel2.Controls.Add(control);
+                }
+            }
+
+        }
+
+
     }
 }

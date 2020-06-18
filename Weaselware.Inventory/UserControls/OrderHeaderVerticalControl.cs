@@ -12,10 +12,13 @@ namespace Weaselware.InventoryFerret.UserControls
 {
     public partial class OrderHeaderVerticalControl : UserControl
     {
+        
         private BindingSource bsorder = new BindingSource();
-
+       
         public event EventHandler  OnSaveHandler;
         public event EventHandler OnPrintHandler;
+
+      
         protected virtual void OnSave(EventArgs e)
         {
             if (OnSaveHandler != null)
@@ -43,7 +46,7 @@ namespace Weaselware.InventoryFerret.UserControls
         }
 
        
-
+        
         private void Bind()
         {
             // Order Number -------------------------------------------------------
@@ -111,6 +114,8 @@ namespace Weaselware.InventoryFerret.UserControls
         private void btnSave_Click(object sender, EventArgs e)
         {
             OnSaveHandler(this,e);
+            // if the return value is true
+            btnSave.Enabled = false;
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
