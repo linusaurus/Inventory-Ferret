@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices.ComTypes;
+using DataLayer.Models;
 
 namespace Weaselware.InventoryFerret.UserControls
 {
@@ -97,7 +99,7 @@ namespace Weaselware.InventoryFerret.UserControls
             // Taxable
             cbTaxable.DataBindings.Clear();
             cbTaxable.DataBindings.Add("Checked", bsorder, "Taxable", true, DataSourceUpdateMode.OnPropertyChanged);
-            // SHipping and Fees
+            // Shipping and Fees
             txtOtherFees.DataBindings.Clear();
             txtOtherFees.DataBindings.Add("Text", bsorder, "ShippingCost", true, DataSourceUpdateMode.OnPropertyChanged, 0.0, "C");
             // Jobname --
@@ -106,7 +108,9 @@ namespace Weaselware.InventoryFerret.UserControls
             // Taxrate
             txtTaxRate.DataBindings.Clear();
             txtTaxRate.DataBindings.Add("Text", bsorder, "TaxRate", true, DataSourceUpdateMode.OnPropertyChanged,0.0,"P");
-
+            // Account Number --
+            txtAccountNumber.DataBindings.Clear();
+            txtAccountNumber.DataBindings.Add("Text", bsorder, "AccountNumber", true, DataSourceUpdateMode.OnPropertyChanged);
         }
 
      
@@ -121,6 +125,31 @@ namespace Weaselware.InventoryFerret.UserControls
         private void btnPrint_Click(object sender, EventArgs e)
         {
             OnPrintHandler(this, e);
+        }
+
+        private void OrderHeaderVerticalControl_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEditSupplier_Click(object sender, EventArgs e)
+        {
+            int supplierID = ((OrderDetailDto)bsorder.DataSource).SupplierID;
+            
+            SupplierEditForm frm = new SupplierEditForm(supplierID);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {               
+                ((OrderDetailDto)bsorder.DataSource).SupplierName = frm._supplierToEdit.SupplierName;
+                ((OrderDetailDto)bsorder.DataSource).SupplierAddress = frm._supplierToEdit.Address1;
+                ((OrderDetailDto)bsorder.DataSource).SupplierCity = frm._supplierToEdit.City;
+                ((OrderDetailDto)bsorder.DataSource).SupplierState = frm._supplierToEdit.State;
+                ((OrderDetailDto)bsorder.DataSource).SupplierZip = frm._supplierToEdit.Zip;
+                ((OrderDetailDto)bsorder.DataSource).SupplierPhone = frm._supplierToEdit.Phone;
+                ((OrderDetailDto)bsorder.DataSource).SupplierFax = frm._supplierToEdit.Fax;
+                ((OrderDetailDto)bsorder.DataSource).AccountNumber = frm._supplierToEdit.AccountNumber;
+                ((OrderDetailDto)bsorder.DataSource).TaxRate = frm._supplierToEdit.TaxRate.GetValueOrDefault();
+            }
+
         }
     }
 }

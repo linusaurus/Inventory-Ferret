@@ -60,11 +60,12 @@
             this.gbCOst = new System.Windows.Forms.GroupBox();
             this.gbSpecialnstruction = new System.Windows.Forms.GroupBox();
             this.gbDetails = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtAccountNumber = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnEditSupplier = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.gbCOst.SuspendLayout();
             this.gbSpecialnstruction.SuspendLayout();
             this.gbDetails.SuspendLayout();
@@ -209,7 +210,7 @@
             // 
             this.label10.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(73, 96);
+            this.label10.Location = new System.Drawing.Point(84, 88);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(85, 13);
             this.label10.TabIndex = 27;
@@ -218,7 +219,8 @@
             // txtOtherFees
             // 
             this.txtOtherFees.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtOtherFees.Location = new System.Drawing.Point(171, 93);
+            this.txtOtherFees.Location = new System.Drawing.Point(173, 85);
+            this.txtOtherFees.Margin = new System.Windows.Forms.Padding(2);
             this.txtOtherFees.Name = "txtOtherFees";
             this.txtOtherFees.Size = new System.Drawing.Size(100, 20);
             this.txtOtherFees.TabIndex = 26;
@@ -228,7 +230,7 @@
             // 
             this.NetTotalLabel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.NetTotalLabel.AutoSize = true;
-            this.NetTotalLabel.Location = new System.Drawing.Point(80, 19);
+            this.NetTotalLabel.Location = new System.Drawing.Point(87, 19);
             this.NetTotalLabel.Name = "NetTotalLabel";
             this.NetTotalLabel.Size = new System.Drawing.Size(82, 13);
             this.NetTotalLabel.TabIndex = 37;
@@ -238,7 +240,7 @@
             // 
             this.cbTaxable.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbTaxable.AutoSize = true;
-            this.cbTaxable.Location = new System.Drawing.Point(99, 44);
+            this.cbTaxable.Location = new System.Drawing.Point(105, 40);
             this.cbTaxable.Name = "cbTaxable";
             this.cbTaxable.Size = new System.Drawing.Size(64, 17);
             this.cbTaxable.TabIndex = 36;
@@ -249,7 +251,7 @@
             // 
             this.label8.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(98, 122);
+            this.label8.Location = new System.Drawing.Point(109, 111);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(60, 13);
             this.label8.TabIndex = 33;
@@ -276,7 +278,8 @@
             // txtSubTotal
             // 
             this.txtSubTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtSubTotal.Location = new System.Drawing.Point(171, 16);
+            this.txtSubTotal.Location = new System.Drawing.Point(173, 16);
+            this.txtSubTotal.Margin = new System.Windows.Forms.Padding(2);
             this.txtSubTotal.Name = "txtSubTotal";
             this.txtSubTotal.Size = new System.Drawing.Size(100, 20);
             this.txtSubTotal.TabIndex = 28;
@@ -285,7 +288,8 @@
             // txtOrderTotal
             // 
             this.txtOrderTotal.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtOrderTotal.Location = new System.Drawing.Point(171, 119);
+            this.txtOrderTotal.Location = new System.Drawing.Point(173, 108);
+            this.txtOrderTotal.Margin = new System.Windows.Forms.Padding(2);
             this.txtOrderTotal.Name = "txtOrderTotal";
             this.txtOrderTotal.Size = new System.Drawing.Size(100, 20);
             this.txtOrderTotal.TabIndex = 29;
@@ -294,7 +298,8 @@
             // txtTax
             // 
             this.txtTax.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtTax.Location = new System.Drawing.Point(171, 42);
+            this.txtTax.Location = new System.Drawing.Point(173, 39);
+            this.txtTax.Margin = new System.Windows.Forms.Padding(2);
             this.txtTax.Name = "txtTax";
             this.txtTax.Size = new System.Drawing.Size(100, 20);
             this.txtTax.TabIndex = 30;
@@ -319,7 +324,8 @@
             // txtTaxRate
             // 
             this.txtTaxRate.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtTaxRate.Location = new System.Drawing.Point(171, 67);
+            this.txtTaxRate.Location = new System.Drawing.Point(173, 62);
+            this.txtTaxRate.Margin = new System.Windows.Forms.Padding(2);
             this.txtTaxRate.Name = "txtTaxRate";
             this.txtTaxRate.Size = new System.Drawing.Size(100, 20);
             this.txtTaxRate.TabIndex = 38;
@@ -329,7 +335,7 @@
             // 
             this.lbTaxRate.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbTaxRate.AutoSize = true;
-            this.lbTaxRate.Location = new System.Drawing.Point(107, 70);
+            this.lbTaxRate.Location = new System.Drawing.Point(118, 65);
             this.lbTaxRate.Name = "lbTaxRate";
             this.lbTaxRate.Size = new System.Drawing.Size(51, 13);
             this.lbTaxRate.TabIndex = 39;
@@ -348,9 +354,9 @@
             this.gbCOst.Controls.Add(this.cbTaxable);
             this.gbCOst.Controls.Add(this.txtOrderTotal);
             this.gbCOst.Controls.Add(this.label8);
-            this.gbCOst.Location = new System.Drawing.Point(18, 437);
+            this.gbCOst.Location = new System.Drawing.Point(18, 444);
             this.gbCOst.Name = "gbCOst";
-            this.gbCOst.Size = new System.Drawing.Size(286, 162);
+            this.gbCOst.Size = new System.Drawing.Size(286, 155);
             this.gbCOst.TabIndex = 40;
             this.gbCOst.TabStop = false;
             this.gbCOst.Text = "Cost Factors";
@@ -358,7 +364,7 @@
             // gbSpecialnstruction
             // 
             this.gbSpecialnstruction.Controls.Add(this.txtMemo);
-            this.gbSpecialnstruction.Location = new System.Drawing.Point(18, 320);
+            this.gbSpecialnstruction.Location = new System.Drawing.Point(18, 327);
             this.gbSpecialnstruction.Name = "gbSpecialnstruction";
             this.gbSpecialnstruction.Padding = new System.Windows.Forms.Padding(6);
             this.gbSpecialnstruction.Size = new System.Drawing.Size(286, 111);
@@ -377,19 +383,20 @@
             this.gbDetails.Controls.Add(this.POLabel);
             this.gbDetails.Controls.Add(this.label6);
             this.gbDetails.Controls.Add(this.txtOrderNumber);
-            this.gbDetails.Location = new System.Drawing.Point(18, 176);
+            this.gbDetails.Location = new System.Drawing.Point(18, 183);
             this.gbDetails.Name = "gbDetails";
             this.gbDetails.Size = new System.Drawing.Size(285, 137);
             this.gbDetails.TabIndex = 42;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Order Details";
             // 
-            // textBox1
+            // txtAccountNumber
             // 
-            this.textBox1.Location = new System.Drawing.Point(82, 124);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(225, 20);
-            this.textBox1.TabIndex = 43;
+            this.txtAccountNumber.Location = new System.Drawing.Point(82, 124);
+            this.txtAccountNumber.Name = "txtAccountNumber";
+            this.txtAccountNumber.Size = new System.Drawing.Size(225, 20);
+            this.txtAccountNumber.TabIndex = 43;
+            this.txtAccountNumber.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
             // 
@@ -400,12 +407,34 @@
             this.label3.TabIndex = 44;
             this.label3.Text = "Acct. No";
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(18, 616);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(77, 29);
+            this.button1.TabIndex = 47;
+            this.button1.Text = "Clone";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // btnEditSupplier
+            // 
+            this.btnEditSupplier.Image = global::Weaselware.InventoryFerret.Properties.Resources.outline_message_black_24dp2;
+            this.btnEditSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEditSupplier.Location = new System.Drawing.Point(207, 150);
+            this.btnEditSupplier.Name = "btnEditSupplier";
+            this.btnEditSupplier.Size = new System.Drawing.Size(100, 27);
+            this.btnEditSupplier.TabIndex = 48;
+            this.btnEditSupplier.Text = "Edit Supplier";
+            this.btnEditSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnEditSupplier.UseVisualStyleBackColor = true;
+            this.btnEditSupplier.Click += new System.EventHandler(this.btnEditSupplier_Click);
+            // 
             // btnSave
             // 
             this.btnSave.Enabled = false;
             this.btnSave.Image = global::Weaselware.InventoryFerret.Properties.Resources.baseline_save_black_24dp1;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(177, 608);
+            this.btnSave.Location = new System.Drawing.Point(177, 616);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(128, 29);
             this.btnSave.TabIndex = 46;
@@ -417,7 +446,7 @@
             // 
             this.btnPrint.Image = global::Weaselware.InventoryFerret.Properties.Resources.round_print_black_24dp;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(101, 608);
+            this.btnPrint.Location = new System.Drawing.Point(101, 616);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(71, 29);
             this.btnPrint.TabIndex = 45;
@@ -426,24 +455,16 @@
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(18, 608);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(77, 29);
-            this.button1.TabIndex = 47;
-            this.button1.Text = "Clone";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
             // OrderHeaderVerticalControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnEditSupplier);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtAccountNumber);
             this.Controls.Add(this.gbDetails);
             this.Controls.Add(this.gbSpecialnstruction);
             this.Controls.Add(this.gbCOst);
@@ -460,6 +481,7 @@
             this.Name = "OrderHeaderVerticalControl";
             this.Padding = new System.Windows.Forms.Padding(6);
             this.Size = new System.Drawing.Size(325, 711);
+            this.Load += new System.EventHandler(this.OrderHeaderVerticalControl_Load);
             this.gbCOst.ResumeLayout(false);
             this.gbCOst.PerformLayout();
             this.gbSpecialnstruction.ResumeLayout(false);
@@ -505,10 +527,11 @@
         private System.Windows.Forms.GroupBox gbCOst;
         private System.Windows.Forms.GroupBox gbSpecialnstruction;
         private System.Windows.Forms.GroupBox gbDetails;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtAccountNumber;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnPrint;
         private System.Windows.Forms.Button button1;
         public System.Windows.Forms.Button btnSave;
+        private System.Windows.Forms.Button btnEditSupplier;
     }
 }

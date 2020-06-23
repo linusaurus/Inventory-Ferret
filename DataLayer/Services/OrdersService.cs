@@ -39,7 +39,7 @@ namespace DataLayer.Services {
                 Purchaser = d.Employee.Firstname + " " + d.Employee.Lastname,
                 ShippingCost = d.ShippingCost.HasValue ? d.ShippingCost.Value : Decimal.Zero,
                 SubTotal = d.SubTotal.HasValue ? d.SubTotal.Value : Decimal.Zero,
-                ShipID= d.ShipId.Value,
+                ShipID = d.ShipId.Value,
                 SupplierAddress = d.Supplier.Address1,
                 SupplierCity = d.Supplier.City,
                 SupplierName = d.Supplier.SupplierName,
@@ -49,10 +49,11 @@ namespace DataLayer.Services {
                 SupplierZip = d.Supplier.Zip,
                 SupplierFax = d.Supplier.Fax,
                 Tax = d.Tax.HasValue ? d.Tax.Value : Decimal.Zero,
+                TaxRate = d.TaxRate.GetValueOrDefault(),
                 Taxable = d.SuppressTax.HasValue ? d.SuppressTax.Value : false,
                 //LineItems = d.PurchaseLineItem
 
-            });
+            }); ;
             return _order.FirstOrDefault();
         }
 
@@ -358,7 +359,7 @@ namespace DataLayer.Services {
             order.SuppressTax = orderDTO.Taxable;
             
             order.Tax = orderDTO.Tax;
-
+            order.TaxRate = orderDTO.TaxRate;
 
             //remove deleted details -
             order.PurchaseLineItem

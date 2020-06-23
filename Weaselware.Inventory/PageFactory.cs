@@ -143,8 +143,11 @@ namespace Weaselware.InventoryFerret
                 case TabPageType.PurchaseOrderPage:
                     {                        
                          tab.Text = $"Purchase Order :{key}";
-                         OrderEditControl ctr = new OrderEditControl();
-                         ctr.LoadByID(key);
+                         tab.Name = "Order";
+                        // OrderEditControl ctr = new OrderEditControl();
+                        OrderEditSplitPanelControl ctr = new OrderEditSplitPanelControl();
+                         ctr.SetDataSource(ctx,key);
+                        // ctr.LoadByID(key);
                          ctr.Dock = DockStyle.Fill;
                          tab.Controls.Add(ctr);                
                     }

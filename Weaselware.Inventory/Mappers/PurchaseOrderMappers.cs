@@ -37,6 +37,7 @@ namespace Weaselware.InventoryFerret.Mappers
             destination.SupplierZip = source.Supplier.Zip;
             destination.SalesRep = source.SalesRep;
             destination.Tax = source.Tax.GetValueOrDefault();
+            destination.TaxRate = source.TaxRate.GetValueOrDefault();
             destination.Taxable = source.SuppressTax.GetValueOrDefault();
             destination.SupplierID = source.SupplierId.GetValueOrDefault();
             destination.SupplierPhone = source.Supplier.Phone;
@@ -47,6 +48,7 @@ namespace Weaselware.InventoryFerret.Mappers
             destination.Attachments = attachmentMapper.MapList(source.Attachment);
             destination.OrderFees = orderFeeMapper.MapList(source.OrderFee);
             destination.TaxRate = source.TaxRate.GetValueOrDefault();
+            destination.AccountNumber = source.Supplier.AccountNumber;
         }
     }
 

@@ -7,6 +7,7 @@ using DataLayer.Entities;
 using DataLayer.Models;
 using DataLayer.Services;
 using System.Drawing;
+using Weaselware.InventoryFerret.UserControls;
 
 namespace Weaselware.InventoryFerret {
     public partial class Main : Form
@@ -55,6 +56,7 @@ namespace Weaselware.InventoryFerret {
                 TabPage myOrdersTab = PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.MyOrdersPage);
                 myOrdersTab.Name = "myOrdersTab";
                 MainTabControl.TabPages.Add(myOrdersTab);
+               
  
 
         }
@@ -123,8 +125,34 @@ namespace Weaselware.InventoryFerret {
             {              
                 TabPage tabpage = MainTabControl.SelectedTab;
                 if (MainTabControl.TabPages.Count > 1)  
-                {               
-                    MainTabControl.TabPages.Remove(tabpage);             
+                {
+                    // Need to determine is the page is Order, and is not Dirty
+                    if (tabpage.Name =="Order")
+                    {
+                        if (((OrderEditSplitPanelControl)tabpage.Controls[0]).IsDirty == true)
+                        {
+                            DialogResult dlg = MessageBox.Show("Save changes?", "Question", MessageBoxButtons.YesNo);
+
+                            if (dlg == DialogResult.Yes)
+                            {
+                                // -- UserCOntrol public save method ---
+                                ((OrderEditSplitPanelControl)tabpage.Controls[0]).SaveChanges();
+                                MainTabControl.TabPages.Remove(tabpage);
+                            }
+                            if (dlg == DialogResult.No)
+                            {MainTabControl.TabPages.Remove(tabpage); }
+ 
+                        }
+                        else
+                        {
+                            MainTabControl.TabPages.Remove(tabpage);
+                        }
+                    }
+                    else
+                    {
+                        MainTabControl.TabPages.Remove(tabpage);
+                    }
+                              
                 }              
             }
             return base.ProcessCmdKey(ref msg, keyData);

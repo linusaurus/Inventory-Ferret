@@ -192,9 +192,6 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
-    <Reference Include="TinyMapper, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\TinyMapper.3.0.3\lib\net40\TinyMapper.dll</HintPath>
-    </Reference>
     <Reference Include="WeCantSpell.Hunspell, Version=3.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\WeCantSpell.Hunspell.3.0.1\lib\net45\WeCantSpell.Hunspell.dll</HintPath>
     </Reference>
@@ -281,6 +278,12 @@
     <Compile Include="Services\LabelService.cs" />
     <Compile Include="Services\NotificationService.cs" />
     <Compile Include="Services\OrdersBizService.cs" />
+    <Compile Include="SupplierEditForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SupplierEditForm.Designer.cs">
+      <DependentUpon>SupplierEditForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\AssemblyManagerControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -482,6 +485,9 @@
     <EmbeddedResource Include="Reports\PurchaseOrderReport.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>PurchaseOrderReport.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SupplierEditForm.resx">
+      <DependentUpon>SupplierEditForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\AssemblyManagerControl.resx">
       <DependentUpon>AssemblyManagerControl.cs</DependentUpon>

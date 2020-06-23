@@ -25,6 +25,8 @@ namespace DataLayer.Entities
         public int? AccountType { get; set; }
         public string AccountNumber { get; set; }
 
+        public double? TaxRate { get; set; }
+
         public virtual ICollection<Part> Part { get; set; }
         public virtual ICollection<PurchaseOrder> PurchaseOrder { get; set; }
     }

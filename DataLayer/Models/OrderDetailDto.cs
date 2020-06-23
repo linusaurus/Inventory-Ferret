@@ -36,6 +36,7 @@ namespace DataLayer.Models
         private string salesRep;
         private decimal subTotal;
         private double taxRate;
+        private string accountNumber;
  
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -193,6 +194,16 @@ namespace DataLayer.Models
                 OnPropertyChange();
             }  
         }
+
+        public string AccountNumber
+        {
+            get { return accountNumber; }
+            set
+            {
+                accountNumber = value;
+                OnPropertyChange();
+            }
+        }
         // SupplierAddress --
         public string SupplierAddress
         {
@@ -309,7 +320,7 @@ namespace DataLayer.Models
                     subtotal += item.Price * item.Quantity;
                 }
                 SubTotal = subtotal;
-                if (Taxable) { Tax = subtotal * 0.075m; }else
+                if (Taxable) { Tax = subtotal * decimal.Parse(taxRate.ToString()); }else
                 { Tax = 0.0m; }
 
                 OrderTotal = SubTotal + tax;
