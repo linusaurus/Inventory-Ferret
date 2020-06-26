@@ -7,6 +7,7 @@ using Microsoft.EntityFrameworkCore;
 using DataLayer.Interfaces;
 using DataLayer.Entities;
 using DataLayer.Services;
+using DataLayer.Models;
 
 namespace DataLayer.Services
 {
@@ -15,9 +16,9 @@ namespace DataLayer.Services
         BadgerDataModel _context;
         String partEditorName = string.Empty;
 
-        public PartsService(BadgerDataModel ctx)
+        public PartsService(BadgerDataModel context)
         {
-            _context = ctx;
+            _context = context;
             IEmployeeService empService = new EmployeeService(_context);           
            // partEditorName = empService.FullName(Globals.CurrentLoggedUserID);
             
@@ -105,7 +106,7 @@ namespace DataLayer.Services
             {
                 return null;
             }
-            return _context.Part.Include(g=> g.DocumentParts).Where(p => p.PartID == PartID).FirstOrDefault();
+            return _context.Part.Include(g=> g.DocumentParts).Include(r => r.GetResource).Where(p => p.PartID == PartID).FirstOrDefault();
         }
 
         public Part FindBySKU(string sku)
@@ -128,9 +129,84 @@ namespace DataLayer.Services
             return _context.Part.Where(p => p.SupplierId == supplierID).ToList();
         }
 
-        public void InsertOrUpdate(PurchaseOrder order)
+        public void InsertOrUpdate(PartDetailDTO partDTO,string user)
         {
-            throw new NotImplementedException();
+          
+                
+            var part = _context.Part.Include(r => r.GetResource).FirstOrDefault(o => o.PartID == partDTO.PartID);
+            if (part == null)
+            {
+                part = new Part();
+                part.DateAdded = DateTime.Today;
+                part.AddedBy = user;
+                _context.Part.Add(part);
+            }
+
+            //Map properties
+            part.PartNum= partDTO.PartNum;
+            part.ModifiedDate = DateTime.Today;
+            part.ObsoluteFlag = partDTO.Obsolete;
+            part.Cost = partDTO.UnitCost;
+            part.UID = partDTO.UID;
+            part.ManuId = partDTO.ManuId;
+            part.ItemDescription = partDTO.ItemDescription;
+            part.ItemName = partDTO.ItemName;
+            part.PartNum = partDTO.PartNum;
+            part.MarkUp = partDTO.MarkUp;
+            part.Waste = partDTO.Waste;
+            part.Weight = partDTO.Weight;
+
+            //remove deleted resource -
+            part.GetResource
+            .Where(d => !partDTO.Resources.Any(ResourceDto => ResourceDto.ResourceID == d.ResourceID)).ToList()
+            .ForEach(deleted => _context.Resource.Remove(deleted));
+
+            //update or add resource
+            partDTO.Resources.ToList().ForEach(detailDTO =>
+            {
+                var detail = part.GetResource.FirstOrDefault(d => d.ResourceID == detailDTO.ResourceID);
+                if (detail == null)
+                {
+                    detail = new Resource();
+                    detail.CreatedDate = DateTime.Today;
+                    detail.Createdby = user;
+                    part.GetResource.Add(detail);
+                }
+                detail.CurrentVersion = detailDTO.CurrentVersion;
+                detail.ResourceDescription = detailDTO.ResourceDescription;
+                detail.PartID = detailDTO.PartID;
+
+
+                //remove deleted ResourceVersions -
+                //this would require renumbering the versions and why a stack<> might have to be used.
+                detail.ResourceVersions
+                    .Where(d => !detailDTO.Versions.Any(ResourceVersionDto => ResourceVersionDto.ResourceVersionID == d.ResourceVersionID)).ToList()
+                    .ForEach(deleted => _context.ResourceVersion.Remove(deleted));
+
+                int vers = detailDTO.Versions.Count;
+
+                //update or add OrderFees
+                detailDTO.Versions.ToList().ForEach(od =>
+                {
+                    var version = detail.ResourceVersions.FirstOrDefault(r => r.ResourceVersionID == od.ResourceVersionID);
+                    if (version == null)
+                    {
+                        version = new ResourceVersion();
+                        version.GetResource.ResourceVersions.Add(version);
+                    }
+
+                    version.ModDate = DateTime.Today;
+                    version.ModifiedBy = user;
+                    version.Resource = od.Resource;
+                    version.ResourceID = od.ResourceID;
+                    version.ResourceVersionID = od.ResourceVersionID;
+                    version.RVersion = od.RVersion;
+                    version.VersionComment = od.VersionComment;
+                  
+
+                });
+            });
+                _context.SaveChanges();           
         }
 
         public void Save()

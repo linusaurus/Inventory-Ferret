@@ -9,10 +9,21 @@ namespace DataLayer.Models
     public class ResourceDto  : INotifyPropertyChanged
     {
         private int resourceID;
+        private int partID;
         private string resourceDescription;
         private string createdby;
         private int currentVersion;
    
+
+        public int PartID
+        {
+            get { return partID; }
+            set
+            {
+                partID = value;
+                OnPropertyChange();
+            }
+        }
         public int ResourceID
         {
             get { return resourceID; }
@@ -51,6 +62,8 @@ namespace DataLayer.Models
         }
 
         public List<ResourceVersionDto> Versions { get; set; } = new List<ResourceVersionDto>();
+
+        public Stack<ResourceVersionDto> vers { get; set; } = new Stack<ResourceVersionDto>();
 
         public event PropertyChangedEventHandler PropertyChanged;
 

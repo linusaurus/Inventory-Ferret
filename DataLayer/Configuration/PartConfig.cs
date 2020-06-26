@@ -17,6 +17,8 @@ namespace DataLayer.Entities.Configuration
             entity.HasOne(d => d.Supplier)
                 .WithMany(p => p.Part)
                 .HasForeignKey(d => d.SupplierId);
+
+           
         }
     }
 }

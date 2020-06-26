@@ -192,7 +192,8 @@ namespace Weaselware.InventoryFerret
            if (_context.Entry(_part).State == EntityState.Detached)
            { 
                 _context.Part.Add(_part); 
-            }
+           }
+
            // Date and Name stamp modifications --
             var user = Globals.CurrentLoggedUserID;
            
@@ -206,7 +207,6 @@ namespace Weaselware.InventoryFerret
             TabControl tabControl = (TabControl)tabpage.Parent;
             tabControl.TabPages.Remove(tabpage);
 
-           // { ((Form)this.TopLevelControl).Close(); } --
         }
 
         // Validation -------##
@@ -292,6 +292,10 @@ namespace Weaselware.InventoryFerret
             {
 
             }
+            else 
+            {
+
+            }
            // partsService.AddResource();
         }
 
@@ -319,13 +323,11 @@ namespace Weaselware.InventoryFerret
         private void btnScanSKU_Click(object sender, EventArgs e)
         {
             try
-            {
-              
+            {             
                 barCodeReader.OpenScanner();
             }
             catch (Exception)
             {
-
                 return;
             }
             
@@ -341,7 +343,6 @@ namespace Weaselware.InventoryFerret
 
             if (foundBarCode != string.Empty)
             {
-
                 if (_part != null)
                 {
                     _part.Sku = foundBarCode;
@@ -351,8 +352,7 @@ namespace Weaselware.InventoryFerret
                 else
                 {
                     //  Invoke(new MethodInvoker(() => { this.propertyGrid1.SelectedObject = null; }));
-                    Invoke(new MethodInvoker(() => { this.txtSKU.Text = String.Empty; }));
-                  
+                    Invoke(new MethodInvoker(() => { this.txtSKU.Text = String.Empty; }));                 
                 }
 
                 barCodeReader.OnBarCodeRead -= Reader_OnBarCodeRead;
@@ -427,12 +427,6 @@ namespace Weaselware.InventoryFerret
         {
 
         }
-
-        /// <summary>
-        /// Stock Actions
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
 
         #region Stock Actions
 

@@ -72,7 +72,7 @@ namespace Weaselware.InventoryFerret
             this.tsSettingsButton});
             this.mainToolStrip.Location = new System.Drawing.Point(0, 0);
             this.mainToolStrip.Name = "mainToolStrip";
-            this.mainToolStrip.Size = new System.Drawing.Size(1116, 55);
+            this.mainToolStrip.Size = new System.Drawing.Size(1243, 55);
             this.mainToolStrip.TabIndex = 0;
             this.mainToolStrip.Text = "mainToolStrip";
             this.mainToolStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.mainToolStrip_ItemClicked);
@@ -86,7 +86,6 @@ namespace Weaselware.InventoryFerret
             this.tsOrderButton.Text = "New Order";
             this.tsOrderButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.tsOrderButton.ToolTipText = "New Order";
-            this.tsOrderButton.Click += new System.EventHandler(this.tsOrderButton_Click);
             // 
             // tsMyOrders
             // 
@@ -200,9 +199,9 @@ namespace Weaselware.InventoryFerret
             // 
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 739);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 805);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1116, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1243, 22);
             this.statusStrip1.TabIndex = 1;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -221,7 +220,7 @@ namespace Weaselware.InventoryFerret
             this.MainTabControl.Name = "MainTabControl";
             this.MainTabControl.SelectedIndex = 0;
             this.MainTabControl.ShowToolTips = true;
-            this.MainTabControl.Size = new System.Drawing.Size(1116, 684);
+            this.MainTabControl.Size = new System.Drawing.Size(1243, 750);
             this.MainTabControl.TabIndex = 2;
             this.MainTabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.MainTabControl_DrawItem);
             this.MainTabControl.SelectedIndexChanged += new System.EventHandler(this.MaintabControl_SelectedIndexChanged);
@@ -231,13 +230,13 @@ namespace Weaselware.InventoryFerret
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1116, 761);
+            this.ClientSize = new System.Drawing.Size(1243, 827);
             this.Controls.Add(this.MainTabControl);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.mainToolStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
-            this.MinimumSize = new System.Drawing.Size(1025, 800);
+            this.MinimumSize = new System.Drawing.Size(1025, 860);
             this.Name = "Main";
             this.Text = "Inventory Ferrit";
             this.Load += new System.EventHandler(this.Main_Load);

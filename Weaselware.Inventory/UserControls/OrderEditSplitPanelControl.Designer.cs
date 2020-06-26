@@ -65,7 +65,7 @@
             this.tsToogleHeader,
             this.toolStripSeparator1,
             this.tsbToggleAttachment});
-            this.tsOrderEditToolBar.Location = new System.Drawing.Point(6, 733);
+            this.tsOrderEditToolBar.Location = new System.Drawing.Point(6, 688);
             this.tsOrderEditToolBar.Name = "tsOrderEditToolBar";
             this.tsOrderEditToolBar.Size = new System.Drawing.Size(1149, 31);
             this.tsOrderEditToolBar.TabIndex = 0;
@@ -164,7 +164,7 @@
             // 
             this.splitContainerMain.Panel2.Controls.Add(this.scLineItems);
             this.splitContainerMain.Panel2.Padding = new System.Windows.Forms.Padding(4, 4, 12, 4);
-            this.splitContainerMain.Size = new System.Drawing.Size(1149, 727);
+            this.splitContainerMain.Size = new System.Drawing.Size(1149, 682);
             this.splitContainerMain.SplitterDistance = 340;
             this.splitContainerMain.TabIndex = 1;
             // 
@@ -175,7 +175,7 @@
             this.orderHeaderVerticalControl1.MinimumSize = new System.Drawing.Size(325, 0);
             this.orderHeaderVerticalControl1.Name = "orderHeaderVerticalControl1";
             this.orderHeaderVerticalControl1.Padding = new System.Windows.Forms.Padding(6);
-            this.orderHeaderVerticalControl1.Size = new System.Drawing.Size(332, 719);
+            this.orderHeaderVerticalControl1.Size = new System.Drawing.Size(332, 674);
             this.orderHeaderVerticalControl1.TabIndex = 0;
             // 
             // scLineItems
@@ -193,8 +193,8 @@
             // scLineItems.Panel2
             // 
             this.scLineItems.Panel2.Padding = new System.Windows.Forms.Padding(4);
-            this.scLineItems.Size = new System.Drawing.Size(789, 719);
-            this.scLineItems.SplitterDistance = 435;
+            this.scLineItems.Size = new System.Drawing.Size(789, 674);
+            this.scLineItems.SplitterDistance = 407;
             this.scLineItems.TabIndex = 0;
             // 
             // dgOrderLineItem
@@ -204,7 +204,7 @@
             this.dgOrderLineItem.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgOrderLineItem.Location = new System.Drawing.Point(4, 26);
             this.dgOrderLineItem.Name = "dgOrderLineItem";
-            this.dgOrderLineItem.Size = new System.Drawing.Size(781, 405);
+            this.dgOrderLineItem.Size = new System.Drawing.Size(781, 377);
             this.dgOrderLineItem.TabIndex = 0;
             // 
             // OrderEditSplitPanelControl
@@ -215,7 +215,7 @@
             this.Controls.Add(this.tsOrderEditToolBar);
             this.Name = "OrderEditSplitPanelControl";
             this.Padding = new System.Windows.Forms.Padding(6);
-            this.Size = new System.Drawing.Size(1161, 770);
+            this.Size = new System.Drawing.Size(1161, 725);
             this.tsOrderEditToolBar.ResumeLayout(false);
             this.tsOrderEditToolBar.PerformLayout();
             this.splitContainerMain.Panel1.ResumeLayout(false);

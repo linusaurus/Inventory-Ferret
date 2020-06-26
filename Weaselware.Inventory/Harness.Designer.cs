@@ -30,24 +30,17 @@ namespace Weaselware.InventoryFerret
         /// </summary>
         private void InitializeComponent()
         {
-            this.orderEditSplitPanelControl1 = new Weaselware.InventoryFerret.UserControls.OrderEditSplitPanelControl();
+           
             this.SuspendLayout();
             // 
-            // orderEditSplitPanelControl1
-            // 
-            this.orderEditSplitPanelControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.orderEditSplitPanelControl1.Location = new System.Drawing.Point(0, 0);
-            this.orderEditSplitPanelControl1.Name = "orderEditSplitPanelControl1";
-            this.orderEditSplitPanelControl1.Padding = new System.Windows.Forms.Padding(6);
-            this.orderEditSplitPanelControl1.Size = new System.Drawing.Size(1106, 797);
-            this.orderEditSplitPanelControl1.TabIndex = 0;
+           
             // 
             // Harness
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1106, 797);
-            this.Controls.Add(this.orderEditSplitPanelControl1);
+           
             this.Name = "Harness";
             this.Text = "Harness";
             this.ResumeLayout(false);

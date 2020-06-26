@@ -36,8 +36,8 @@ namespace DataLayer.Entities
         public virtual DbSet<ClaimDocument> ClaimDocument { get; set; }
         public virtual DbSet<ClaimItem> ClaimItem { get; set; }
 
-        public virtual DbSet<Document> Document { get; set; }
-        public virtual DbSet<DocumentParts> DocumentParts { get; set; }
+       public virtual DbSet<Document> Document { get; set; }
+       public virtual DbSet<DocumentParts> DocumentParts { get; set; }
         public virtual DbSet<Employee> Employee { get; set; }
         public virtual DbSet<Finish> Finish { get; set; }
         //public virtual DbSet<Globals> Globals { get; set; }
@@ -84,7 +84,7 @@ namespace DataLayer.Entities
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=192.168.10.3;database=Badger;uid=sa;pwd=Kx09a32x;");
+                optionsBuilder.UseSqlServer("Server=192.168.10.34;database=Badger;uid=sa;pwd=Kx09a32x;");
                 
             }
         }

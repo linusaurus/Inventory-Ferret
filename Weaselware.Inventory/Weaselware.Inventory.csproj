@@ -94,6 +94,7 @@
     <Reference Include="AxShockwaveFlashObjects, Version=1.0.0.0, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
     <Reference Include="Boxed.Mapping, Version=4.0.0.0, Culture=neutral, PublicKeyToken=fc5550082a9c642c, processorArchitecture=MSIL">
       <HintPath>..\packages\Boxed.Mapping.4.0.0\lib\netstandard2.0\Boxed.Mapping.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Engine">
       <HintPath>..\..\..\..\..\..\program files (x86)\sap businessobjects\crystal reports for .net framework 4.0\common\sap businessobjects enterprise xi 4.0\win32_x86\dotnet\CrystalDecisions.CrystalReports.Engine.dll</HintPath>
@@ -345,6 +346,12 @@
     <Compile Include="UserControls\PartFinderControl.Designer.cs">
       <DependentUpon>PartFinderControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\PartResourceEditorControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\PartResourceEditorControl.Designer.cs">
+      <DependentUpon>PartResourceEditorControl.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\PurchaseOrderControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -518,6 +525,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\PartFinderControl.resx">
       <DependentUpon>PartFinderControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\PartResourceEditorControl.resx">
+      <DependentUpon>PartResourceEditorControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\PurchaseOrderControl.resx">
       <DependentUpon>PurchaseOrderControl.cs</DependentUpon>

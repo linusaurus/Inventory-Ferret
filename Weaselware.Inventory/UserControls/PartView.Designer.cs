@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -110,7 +110,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSave.Location = new System.Drawing.Point(749, 559);
+            this.btnSave.Location = new System.Drawing.Point(533, 222);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(91, 24);
             this.btnSave.TabIndex = 9;
@@ -121,7 +121,7 @@
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancel.Location = new System.Drawing.Point(657, 559);
+            this.btnCancel.Location = new System.Drawing.Point(441, 222);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(86, 24);
             this.btnCancel.TabIndex = 8;
@@ -361,7 +361,7 @@
             this.DocView});
             this.dataGridView1.Location = new System.Drawing.Point(9, 48);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(594, 282);
+            this.dataGridView1.Size = new System.Drawing.Size(584, 278);
             this.dataGridView1.TabIndex = 13;
             // 
             // DocIDColumn
@@ -404,7 +404,7 @@
             // txtBoilingPoint
             // 
             this.txtBoilingPoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtBoilingPoint.Location = new System.Drawing.Point(156, 259);
+            this.txtBoilingPoint.Location = new System.Drawing.Point(156, 255);
             this.txtBoilingPoint.Name = "txtBoilingPoint";
             this.txtBoilingPoint.Size = new System.Drawing.Size(80, 20);
             this.txtBoilingPoint.TabIndex = 4;
@@ -413,7 +413,7 @@
             // txtVOCcontent
             // 
             this.txtVOCcontent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtVOCcontent.Location = new System.Drawing.Point(242, 259);
+            this.txtVOCcontent.Location = new System.Drawing.Point(242, 255);
             this.txtVOCcontent.Name = "txtVOCcontent";
             this.txtVOCcontent.Size = new System.Drawing.Size(71, 20);
             this.txtVOCcontent.TabIndex = 5;
@@ -422,7 +422,7 @@
             // txtMixRatio
             // 
             this.txtMixRatio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtMixRatio.Location = new System.Drawing.Point(319, 259);
+            this.txtMixRatio.Location = new System.Drawing.Point(319, 255);
             this.txtMixRatio.Name = "txtMixRatio";
             this.txtMixRatio.Size = new System.Drawing.Size(79, 20);
             this.txtMixRatio.TabIndex = 6;
@@ -431,7 +431,7 @@
             // txtVOCLimit
             // 
             this.txtVOCLimit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txtVOCLimit.Location = new System.Drawing.Point(404, 259);
+            this.txtVOCLimit.Location = new System.Drawing.Point(404, 255);
             this.txtVOCLimit.Name = "txtVOCLimit";
             this.txtVOCLimit.Size = new System.Drawing.Size(75, 20);
             this.txtVOCLimit.TabIndex = 7;
@@ -441,7 +441,7 @@
             // 
             this.ckbCarbTrack.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.ckbCarbTrack.AutoSize = true;
-            this.ckbCarbTrack.Location = new System.Drawing.Point(62, 261);
+            this.ckbCarbTrack.Location = new System.Drawing.Point(62, 257);
             this.ckbCarbTrack.Name = "ckbCarbTrack";
             this.ckbCarbTrack.Size = new System.Drawing.Size(86, 17);
             this.ckbCarbTrack.TabIndex = 3;
@@ -453,7 +453,7 @@
             // 
             this.labelBoilingPoint.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelBoilingPoint.AutoSize = true;
-            this.labelBoilingPoint.Location = new System.Drawing.Point(167, 243);
+            this.labelBoilingPoint.Location = new System.Drawing.Point(167, 239);
             this.labelBoilingPoint.Name = "labelBoilingPoint";
             this.labelBoilingPoint.Size = new System.Drawing.Size(65, 13);
             this.labelBoilingPoint.TabIndex = 17;
@@ -463,7 +463,7 @@
             // 
             this.lblVOCcontent.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblVOCcontent.AutoSize = true;
-            this.lblVOCcontent.Location = new System.Drawing.Point(242, 243);
+            this.lblVOCcontent.Location = new System.Drawing.Point(242, 239);
             this.lblVOCcontent.Name = "lblVOCcontent";
             this.lblVOCcontent.Size = new System.Drawing.Size(69, 13);
             this.lblVOCcontent.TabIndex = 17;
@@ -473,7 +473,7 @@
             // 
             this.lblMixRatio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblMixRatio.AutoSize = true;
-            this.lblMixRatio.Location = new System.Drawing.Point(332, 243);
+            this.lblMixRatio.Location = new System.Drawing.Point(332, 239);
             this.lblMixRatio.Name = "lblMixRatio";
             this.lblMixRatio.Size = new System.Drawing.Size(51, 13);
             this.lblMixRatio.TabIndex = 17;
@@ -483,7 +483,7 @@
             // 
             this.lblVOCLimits.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblVOCLimits.AutoSize = true;
-            this.lblVOCLimits.Location = new System.Drawing.Point(414, 243);
+            this.lblVOCLimits.Location = new System.Drawing.Point(414, 239);
             this.lblVOCLimits.Name = "lblVOCLimits";
             this.lblVOCLimits.Size = new System.Drawing.Size(53, 13);
             this.lblVOCLimits.TabIndex = 17;
@@ -522,10 +522,10 @@
             this.PartsDetailTabControl.Controls.Add(this.tbResources);
             this.PartsDetailTabControl.Controls.Add(this.tbTransactions);
             this.PartsDetailTabControl.Controls.Add(this.tbAdvanced);
-            this.PartsDetailTabControl.Location = new System.Drawing.Point(17, 208);
+            this.PartsDetailTabControl.Location = new System.Drawing.Point(17, 263);
             this.PartsDetailTabControl.Name = "PartsDetailTabControl";
             this.PartsDetailTabControl.SelectedIndex = 0;
-            this.PartsDetailTabControl.Size = new System.Drawing.Size(617, 379);
+            this.PartsDetailTabControl.Size = new System.Drawing.Size(607, 375);
             this.PartsDetailTabControl.TabIndex = 20;
             // 
             // tbResources
@@ -535,7 +535,7 @@
             this.tbResources.Location = new System.Drawing.Point(4, 22);
             this.tbResources.Name = "tbResources";
             this.tbResources.Padding = new System.Windows.Forms.Padding(3);
-            this.tbResources.Size = new System.Drawing.Size(609, 353);
+            this.tbResources.Size = new System.Drawing.Size(599, 349);
             this.tbResources.TabIndex = 0;
             this.tbResources.Text = "Resources";
             this.tbResources.UseVisualStyleBackColor = true;
@@ -554,7 +554,7 @@
             this.tbTransactions.Location = new System.Drawing.Point(4, 22);
             this.tbTransactions.Name = "tbTransactions";
             this.tbTransactions.Padding = new System.Windows.Forms.Padding(3);
-            this.tbTransactions.Size = new System.Drawing.Size(609, 353);
+            this.tbTransactions.Size = new System.Drawing.Size(599, 349);
             this.tbTransactions.TabIndex = 1;
             this.tbTransactions.Text = "Transactions";
             this.tbTransactions.UseVisualStyleBackColor = true;
@@ -574,7 +574,7 @@
             // btnSetLevel
             // 
             this.btnSetLevel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSetLevel.Location = new System.Drawing.Point(115, 292);
+            this.btnSetLevel.Location = new System.Drawing.Point(115, 288);
             this.btnSetLevel.Name = "btnSetLevel";
             this.btnSetLevel.Size = new System.Drawing.Size(98, 28);
             this.btnSetLevel.TabIndex = 5;
@@ -585,7 +585,7 @@
             // btnPullStock
             // 
             this.btnPullStock.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnPullStock.Location = new System.Drawing.Point(5, 292);
+            this.btnPullStock.Location = new System.Drawing.Point(5, 288);
             this.btnPullStock.Name = "btnPullStock";
             this.btnPullStock.Size = new System.Drawing.Size(98, 28);
             this.btnPullStock.TabIndex = 5;
@@ -660,15 +660,15 @@
             this.dgvTransactions.Margin = new System.Windows.Forms.Padding(12);
             this.dgvTransactions.Name = "dgvTransactions";
             this.dgvTransactions.ReadOnly = true;
-            this.dgvTransactions.Size = new System.Drawing.Size(593, 259);
+            this.dgvTransactions.Size = new System.Drawing.Size(583, 255);
             this.dgvTransactions.TabIndex = 0;
             this.dgvTransactions.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTransactions_CellContentClick);
             // 
             // colStockID
             // 
             this.colStockID.DataPropertyName = "OrderReceiptId";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colStockID.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colStockID.DefaultCellStyle = dataGridViewCellStyle13;
             this.colStockID.HeaderText = "ReceiptID";
             this.colStockID.Name = "colStockID";
             this.colStockID.ReadOnly = true;
@@ -679,8 +679,8 @@
             // DateRevd
             // 
             this.DateRevd.DataPropertyName = "TransDate";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.DateRevd.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.DateRevd.DefaultCellStyle = dataGridViewCellStyle14;
             this.DateRevd.HeaderText = "Date";
             this.DateRevd.Name = "DateRevd";
             this.DateRevd.ReadOnly = true;
@@ -689,8 +689,8 @@
             // colLineID
             // 
             this.colLineID.DataPropertyName = "LineID";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colLineID.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colLineID.DefaultCellStyle = dataGridViewCellStyle15;
             this.colLineID.HeaderText = "LineID";
             this.colLineID.Name = "colLineID";
             this.colLineID.ReadOnly = true;
@@ -699,10 +699,10 @@
             // colQnty
             // 
             this.colQnty.DataPropertyName = "QntyRev";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N2";
-            dataGridViewCellStyle4.NullValue = null;
-            this.colQnty.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle16.Format = "N2";
+            dataGridViewCellStyle16.NullValue = null;
+            this.colQnty.DefaultCellStyle = dataGridViewCellStyle16;
             this.colQnty.HeaderText = "Qnty";
             this.colQnty.Name = "colQnty";
             this.colQnty.ReadOnly = true;
@@ -729,7 +729,7 @@
             this.tbAdvanced.Controls.Add(this.labelBoilingPoint);
             this.tbAdvanced.Location = new System.Drawing.Point(4, 22);
             this.tbAdvanced.Name = "tbAdvanced";
-            this.tbAdvanced.Size = new System.Drawing.Size(609, 353);
+            this.tbAdvanced.Size = new System.Drawing.Size(599, 349);
             this.tbAdvanced.TabIndex = 2;
             this.tbAdvanced.Text = "Advanced";
             this.tbAdvanced.UseVisualStyleBackColor = true;
@@ -738,7 +738,7 @@
             // 
             this.CloseBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.CloseBox.Image = global::Weaselware.InventoryFerret.Properties.Resources.close_window;
-            this.CloseBox.Location = new System.Drawing.Point(867, 13);
+            this.CloseBox.Location = new System.Drawing.Point(892, 13);
             this.CloseBox.Name = "CloseBox";
             this.CloseBox.Size = new System.Drawing.Size(24, 24);
             this.CloseBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
@@ -771,7 +771,7 @@
             this.MaximumSize = new System.Drawing.Size(1200, 800);
             this.MinimumSize = new System.Drawing.Size(644, 460);
             this.Name = "PartView";
-            this.Size = new System.Drawing.Size(907, 601);
+            this.Size = new System.Drawing.Size(932, 652);
             this.Load += new System.EventHandler(this.PartView_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errDescription)).EndInit();
             this.gbCostFactors.ResumeLayout(false);

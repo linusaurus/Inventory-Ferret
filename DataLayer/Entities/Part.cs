@@ -40,7 +40,9 @@ namespace DataLayer.Entities
         public virtual Supplier Supplier { get; set; }
         //public virtual UnitOfMeasure U { get; set; }
         
-        public IList<DocumentParts> DocumentParts { get; set; }
+        public List<DocumentParts> DocumentParts { get; set; }
+
+        public List<Resource> GetResource { get; set; } = new List<Resource>();
         public IList<UnitOfPurchase> UnitOfPurchase { get; set; }
     }
 }

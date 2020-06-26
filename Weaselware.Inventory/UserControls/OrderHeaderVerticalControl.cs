@@ -70,11 +70,11 @@ namespace Weaselware.InventoryFerret.UserControls
             txtZip.DataBindings.Clear();
             txtZip.DataBindings.Add("Text", bsorder, "SupplierZip", true, DataSourceUpdateMode.OnPropertyChanged);
             // Supplier Phone -------------------------------------------------------
-            txtPhone.DataBindings.Clear();
-            txtPhone.DataBindings.Add("Text", bsorder, "SupplierPhone", true, DataSourceUpdateMode.OnPropertyChanged);
+            mtxtPhone.DataBindings.Clear();
+            mtxtPhone.DataBindings.Add("Text", bsorder, "SupplierPhone", true, DataSourceUpdateMode.OnPropertyChanged);
             // Supplier Fax -------------------------------------------------------
-            txtFax.DataBindings.Clear();
-            txtFax.DataBindings.Add("Text", bsorder, "SupplierFax", true, DataSourceUpdateMode.OnPropertyChanged);
+            mtxtFax.DataBindings.Clear();
+            mtxtFax.DataBindings.Add("Text", bsorder, "SupplierFax", true, DataSourceUpdateMode.OnPropertyChanged);
             // Purchaser -------------------------------------------------------
             txtPurchaser.DataBindings.Clear();
             txtPurchaser.DataBindings.Add("Text", bsorder, "Purchaser", true, DataSourceUpdateMode.OnPropertyChanged);

@@ -4,6 +4,7 @@ using DataLayer.Entities;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DataLayer.Models;
 
 namespace DataLayer.Interfaces
 {
@@ -23,7 +24,7 @@ namespace DataLayer.Interfaces
         List<UnitOfMeasure> Units();
         List<Manu> Manufacturers();
         bool AssociateSKU(Part part,string sku);
-        void InsertOrUpdate(PurchaseOrder order);
+        void InsertOrUpdate(PartDetailDTO partdto, string user);
         void AddResource(Document document, Part part);
         List<Part> SearchParts(string searchTerm, SearchOptions option);       
         void Save();

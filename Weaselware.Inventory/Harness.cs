@@ -3,7 +3,8 @@ using System;
 using System.Windows.Forms;
 using DataLayer.Services;
 using DataLayer.Models;
-
+using Weaselware.UserControls;
+using Weaselware.InventoryFerret.UserControls;
 
 namespace Weaselware.InventoryFerret
 {
@@ -11,17 +12,19 @@ namespace Weaselware.InventoryFerret
     {
 
         private BadgerDataModel ctx;
-        BindingSource BSorder = new BindingSource();
-        PurchaseOrder _purchaseOrder;
-        OrderDetailDto orderDTO = new OrderDetailDto();
-        OrdersService _orderService;
+        //BindingSource BSorder = new BindingSource();
+        
+        //OrderDetailDto orderDTO = new OrderDetailDto();
+        //OrdersService _orderService;
 
         public Harness()
         {
             InitializeComponent();
             ctx = new BadgerDataModel();
-            
-            this.orderEditSplitPanelControl1.SetDataSource(ctx, 5000);
+
+            PartResourceEditorControl ctr = new PartResourceEditorControl();
+            this.Controls.Add(ctr);
+            ctr.SetDataSource(ctx,1);
          
 
         }

@@ -50,10 +50,8 @@ namespace Weaselware.InventoryFerret.UserControls
             this.orderHeaderVerticalControl1.OnPrintHandler += OrderHeaderVerticalControl1_OnPrintHandler;
             mapper = new Mappers.PurchaseOrderMapper();
           
-            LoadOrderPanelControl(partFinderControl);   
+           // LoadOrderPanelControl(partFinderControl);   
         }
-
-      
 
         public OrderEditSplitPanelControl(BadgerDataModel context, BindingSource BSorder)
         {
@@ -70,8 +68,24 @@ namespace Weaselware.InventoryFerret.UserControls
             _orderService.CreateOrUpdateOrder(orderDTO);
             LoadOrder();
             isDirty = false;
-            orderHeaderVerticalControl1.btnSave.BackColor = Color.Gainsboro;
-            orderHeaderVerticalControl1.btnSave.FlatAppearance.BorderColor = Color.Cornsilk;
+            ToogleButtonStyle(isDirty);
+  
+        }
+
+        private void ToogleButtonStyle(bool dirtyState)
+        {
+            if(dirtyState == true)
+            {
+                orderHeaderVerticalControl1.btnSave.BackColor = System.Drawing.Color.Cornsilk;
+                orderHeaderVerticalControl1.btnSave.FlatStyle = FlatStyle.Flat;
+                orderHeaderVerticalControl1.btnSave.FlatAppearance.BorderColor = Color.Red;
+                orderHeaderVerticalControl1.btnSave.FlatAppearance.BorderSize = 3;
+            }
+            else if (dirtyState ==false)
+            {
+                orderHeaderVerticalControl1.btnSave.BackColor = Color.Gainsboro;
+                orderHeaderVerticalControl1.btnSave.FlatAppearance.BorderColor = Color.Cornsilk;
+            }
         }
       
         private void OrderHeaderVerticalControl1_OnPrintHandler(object sender, EventArgs e)
@@ -190,23 +204,19 @@ namespace Weaselware.InventoryFerret.UserControls
         private void CheckForDirtyState(ListChangedEventArgs e)
         {
             if (e.ListChangedType == System.ComponentModel.ListChangedType.ItemChanged)
-            {   orderHeaderVerticalControl1.btnSave.Enabled = true;
-                orderHeaderVerticalControl1.btnSave.BackColor = Color.Goldenrod;
-                orderHeaderVerticalControl1.btnSave.FlatAppearance.BorderColor = Color.Red;
-                orderHeaderVerticalControl1.btnSave.FlatAppearance.BorderSize = 3;
-                isDirty = true;            
+            {   orderHeaderVerticalControl1.btnSave.Enabled = true;                 
+                isDirty = true;
+                ToogleButtonStyle(isDirty);
             }
             if (e.ListChangedType == ListChangedType.ItemDeleted)
             { orderHeaderVerticalControl1.btnSave.Enabled = true;
-                orderHeaderVerticalControl1.btnSave.BackColor = Color.Goldenrod;
-                orderHeaderVerticalControl1.btnSave.FlatAppearance.BorderColor = Color.Red;
                 isDirty = true;
+                ToogleButtonStyle(isDirty);
             }
             if (e.ListChangedType == ListChangedType.ItemAdded)
             { orderHeaderVerticalControl1.btnSave.Enabled = true;
-                orderHeaderVerticalControl1.btnSave.BackColor = Color.Goldenrod;
-                orderHeaderVerticalControl1.btnSave.FlatAppearance.BorderColor = Color.Red;
                 isDirty = true;
+                ToogleButtonStyle(isDirty);
             }
         }
 
@@ -214,8 +224,6 @@ namespace Weaselware.InventoryFerret.UserControls
         {
             orderDTO.Update();
         }
-
-
 
         private void InitializeGrid()
         {
@@ -361,10 +369,8 @@ namespace Weaselware.InventoryFerret.UserControls
         private void tsbToggleAttachment_Click(object sender, EventArgs e)
         {
             attachmentControl = new AttachmentControl();
-            attachmentControl.SetDatasource(orderDTO, bsAttachments);
-            
+            attachmentControl.SetDatasource(orderDTO, bsAttachments);           
             LoadOrderPanelControl(attachmentControl);
-
         }
 
         private void tsbLoadPartFinder_Click(object sender, EventArgs e)
@@ -374,8 +380,15 @@ namespace Weaselware.InventoryFerret.UserControls
 
             partFinderControl.OnJobPartAdded += PartFinderControl_OnJobPartAdded1;
             partFinderControl.OnPartAdded += PartFinderControl_OnPartAdded1;
-
             LoadOrderPanelControl(partFinderControl);         
+        }
+
+        private void tsbToogleOrderFee_Click(object sender, EventArgs e)
+        {
+            orderFeeControl = new OrderFeeControl();
+
+            orderFeeControl.SetDataSource(orderDTO, bsOrderFees);
+            LoadOrderPanelControl(orderFeeControl);
         }
 
         private void PartFinderControl_OnPartAdded1(object sender, PartFinderControl.PartAddedArgs e)
@@ -399,9 +412,7 @@ namespace Weaselware.InventoryFerret.UserControls
         }
 
         private void PartFinderControl_OnJobPartAdded1(object sender, PartFinderControl.JobPartAddedArgs e)
-        {
-            
-            
+        {          
                 LineItemDto newLineItem = new LineItemDto
                 {
                     PurchaseOrderID = orderDTO.PurchaseOrderID,
@@ -411,21 +422,12 @@ namespace Weaselware.InventoryFerret.UserControls
                     PartID = 0,
                     Price = decimal.Zero,
                     UiD = 1
-
                 };
 
-                bsLineitems.Add(newLineItem);
-
-            
+                bsLineitems.Add(newLineItem);         
         }
 
-        private void tsbToogleOrderFee_Click(object sender, EventArgs e)
-        {
-            orderFeeControl = new OrderFeeControl();
-        
-            orderFeeControl.SetDataSource(orderDTO, bsOrderFees);
-            LoadOrderPanelControl(orderFeeControl);
-        }
+       
 
         private void LoadOrderPanelControl(UserControl control)
         {

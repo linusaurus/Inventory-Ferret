@@ -1,9 +1,8 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DataLayer;
 using DataLayer.Entities;
-using DataLayer.Services;
 using DataLayer.Interfaces;
 using DataLayer.Models;
+using DataLayer.Services;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
 namespace DataLayerTest
@@ -11,8 +10,8 @@ namespace DataLayerTest
     [TestClass]
     public class ResourceRepositoryTest
     {
-       [TestMethod]
-       public void FindDocument_Document_ShouldReturnDocument()
+        [TestMethod]
+        public void FindDocument_Document_ShouldReturnDocument()
         {
             IDocumentRepository repo = new DocumentRepository(new BadgerDataModel());
             var result = repo.Find(21);
@@ -24,7 +23,7 @@ namespace DataLayerTest
         public void AddDocument_Document()
         {
 
-            
+
             DocumentRepository docRepo = new DocumentRepository(new BadgerDataModel());
 
             // Create a new Document
@@ -36,20 +35,20 @@ namespace DataLayerTest
                 PartID = 1,
                 DocumentPath = ".png",
                 DocumentView = "Front"
-  
+
             };
 
             docRepo.Add(doc);
             int key = doc.DocId;
             var test = docRepo.Find(key);
-           
+
             Assert.IsTrue(doc.DocId == key);
         }
-        
+
         [TestMethod]
         public void DeleteDocument_Document_ShouldRemoveDocument()
         {
-            
+
             IDocumentRepository repo = new DocumentRepository(new BadgerDataModel());
 
             // Create a new Document
@@ -81,7 +80,7 @@ namespace DataLayerTest
             Assert.IsTrue(test != null);
             Assert.IsTrue(test.Count > 0);
         }
-      
+
 
         [TestMethod]
         public void SearchDocuments_Document_ShouldReturnSerachResults()
@@ -99,20 +98,52 @@ namespace DataLayerTest
     public class PartRepositoryTest
     {
         [TestMethod]
-        public void DeletePart_Part_ShouldRemovedPart()
+        public void Add_Resource_To_Part()
         {
-            //IPartsService repo = new PartsService(new BadgerDataModel());
-            //var part = repo.New();
-            //var test = repo.Add(part);
-            //if(test.PartID != 0)
-            //{
-            //    repo.Delete(test);
-            //}
-            //var result = repo.Find(test.PartID);
+            IPartsService repo = new PartsService(new BadgerDataModel());
+            PartDetailDTO part = new PartDetailDTO();
+
+            part.UnitCost = 1.25m;
+            part.ItemDescription = "Master Widjet 1023";
+            part.ItemName = "MW-1023";
+            part.PartNum = "MW-10034";
+          
            
+            part.MarkUp = 1.25m;
+            part.Waste = 2.0m;
+            part.Weight = 1225m;
+            part.UID = 1;
+            part.ManuId = 245;
+            part.Location = "AC23";
+            part.Obsolete = false;
+            part.Sku = "1023847A990";
 
+            ResourceDto resource = new ResourceDto
+            {
+                ResourceDescription = "my first resource",
+                CurrentVersion = 1,
+               
+            };
+            part.Resources.Add(resource);
 
-            //Assert.IsTrue(test == null);
+            ResourceVersionDto ver = new ResourceVersionDto();
+            ver.RVersion = 1;
+            ver.VersionComment = "Dicks big ass resource version scheme";
+            resource.Versions.Add(ver);
+
+            repo.InsertOrUpdate(part, "Richard Young");
+
+            
+            Assert.IsTrue(1 == 1);
+        }
+
+        [TestMethod]
+        public void Return_Deep_Part()
+        {
+            IPartsService repo = new PartsService(new BadgerDataModel());
+            var part = repo.Find(1);
+
+            Assert.IsTrue(part != null);
         }
 
 
@@ -136,16 +167,16 @@ namespace DataLayerTest
             IInventoryService repo = new InventoryService(new BadgerDataModel());
             decimal start = repo.StockLevel(6975);
             repo.PullStock(6975, 1.0m, 8);
-            decimal result= repo.StockLevel(6975);
-            decimal test =  result;
-            Assert.IsTrue(start == (result +  1.00m));
+            decimal result = repo.StockLevel(6975);
+            decimal test = result;
+            Assert.IsTrue(start == (result + 1.00m));
         }
 
         [TestMethod]
         public void StockLevel_Inventory_ShouldReturnStockLevelOfPart()
         {
             IInventoryService repo = new InventoryService(new BadgerDataModel());
-            
+
             var result = repo.StockLevel(6975);
 
             Assert.IsTrue(result == 21.0500m);
@@ -186,7 +217,7 @@ namespace DataLayerTest
             Job jobToTest = jobRepo.Find(JobNumber);
             var result = repo.GetJobInventory(jobToTest);
 
-            
+
 
             Assert.IsTrue(result.Count == 1913);
         }
@@ -198,7 +229,7 @@ namespace DataLayerTest
         {
             IInventoryService repo = new InventoryService(new BadgerDataModel());
             var result = repo.GetSupplierInventory(new Supplier { SupplierId = 2244 });
-           Assert.IsTrue(result.Count == 926);
+            Assert.IsTrue(result.Count == 926);
         }
 
 
@@ -260,7 +291,7 @@ namespace DataLayerTest
             Assert.IsTrue(result.SupplierName == "Alpine Glass & Door");
             Assert.IsTrue(result.SupplierID == 1905);
             Assert.IsTrue(result.Purchaser == "Richard Young");
-            Assert.IsTrue(System.DateTime.Equals( result.OrderDate,  System.DateTime.Parse("3/16/2005")));
+            Assert.IsTrue(System.DateTime.Equals(result.OrderDate, System.DateTime.Parse("3/16/2005")));
             Assert.IsTrue(result.JobName == "Shores Elevator");
             Assert.IsTrue(result.JobID == 334);
             Assert.IsTrue(result.LineItems.Count == 12);
@@ -348,22 +379,22 @@ namespace DataLayerTest
 
         }
         [TestClass]
-        public class JobRepo 
-        { 
-        
-       
-        [TestMethod]
-        public void Get_All_Job_list()
+        public class JobRepo
         {
-            var ctx = new BadgerDataModel();
 
 
-            JobsService service = new JobsService(ctx);
+            [TestMethod]
+            public void Get_All_Job_list()
+            {
+                var ctx = new BadgerDataModel();
 
-            var jobs = service.All();
-            Assert.IsTrue(jobs.Count > 100);
 
-        }
+                JobsService service = new JobsService(ctx);
+
+                var jobs = service.All();
+                Assert.IsTrue(jobs.Count > 100);
+
+            }
 
         }
 

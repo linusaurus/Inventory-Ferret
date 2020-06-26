@@ -31,9 +31,7 @@
             this.txtJobName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtFax = new System.Windows.Forms.TextBox();
             this.txtZip = new System.Windows.Forms.TextBox();
-            this.txtPhone = new System.Windows.Forms.TextBox();
             this.txtState = new System.Windows.Forms.TextBox();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.txtSupplierAddress = new System.Windows.Forms.TextBox();
@@ -66,6 +64,8 @@
             this.btnEditSupplier = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
+            this.mtxtPhone = new System.Windows.Forms.MaskedTextBox();
+            this.mtxtFax = new System.Windows.Forms.MaskedTextBox();
             this.gbCOst.SuspendLayout();
             this.gbSpecialnstruction.SuspendLayout();
             this.gbDetails.SuspendLayout();
@@ -97,16 +97,6 @@
             this.label1.TabIndex = 18;
             this.label1.Text = "Phone#";
             // 
-            // txtFax
-            // 
-            this.txtFax.Location = new System.Drawing.Point(218, 97);
-            this.txtFax.Margin = new System.Windows.Forms.Padding(2);
-            this.txtFax.Name = "txtFax";
-            this.txtFax.ReadOnly = true;
-            this.txtFax.Size = new System.Drawing.Size(89, 20);
-            this.txtFax.TabIndex = 10;
-            this.txtFax.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // txtZip
             // 
             this.txtZip.Location = new System.Drawing.Point(218, 73);
@@ -116,16 +106,6 @@
             this.txtZip.Size = new System.Drawing.Size(89, 20);
             this.txtZip.TabIndex = 11;
             this.txtZip.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // txtPhone
-            // 
-            this.txtPhone.Location = new System.Drawing.Point(82, 97);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(2);
-            this.txtPhone.Name = "txtPhone";
-            this.txtPhone.ReadOnly = true;
-            this.txtPhone.Size = new System.Drawing.Size(91, 20);
-            this.txtPhone.TabIndex = 12;
-            this.txtPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtState
             // 
@@ -409,6 +389,8 @@
             // 
             // button1
             // 
+            this.button1.Enabled = false;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Location = new System.Drawing.Point(18, 616);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(77, 29);
@@ -418,11 +400,13 @@
             // 
             // btnEditSupplier
             // 
+            this.btnEditSupplier.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnEditSupplier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEditSupplier.Image = global::Weaselware.InventoryFerret.Properties.Resources.outline_message_black_24dp2;
             this.btnEditSupplier.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEditSupplier.Location = new System.Drawing.Point(207, 150);
+            this.btnEditSupplier.Location = new System.Drawing.Point(193, 150);
             this.btnEditSupplier.Name = "btnEditSupplier";
-            this.btnEditSupplier.Size = new System.Drawing.Size(100, 27);
+            this.btnEditSupplier.Size = new System.Drawing.Size(114, 27);
             this.btnEditSupplier.TabIndex = 48;
             this.btnEditSupplier.Text = "Edit Supplier";
             this.btnEditSupplier.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -432,6 +416,8 @@
             // btnSave
             // 
             this.btnSave.Enabled = false;
+            this.btnSave.FlatAppearance.BorderSize = 2;
+            this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSave.Image = global::Weaselware.InventoryFerret.Properties.Resources.baseline_save_black_24dp1;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.Location = new System.Drawing.Point(177, 616);
@@ -439,11 +425,14 @@
             this.btnSave.Size = new System.Drawing.Size(128, 29);
             this.btnSave.TabIndex = 46;
             this.btnSave.Text = "Save Changes";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnPrint
             // 
+            this.btnPrint.FlatAppearance.BorderSize = 2;
+            this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPrint.Image = global::Weaselware.InventoryFerret.Properties.Resources.round_print_black_24dp;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPrint.Location = new System.Drawing.Point(101, 616);
@@ -455,10 +444,30 @@
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
+            // mtxtPhone
+            // 
+            this.mtxtPhone.Location = new System.Drawing.Point(89, 97);
+            this.mtxtPhone.Mask = "(999) 000-0000";
+            this.mtxtPhone.Name = "mtxtPhone";
+            this.mtxtPhone.ReadOnly = true;
+            this.mtxtPhone.Size = new System.Drawing.Size(83, 20);
+            this.mtxtPhone.TabIndex = 49;
+            // 
+            // mtxtFax
+            // 
+            this.mtxtFax.Location = new System.Drawing.Point(218, 97);
+            this.mtxtFax.Mask = "(999) 000-0000";
+            this.mtxtFax.Name = "mtxtFax";
+            this.mtxtFax.ReadOnly = true;
+            this.mtxtFax.Size = new System.Drawing.Size(89, 20);
+            this.mtxtFax.TabIndex = 50;
+            // 
             // OrderHeaderVerticalControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.mtxtFax);
+            this.Controls.Add(this.mtxtPhone);
             this.Controls.Add(this.btnEditSupplier);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSave);
@@ -470,9 +479,7 @@
             this.Controls.Add(this.gbCOst);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtFax);
             this.Controls.Add(this.txtZip);
-            this.Controls.Add(this.txtPhone);
             this.Controls.Add(this.txtState);
             this.Controls.Add(this.txtCity);
             this.Controls.Add(this.txtSupplierAddress);
@@ -498,9 +505,7 @@
         private System.Windows.Forms.TextBox txtJobName;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox txtFax;
         private System.Windows.Forms.TextBox txtZip;
-        private System.Windows.Forms.TextBox txtPhone;
         private System.Windows.Forms.TextBox txtState;
         private System.Windows.Forms.TextBox txtCity;
         private System.Windows.Forms.TextBox txtSupplierAddress;
@@ -533,5 +538,7 @@
         private System.Windows.Forms.Button button1;
         public System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Button btnEditSupplier;
+        private System.Windows.Forms.MaskedTextBox mtxtPhone;
+        private System.Windows.Forms.MaskedTextBox mtxtFax;
     }
 }

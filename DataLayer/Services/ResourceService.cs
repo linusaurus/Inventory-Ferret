@@ -13,7 +13,7 @@ namespace DataLayer.Services
 
         private readonly BadgerDataModel ctx;
 
-        // Constructor ----------------------
+        // Constructor --------------------------------
         public ResourceService(BadgerDataModel Context)
         { ctx = Context;}
 
@@ -25,7 +25,6 @@ namespace DataLayer.Services
                 resource = new Resource();               
                 ctx.Resource.Add(resource);
                 // Save to DB to get the new ID --
-
                 ctx.SaveChanges();
              }
             //Map properties --------------------------------------------------
@@ -35,18 +34,18 @@ namespace DataLayer.Services
             //resource.ResourceID = resourceDTO.ResourceID;
 
             //remove deleted details -
-            resource.Versions
+            resource.ResourceVersions
             .Where(d => !resourceDTO.Versions.Any(ResourceVersionDto => ResourceVersionDto.ResourceVersionID == d.ResourceVersionID)).ToList()
             .ForEach(deleted => ctx.ResourceVersion.Remove(deleted));
 
             //update or add details
             resourceDTO.Versions.ToList().ForEach(ResourceVersionDTO =>
             {
-                var detail = resource.Versions.FirstOrDefault(d => d.ResourceVersionID == ResourceVersionDTO.ResourceVersionID);
+                var detail = resource.ResourceVersions.FirstOrDefault(d => d.ResourceVersionID == ResourceVersionDTO.ResourceVersionID);
                 if (detail == null)
                 {
                     detail = new ResourceVersion();
-                    resource.Versions.Add(detail);
+                    resource.ResourceVersions.Add(detail);
                 }
 
                 detail.ResourceID = resource.ResourceID;
@@ -55,7 +54,6 @@ namespace DataLayer.Services
                 detail.RVersion = ResourceVersionDTO.RVersion;
 
             });
-
 
             ctx.SaveChanges();
         }

@@ -17,7 +17,6 @@ namespace Weaselware.InventoryFerret {
         int _loggedOnUserID;
         readonly OrdersService _ordersService;
         
-
         public TabControl MainTabs {get;set;}
 
         public int LoggedOnUserID
@@ -112,6 +111,37 @@ namespace Weaselware.InventoryFerret {
 
         }
 
+        private void CloseActiveTab()
+        {
+            TabPage tabpage = MainTabControl.SelectedTab;
+            if (MainTabControl.TabPages.Count > 1)
+            {
+                // Need to determine is the page is Order, and is not Dirty
+                if (tabpage.Name == "Order")
+                {
+                    if (((OrderEditSplitPanelControl)tabpage.Controls[0]).IsDirty == true)
+                    {
+                        DialogResult dlg = MessageBox.Show("Save changes?", "Question", MessageBoxButtons.YesNo);
+
+                        if (dlg == DialogResult.Yes)
+                        {
+                            // -- UserCOntrol public save method ---
+                            ((OrderEditSplitPanelControl)tabpage.Controls[0]).SaveChanges();
+                            MainTabControl.TabPages.Remove(tabpage);
+                        }
+                        if (dlg == DialogResult.No)
+                        { MainTabControl.TabPages.Remove(tabpage); }
+
+                    }
+                    else
+                    { MainTabControl.TabPages.Remove(tabpage); }
+                                         
+                }
+                else
+                {MainTabControl.TabPages.Remove(tabpage);}   
+            }
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData) {
             if (keyData == (Keys.F7))
             {
@@ -122,76 +152,17 @@ namespace Weaselware.InventoryFerret {
                 this.tsbJobItems.PerformClick();
             }
             if (keyData == (Keys.Escape))
-            {              
-                TabPage tabpage = MainTabControl.SelectedTab;
-                if (MainTabControl.TabPages.Count > 1)  
-                {
-                    // Need to determine is the page is Order, and is not Dirty
-                    if (tabpage.Name =="Order")
-                    {
-                        if (((OrderEditSplitPanelControl)tabpage.Controls[0]).IsDirty == true)
-                        {
-                            DialogResult dlg = MessageBox.Show("Save changes?", "Question", MessageBoxButtons.YesNo);
-
-                            if (dlg == DialogResult.Yes)
-                            {
-                                // -- UserCOntrol public save method ---
-                                ((OrderEditSplitPanelControl)tabpage.Controls[0]).SaveChanges();
-                                MainTabControl.TabPages.Remove(tabpage);
-                            }
-                            if (dlg == DialogResult.No)
-                            {MainTabControl.TabPages.Remove(tabpage); }
- 
-                        }
-                        else
-                        {
-                            MainTabControl.TabPages.Remove(tabpage);
-                        }
-                    }
-                    else
-                    {
-                        MainTabControl.TabPages.Remove(tabpage);
-                    }
-                              
-                }              
+            {
+                CloseActiveTab();       
             }
             return base.ProcessCmdKey(ref msg, keyData);
         }
-        /// <summary>
-        /// New Order
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void tsOrderButton_Click(object sender, EventArgs e)
-        {
-            //var jobID = 0 ;
-            //var supplierID = 0;
-
-            //NewOrderDialog diag = new NewOrderDialog(_context);
-            //if (diag.ShowDialog() == DialogResult.OK)
-            //{
-            //    jobID = diag.JobNumber;
-            //    supplierID = diag.SupplierID;
-            //}
-
-            //var order = _ordersService.NewDefault(LoggedOnUserID,supplierID,jobID);
-            // _ordersService.Add(order);
-            // Test open existing order
-
-            var order = _ordersService.GetOrderByID(23415);
- 
-            // Purchase Order Page
-            MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage,23415));
-
-        }
-
+     
         private void mainToolStrip_MouseEnter(object sender, EventArgs e)
         {
             ToolStrip ts = ((ToolStrip)sender);
             ToolStripButton tsb = (ToolStripButton)ts.GetItemAt(395, 792);
         }
-
-        
 
         private void tsbJobItems_OnClick(object sender, EventArgs e)
         {
@@ -235,7 +206,7 @@ namespace Weaselware.InventoryFerret {
                 if (r.Contains(p))
                 {
                     TabPage tabPage = (TabPage)tabControl.TabPages[tabControl.SelectedIndex];
-                    tabControl.TabPages.Remove(tabPage);
+                    CloseActiveTab();
                 }
             }
         }
@@ -254,12 +225,12 @@ namespace Weaselware.InventoryFerret {
                     {
                         jobID = diag.JobNumber;
                         supplierID = diag.SupplierID;
-                    }
 
-                    var order = _ordersService.NewDefault(LoggedOnUserID, supplierID, jobID);
-                    _ordersService.Add(order);
-                    // Purchase Order Page
-                    MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage, order.OrderNum));
+                        var order = _ordersService.NewDefault(LoggedOnUserID, supplierID, jobID);
+                        _ordersService.Add(order);
+                        // Purchase Order Page
+                        MainTabControl.TabPages.Add(PageFactory.GetNewTabPage(_context, PageFactory.TabPageType.PurchaseOrderPage, order.OrderNum));
+                    }
 
                     break;
                 /// My Orders -------+

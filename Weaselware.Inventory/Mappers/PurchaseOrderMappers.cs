@@ -44,11 +44,13 @@ namespace Weaselware.InventoryFerret.Mappers
             destination.SupplierFax = source.Supplier.Fax;
             destination.OrderTotal = source.OrderTotal.GetValueOrDefault();
             destination.Memo = source.Memo;
+            destination.TaxRate = source.TaxRate.GetValueOrDefault();
+            destination.AccountNumber = source.Supplier.AccountNumber;
+
             destination.LineItems = lineMapper.MapList(source.PurchaseLineItem);
             destination.Attachments = attachmentMapper.MapList(source.Attachment);
             destination.OrderFees = orderFeeMapper.MapList(source.OrderFee);
-            destination.TaxRate = source.TaxRate.GetValueOrDefault();
-            destination.AccountNumber = source.Supplier.AccountNumber;
+ 
         }
     }
 

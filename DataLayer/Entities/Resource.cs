@@ -7,12 +7,18 @@ namespace DataLayer.Entities
     public class Resource
     {
         public int ResourceID { get; set; }
+
+        public int? PartID { get; set; }
         public string ResourceDescription { get; set; }
         public string Createdby { get; set; }
-        public int CurrentVersion { get; set; }
+
+        public DateTime CreatedDate { get; set; }
+        public int? CurrentVersion { get; set; }
+
+        public Part Part { get; set; }
 
         // relationship child collection ----------------
-        public List<ResourceVersion> Versions { get; set; } = new List<ResourceVersion>();
+        public List<ResourceVersion> ResourceVersions { get; set; } = new List<ResourceVersion>();
 
     }
 

@@ -27,15 +27,15 @@ namespace Weaselware.InventoryFerret
 
             // Standard App Startup
             //---------------------------------------------------------------------------------
-            // Main mainForm = new Main();
-            // Harness mainForm = new Harness();
+            
+             Harness mainForm = new Harness();
 
             //mainForm.LoggedOnUserID = 92;
-            //Globals.CurrentLoggedUserID = 8;
-            // Globals.CurrentUserName = "Richard";
+            Globals.CurrentLoggedUserID = 8;
+            Globals.CurrentUserName = "Richard";
             //Application.Run(new DataForm());
 
-            //Application.Run(mainForm);
+            Application.Run(mainForm);
 
             // Application.Run(mainForm);
             //--------------------------------------------------------------------------------
@@ -43,15 +43,15 @@ namespace Weaselware.InventoryFerret
             //LoginForm loginForm = new LoginForm();
             //if (loginForm.ShowDialog() == DialogResult.OK)
             //{
-            Main mainForm = new Main();
+           // Main mainForm = new Main();
 
-            mainForm.LoggedOnUserID = 8;
-            Globals.CurrentLoggedUserID = 8;
-            Globals.CurrentUserName = "Richard";
+           // mainForm.LoggedOnUserID = 8;
+            //Globals.CurrentLoggedUserID = 8;
+           // Globals.CurrentUserName = "Richard";
            // mainForm.LoggedOnUserID = loginForm.EmployeeID;
            // Globals.CurrentLoggedUserID = loginForm.EmployeeID;
             // Globals.CurrentUserName = loginForm.UserN
-            Application.Run(mainForm);
+            //Application.Run(mainForm);
             //}
 
 
