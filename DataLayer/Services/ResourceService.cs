@@ -17,45 +17,32 @@ namespace DataLayer.Services
         public ResourceService(BadgerDataModel Context)
         { ctx = Context;}
 
-        public void CreateOrUpdateOrder(ResourceDto resourceDTO)
+        public Resource Find(int resourceID)
+        {
+            return ctx.Resource.Find(resourceID);
+        }
+
+
+        public Resource PushVersion(Resource pushResource,Byte[] newfile,string comment, string user)
         {            
-            var resource = ctx.Resource.FirstOrDefault(o => o.ResourceID == resourceDTO.ResourceID);
-            if (resource == null)
-            {
-                resource = new Resource();               
-                ctx.Resource.Add(resource);
-                // Save to DB to get the new ID --
-                ctx.SaveChanges();
-             }
-            //Map properties --------------------------------------------------
-            resource.Createdby = resourceDTO.Createdby;
-            resource.CurrentVersion = resourceDTO.CurrentVersion;
-            resource.ResourceDescription = resourceDTO.ResourceDescription;
-            //resource.ResourceID = resourceDTO.ResourceID;
+            var resource = ctx.Resource.FirstOrDefault(o => o.ResourceID == pushResource.ResourceID);
 
-            //remove deleted details -
-            resource.ResourceVersions
-            .Where(d => !resourceDTO.Versions.Any(ResourceVersionDto => ResourceVersionDto.ResourceVersionID == d.ResourceVersionID)).ToList()
-            .ForEach(deleted => ctx.ResourceVersion.Remove(deleted));
+            // Create a new Resource Version Object and populate it
+            ResourceVersion version = new ResourceVersion();
+            version.ModDate = DateTime.Today;
+            version.ModifiedBy = user;
+            version.ResourceID = resource.ResourceID;
+            version.RVersion = resource.CurrentVersion.GetValueOrDefault();
+            version.VersionComment = comment;
+            version.Resource = newfile;
+            ctx.ResourceVersion.Add(version);
 
-            //update or add details
-            resourceDTO.Versions.ToList().ForEach(ResourceVersionDTO =>
-            {
-                var detail = resource.ResourceVersions.FirstOrDefault(d => d.ResourceVersionID == ResourceVersionDTO.ResourceVersionID);
-                if (detail == null)
-                {
-                    detail = new ResourceVersion();
-                    resource.ResourceVersions.Add(detail);
-                }
-
-                detail.ResourceID = resource.ResourceID;
-                detail.Resource = ResourceVersionDTO.Resource;
-                //detail.ResourceVersionID = ResourceVersionDTO.ResourceVersionID;
-                detail.RVersion = ResourceVersionDTO.RVersion;
-
-            });
+            resource.CurrentVersion = version.RVersion;
 
             ctx.SaveChanges();
+
+            return resource;
+            
         }
     }
 }

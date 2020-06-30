@@ -38,15 +38,20 @@
             this.txtPartID = new System.Windows.Forms.TextBox();
             this.txtItemName = new System.Windows.Forms.TextBox();
             this.txtUnitCost = new System.Windows.Forms.TextBox();
-            this.txtNote = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.txtPartNumber = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
-            this.textBox9 = new System.Windows.Forms.TextBox();
+            this.txtMarkup = new System.Windows.Forms.TextBox();
+            this.txtWeight = new System.Windows.Forms.TextBox();
             this.txtLocation = new System.Windows.Forms.TextBox();
             this.cboUnitOfMeasure = new System.Windows.Forms.ComboBox();
+            this.gboxPart = new System.Windows.Forms.GroupBox();
+            this.txtWaste = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgResources)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.gboxPart.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgResources
@@ -55,9 +60,9 @@
             this.dgResources.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgResources.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgResources.Location = new System.Drawing.Point(132, 268);
+            this.dgResources.Location = new System.Drawing.Point(66, 525);
             this.dgResources.Name = "dgResources";
-            this.dgResources.Size = new System.Drawing.Size(632, 138);
+            this.dgResources.Size = new System.Drawing.Size(631, 138);
             this.dgResources.TabIndex = 16;
             // 
             // button4
@@ -67,7 +72,7 @@
             this.button4.FlatAppearance.BorderSize = 0;
             this.button4.Image = global::Weaselware.InventoryFerret.Properties.Resources.baseline_visibility_black_24dp;
             this.button4.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button4.Location = new System.Drawing.Point(498, 232);
+            this.button4.Location = new System.Drawing.Point(432, 489);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(116, 30);
             this.button4.TabIndex = 17;
@@ -82,7 +87,7 @@
             this.btnNewVersion.FlatAppearance.BorderSize = 0;
             this.btnNewVersion.Image = global::Weaselware.InventoryFerret.Properties.Resources.baseline_get_app_black_24dp;
             this.btnNewVersion.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnNewVersion.Location = new System.Drawing.Point(376, 232);
+            this.btnNewVersion.Location = new System.Drawing.Point(310, 489);
             this.btnNewVersion.Name = "btnNewVersion";
             this.btnNewVersion.Size = new System.Drawing.Size(116, 30);
             this.btnNewVersion.TabIndex = 18;
@@ -97,7 +102,7 @@
             this.btnOpenResource.FlatAppearance.BorderSize = 0;
             this.btnOpenResource.Image = global::Weaselware.InventoryFerret.Properties.Resources.baseline_launch_black_24dp;
             this.btnOpenResource.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOpenResource.Location = new System.Drawing.Point(254, 232);
+            this.btnOpenResource.Location = new System.Drawing.Point(188, 489);
             this.btnOpenResource.Name = "btnOpenResource";
             this.btnOpenResource.Size = new System.Drawing.Size(116, 30);
             this.btnOpenResource.TabIndex = 19;
@@ -112,7 +117,7 @@
             this.btnAddResource.FlatAppearance.BorderSize = 0;
             this.btnAddResource.Image = global::Weaselware.InventoryFerret.Properties.Resources.round_add_circle_black_24dp1;
             this.btnAddResource.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddResource.Location = new System.Drawing.Point(132, 232);
+            this.btnAddResource.Location = new System.Drawing.Point(66, 489);
             this.btnAddResource.Name = "btnAddResource";
             this.btnAddResource.Size = new System.Drawing.Size(116, 30);
             this.btnAddResource.TabIndex = 20;
@@ -125,14 +130,14 @@
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(132, 412);
+            this.dataGridView1.Location = new System.Drawing.Point(66, 669);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(632, 114);
+            this.dataGridView1.Size = new System.Drawing.Size(631, 114);
             this.dataGridView1.TabIndex = 21;
             // 
             // txtItemDescription
             // 
-            this.txtItemDescription.Location = new System.Drawing.Point(132, 35);
+            this.txtItemDescription.Location = new System.Drawing.Point(22, 29);
             this.txtItemDescription.Margin = new System.Windows.Forms.Padding(1);
             this.txtItemDescription.Name = "txtItemDescription";
             this.txtItemDescription.Size = new System.Drawing.Size(389, 20);
@@ -142,7 +147,7 @@
             // txtPartID
             // 
             this.txtPartID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPartID.Location = new System.Drawing.Point(523, 35);
+            this.txtPartID.Location = new System.Drawing.Point(413, 29);
             this.txtPartID.Margin = new System.Windows.Forms.Padding(1);
             this.txtPartID.Name = "txtPartID";
             this.txtPartID.Size = new System.Drawing.Size(98, 20);
@@ -152,7 +157,7 @@
             // 
             // txtItemName
             // 
-            this.txtItemName.Location = new System.Drawing.Point(132, 57);
+            this.txtItemName.Location = new System.Drawing.Point(22, 51);
             this.txtItemName.Margin = new System.Windows.Forms.Padding(1);
             this.txtItemName.Name = "txtItemName";
             this.txtItemName.Size = new System.Drawing.Size(317, 20);
@@ -161,27 +166,18 @@
             // 
             // txtUnitCost
             // 
-            this.txtUnitCost.Location = new System.Drawing.Point(523, 57);
+            this.txtUnitCost.Location = new System.Drawing.Point(413, 51);
             this.txtUnitCost.Margin = new System.Windows.Forms.Padding(1);
-            this.txtUnitCost.MinimumSize = new System.Drawing.Size(0, 21);
+            this.txtUnitCost.MinimumSize = new System.Drawing.Size(4, 21);
             this.txtUnitCost.Name = "txtUnitCost";
-            this.txtUnitCost.Size = new System.Drawing.Size(98, 20);
+            this.txtUnitCost.Size = new System.Drawing.Size(98, 21);
             this.txtUnitCost.TabIndex = 22;
             this.txtUnitCost.Text = "Unit Cost";
             this.txtUnitCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // txtNote
-            // 
-            this.txtNote.Location = new System.Drawing.Point(132, 157);
-            this.txtNote.Margin = new System.Windows.Forms.Padding(1);
-            this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(389, 20);
-            this.txtNote.TabIndex = 22;
-            this.txtNote.Text = "Notes";
-            // 
             // textBox6
             // 
-            this.textBox6.Location = new System.Drawing.Point(636, 170);
+            this.textBox6.Location = new System.Drawing.Point(22, 96);
             this.textBox6.Margin = new System.Windows.Forms.Padding(1);
             this.textBox6.Name = "textBox6";
             this.textBox6.Size = new System.Drawing.Size(98, 20);
@@ -189,32 +185,36 @@
             // 
             // txtPartNumber
             // 
-            this.txtPartNumber.Location = new System.Drawing.Point(132, 80);
+            this.txtPartNumber.Location = new System.Drawing.Point(22, 74);
             this.txtPartNumber.Margin = new System.Windows.Forms.Padding(1);
             this.txtPartNumber.Name = "txtPartNumber";
-            this.txtPartNumber.Size = new System.Drawing.Size(389, 20);
+            this.txtPartNumber.Size = new System.Drawing.Size(317, 20);
             this.txtPartNumber.TabIndex = 22;
             this.txtPartNumber.Text = "Part Name";
             // 
-            // textBox8
+            // txtMarkup
             // 
-            this.textBox8.Location = new System.Drawing.Point(523, 123);
-            this.textBox8.Margin = new System.Windows.Forms.Padding(1);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(98, 20);
-            this.textBox8.TabIndex = 22;
+            this.txtMarkup.Location = new System.Drawing.Point(117, 177);
+            this.txtMarkup.Margin = new System.Windows.Forms.Padding(1);
+            this.txtMarkup.Name = "txtMarkup";
+            this.txtMarkup.Size = new System.Drawing.Size(98, 20);
+            this.txtMarkup.TabIndex = 22;
+            this.txtMarkup.Text = "Markup";
+            this.txtMarkup.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // textBox9
+            // txtWeight
             // 
-            this.textBox9.Location = new System.Drawing.Point(132, 123);
-            this.textBox9.Margin = new System.Windows.Forms.Padding(1);
-            this.textBox9.Name = "textBox9";
-            this.textBox9.Size = new System.Drawing.Size(389, 20);
-            this.textBox9.TabIndex = 22;
+            this.txtWeight.Location = new System.Drawing.Point(25, 177);
+            this.txtWeight.Margin = new System.Windows.Forms.Padding(1);
+            this.txtWeight.Name = "txtWeight";
+            this.txtWeight.Size = new System.Drawing.Size(90, 20);
+            this.txtWeight.TabIndex = 22;
+            this.txtWeight.Text = "Weight";
+            this.txtWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtLocation
             // 
-            this.txtLocation.Location = new System.Drawing.Point(523, 79);
+            this.txtLocation.Location = new System.Drawing.Point(413, 73);
             this.txtLocation.Margin = new System.Windows.Forms.Padding(1);
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(98, 20);
@@ -234,39 +234,97 @@
             "gal",
             "lbs",
             "ft"});
-            this.cboUnitOfMeasure.Location = new System.Drawing.Point(451, 57);
+            this.cboUnitOfMeasure.Location = new System.Drawing.Point(341, 51);
             this.cboUnitOfMeasure.Margin = new System.Windows.Forms.Padding(1);
             this.cboUnitOfMeasure.Name = "cboUnitOfMeasure";
             this.cboUnitOfMeasure.Size = new System.Drawing.Size(70, 21);
             this.cboUnitOfMeasure.TabIndex = 23;
             // 
+            // gboxPart
+            // 
+            this.gboxPart.Controls.Add(this.label3);
+            this.gboxPart.Controls.Add(this.label2);
+            this.gboxPart.Controls.Add(this.label1);
+            this.gboxPart.Controls.Add(this.txtItemDescription);
+            this.gboxPart.Controls.Add(this.cboUnitOfMeasure);
+            this.gboxPart.Controls.Add(this.txtItemName);
+            this.gboxPart.Controls.Add(this.txtLocation);
+            this.gboxPart.Controls.Add(this.txtWaste);
+            this.gboxPart.Controls.Add(this.txtMarkup);
+            this.gboxPart.Controls.Add(this.txtPartNumber);
+            this.gboxPart.Controls.Add(this.textBox6);
+            this.gboxPart.Controls.Add(this.txtWeight);
+            this.gboxPart.Controls.Add(this.txtUnitCost);
+            this.gboxPart.Controls.Add(this.txtPartID);
+            this.gboxPart.Location = new System.Drawing.Point(89, 109);
+            this.gboxPart.Name = "gboxPart";
+            this.gboxPart.Size = new System.Drawing.Size(546, 221);
+            this.gboxPart.TabIndex = 24;
+            this.gboxPart.TabStop = false;
+            this.gboxPart.Text = "Part Details";
+            // 
+            // txtWaste
+            // 
+            this.txtWaste.Location = new System.Drawing.Point(217, 177);
+            this.txtWaste.Margin = new System.Windows.Forms.Padding(1);
+            this.txtWaste.Name = "txtWaste";
+            this.txtWaste.Size = new System.Drawing.Size(98, 20);
+            this.txtWaste.TabIndex = 22;
+            this.txtWaste.Text = "Waste";
+            this.txtWaste.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label1
+            // 
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Location = new System.Drawing.Point(25, 153);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 22);
+            this.label1.TabIndex = 24;
+            this.label1.Text = "Weight";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.SystemColors.Control;
+            this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label2.Location = new System.Drawing.Point(117, 153);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(98, 22);
+            this.label2.TabIndex = 24;
+            this.label2.Text = "Markup";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.SystemColors.Control;
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Location = new System.Drawing.Point(217, 153);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(98, 22);
+            this.label3.TabIndex = 24;
+            this.label3.Text = "Waste";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // PartResourceEditorControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.cboUnitOfMeasure);
-            this.Controls.Add(this.txtLocation);
-            this.Controls.Add(this.textBox8);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.txtUnitCost);
-            this.Controls.Add(this.txtPartID);
-            this.Controls.Add(this.textBox9);
-            this.Controls.Add(this.txtPartNumber);
-            this.Controls.Add(this.txtNote);
-            this.Controls.Add(this.txtItemName);
-            this.Controls.Add(this.txtItemDescription);
+            this.Controls.Add(this.gboxPart);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.btnNewVersion);
             this.Controls.Add(this.btnOpenResource);
             this.Controls.Add(this.btnAddResource);
             this.Controls.Add(this.dgResources);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "PartResourceEditorControl";
-            this.Size = new System.Drawing.Size(778, 537);
+            this.Size = new System.Drawing.Size(777, 822);
             ((System.ComponentModel.ISupportInitialize)(this.dgResources)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.gboxPart.ResumeLayout(false);
+            this.gboxPart.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -282,12 +340,16 @@
         private System.Windows.Forms.TextBox txtPartID;
         private System.Windows.Forms.TextBox txtItemName;
         private System.Windows.Forms.TextBox txtUnitCost;
-        private System.Windows.Forms.TextBox txtNote;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox txtPartNumber;
-        private System.Windows.Forms.TextBox textBox8;
-        private System.Windows.Forms.TextBox textBox9;
+        private System.Windows.Forms.TextBox txtMarkup;
+        private System.Windows.Forms.TextBox txtWeight;
         private System.Windows.Forms.TextBox txtLocation;
         private System.Windows.Forms.ComboBox cboUnitOfMeasure;
+        private System.Windows.Forms.GroupBox gboxPart;
+        private System.Windows.Forms.TextBox txtWaste;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }

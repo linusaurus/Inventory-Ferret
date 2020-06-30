@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataLayer.Models;
 using DataLayer.Entities;
+using DataLayer.Services;
 
 namespace Weaselware.InventoryFerret.UserControls
 {
@@ -16,6 +17,9 @@ namespace Weaselware.InventoryFerret.UserControls
     {
         private ResourceDto resourceDTO;
         BadgerDataModel ctx;
+        private PartsService partService;
+        private Part _part;
+        private BindingSource bsPart = new BindingSource();
 
         public PartResourceEditorControl()
         {
@@ -31,7 +35,10 @@ namespace Weaselware.InventoryFerret.UserControls
         public void SetDataSource(BadgerDataModel context, int partID)
         {
             ctx = context;
-
+            partService = new PartsService(ctx);
+            _part = partService.Find(7991);
+            bsPart.DataSource = _part;
+            dgResources.DataSource = bsPart;
         }
 
 

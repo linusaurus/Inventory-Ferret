@@ -2,8 +2,10 @@ using DataLayer.Entities;
 using DataLayer.Interfaces;
 using DataLayer.Models;
 using DataLayer.Services;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.IO;
 
 namespace DataLayerTest
 {
@@ -107,34 +109,42 @@ namespace DataLayerTest
             part.ItemDescription = "Master Widjet 1023";
             part.ItemName = "MW-1023";
             part.PartNum = "MW-10034";
-          
-           
+                   
             part.MarkUp = 1.25m;
             part.Waste = 2.0m;
-            part.Weight = 1225m;
+            part.Weight = 12.25m;
             part.UID = 1;
             part.ManuId = 245;
             part.Location = "AC23";
             part.Obsolete = false;
             part.Sku = "1023847A990";
-
+            
             ResourceDto resource = new ResourceDto
             {
-                ResourceDescription = "my first resource",
+                ResourceDescription = "Chipman Home Network",
                 CurrentVersion = 1,
-               
+                Data = File.ReadAllBytes(@"C:\Users\Rich.DESIGNSYNTHESIS\Documents\chipmanHomeNetwork.sdr")
             };
+            
             part.Resources.Add(resource);
-
-            ResourceVersionDto ver = new ResourceVersionDto();
-            ver.RVersion = 1;
-            ver.VersionComment = "Dicks big ass resource version scheme";
-            resource.Versions.Add(ver);
-
             repo.InsertOrUpdate(part, "Richard Young");
 
-            
             Assert.IsTrue(1 == 1);
+        }
+
+        [TestMethod]
+        public void Add_Resource_Version()
+        {
+            ResourceService service = new ResourceService(new BadgerDataModel());
+
+            Resource resource = service.Find(12);
+            int ver = resource.CurrentVersion.GetValueOrDefault();
+
+            byte[] Data = File.ReadAllBytes(@"C:\Users\Rich.DESIGNSYNTHESIS\Documents\DBDesign.docx");
+            service.PushVersion(resource, Data, "Changed the corner radius", "Richard Young");
+            var result = service.Find(12);
+
+            Assert.IsTrue(result.CurrentVersion == ver + 1);
         }
 
         [TestMethod]
@@ -336,24 +346,24 @@ namespace DataLayerTest
         [TestMethod]
         public void Resource_CreateNew_ReturnNewVersion()
         {
-            var ctx = new BadgerDataModel();
-            ResourceService _service = new ResourceService(ctx);
-            ResourceDto resourceDto = new ResourceDto();
-            resourceDto.Createdby = "richard";
-            resourceDto.ResourceDescription = "Can not be a meaningless garble";
+            //var ctx = new BadgerDataModel();
+            //ResourceService _service = new ResourceService(ctx);
+            //ResourceDto resourceDto = new ResourceDto();
+            //resourceDto.Createdby = "richard";
+            //resourceDto.ResourceDescription = "Can not be a meaningless garble";
 
-            ResourceVersionDto child = new ResourceVersionDto();
+            //ResourceVersionDto child = new ResourceVersionDto();
 
-            child.ModifiedBy = "richard";
-            child.ModDate = DateTime.Today;
-            child.RVersion = 1;
+            //child.ModifiedBy = "richard";
+            //child.ModDate = DateTime.Today;
+            //child.RVersion = 1;
 
 
-            resourceDto.Versions.Add(child);
+            
 
-            _service.CreateOrUpdateOrder(resourceDto);
-            //ctx.SaveChanges();
-            Assert.IsTrue(child.ResourceVersionID != default);
+            //_service.CreateOrUpdateOrder(resourceDto);
+            ////ctx.SaveChanges();
+            //Assert.IsTrue(child.ResourceVersionID != default);
 
         }
 
@@ -373,7 +383,7 @@ namespace DataLayerTest
 
             ctx.ResourceVersion.Add(_version);
 
-            // _service.CreateOrUpdateOrder(resourceDto);
+           
             ctx.SaveChanges();
             Assert.IsTrue(_version.ResourceVersionID != default);
 

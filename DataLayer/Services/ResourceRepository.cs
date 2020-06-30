@@ -26,7 +26,7 @@ namespace Weaselware.InventoryFerret
 
         public Resource LoadResource(int resourceID)
         {
-            return ctx.Resource.Include(v => v.ResourceVersions).Where(r => r.ResourceID == resourceID).FirstOrDefault();
+            return ctx.Resource.Where(r => r.ResourceID == resourceID).FirstOrDefault();
         }
 
         public void CreateOrUpdateOrder(OrderDetailDto orderDTO)

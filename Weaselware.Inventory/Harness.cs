@@ -24,7 +24,7 @@ namespace Weaselware.InventoryFerret
 
             PartResourceEditorControl ctr = new PartResourceEditorControl();
             this.Controls.Add(ctr);
-            ctr.SetDataSource(ctx,1);
+            ctr.SetDataSource(ctx,7991);
          
 
         }

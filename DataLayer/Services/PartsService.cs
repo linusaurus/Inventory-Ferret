@@ -8,6 +8,9 @@ using DataLayer.Interfaces;
 using DataLayer.Entities;
 using DataLayer.Services;
 using DataLayer.Models;
+using DataLayer;
+
+using System.IO;
 
 namespace DataLayer.Services
 {
@@ -169,42 +172,15 @@ namespace DataLayer.Services
                 {
                     detail = new Resource();
                     detail.CreatedDate = DateTime.Today;
-                    detail.Createdby = user;
+                    detail.Createdby = user;                  
                     part.GetResource.Add(detail);
                 }
                 detail.CurrentVersion = detailDTO.CurrentVersion;
                 detail.ResourceDescription = detailDTO.ResourceDescription;
                 detail.PartID = detailDTO.PartID;
+                detail.Data = detailDTO.Data;
+                detail.FileSize = FileHelpers.GetSizeInMemory(detailDTO.Data.Length);
 
-
-                //remove deleted ResourceVersions -
-                //this would require renumbering the versions and why a stack<> might have to be used.
-                detail.ResourceVersions
-                    .Where(d => !detailDTO.Versions.Any(ResourceVersionDto => ResourceVersionDto.ResourceVersionID == d.ResourceVersionID)).ToList()
-                    .ForEach(deleted => _context.ResourceVersion.Remove(deleted));
-
-                int vers = detailDTO.Versions.Count;
-
-                //update or add OrderFees
-                detailDTO.Versions.ToList().ForEach(od =>
-                {
-                    var version = detail.ResourceVersions.FirstOrDefault(r => r.ResourceVersionID == od.ResourceVersionID);
-                    if (version == null)
-                    {
-                        version = new ResourceVersion();
-                        version.GetResource.ResourceVersions.Add(version);
-                    }
-
-                    version.ModDate = DateTime.Today;
-                    version.ModifiedBy = user;
-                    version.Resource = od.Resource;
-                    version.ResourceID = od.ResourceID;
-                    version.ResourceVersionID = od.ResourceVersionID;
-                    version.RVersion = od.RVersion;
-                    version.VersionComment = od.VersionComment;
-                  
-
-                });
             });
                 _context.SaveChanges();           
         }

@@ -352,6 +352,12 @@
     <Compile Include="UserControls\PartResourceEditorControl.Designer.cs">
       <DependentUpon>PartResourceEditorControl.cs</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\PartTypePicker.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\PartTypePicker.Designer.cs">
+      <DependentUpon>PartTypePicker.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\PurchaseOrderControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -528,6 +534,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\PartResourceEditorControl.resx">
       <DependentUpon>PartResourceEditorControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControls\PartTypePicker.resx">
+      <DependentUpon>PartTypePicker.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UserControls\PurchaseOrderControl.resx">
       <DependentUpon>PurchaseOrderControl.cs</DependentUpon>

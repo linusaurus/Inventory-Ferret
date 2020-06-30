@@ -12,8 +12,42 @@ namespace DataLayer.Models
         private int partID;
         private string resourceDescription;
         private string createdby;
+        private DateTime createdDate;
         private int currentVersion;
+        private byte[] data;
+        private string fileSize;
    
+
+        public string FileSize
+        {
+            get { return fileSize; }
+            set
+            {
+                fileSize = value;
+                OnPropertyChange();
+            }
+        }
+
+        public byte[] Data
+        {
+            get { return data; }
+            set
+            {
+                data = value;
+                OnPropertyChange();
+            }
+        }
+
+        public DateTime CreatedDate
+        {
+            get { return createdDate; }
+            set
+            {
+                createdDate = value;
+                OnPropertyChange();
+            }
+        }
+
 
         public int PartID
         {
@@ -61,10 +95,7 @@ namespace DataLayer.Models
             }
         }
 
-        public List<ResourceVersionDto> Versions { get; set; } = new List<ResourceVersionDto>();
-
-        public Stack<ResourceVersionDto> vers { get; set; } = new Stack<ResourceVersionDto>();
-
+    
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected void OnPropertyChange([CallerMemberName] string name = null)

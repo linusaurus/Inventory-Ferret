@@ -13,9 +13,6 @@ namespace DataLayer.Entities
         public Byte[] Resource { get; set; }
         public string ModifiedBy { get; set; }
         public DateTime ModDate { get; set; }
-
-        // relationships ------------------------------
-
-        public Resource GetResource { get; set; }
+  
     }
 }

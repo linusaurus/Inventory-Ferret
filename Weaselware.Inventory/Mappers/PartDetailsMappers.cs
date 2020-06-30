@@ -45,7 +45,6 @@ namespace Weaselware.InventoryFerret.Mappers
             destination.CurrentVersion = source.CurrentVersion.GetValueOrDefault();
             destination.ResourceDescription = source.ResourceDescription;
             destination.ResourceID = source.ResourceID;
-            destination.Versions = resourceVersionMapper.MapList(source.ResourceVersions);
         }
     }
     public class ResourceVersionMapper : IMapper<ResourceVersion, ResourceVersionDto>
