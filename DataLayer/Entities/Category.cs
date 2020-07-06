@@ -7,7 +7,7 @@ namespace DataLayer.Entities
     {
         public Category()
         {
-            PartType = new HashSet<PartType>();
+            PartTypes = new HashSet<PartTypes>();
         }
 
         public int Categoryid { get; set; }
@@ -15,6 +15,6 @@ namespace DataLayer.Entities
         public int? PartClassId { get; set; }
 
         public virtual PartClass PartClass { get; set; }
-        public virtual ICollection<PartType> PartType { get; set; }
+        public virtual ICollection<PartTypes> PartTypes { get; set; }
     }
 }

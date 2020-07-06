@@ -17,7 +17,7 @@ namespace DataLayer.Interfaces
         Part Add(Part part);
         Part Find(int PartID);
         Part FindBySKU(string sku);
-        List<Category> PartCategory();
+        //List<Category> PartCategory();
         List<Part> GetAllParts();
         List<Part> GetSupplierParts(int supplierID);
         List<Part> GetManufacturerParts(int ManuID);
@@ -28,6 +28,12 @@ namespace DataLayer.Interfaces
         void AddResource(Document document, Part part);
         List<Part> SearchParts(string searchTerm, SearchOptions option);       
         void Save();
+
+        List<PartListDto> PartsCategorieList(int Categoryid);
+
+        List<PartListDto> PartsPartTypeList(int partypeid);
+
+        List<PartCategory>  GetPartCategories();
     }
 }
 

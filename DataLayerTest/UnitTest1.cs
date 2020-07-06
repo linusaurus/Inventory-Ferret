@@ -147,6 +147,16 @@ namespace DataLayerTest
             Assert.IsTrue(result.CurrentVersion == ver + 1);
         }
 
+
+        [TestMethod]
+        public void Return_Part_Catergories_AND_Parttypes()
+        {
+            IPartsService repo = new PartsService(new BadgerDataModel());
+            var category = repo.GetPartCategories();
+
+            Assert.IsTrue(category != null);
+        }
+
         [TestMethod]
         public void Return_Deep_Part()
         {

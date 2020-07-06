@@ -31,7 +31,7 @@ namespace DataLayer.Entities
         public virtual DbSet<Assembly> Assembly { get; set; }
         public virtual DbSet<Asset> Asset { get; set; }
         public virtual DbSet<Attachment> Attachment { get; set; }
-        public virtual DbSet<Category> Category { get; set; }
+        
         public virtual DbSet<Claim> Claim { get; set; }
         public virtual DbSet<ClaimDocument> ClaimDocument { get; set; }
         public virtual DbSet<ClaimItem> ClaimItem { get; set; }
@@ -52,8 +52,8 @@ namespace DataLayer.Entities
         public virtual DbSet<OrderStatus> OrderStatus { get; set; }
         public virtual DbSet<Part> Part { get; set; }
         public virtual DbSet<PartCategory> PartCategory { get; set; }
-        public virtual DbSet<PartClass> PartClass { get; set; }
-        public virtual DbSet<PartType> PartType { get; set; }
+       
+        //public virtual DbSet<PartType> PartType { get; set; }
         public virtual DbSet<PartTypes> PartTypes { get; set; }
         public virtual DbSet<OrderFee> OrderFee { get; set; }
        
@@ -96,7 +96,7 @@ namespace DataLayer.Entities
             modelBuilder.ApplyConfiguration(new AssemblyConfig());
             modelBuilder.ApplyConfiguration(new AttachmentConfig());
             modelBuilder.ApplyConfiguration(new AssetConfig());
-            modelBuilder.ApplyConfiguration(new CategoryConfig());
+            modelBuilder.ApplyConfiguration(new PartCategoryConfig());
             modelBuilder.ApplyConfiguration(new ClaimConfig());
             modelBuilder.ApplyConfiguration(new ClaimDocumentConfig());
             modelBuilder.ApplyConfiguration(new ClaimItemConfig());
@@ -315,49 +315,15 @@ namespace DataLayer.Entities
 
  
 
-            modelBuilder.Entity<PartCategory>(entity =>
-            {
-                entity.Property(e => e.PartCategoryId).HasColumnName("PartCategoryID");
+           
 
-                entity.Property(e => e.CategoryName)
-                    .HasMaxLength(70)
-                    .IsFixedLength();
-            });
-
-            modelBuilder.Entity<PartClass>(entity =>
-            {
-                entity.Property(e => e.PartClassId).HasColumnName("PartClassID");
-
-                entity.Property(e => e.PartClass1)
-                    .HasColumnName("PartClass")
-                    .HasMaxLength(70)
-                    .IsFixedLength();
-            });
-
-            modelBuilder.Entity<PartType>(entity =>
-            {
-                entity.Property(e => e.PartTypeId).HasColumnName("PartTypeID");
-
-                entity.Property(e => e.PartType1)
-                    .HasColumnName("PartType")
-                    .HasMaxLength(75)
-                    .IsFixedLength();
-
-                entity.HasOne(d => d.Category)
-                    .WithMany(p => p.PartType)
-                    .HasForeignKey(d => d.Categoryid)
-                    .HasConstraintName("FK_PartType_Category");
-            });
+          
 
             modelBuilder.Entity<PartTypes>(entity =>
             {
-                entity.HasKey(e => e.PartTypeId);
+                entity.HasKey(e => e.PartTypeID);
 
-                entity.Property(e => e.PartTypeId).HasColumnName("PartTypeID");
-
-                entity.Property(e => e.PartTypeName)
-                    .HasMaxLength(75)
-                    .IsFixedLength();
+                
             });
 
         

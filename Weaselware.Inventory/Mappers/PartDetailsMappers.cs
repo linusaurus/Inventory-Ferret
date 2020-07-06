@@ -24,6 +24,8 @@ namespace Weaselware.InventoryFerret.Mappers
             destination.PartNum = source.PartNum;
             destination.PartTypeID = source.PartTypeId.GetValueOrDefault();
             destination.Location = source.Location;
+            destination.UnitCost = source.Cost.GetValueOrDefault();
+            destination.UID = source.UID.GetValueOrDefault();
             destination.ManuId = source.ManuId.GetValueOrDefault();
             destination.MarkUp = source.MarkUp.GetValueOrDefault();
             destination.AddedBy = source.AddedBy;
@@ -31,7 +33,8 @@ namespace Weaselware.InventoryFerret.Mappers
             destination.ModifiedBy = source.ModifiedBy;
             destination.ModifiedDate = source.ModifiedDate.GetValueOrDefault();
             destination.Sku = source.Sku;
-
+            destination.Weight = source.Weight.GetValueOrDefault();
+            destination.Waste = source.Waste.GetValueOrDefault();
             destination.Resources = resourceMapper.MapList(source.GetResource);
         }
     }
@@ -41,10 +44,15 @@ namespace Weaselware.InventoryFerret.Mappers
         private readonly IMapper<ResourceVersion, ResourceVersionDto> resourceVersionMapper = new ResourceVersionMapper();
         public void Map(Resource source, ResourceDto destination)
         {
+            destination.ResourceID = source.ResourceID;
+            destination.PartID = source.PartID.GetValueOrDefault();
             destination.Createdby = source.Createdby;
+            destination.CreatedDate = source.CreatedDate.GetValueOrDefault();
             destination.CurrentVersion = source.CurrentVersion.GetValueOrDefault();
             destination.ResourceDescription = source.ResourceDescription;
             destination.ResourceID = source.ResourceID;
+            destination.FileSize = source.FileSize;
+            destination.Data = source.Data;
         }
     }
     public class ResourceVersionMapper : IMapper<ResourceVersion, ResourceVersionDto>

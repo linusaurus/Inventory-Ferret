@@ -8,9 +8,10 @@ using DataLayer.Interfaces;
 using DataLayer.Entities;
 using DataLayer.Services;
 using DataLayer.Models;
+using Dapper;
 using DataLayer;
-
 using System.IO;
+using Microsoft.Data.SqlClient;
 
 namespace DataLayer.Services
 {
@@ -148,9 +149,11 @@ namespace DataLayer.Services
             //Map properties
             part.PartNum= partDTO.PartNum;
             part.ModifiedDate = DateTime.Today;
+            part.ModifiedBy = user;
             part.ObsoluteFlag = partDTO.Obsolete;
             part.Cost = partDTO.UnitCost;
             part.UID = partDTO.UID;
+            part.Location = partDTO.Location;
             part.ManuId = partDTO.ManuId;
             part.ItemDescription = partDTO.ItemDescription;
             part.ItemName = partDTO.ItemName;
@@ -231,10 +234,7 @@ namespace DataLayer.Services
         /// TODO this shuld be moved tomore general list data source
         /// </summary>
         /// <returns></returns>
-        public List<Category> PartCategory()
-        {
-            return _context.Category.ToList();
-        }
+       
 
         public void DeleteResource(Document document, Part part)
         {          
@@ -266,6 +266,35 @@ namespace DataLayer.Services
             return part;
         }
 
-        
+        public List<PartCategory> GetPartCategories()
+        {
+            var result = _context.PartCategory.AsNoTracking().Include(p => p.PartTypes).ToList();
+            return result;
+        }
+
+        public List<PartListDto> PartsCategorieList(int Categoryid)
+        {
+            List<PartListDto> result;
+            var dynamicParameters = new DynamicParameters();
+            dynamicParameters.Add("PartCategoryID", Categoryid);
+            
+            string con = "Server = 192.168.10.34; database = Badger; uid = sa; pwd = Kx09a32x;";
+            string sql = "SELECT  p.PartID,p.ItemDescription,p.Location, m.Manufacturer FROM Part p, Manu m " +
+                         " WHERE PartTypeID IN(SELECT PartTypeID from PartTypes Where PartCategoryID = @ID) AND m.ManuID = p.ManuID";
+
+            using (var connection = new SqlConnection(con))
+            {
+                connection.Open();
+                result = connection.Query<PartListDto>(sql,new { ID = Categoryid}).ToList();
+            }
+
+            return result;
+          
+        }
+
+        public List<PartListDto> PartsPartTypeList(int partypeid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

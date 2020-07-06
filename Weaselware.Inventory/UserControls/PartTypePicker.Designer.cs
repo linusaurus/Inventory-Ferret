@@ -28,23 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.tvPartTypes = new System.Windows.Forms.TreeView();
             this.SuspendLayout();
             // 
-            // treeView1
+            // tvPartTypes
             // 
-            this.treeView1.Location = new System.Drawing.Point(14, 12);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(306, 589);
-            this.treeView1.TabIndex = 0;
+            this.tvPartTypes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tvPartTypes.Location = new System.Drawing.Point(2, 2);
+            this.tvPartTypes.Name = "tvPartTypes";
+            this.tvPartTypes.Size = new System.Drawing.Size(272, 469);
+            this.tvPartTypes.TabIndex = 0;
             // 
             // PartTypePicker
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.treeView1);
+            this.Controls.Add(this.tvPartTypes);
             this.Name = "PartTypePicker";
-            this.Size = new System.Drawing.Size(463, 641);
+            this.Padding = new System.Windows.Forms.Padding(2);
+            this.Size = new System.Drawing.Size(276, 476);
             this.Load += new System.EventHandler(this.PartTypePicker_Load);
             this.ResumeLayout(false);
 
@@ -52,6 +56,6 @@
 
         #endregion
 
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView tvPartTypes;
     }
 }

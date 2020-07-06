@@ -12,8 +12,9 @@ namespace Weaselware.InventoryFerret
     {
 
         private BadgerDataModel ctx;
+
         //BindingSource BSorder = new BindingSource();
-        
+
         //OrderDetailDto orderDTO = new OrderDetailDto();
         //OrdersService _orderService;
 
@@ -24,8 +25,10 @@ namespace Weaselware.InventoryFerret
 
             PartResourceEditorControl ctr = new PartResourceEditorControl();
             this.Controls.Add(ctr);
-            ctr.SetDataSource(ctx,7991);
-         
+            ctr.SetDataSource(ctx, 7991);
+
+
+
 
         }
 

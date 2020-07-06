@@ -36,12 +36,13 @@ namespace DataLayer.Entities
         public int? ParentId { get; set; }
         public decimal? Amount_Required { get; set; }
 
-        public virtual PartType PartType { get; set; }
+        public virtual PartTypes PartType { get; set; }
         public virtual Supplier Supplier { get; set; }
         //public virtual UnitOfMeasure U { get; set; }
         
         public List<DocumentParts> DocumentParts { get; set; }
 
+        public Manu Manu { get; set; }
         public List<Resource> GetResource { get; set; } = new List<Resource>();
         public IList<UnitOfPurchase> UnitOfPurchase { get; set; }
     }
