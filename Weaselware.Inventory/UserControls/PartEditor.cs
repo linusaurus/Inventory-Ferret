@@ -268,7 +268,7 @@ namespace Weaselware.InventoryFerret
             // Create a shelled out Resource Object
             if (selectedPart != null)
             {
-                NewResourceForm rform = new NewResourceForm(selectedPart);
+                NewResourceForm rform = new NewResourceForm(selectedPart.PartID);
                 if (rform.ShowDialog() == DialogResult.OK)
                 {
                    

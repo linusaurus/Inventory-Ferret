@@ -287,7 +287,7 @@ namespace Weaselware.InventoryFerret
     
         private void btnAddResource_Click(object sender, EventArgs e)
         {
-            NewResourceForm form = new NewResourceForm(_part);
+            NewResourceForm form = new NewResourceForm(_part.PartID);
             if(form.ShowDialog() == DialogResult.OK)
             {
 

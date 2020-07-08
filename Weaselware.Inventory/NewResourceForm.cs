@@ -16,39 +16,32 @@ namespace Weaselware.InventoryFerret
 {
     public partial class NewResourceForm : Form
     {
-        private Part _part;
-        private OpenFileDialog openFileDialog;
         
+        private OpenFileDialog openFileDialog;
+        private FileInfo resourcePath;
 
-        public NewResourceForm(Part part)
+        public NewResourceForm(int partID)
         {
             InitializeComponent();
-            _part = part;
-          //  this.Text =String.Format("Part : {0} --{1}", _part.PartID.ToString(),_part.ItemDescription.ToString().Substring(0,40));
             openFileDialog = new OpenFileDialog();
         }
 
         private void NewResourceForm_Load(object sender, EventArgs e)
-        {
-
-        }
+        { }
 
         private void SetText(FileInfo info)
         {
            this.txtFilePath.Text = info.Name.ToString();          
-           this.txtFileExtension.Text = info.Extension.ToString();
-
         }
+        private string resourceDescription;
 
-        private FileInfo resourcePath;
-
+        public string ResourceDescription
+        {  get { return resourceDescription; }  }  
+                  
         public FileInfo ResourcePath
-        {
-            get { return resourcePath; }
-            set { resourcePath = value; }
-        }
-
-
+        {get { return resourcePath; }}
+            
+ 
         private void btnBrowse_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -79,20 +72,39 @@ namespace Weaselware.InventoryFerret
             this.Close();
         }
 
+        private void ToogleButtonStyle(Button btn,bool dirtyState)
+        {
+            if (dirtyState == true)
+            {
+                btn.BackColor = System.Drawing.Color.Cornsilk;
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderColor = Color.Red;
+                btn.FlatAppearance.BorderSize = 3;
+            }
+            else if (dirtyState == false)
+            {
+                btn.BackColor = Color.Gainsboro;
+                btn.FlatAppearance.BorderColor = Color.Cornsilk;
+            }
+        }
+
         private void textBox1_Validating(object sender, CancelEventArgs e)
         {
-            TextBox tb = (TextBox)sender;
+            ValidateDescription();
             
-            string errorMsg = "Resource must have a decent description";
-            if (tb.Text.Length < 20)
-            {
-                // Cancel the event and select the text to be corrected by the user.
-                e.Cancel = true;
-                tb.Select(0, textBox1.Text.Length);
+            //string errorMsg = "Resource must have a decent description";
+            //if (tb.Text.Length < 12)
+            //{
+            //    // Cancel the event and select the text to be corrected by the user.
+            //    e.Cancel = true;
+            //    tb.Select(0, txtResourceDescription.Text.Length);
 
-                // Set the ErrorProvider error with the text to display. 
-                this.errorProvider1.SetError(tb, errorMsg);
-            }
+            //    // Set the ErrorProvider error with the text to display. 
+            //    this.errorProvider1.SetError(tb, errorMsg);
+                
+            //}
+            //resourceDescription = tb.Text;
+            
 
         }
 
@@ -101,6 +113,25 @@ namespace Weaselware.InventoryFerret
             TextBox tb = (TextBox)sender;
             // If all conditions have been met, clear the ErrorProvider of errors.
             errorProvider1.SetError(tb, "");
+         
+        }
+
+        private bool ValidateDescription()
+        {
+            bool bStatus = true;
+            if (txtResourceDescription.Text == "" | txtResourceDescription.Text.Length < 10)
+            {
+                errorProvider1.SetError(txtResourceDescription, "Please provide some description");
+                bStatus = false;
+            }
+            else
+                errorProvider1.SetError(txtResourceDescription, "");
+            return bStatus;
+        }
+
+        private void txtResourceDescription_TextChanged(object sender, EventArgs e)
+        {
+            ValidateDescription();
         }
     }
 }

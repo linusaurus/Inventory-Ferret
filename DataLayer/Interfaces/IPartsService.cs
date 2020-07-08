@@ -23,6 +23,7 @@ namespace DataLayer.Interfaces
         List<Part> GetManufacturerParts(int ManuID);
         List<UnitOfMeasure> Units();
         List<Manu> Manufacturers();
+        string PartTypeName(int typeid);
         bool AssociateSKU(Part part,string sku);
         void InsertOrUpdate(PartDetailDTO partdto, string user);
         void AddResource(Document document, Part part);

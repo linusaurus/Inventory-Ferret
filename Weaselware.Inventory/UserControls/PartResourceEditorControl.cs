@@ -11,6 +11,7 @@ using DataLayer.Models;
 using DataLayer.Entities;
 using DataLayer.Services;
 using Weaselware.InventoryFerret.Mappers;
+using System.IO;
 
 namespace Weaselware.InventoryFerret.UserControls
 {
@@ -22,11 +23,15 @@ namespace Weaselware.InventoryFerret.UserControls
         private Part _part;
         private PartDetailDTO _partDTO = new PartDetailDTO();
         private BindingSource bsPart = new BindingSource();
+        private BindingSource bsResources = new BindingSource();
         private List<UnitOfMeasure> units = new List<UnitOfMeasure>();
+        private bool isDirty = false;
+        PartDetailsMappers _partMapper = new PartDetailsMappers();
 
         public PartResourceEditorControl()
         {
             InitializeComponent();
+            
             BuildGrid();
         }
 
@@ -39,15 +44,45 @@ namespace Weaselware.InventoryFerret.UserControls
         {
             ctx = context;
             partService = new PartsService(ctx);
-            _part = partService.Find(7991);
             units = partService.Units();
-            PartDetailsMappers _partMapper = new PartDetailsMappers();
-            _partMapper.Map(_part, _partDTO);
-            bsPart.DataSource = _partDTO;
-          
-            BindPart();
+            // Load the Unit Combo ----
+            cboUnitOfMeasure.DisplayMember = "Uom";
+            cboUnitOfMeasure.ValueMember = "UID";
+            cboUnitOfMeasure.DataSource = units;
+
+            loadData(7991);
+            
+            //bsPart.DataSource = _partDTO;
+            bsPart.ListChanged += BsPart_ListChanged;
+            //bsResources.DataSource = _partDTO.Resources;
+            //dgResources.DataSource = bsResources;
+            bsResources.ListChanged += BsResources_ListChanged;
+            //txtPartCategory.Text = partService.PartTypeName(_partDTO.PartTypeID);
+            BindPart();    
+            
         }
 
+        private void BsResources_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            CheckForDirtyState(e);
+        }
+
+        private void loadData(int partid)
+        {
+           // Pull the part from database
+            _part = partService.Find(partid);
+           // Hydrate the DTO
+            _partMapper.Map(_part, _partDTO);
+            bsPart.DataSource = _partDTO;
+            bsResources.DataSource = _partDTO.Resources;
+            dgResources.DataSource = bsResources;
+            txtPartCategory.Text = partService.PartTypeName(_partDTO.PartTypeID);
+        }
+
+        private void BsPart_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            CheckForDirtyState(e);
+        }
 
         private void BuildGrid()
         {
@@ -55,6 +90,8 @@ namespace Weaselware.InventoryFerret.UserControls
             dgResources.AutoGenerateColumns = false;
             dgResources.AutoGenerateColumns = false;
             dgResources.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+           
 
             // Currency Decimal Style
             DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
@@ -78,6 +115,7 @@ namespace Weaselware.InventoryFerret.UserControls
             colID.DataPropertyName = "ResourceID";
             colID.Width = 55;
             
+            
             // Description Column ------------------------------------------------------
             DataGridViewTextBoxColumn colDescription = new DataGridViewTextBoxColumn();
             colDescription.DefaultCellStyle = dstyleWrapText;
@@ -87,24 +125,45 @@ namespace Weaselware.InventoryFerret.UserControls
             colDescription.Width = 450;
             colDescription.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
 
-            // UnitCost -----------------------------------------------------------------
+            // Created By  -----------------------------------------------------------------
             DataGridViewTextBoxColumn colCreatedBy = new DataGridViewTextBoxColumn();
             colCreatedBy.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             colCreatedBy.Width = 90;
             colCreatedBy.HeaderText = "Created By";
             colCreatedBy.DataPropertyName = "Createdby";
-            
+
+            // Version Date ----------
+            DataGridViewTextBoxColumn colVersionDate = new DataGridViewTextBoxColumn();
+            colVersionDate.Width = 100;
+            colVersionDate.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            colVersionDate.HeaderText = "Version Date";
+            colVersionDate.DataPropertyName = "CreatedDate";
+
             // CurrentVersion ----------
             DataGridViewTextBoxColumn colCurrentVersion = new DataGridViewTextBoxColumn();
-            colCurrentVersion.Width = 100;
+            colCurrentVersion.Width = 65;
             colCurrentVersion.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            colCurrentVersion.HeaderText = "R-Version";
+            colCurrentVersion.HeaderText = "Vers.";
             colCurrentVersion.DataPropertyName = "CurrentVersion";
 
-         
+            // FileSize ----------
+            DataGridViewTextBoxColumn colFileSize= new DataGridViewTextBoxColumn();
+            colFileSize.Width = 65;
+            colFileSize.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            colFileSize.HeaderText = "Size";
+            colFileSize.DataPropertyName = "FileSize";
+
+
 
             //colUnit.DataSource = _partService.Units();
-            dgResources.Columns.AddRange(colID, colDescription, colCreatedBy, colCurrentVersion);
+            dgResources.Columns.AddRange(colID, colDescription, colCreatedBy, colCurrentVersion, colVersionDate,colFileSize );
+
+            foreach (DataGridViewColumn col in dgResources.Columns)
+            {
+                col.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                col.HeaderCell.Style.Font = new Font("Arial", 11F, FontStyle.Bold, GraphicsUnit.Pixel);
+                col.HeaderCell.Style.BackColor = Color.Cornsilk;
+            }
 
         }
 
@@ -149,6 +208,9 @@ namespace Weaselware.InventoryFerret.UserControls
             //Mod Date  --------------------------------------------------------------------------------------------------
             this.txtModDate.DataBindings.Clear();
             this.txtModDate.DataBindings.Add("Text", bsPart, "ModifiedDate", true, DataSourceUpdateMode.OnPropertyChanged);
+            //Units of Measure Combo  --------------------------------------------------------------------------------------------------
+            this.cboUnitOfMeasure.DataBindings.Clear();
+            this.cboUnitOfMeasure.DataBindings.Add("SelectedValue", bsPart, "UID", true, DataSourceUpdateMode.OnPropertyChanged);
 
         }
 
@@ -159,8 +221,9 @@ namespace Weaselware.InventoryFerret.UserControls
            
             if (dialog.ShowDialog() == DialogResult.OK)
             {
-                _part.PartTypeId = dialog.PickerControl.SelectedPartType;
-            }
+                _partDTO.PartTypeID = dialog.PickerControl.SelectedPartType;
+                txtPartCategory.Text = partService.PartTypeName(_partDTO.PartTypeID);
+            }                        
         }
 
         private void PickerControl_OnCategorySelected(object sender, PartTypePicker.CategorySelectedEventArgs e)
@@ -171,6 +234,72 @@ namespace Weaselware.InventoryFerret.UserControls
         private void btnSave_Click(object sender, EventArgs e)
         {
             partService.InsertOrUpdate(_partDTO, "Richard Young");
+            loadData(_partDTO.PartID);
+            isDirty = false;
+            ToogleButtonStyle(isDirty);
+        }
+
+        private void CheckForDirtyState(ListChangedEventArgs e)
+        {
+            if (e.ListChangedType == System.ComponentModel.ListChangedType.ItemChanged)
+            {
+                btnSave.Enabled = true;
+                isDirty = true;
+                ToogleButtonStyle(isDirty);
+            }
+            if (e.ListChangedType == ListChangedType.ItemDeleted)
+            {
+                btnSave.Enabled = true;
+                isDirty = true;
+                ToogleButtonStyle(isDirty);
+            }
+            if (e.ListChangedType == ListChangedType.ItemAdded)
+            {
+                btnSave.Enabled = true;
+                isDirty = true;
+                ToogleButtonStyle(isDirty);
+            }
+        }
+
+        private void ToogleButtonStyle(bool dirtyState)
+        {
+            if (dirtyState == true)
+            {
+                btnSave.BackColor = System.Drawing.Color.Cornsilk;
+                btnSave.FlatStyle = FlatStyle.Flat;
+                btnSave.FlatAppearance.BorderColor = Color.Red;
+                btnSave.FlatAppearance.BorderSize = 3;
+            }
+            else if (dirtyState == false)
+            {
+                btnSave.BackColor = Color.Gainsboro;
+                btnSave.FlatAppearance.BorderColor = Color.Cornsilk;
+            }
+        }
+
+        private void btnAddResource_Click(object sender, EventArgs e)
+        {
+                                 
+            FileInfo _info;
+
+            NewResourceForm frm = new NewResourceForm(_partDTO.PartID);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                _info = new FileInfo(frm.ResourcePath.FullName);
+                ResourceDto resourceDto = new ResourceDto
+                {
+                    PartID = _partDTO.PartID,
+                    ResourceDescription = frm.ResourceDescription,
+                    CurrentVersion = 1                    
+                };
+
+                resourceDto.FileSize = FileHelpers.GetSizeInMemory(_info.Length);
+                //Read the bytes of the file into a byte array
+                resourceDto.Data = File.ReadAllBytes(_info.FullName);
+                bsResources.Add(resourceDto);
+            }
+
         }
     }
+    
 }

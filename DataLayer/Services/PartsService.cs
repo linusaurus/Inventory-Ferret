@@ -33,6 +33,8 @@ namespace DataLayer.Services
            return  _context.UnitOfMeasure.ToList();
         }
 
+     
+
         public bool AssociateSKU(Part part, string sku)
         {
             bool result = false;
@@ -154,6 +156,7 @@ namespace DataLayer.Services
             part.Cost = partDTO.UnitCost;
             part.UID = partDTO.UID;
             part.Location = partDTO.Location;
+            part.PartTypeId = partDTO.PartTypeID;
             part.ManuId = partDTO.ManuId;
             part.ItemDescription = partDTO.ItemDescription;
             part.ItemName = partDTO.ItemName;
@@ -287,14 +290,20 @@ namespace DataLayer.Services
                 connection.Open();
                 result = connection.Query<PartListDto>(sql,new { ID = Categoryid}).ToList();
             }
-
-            return result;
-          
+            return result;         
         }
 
         public List<PartListDto> PartsPartTypeList(int partypeid)
         {
             throw new NotImplementedException();
+        }
+
+        public string PartTypeName(int typeID)
+        {
+            PartTypes pt = _context.PartTypes.Where(r => r.PartTypeID == typeID).FirstOrDefault();
+            PartCategory ct = _context.PartCategory.Where(c => c.PartCategoryID == pt.PartCategoryID).FirstOrDefault();
+
+            return $"{ct.PartCategoryName.Trim()} - {pt.PartTypeName.Trim()}";
         }
     }
 }
