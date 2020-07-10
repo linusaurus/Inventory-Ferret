@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DataLayer.Entities;
+using DataLayer.Models;
 using DataLayer.Services;
 
 namespace Weaselware.InventoryFerret
@@ -17,58 +18,80 @@ namespace Weaselware.InventoryFerret
     public partial class NewResourceForm : Form
     {
         
-        private OpenFileDialog openFileDialog;
+        
         private FileInfo resourcePath;
+        private ResourceDto _resourceDTO;
+        private BindingSource bsResource = new BindingSource();
 
-        public NewResourceForm(int partID)
+        public NewResourceForm(FileInfo fileInfo,int partID)
         {
             InitializeComponent();
-            openFileDialog = new OpenFileDialog();
+            resourcePath = fileInfo;
+            _resourceDTO = new ResourceDto();        
+            _resourceDTO.PartID = partID;
+            _resourceDTO.Createdby = Globals.CurrentUserName;
+            _resourceDTO.CreatedDate = DateTime.Today;
+            _resourceDTO.FileSize = FileHelpers.GetSizeInMemory(fileInfo.Length);
+            _resourceDTO.Extension = fileInfo.Extension;
+
+            this.Text = $"Add Resource for Part: [{_resourceDTO.PartID}]";
+            _resourceDTO.Src = resourcePath.Name;
+            bsResource.DataSource = _resourceDTO;
+
+            BindResource();
         }
 
-        private void NewResourceForm_Load(object sender, EventArgs e)
-        { }
-
-        private void SetText(FileInfo info)
+       
+        public ResourceDto ResourceDTO
         {
-           this.txtFilePath.Text = info.Name.ToString();          
+            get { return _resourceDTO; }
         }
-        private string resourceDescription;
-
-        public string ResourceDescription
-        {  get { return resourceDescription; }  }  
-                  
+      
         public FileInfo ResourcePath
-        {get { return resourcePath; }}
-            
- 
+        {
+            get { return resourcePath; }
+            set { resourcePath = value; }
+        }
+
+        private void BindResource()
+        {
+            // Description ----
+            txtResourceDescription.DataBindings.Clear();
+            txtResourceDescription.DataBindings.Add("Text", bsResource, "ResourceDescription", true, DataSourceUpdateMode.OnPropertyChanged);
+            // Scr ----
+            txtSrc.DataBindings.Clear();
+            txtSrc.DataBindings.Add("Text", bsResource, "Src", true, DataSourceUpdateMode.OnPropertyChanged);
+            // Created By ----
+            txtCreatedBy.DataBindings.Clear();
+            txtCreatedBy.DataBindings.Add("Text", bsResource, "Createdby", true, DataSourceUpdateMode.OnPropertyChanged);
+            // IsValid ----
+            btnSubmit.DataBindings.Clear();
+            btnSubmit.DataBindings.Add("Enabled", bsResource, "IsValid", false, DataSourceUpdateMode.OnPropertyChanged);
+            // Date Added ----
+            txtDateAdded.DataBindings.Clear();
+            txtDateAdded.DataBindings.Add("Text", bsResource, "CreatedDate", false, DataSourceUpdateMode.OnPropertyChanged);
+            // FileSize ----
+            txtFileSize.DataBindings.Clear();
+            txtFileSize.DataBindings.Add("Text", bsResource, "FileSize", false, DataSourceUpdateMode.OnPropertyChanged);
+            // Extension ----
+            txtExtension.DataBindings.Clear();
+            txtExtension.DataBindings.Add("Text", bsResource, "Extension", false, DataSourceUpdateMode.OnPropertyChanged);
+        }
+
+
         private void btnBrowse_Click(object sender, EventArgs e)
         {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                try
-                {
-                    string path = openFileDialog.FileName;
-                    FileInfo info = new FileInfo(path);
-
-                    SetText(info);
-                    resourcePath = info;
-                }
-                catch (SecurityException ex)
-                {                  
-                    MessageBox.Show($"Security error.\n\nError message: {ex.Message}\n\n" +
-                    $"Details:\n\n{ex.StackTrace}");
-                }
-            }
+            
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-
+            this.Close();
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+           
             this.Close();
         }
 
@@ -90,48 +113,31 @@ namespace Weaselware.InventoryFerret
 
         private void textBox1_Validating(object sender, CancelEventArgs e)
         {
-            ValidateDescription();
-            
-            //string errorMsg = "Resource must have a decent description";
-            //if (tb.Text.Length < 12)
-            //{
-            //    // Cancel the event and select the text to be corrected by the user.
-            //    e.Cancel = true;
-            //    tb.Select(0, txtResourceDescription.Text.Length);
-
-            //    // Set the ErrorProvider error with the text to display. 
-            //    this.errorProvider1.SetError(tb, errorMsg);
-                
-            //}
-            //resourceDescription = tb.Text;
-            
-
-        }
-
-        private void textBox1_Validated(object sender, System.EventArgs e)
-        {
-            TextBox tb = (TextBox)sender;
-            // If all conditions have been met, clear the ErrorProvider of errors.
-            errorProvider1.SetError(tb, "");
-         
-        }
-
-        private bool ValidateDescription()
-        {
-            bool bStatus = true;
-            if (txtResourceDescription.Text == "" | txtResourceDescription.Text.Length < 10)
+            if (txtResourceDescription.Text.Length < 10)
             {
-                errorProvider1.SetError(txtResourceDescription, "Please provide some description");
-                bStatus = false;
+                errorProvider1.SetError(txtResourceDescription, "Please provide a description");
+                e.Cancel = true;
+                btnSubmit.Enabled = false;
+                ToogleButtonStyle(btnSubmit, false);
             }
             else
+            {
                 errorProvider1.SetError(txtResourceDescription, "");
-            return bStatus;
+                e.Cancel = true;
+                btnSubmit.Enabled = true;
+                ToogleButtonStyle(btnSubmit, true);     
+            }
         }
 
-        private void txtResourceDescription_TextChanged(object sender, EventArgs e)
+
+        private void NewResourceForm_Activated(object sender, EventArgs e)
         {
-            ValidateDescription();
+            this.ActiveControl = txtResourceDescription;
+        }
+
+        private void NewResourceForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = false;
         }
     }
 }

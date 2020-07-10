@@ -15,9 +15,42 @@ namespace DataLayer.Models
         private DateTime createdDate;
         private int currentVersion;
         private byte[] data;
+        private string src;
         private string fileSize;
-   
+        private bool isValid;
+        private string extension;
 
+        public string Extension
+        {
+            get { return extension; }
+            set
+            {
+                extension = value;
+                OnPropertyChange();
+            }
+        }
+
+        public bool IsValid
+        {
+            get { return isValid; }
+            set
+            {
+                isValid = value;
+                OnPropertyChange();
+            }
+
+        }
+        
+        
+        public string Src
+        {
+            get { return src; }
+            set
+            {
+                src = value;
+                OnPropertyChange();
+            }
+        }
         public string FileSize
         {
             get { return fileSize; }
@@ -33,7 +66,7 @@ namespace DataLayer.Models
             get { return data; }
             set
             {
-                data = value;
+                data = value;             
                 OnPropertyChange();
             }
         }
@@ -73,7 +106,8 @@ namespace DataLayer.Models
             set
             {
                resourceDescription = value ;
-               OnPropertyChange();
+              
+                OnPropertyChange();
             }
         }
         public string Createdby

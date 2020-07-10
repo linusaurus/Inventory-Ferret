@@ -300,6 +300,12 @@
       <DependentUpon>AttachmentControl.cs</DependentUpon>
     </Compile>
     <Compile Include="UserControls\Bindinglist.cs" />
+    <Compile Include="UserControls\BorderedTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControls\BorderedTextBox.Designer.cs">
+      <DependentUpon>BorderedTextBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControls\MyOrdersControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -348,9 +354,7 @@
     <Compile Include="UserControls\PartFinderControl.Designer.cs">
       <DependentUpon>PartFinderControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControls\PartResourceEditorControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
+    <Compile Include="UserControls\PartResourceEditorControl.cs" />
     <Compile Include="UserControls\PartResourceEditorControl.Designer.cs">
       <DependentUpon>PartResourceEditorControl.cs</DependentUpon>
     </Compile>

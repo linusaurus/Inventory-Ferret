@@ -12,6 +12,8 @@ namespace DataLayer.Entities
         public string VersionComment { get; set; }
         public Byte[] Resource { get; set; }
         public string ModifiedBy { get; set; }
+
+        public string Src { get; set; }
         public DateTime ModDate { get; set; }
   
     }

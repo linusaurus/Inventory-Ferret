@@ -268,24 +268,24 @@ namespace Weaselware.InventoryFerret
             // Create a shelled out Resource Object
             if (selectedPart != null)
             {
-                NewResourceForm rform = new NewResourceForm(selectedPart.PartID);
-                if (rform.ShowDialog() == DialogResult.OK)
-                {
+                //NewResourceForm rform = new NewResourceForm(selectedPart.PartID);
+                //if (rform.ShowDialog() == DialogResult.OK)
+                //{
                    
-                    FileInfo fileInfo = rform.ResourcePath;
-                    // Create a shelled out Resource Object
-                    ResourceDto rdto = new ResourceDto();
-                    rdto.Createdby = Globals.CurrentUserName;
-                    rdto.CurrentVersion = 1;
-                    //rdto.ResourceDescription = 
-                    //newResource.Ext = fileInfo.Extension;
-                    //newResource.Src = fileInfo.Name.ToString();
-                    //newResource.FileSize = FileHelpers.GetSizeInMemory(fileInfo.Length);
-                    //newResource.creator = orderDTO.Purchaser;
-                    //newResource.C = DateTime.Today;
-                    ////Read the bytes of the file into a byte array
-                    //newResource.F = File.ReadAllBytes(filePath);
-                }
+                //    FileInfo fileInfo = rform.ResourcePath;
+                //    // Create a shelled out Resource Object
+                //    ResourceDto rdto = new ResourceDto();
+                //    rdto.Createdby = Globals.CurrentUserName;
+                //    rdto.CurrentVersion = 1;
+                //    //rdto.ResourceDescription = 
+                //    //newResource.Ext = fileInfo.Extension;
+                //    //newResource.Src = fileInfo.Name.ToString();
+                //    //newResource.FileSize = FileHelpers.GetSizeInMemory(fileInfo.Length);
+                //    //newResource.creator = orderDTO.Purchaser;
+                //    //newResource.C = DateTime.Today;
+                //    ////Read the bytes of the file into a byte array
+                //    //newResource.F = File.ReadAllBytes(filePath);
+                //}
             }
 
             ResourceDto newResource = new ResourceDto

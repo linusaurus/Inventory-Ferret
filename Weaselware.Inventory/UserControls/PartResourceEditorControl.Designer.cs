@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.dgResources = new System.Windows.Forms.DataGridView();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgVersions = new System.Windows.Forms.DataGridView();
             this.txtItemDescription = new System.Windows.Forms.TextBox();
             this.txtPartID = new System.Windows.Forms.TextBox();
             this.txtItemName = new System.Windows.Forms.TextBox();
@@ -67,7 +67,7 @@
             this.btnAddResource = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgResources)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgVersions)).BeginInit();
             this.gboxPart.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -82,16 +82,17 @@
             this.dgResources.Name = "dgResources";
             this.dgResources.Size = new System.Drawing.Size(785, 138);
             this.dgResources.TabIndex = 16;
+            this.dgResources.SelectionChanged += new System.EventHandler(this.dgResources_SelectionChanged);
             // 
-            // dataGridView1
+            // dgVersions
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgVersions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(17, 447);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(785, 145);
-            this.dataGridView1.TabIndex = 21;
+            this.dgVersions.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgVersions.Location = new System.Drawing.Point(17, 447);
+            this.dgVersions.Name = "dgVersions";
+            this.dgVersions.Size = new System.Drawing.Size(785, 145);
+            this.dgVersions.TabIndex = 21;
             // 
             // txtItemDescription
             // 
@@ -474,6 +475,7 @@
             this.btnNewVersion.Text = "New Version";
             this.btnNewVersion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnNewVersion.UseVisualStyleBackColor = false;
+            this.btnNewVersion.Click += new System.EventHandler(this.btnNewVersion_Click);
             // 
             // btnOpenResource
             // 
@@ -489,6 +491,7 @@
             this.btnOpenResource.Text = "Open Resource";
             this.btnOpenResource.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOpenResource.UseVisualStyleBackColor = false;
+            this.btnOpenResource.Click += new System.EventHandler(this.btnOpenResource_Click);
             // 
             // btnAddResource
             // 
@@ -522,7 +525,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.gboxPart);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgVersions);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.btnNewVersion);
             this.Controls.Add(this.btnOpenResource);
@@ -532,7 +535,7 @@
             this.Name = "PartResourceEditorControl";
             this.Size = new System.Drawing.Size(931, 822);
             ((System.ComponentModel.ISupportInitialize)(this.dgResources)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgVersions)).EndInit();
             this.gboxPart.ResumeLayout(false);
             this.gboxPart.PerformLayout();
             this.ResumeLayout(false);
@@ -546,7 +549,7 @@
         private System.Windows.Forms.Button btnOpenResource;
         private System.Windows.Forms.Button btnAddResource;
         private System.Windows.Forms.DataGridView dgResources;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgVersions;
         private System.Windows.Forms.TextBox txtItemDescription;
         private System.Windows.Forms.TextBox txtPartID;
         private System.Windows.Forms.TextBox txtItemName;

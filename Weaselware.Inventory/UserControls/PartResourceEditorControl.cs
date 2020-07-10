@@ -12,12 +12,15 @@ using DataLayer.Entities;
 using DataLayer.Services;
 using Weaselware.InventoryFerret.Mappers;
 using System.IO;
+using System.Diagnostics;
+using Microsoft.EntityFrameworkCore.Storage;
+using System.Security;
+using System.Windows.Controls;
 
 namespace Weaselware.InventoryFerret.UserControls
 {
     public partial class PartResourceEditorControl : UserControl
-    {
-        private ResourceDto resourceDTO;
+    {       
         BadgerDataModel ctx;
         private PartsService partService;
         private Part _part;
@@ -27,12 +30,13 @@ namespace Weaselware.InventoryFerret.UserControls
         private List<UnitOfMeasure> units = new List<UnitOfMeasure>();
         private bool isDirty = false;
         PartDetailsMappers _partMapper = new PartDetailsMappers();
+        private ResourceDto _selectedResourceDto;
 
         public PartResourceEditorControl()
         {
-            InitializeComponent();
-            
+            InitializeComponent();          
             BuildGrid();
+            BuildVersionsGrid();
         }
 
         public PartResourceEditorControl(BadgerDataModel context,int partID)
@@ -51,15 +55,11 @@ namespace Weaselware.InventoryFerret.UserControls
             cboUnitOfMeasure.DataSource = units;
 
             loadData(7991);
-            
-            //bsPart.DataSource = _partDTO;
-            bsPart.ListChanged += BsPart_ListChanged;
-            //bsResources.DataSource = _partDTO.Resources;
-            //dgResources.DataSource = bsResources;
+                       
+            bsPart.ListChanged += BsPart_ListChanged; 
             bsResources.ListChanged += BsResources_ListChanged;
-            //txtPartCategory.Text = partService.PartTypeName(_partDTO.PartTypeID);
-            BindPart();    
-            
+ 
+            BindPart();              
         }
 
         private void BsResources_ListChanged(object sender, ListChangedEventArgs e)
@@ -165,6 +165,63 @@ namespace Weaselware.InventoryFerret.UserControls
                 col.HeaderCell.Style.BackColor = Color.Cornsilk;
             }
 
+        }
+
+        private void BuildVersionsGrid()
+        {
+            dgVersions.AutoGenerateColumns = false;
+            dgVersions.AutoGenerateColumns = false;
+            dgVersions.AutoGenerateColumns = false;
+            dgVersions.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleCurrency = new DataGridViewCellStyle();
+            dstyleCurrency.Format = "C";
+            dstyleCurrency.NullValue = "";
+            dstyleCurrency.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Currency Decimal Style
+            DataGridViewCellStyle dstyleDecimal = new DataGridViewCellStyle();
+            dstyleDecimal.Format = "N2";
+            dstyleDecimal.NullValue = "0.00";
+            dstyleDecimal.Alignment = DataGridViewContentAlignment.MiddleRight;
+            // Wrapping Text Style
+            DataGridViewCellStyle dstyleWrapText = new DataGridViewCellStyle();
+            dstyleWrapText.NullValue = "";
+            dstyleWrapText.Alignment = DataGridViewContentAlignment.TopLeft;
+            dstyleWrapText.WrapMode = DataGridViewTriState.True;
+
+            // ID Column ---------------------------------------------------------------
+            DataGridViewTextBoxColumn colResourceVersionID = new DataGridViewTextBoxColumn();
+            colResourceVersionID.HeaderText = "RiD";
+            colResourceVersionID.DataPropertyName = "ResourceVersionID";
+            colResourceVersionID.Width = 55;
+
+            // VersionComment Column ---------------------------------------------------------------
+            DataGridViewTextBoxColumn colVersionComment = new DataGridViewTextBoxColumn();
+            colVersionComment.HeaderText = "Version Comment";
+            colVersionComment.DataPropertyName = "VersionComment";
+            colVersionComment.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            colVersionComment.Width = 200;
+
+            // VersionComment Column ---------------------------------------------------------------
+            DataGridViewTextBoxColumn colRVersion = new DataGridViewTextBoxColumn();
+            colRVersion.HeaderText = "Ver#";
+            colRVersion.DataPropertyName = "RVersion";
+            colRVersion.Width = 50;
+
+            // VersionDate Column ---------------------------------------------------------------
+            DataGridViewTextBoxColumn colModDate = new DataGridViewTextBoxColumn();
+            colModDate.HeaderText = "Date";
+            colModDate.DataPropertyName = "ModDate";
+            colModDate.Width = 70;
+
+            // Modified By Column ---------------------------------------------------------------
+            DataGridViewTextBoxColumn colModifiedBy = new DataGridViewTextBoxColumn();
+            colModifiedBy.HeaderText = "Modified By";
+            colModifiedBy.DataPropertyName = "ModifiedBy";
+            colModifiedBy.Width = 100;
+
+            dgVersions.Columns.AddRange(colResourceVersionID, colVersionComment, colRVersion, colModDate, colModifiedBy);
         }
 
         private void BindPart()
@@ -278,26 +335,88 @@ namespace Weaselware.InventoryFerret.UserControls
         }
 
         private void btnAddResource_Click(object sender, EventArgs e)
-        {
-                                 
-            FileInfo _info;
+        {                                          
+            OpenFileDialog openFileDialog = new OpenFileDialog();
 
-            NewResourceForm frm = new NewResourceForm(_partDTO.PartID);
-            if (frm.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                _info = new FileInfo(frm.ResourcePath.FullName);
-                ResourceDto resourceDto = new ResourceDto
+                try
                 {
-                    PartID = _partDTO.PartID,
-                    ResourceDescription = frm.ResourceDescription,
-                    CurrentVersion = 1                    
-                };
+                    string path = openFileDialog.FileName;
+                    FileInfo info = new FileInfo(path);
+                    NewResourceForm resourceForm = new NewResourceForm(info,_partDTO.PartID);
+                    resourceForm.ResourcePath = info;
+                    if (resourceForm.ShowDialog() == DialogResult.OK)
+                    {
+                        ResourceDto newResource = resourceForm.ResourceDTO;
+                        newResource.Data = File.ReadAllBytes(resourceForm.ResourcePath.FullName);
+                        
+                        bsResources.Add(newResource);
+                    }
 
-                resourceDto.FileSize = FileHelpers.GetSizeInMemory(_info.Length);
-                //Read the bytes of the file into a byte array
-                resourceDto.Data = File.ReadAllBytes(_info.FullName);
-                bsResources.Add(resourceDto);
+
+                }
+                catch (SecurityException ex)
+                {
+                    MessageBox.Show($"Security error.\n\nError message: {ex.Message}\n\n" +
+                    $"Details:\n\n{ex.StackTrace}");
+                }
             }
+
+            //NewResourceForm frm = new NewResourceForm(_partDTO.PartID);
+            //if (frm.ShowDialog() == DialogResult.OK)
+            //{
+            //    _info = new FileInfo(frm.ResourcePath.FullName);
+               
+
+            //    resourceDto.FileSize = FileHelpers.GetSizeInMemory(_info.Length);
+            //    //Read the bytes of the file into a byte array
+            //    resourceDto.Data = File.ReadAllBytes(_info.FullName);
+            //    bsResources.Add(resourceDto);
+            //}
+
+        }
+
+        private void btnOpenResource_Click(object sender, EventArgs e)
+        {
+            string localPath = String.Format("{0}\\WeaselScat\\", Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData));
+            if (!File.Exists(localPath))
+            {
+                System.IO.Directory.CreateDirectory(localPath);
+            }
+
+            if (_selectedResourceDto != null)
+            {
+                localPath += _selectedResourceDto.Src;
+                try
+                {
+                    System.IO.File.WriteAllBytes(localPath, _selectedResourceDto.Data);
+                    Process.Start(localPath);
+                }
+                catch (Exception)
+                {MessageBox.Show("Error opening file");}   
+            }
+        }
+
+        private void dgResources_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgResources.DataSource != null)
+            {
+                if (dgResources.Rows.Count > 0)
+                {
+                    _selectedResourceDto = (ResourceDto)dgResources.CurrentRow.DataBoundItem;
+                    var versions = ctx.ResourceVersion.OrderByDescending(p => p.ResourceVersionID).Where(r => r.ResourceID == _selectedResourceDto.ResourceID).ToList();
+                    dgVersions.DataSource = versions;
+                }
+            }
+        }
+        /// <summary>
+        /// Push a New Version onto the Stack, with renumbering
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnNewVersion_Click(object sender, EventArgs e)
+        {
 
         }
     }

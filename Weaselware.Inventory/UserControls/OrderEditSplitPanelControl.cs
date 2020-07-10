@@ -386,7 +386,6 @@ namespace Weaselware.InventoryFerret.UserControls
         private void tsbToogleOrderFee_Click(object sender, EventArgs e)
         {
             orderFeeControl = new OrderFeeControl();
-
             orderFeeControl.SetDataSource(orderDTO, bsOrderFees);
             LoadOrderPanelControl(orderFeeControl);
         }

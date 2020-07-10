@@ -75,6 +75,7 @@
             this.btnOpenResource.Text = "Open Attachment";
             this.btnOpenResource.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnOpenResource.UseVisualStyleBackColor = false;
+            this.btnOpenResource.Click += new System.EventHandler(this.btnOpenResource_Click);
             // 
             // btnAddResource
             // 

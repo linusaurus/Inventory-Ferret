@@ -28,11 +28,14 @@ namespace Weaselware.InventoryFerret
             // Standard App Startup
             //---------------------------------------------------------------------------------
             
-             Harness mainForm = new Harness();
+           
+           
 
             //mainForm.LoggedOnUserID = 92;
             Globals.CurrentLoggedUserID = 8;
-            Globals.CurrentUserName = "Richard";
+            Globals.CurrentUserName = "Richard Young";
+            Harness mainForm = new Harness();
+            //NewResourceForm mainForm = new NewResourceForm(7991);
             //Application.Run(new DataForm());
 
             Application.Run(mainForm);

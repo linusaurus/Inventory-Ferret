@@ -18,6 +18,8 @@ namespace DataLayer.Entities
 
         public byte[] Data { get; set; }
 
+        public string Src { get; set; }
+
         public string FileSize { get; set; }
 
         public Part Part { get; set; }

@@ -149,5 +149,10 @@ namespace Weaselware.InventoryFerret.UserControls
 
              bsAttachements.Add(newAttachment);
         }
+
+        private void btnOpenResource_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

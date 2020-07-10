@@ -52,6 +52,7 @@ namespace Weaselware.InventoryFerret.Mappers
             destination.ResourceDescription = source.ResourceDescription;
             destination.ResourceID = source.ResourceID;
             destination.FileSize = source.FileSize;
+            destination.Src = source.Src;
             destination.Data = source.Data;
         }
     }
